@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ValuationManagementSolu.API/ValuationManagementSolu.API.csproj" />
+  <Project Path="ValuationManagementSolu.Application/ValuationManagementSolu.Application.csproj" />
+  <Project Path="ValuationManagementSolu.Domain/ValuationManagementSolu.Domain.csproj" />
+  <Project Path="ValuationManagementSolu.Infrastructure/ValuationManagementSolu.Infrastructure.csproj" />
+</Solution>

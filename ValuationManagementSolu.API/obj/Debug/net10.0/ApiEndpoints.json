@@ -1,0 +1,156 @@
+[
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.AccountController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/Account/change-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ValuationManagementSolu.Application.Data.ChanagePassword",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.AccountController",
+    "Method": "ForgotPassword",
+    "RelativePath": "api/Account/forgot-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ValuationManagementSolu.Application.Data.ForgortPassword",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.AccountController",
+    "Method": "LoginStaff",
+    "RelativePath": "api/Account/login/staff",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ValuationManagementSolu.Application.Data.StaffLoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.AccountController",
+    "Method": "LoginValuer",
+    "RelativePath": "api/Account/login/valuer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ValuationManagementSolu.Application.Data.ValuerLoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.AccountController",
+    "Method": "RegisterStaff",
+    "RelativePath": "api/Account/register/staff",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ValuationManagementSolu.Application.Data.RegisterStaff",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.AccountController",
+    "Method": "RegisterValuer",
+    "RelativePath": "api/Account/register/valuer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ValuationManagementSolu.Application.Data.RegisterValuer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.AccountController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Account/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ValuationManagementSolu.Application.Data.ResetPassword",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.FacilitiesController",
+    "Method": "GetActiveFacilities",
+    "RelativePath": "api/Facilities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.FacilitiesController",
+    "Method": "GetFacility",
+    "RelativePath": "api/Facilities/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.FacilitiesController",
+    "Method": "CreateFacility",
+    "RelativePath": "api/Facilities/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ValuationManagementSolu.Application.Data.CreateFacilityRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
