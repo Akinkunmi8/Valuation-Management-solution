@@ -11,6 +11,7 @@ using ValuationManagementSolu.Application.Services;
 using ValuationManagementSolu.Domain;
 using ValuationManagementSolu.Infrastructure.Context;
 using ValuationManagementSolu.Infrastructure.Repository;
+using ValuationManagementSolu.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()
@@ -41,10 +42,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactAppPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:3000", "http://localhost:5173") // CRA or Vite default ports
+        policy.WithOrigins("http://localhost:3000", "https://your-frontend-guy.vercel.app")
               .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
+              .AllowAnyMethod();
     });
 });
 
@@ -78,6 +78,20 @@ builder.Services.AddSwaggerGen();
 // Register Data Repository Engine Layer
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IFileStorageService, FileStorageService>();
+builder.Services.AddScoped<IRmDashboardService, RmDashboardService>();
+builder.Services.AddScoped<IBmDashboardService, BmDashboardService>();
+builder.Services.AddScoped<ICmDashboardService, CmDashboardService>();
+builder.Services.AddScoped<ICmsDashboardService, CmsDashboardService>();
+builder.Services.AddScoped<IValuerDashboardService, ValuerDashboardService>();
+builder.Services.AddScoped<IAdminDashboardService, AdminDashboardService>();
+builder.Services.AddScoped<IAuditDashboardService, AuditDashboardService>();
+builder.Services.AddScoped<IValuerService, ValuerService>();
+builder.Services.AddScoped<IValuationReportService, ValuationReportService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<ICmActionService, CmActionService>();
+builder.Services.AddScoped<ICmsActionService, CmsActionService>();
+
 
 // Register Application Business Flow Logic Services
 builder.Services.AddScoped<IFacilityService, FacilityService>();
@@ -107,16 +121,23 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Valuation Management API V1");
-        // This ensures typing http://localhost:5051 takes you directly to the UI
-        c.RoutePrefix = string.Empty;
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Valuation Management API V1");
+    // This ensures typing http://localhost:5051 takes you directly to the UI
+    c.RoutePrefix = string.Empty;
+});
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI(c =>
+//    {
+//        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Valuation Management API V1");
+//        // This ensures typing http://localhost:5051 takes you directly to the UI
+//        c.RoutePrefix = string.Empty;
+//    });
+//}
 
 app.UseSerilogRequestLogging();
 app.UseCors("ReactAppPolicy");

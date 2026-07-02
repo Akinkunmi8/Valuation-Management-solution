@@ -10,6 +10,7 @@ namespace ValuationManagementSolu.Domain
     {
         [Key]
         public int CollateralId { get; set; }
+        public string? FacilityReference { get; set; }
         public string? ValuationStatusDescription { get; set; }
         public int ValuationStatusId { get; set; } = 0;
         public string? CustomerName { get; set; }
@@ -25,7 +26,7 @@ namespace ValuationManagementSolu.Domain
         public DateTime? RequestDate { get; set; }
         public decimal BranchValuationSum { get; set; }
 
-        public int ValuerId { get; set; }
+        public int? ValuerId { get; set; }
         public virtual Valuer? Valuer { get; set; }
 
         public int ApprovalStatusId { get; set; } = 0;
@@ -55,6 +56,8 @@ namespace ValuationManagementSolu.Domain
         public DateTime? ValuationEndDate { get; set; }
         public bool IsEmailSent { get; set; } = false;
         public int ShopCount { get; set; } = 0;
+
+        public string? OtherDetails { get; set; }
     }
 
 

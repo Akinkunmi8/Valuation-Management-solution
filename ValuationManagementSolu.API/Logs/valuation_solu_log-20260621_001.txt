@@ -65,3 +65,9 @@ System.IO.IOException: Failed to bind to address http://127.0.0.1:5051: address 
 2026-06-21 14:56:45.622 +01:00 [INF] HTTP GET /api/Facilities responded 401 in 194.3859 ms
 2026-06-21 14:58:29.078 +01:00 [INF] HTTP POST /api/Account/login/staff responded 200 in 3500.7416 ms
 2026-06-21 14:59:05.714 +01:00 [INF] HTTP GET /api/Facilities responded 200 in 421.7550 ms
+2026-06-21 16:30:03.391 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-06-21 16:30:04.263 +01:00 [INF] Now listening on: https://localhost:7104
+2026-06-21 16:30:04.288 +01:00 [INF] Now listening on: http://localhost:5051
+2026-06-21 16:30:04.649 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-21 16:30:04.690 +01:00 [INF] Hosting environment: Development
+2026-06-21 16:30:04.696 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API

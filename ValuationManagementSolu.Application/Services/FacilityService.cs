@@ -1,68 +1,264 @@
-﻿using ValuationManagementSolu.Application.Data;
+﻿using System;
+using System.Threading.Tasks;
+using ValuationManagementSolu.Application.Data;
 using ValuationManagementSolu.Application.DTOs;
 using ValuationManagementSolu.Application.IServices;
 using ValuationManagementSolu.Application.Repository;
+using ValuationManagementSolu.Application.Static;
 using ValuationManagementSolu.Domain;
 
-namespace ValuationManagementSolu.Application.Services
+namespace ValuationManagementSolu.Application.Services;
+
+public class FacilityService : IFacilityService
 {
-    public class FacilityService : IFacilityService
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IFileStorageService _fileStorage;
+
+    public FacilityService(IUnitOfWork unitOfWork, IFileStorageService fileStorage)
     {
-        private readonly IUnitOfWork _unitOfWork;
+        _unitOfWork = unitOfWork;
+        _fileStorage = fileStorage;
+    }
 
-        public FacilityService(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
+    public async Task<string> CreateFacilityWithCollateralAsync(FacilityDto dto)
+    {
+        // 1. Generate the custom unique reference
+        string facilityRef = ReferenceGenerator.GenerateFacilityReference();
 
-        public async Task<IEnumerable<FacilityDto>> GetAllActiveFacilitiesAsync()
+        // 2. Safely upload files if they exist in the incoming DTO
+        string? titlePath = dto.TitleDocument != null ? await _fileStorage.SaveFileAsync(dto.TitleDocument, "title-docs") : null;
+        string? approvalPath = dto.ApprovalFile != null ? await _fileStorage.SaveFileAsync(dto.ApprovalFile, "approvals") : null;
+        string? indemnityPath = dto.IndemityLetter != null ? await _fileStorage.SaveFileAsync(dto.IndemityLetter, "indemnity") : null;
+
+        // 3. Begin an atomic database transaction via Unit of Work wrapper
+        await _unitOfWork.BeginTransactionAsync();
+
+        try
         {
-            var facilities = await _unitOfWork.Facilities.FindAsync(f => !f.IsDeleted);
-
-            // Map Entity objects cleanly to DTO values
-            return facilities.Select(f => new FacilityDto
+            // 4. Map and add the Facility Entity using your concrete repository property
+            var facility = new Facility
             {
-                FacilityId = f.FacilityId,
-                AccountNumber = f.AccountNumber,
-                CustomerName = f.CustomerName,
-                FacilityAmount = f.FacilityAmount,
-                FacilityPurpose = f.FacilityPurpose,
-                ApprovalStatusDescription = f.ApprovalStatus.ToString(),
-                ValuationStatusDescription = f.ValuationStatus.ToString()
-            });
-        }
-
-        public async Task<FacilityDto?> GetFacilityByIdAsync(int id)
-        {
-            var f = await _unitOfWork.Facilities.GetByIdAsync(id);
-            if (f == null || f.IsDeleted) return null;
-
-            return new FacilityDto
-            {
-                FacilityId = f.FacilityId,
-                AccountNumber = f.AccountNumber,
-                CustomerName = f.CustomerName,
-                FacilityAmount = f.FacilityAmount,
-                FacilityPurpose = f.FacilityPurpose,
-                ApprovalStatusDescription = f.ApprovalStatus.ToString(),
-                ValuationStatusDescription = f.ValuationStatus.ToString()
+                FacilityReference = facilityRef,
+                AccountNumber = dto.AccountNumber,
+                SOLID = dto.SolId,
+                FacilityAmount = dto.CollateralValue ?? 0,
+                FacilityPurpose = dto.FacilityPurpose,
+                CustomerName = dto.CustomerName,
+                CustomerCity = dto.City,
+                CustomerCountry = dto.Country,
+                RelationshipManagersPhone = dto.RMsNumber,
+                CreatedBy = dto.CreatedBy,
+                DateAdded = DateTime.UtcNow
             };
-        }
+            await _unitOfWork.Facilities.AddAsync(facility);
 
-        public async Task<bool> CreateNewFacilityAsync(CreateFacilityRequest request, string username)
-        {
-            var entity = new Facility
+            // 5. Map and add the Collateral Entity linked via the generated Reference
+            var collateral = new Collateral
             {
-                AccountNumber = request.AccountNumber,
-                CustomerName = request.CustomerName,
-                FacilityAmount = request.FacilityAmount,
-                SOLID = request.SOLID,
-                CreatedBy = username,
-                DateAdded = DateTime.UtcNow,
-                ApprovalStatus = ApprovalStatus.Pending,
-                ValuationStatus = ValuationStatus.Assigned
+                FacilityReference = facilityRef,
+                Owner = dto.CollateraOwener,
+                CollateralAddress = dto.FacilityAddress,
+                TitleType = dto.collateralType,
+                State = dto.StateOfCollateral,
+                Location = dto.Location,
+                OtherDetails = dto.OtherDetails,
+                BranchValuationSum = dto.CollateralValue ?? 0,
+                FeesCharged = dto.ValuationsFees ?? 0,
+                FileName = titlePath,
+                ApprovalFileName = approvalPath,
+                IndemnityFileName = indemnityPath
             };
+            await _unitOfWork.Collaterals.AddAsync(collateral);
 
-            await _unitOfWork.Facilities.AddAsync(entity);
-            var result = await _unitOfWork.CompleteAsync();
-            return result > 0;
+            // 6. Save changes and commit transaction atomically
+            await _unitOfWork.CompleteAsync();
+            await _unitOfWork.CommitTransactionAsync();
+
+            return facilityRef;
         }
+        catch (Exception)
+        {
+            await _unitOfWork.RollbackTransactionAsync();
+
+            // Clean up files from storage if the DB save fails to prevent orphaned file leak
+            if (titlePath != null) await _fileStorage.DeleteFileAsync(titlePath);
+            if (approvalPath != null) await _fileStorage.DeleteFileAsync(approvalPath);
+            if (indemnityPath != null) await _fileStorage.DeleteFileAsync(indemnityPath);
+
+            throw;
+        }
+    }
+
+    public Task<bool> CreateNewFacilityAsync(CreateFacilityRequest request, string username)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<bool> DeleteCancelledFacilityAsync(string facilityRef)
+    {
+        if (string.IsNullOrEmpty(facilityRef))
+            throw new ArgumentException("Facility reference parameter cannot be empty.");
+
+        var allFacilities = await _unitOfWork.Facilities.GetAllAsync();
+        var facility = allFacilities.FirstOrDefault(f => f.FacilityReference == facilityRef);
+        if (facility == null) throw new KeyNotFoundException($"Facility with reference {facilityRef} not found.");
+
+        var allReports = await _unitOfWork.ValuationReports.GetAllAsync();
+        var associatedReport = allReports.FirstOrDefault(r => r.FacilityRef == facilityRef);
+
+        if (associatedReport == null || associatedReport.approvalStatus != ApprovalStatus.Rejected)
+        {
+            throw new InvalidOperationException("Only facilities that have been explicitly cancelled can be deleted.");
+        }
+
+        var allCollaterals = await _unitOfWork.Collaterals.GetAllAsync();
+        var collateral = allCollaterals.FirstOrDefault(c => c.FacilityReference == facilityRef);
+
+        // Track all file paths before we delete the database rows
+        string? titleFilePath = collateral?.FileName;
+        string? approvalFilePath = collateral?.ApprovalFileName;
+        string? indemnityFilePath = collateral?.IndemnityFileName;
+        string? reportFilePath = associatedReport?.ValuationRePortName;
+
+        await _unitOfWork.BeginTransactionAsync();
+
+        try
+        {
+            // 1. Delete rows from EF tracking memory
+            if (collateral != null)
+            {
+                _unitOfWork.Collaterals.Delete(collateral);
+            }
+
+            if (associatedReport != null)
+            {
+                _unitOfWork.ValuationReports.Delete(associatedReport);
+            }
+
+            _unitOfWork.Facilities.Delete(facility);
+
+            // 2. Commit database changes
+            await _unitOfWork.CompleteAsync();
+            await _unitOfWork.CommitTransactionAsync();
+
+            // 3. SUCCESS: Purge all physical files from server storage natively
+            if (!string.IsNullOrEmpty(titleFilePath)) await _fileStorage.DeleteFileAsync(titleFilePath);
+            if (!string.IsNullOrEmpty(approvalFilePath)) await _fileStorage.DeleteFileAsync(approvalFilePath);
+            if (!string.IsNullOrEmpty(indemnityFilePath)) await _fileStorage.DeleteFileAsync(indemnityFilePath);
+            if (!string.IsNullOrEmpty(reportFilePath)) await _fileStorage.DeleteFileAsync(reportFilePath);
+
+            return true;
+        }
+        catch (Exception)
+        {
+            await _unitOfWork.RollbackTransactionAsync();
+            throw;
+        }
+    }
+
+    public async Task<bool> EditAndResubmitFacilityAsync(string facilityRef, FacilityResubmitDto dto)
+    {
+        if (string.IsNullOrEmpty(facilityRef) || dto == null)
+            throw new ArgumentException("Invalid request arguments or payload mapping data.");
+
+        var allFacilities = await _unitOfWork.Facilities.GetAllAsync();
+        var facility = allFacilities.FirstOrDefault(f => f.FacilityReference == facilityRef);
+        if (facility == null) throw new KeyNotFoundException($"Facility with reference {facilityRef} not found.");
+
+        if (facility.ApprovalStatus != ApprovalStatus.Rejected)
+        {
+            throw new InvalidOperationException("Only facilities with a status of 'Rejected' can be edited and resubmitted.");
+        }
+
+        var allCollaterals = await _unitOfWork.Collaterals.GetAllAsync();
+        var collateral = allCollaterals.FirstOrDefault(c => c.FacilityReference == facilityRef);
+
+        await _unitOfWork.BeginTransactionAsync();
+
+        // Track newly uploaded files so we can clean them up if the DB transaction fails
+        string? newTitlePath = null;
+        string? newApprovalPath = null;
+        string? newIndemnityPath = null;
+
+        // Track old files to delete ONLY after a successful DB commit
+        string? oldTitlePath = collateral?.FileName;
+        string? oldApprovalPath = collateral?.ApprovalFileName;
+        string? oldIndemnityPath = collateral?.IndemnityFileName;
+
+        try
+        {
+            // 1. Map new changes onto the Facility Entity
+            facility.CustomerName = dto.CustomerName;
+            facility.AccountNumber = dto.AccountNumber;
+            facility.SOLID = dto.SolId;
+            facility.FacilityPurpose = dto.FacilityPurpose;
+            facility.CustomerCity = dto.City;
+            facility.CustomerCountry = dto.Country;
+            facility.RelationshipManagersPhone = dto.RMsNumber;
+            facility.RejectionComment = null;
+
+            // RESET WORKFLOW FLAGS: Returns the facility to a clean slate for processing
+            facility.ApprovalStatus = ApprovalStatus.Pending;
+            facility.ValuationStatus = ValuationStatus.UnAssigned;
+
+            // 2. Process new file uploads if provided in the DTO
+            if (collateral != null)
+            {
+                if (dto.TitleDocument != null && dto.TitleDocument.Length > 0)
+                {
+                    newTitlePath = await _fileStorage.SaveFileAsync(dto.TitleDocument, "title-docs");
+                    collateral.FileName = newTitlePath;
+                }
+                if (dto.ApprovalFile != null && dto.ApprovalFile.Length > 0)
+                {
+                    newApprovalPath = await _fileStorage.SaveFileAsync(dto.ApprovalFile, "approval-docs");
+                    collateral.ApprovalFileName = newApprovalPath;
+                }
+                if (dto.IndemnityLetter != null && dto.IndemnityLetter.Length > 0)
+                {
+                    newIndemnityPath = await _fileStorage.SaveFileAsync(dto.IndemnityLetter, "indemnity-docs");
+                    collateral.IndemnityFileName = newIndemnityPath;
+                }
+
+                // Map other collateral info cleanly
+                collateral.Owner = dto.CollateralOwner;
+                collateral.TitleType = dto.CollateralType;
+                collateral.State = dto.StateOfCollateral;
+                collateral.Location = dto.Location;
+                collateral.OtherDetails = dto.OtherDetails;
+                collateral.BranchValuationSum = dto.CollateralValue;
+                collateral.FeesCharged = dto.ValuationsFees;
+            }
+
+            await _unitOfWork.CompleteAsync(); // Persist explicitly to DB context layer
+            await _unitOfWork.CommitTransactionAsync();
+
+            // 3. SUCCESS: Safely delete the old overwritten files from disk
+            if (dto.TitleDocument != null && !string.IsNullOrEmpty(oldTitlePath)) await _fileStorage.DeleteFileAsync(oldTitlePath);
+            if (dto.ApprovalFile != null && !string.IsNullOrEmpty(oldApprovalPath)) await _fileStorage.DeleteFileAsync(oldApprovalPath);
+            if (dto.IndemnityLetter != null && !string.IsNullOrEmpty(oldIndemnityPath)) await _fileStorage.DeleteFileAsync(oldIndemnityPath);
+
+            return true;
+        }
+        catch (Exception)
+        {
+            await _unitOfWork.RollbackTransactionAsync();
+
+            // CRITICAL CLEANUP: If DB failed, delete the newly uploaded files to prevent disk clutter
+            if (!string.IsNullOrEmpty(newTitlePath)) await _fileStorage.DeleteFileAsync(newTitlePath);
+            if (!string.IsNullOrEmpty(newApprovalPath)) await _fileStorage.DeleteFileAsync(newApprovalPath);
+            if (!string.IsNullOrEmpty(newIndemnityPath)) await _fileStorage.DeleteFileAsync(newIndemnityPath);
+            throw;
+        }
+    }
+
+    public Task<IEnumerable<FacilityDto>> GetAllActiveFacilitiesAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<FacilityDto?> GetFacilityByIdAsync(int id)
+    {
+        throw new NotImplementedException();
     }
 }

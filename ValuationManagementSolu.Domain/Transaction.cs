@@ -9,6 +9,7 @@ namespace ValuationManagementSolu.Domain
     {
         [Key]
         public int ProcessId { get; set; }
+        public string? FacilityReference { get; set; }
         public string? CrAccNum { get; set; }
         public string? DrAccNum { get; set; }
         public decimal TranAmt { get; set; }
@@ -28,6 +29,7 @@ namespace ValuationManagementSolu.Domain
         public bool IsPayBack { get; set; }
         public bool IsValuerPayment { get; set; }
         public bool IsProcessed { get; set; }
+        public TransactionType TransactionType { get; set; }
         public string? ApiRequest { get; set; }
         public int CollateralId { get; set; }
         public int Trial { get; set; }
@@ -35,6 +37,8 @@ namespace ValuationManagementSolu.Domain
         public bool IsParent { get; set; }
         public string? OrgnTranStan { get; set; }
         public string? OrgnTranDateTime { get; set; }
+
+        public string? Narration { get; set; }
         public PaymentStatus Status { get; set; }
     }
 }

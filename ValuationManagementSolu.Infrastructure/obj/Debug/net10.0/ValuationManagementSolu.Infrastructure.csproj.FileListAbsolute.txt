@@ -11,6 +11,7 @@ C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infra
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\obj\Debug\net10.0\ValuationManagementSolu.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\obj\Debug\net10.0\ValuationManagementSolu.Infrastructure.AssemblyInfo.cs
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\obj\Debug\net10.0\ValuationManagementSolu.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\obj\Debug\net10.0\ValuationManagementSolu.Infrastructure.sourcelink.json
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\obj\Debug\net10.0\Valuatio.38010E6D.Up2Date
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\obj\Debug\net10.0\ValuationManagementSolu.Infrastructure.dll
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\obj\Debug\net10.0\refint\ValuationManagementSolu.Infrastructure.dll

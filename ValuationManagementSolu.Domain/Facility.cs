@@ -49,4 +49,5 @@ public class Facility
     public string? ReviewerReason { get; set; }
     public ApprovalStatus ApprovalStatus { get; set; }
     public ValuationStatus ValuationStatus { get; set; }
+    public string? RejectionComment { get; set; }
 }

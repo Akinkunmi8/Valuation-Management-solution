@@ -1,51 +1,85 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using ValuationManagementSolu.Application.Data;
 using ValuationManagementSolu.Application.DTOs;
 using ValuationManagementSolu.Application.IServices;
+using ValuationManagementSolu.Application.Services;
 
-namespace ValuationManagementSolu.API.Controllers
+namespace ValuationManagementSolu.API.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class FacilitiesController : ControllerBase
 {
-    [Authorize]
-    [Route("api/[controller]")]
-    [ApiController]
-    public class FacilitiesController : ControllerBase
+    private readonly IFacilityService _facilityService;
+
+    public FacilitiesController(IFacilityService facilityService)
     {
-        private readonly IFacilityService _facilityService;
+        _facilityService = facilityService;
+    }
 
-        public FacilitiesController(IFacilityService facilityService)
+    [HttpPost("create")]
+    [Consumes("multipart/form-data")] // Required for IFormFile handling alongside text
+    public async Task<IActionResult> CreateFacility([FromForm] FacilityDto dto)
+    {
+        if (dto == null) return BadRequest("Invalid facility payload data.");
+
+        try
         {
-            _facilityService = facilityService;
+            string referenceNumber = await _facilityService.CreateFacilityWithCollateralAsync(dto);
+            return Ok(new
+            {
+                Success = true,
+                Message = "Facility and corresponding collateral details successfully created.",
+                FacilityReference = referenceNumber
+            });
         }
-
-        [HttpGet]
-        public async Task<IActionResult> GetActiveFacilities()
+        catch (Exception ex)
         {
-            var results = await _facilityService.GetAllActiveFacilitiesAsync();
-            return Ok(results);
+            return StatusCode(StatusCodes.Status500InternalServerError, new { Success = false, Error = ex.Message });
         }
+    }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetFacility(int id)
+    [HttpPut("edit-resubmit/{facilityRef}")]
+    public async Task<IActionResult> EditAndResubmit([FromRoute] string facilityRef,[FromForm] FacilityResubmitDto dto)
+    {
+        try
         {
-            var facility = await _facilityService.GetFacilityByIdAsync(id);
-            if (facility == null) return NotFound(new { Message = "Facility record not found or flagged archived." });
-            return Ok(facility);
+            var result = await _facilityService.EditAndResubmitFacilityAsync(facilityRef, dto);
+            return Ok(new { Success = true, Message = "Facility successfully updated and queued back into pending workflows." });
         }
-
-        [HttpPost("create")]
-        public async Task<IActionResult> CreateFacility([FromBody] CreateFacilityRequest request)
+        catch (InvalidOperationException ex)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            return BadRequest(new { Message = ex.Message });
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Message = "An error occurred during modification processing.", Details = ex.Message });
+        }
+    }
 
-            // Fetch name identifier context safely out of user JWT claims payload
-            var username = User.Identity?.Name ?? "System";
-
-            var success = await _facilityService.CreateNewFacilityAsync(request, username);
-            if (!success) return StatusCode(500, "A database processing error occurred saving facility records.");
-
-            return StatusCode(201, new { Status = "Success", Message = "Facility registered successfully." });
+    [HttpDelete("remove-cancelled/{facilityRef}")]
+    public async Task<IActionResult> DeleteCancelled([FromRoute] string facilityRef)
+    {
+        try
+        {
+            var result = await _facilityService.DeleteCancelledFacilityAsync(facilityRef);
+            return Ok(new { Success = true, Message = "Cancelled facility and its related parameters have been purged permanently." });
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { Message = ex.Message });
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(new { Message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Message = "An error occurred during database removal operations.", Details = ex.Message });
         }
     }
 }

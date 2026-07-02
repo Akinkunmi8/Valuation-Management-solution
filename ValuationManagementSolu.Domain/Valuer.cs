@@ -9,6 +9,7 @@ namespace ValuationManagementSolu.Domain
     {
         [Key]
         public int ValuerId { get; set; }
+        public string UserId { get; set; } = null!;
         public string? ValuersName { get; set; }
         public string? ValuerEmail { get; set; }
         public string? ValuerStatusId { get; set; }

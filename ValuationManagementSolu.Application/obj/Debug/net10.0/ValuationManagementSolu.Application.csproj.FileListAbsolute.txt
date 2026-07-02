@@ -8,6 +8,7 @@ C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Appli
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Application\obj\Debug\net10.0\ValuationManagementSolu.Application.AssemblyInfoInputs.cache
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Application\obj\Debug\net10.0\ValuationManagementSolu.Application.AssemblyInfo.cs
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Application\obj\Debug\net10.0\ValuationManagementSolu.Application.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Application\obj\Debug\net10.0\ValuationManagementSolu.Application.sourcelink.json
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Application\obj\Debug\net10.0\Valuatio.E86241BF.Up2Date
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Application\obj\Debug\net10.0\ValuationManagementSolu.Application.dll
 C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Application\obj\Debug\net10.0\refint\ValuationManagementSolu.Application.dll

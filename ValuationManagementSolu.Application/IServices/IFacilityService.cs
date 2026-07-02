@@ -8,5 +8,11 @@ namespace ValuationManagementSolu.Application.IServices
         Task<IEnumerable<FacilityDto>> GetAllActiveFacilitiesAsync();
         Task<FacilityDto?> GetFacilityByIdAsync(int id);
         Task<bool> CreateNewFacilityAsync(CreateFacilityRequest request, string username);
+        Task<string> CreateFacilityWithCollateralAsync(FacilityDto dto);
+
+        Task<bool> EditAndResubmitFacilityAsync(string facilityRef, FacilityResubmitDto dto);
+        Task<bool> DeleteCancelledFacilityAsync(string facilityRef);
+
+
     }
 }

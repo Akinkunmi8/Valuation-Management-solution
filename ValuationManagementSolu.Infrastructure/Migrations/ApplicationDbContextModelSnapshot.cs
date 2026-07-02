@@ -294,6 +294,9 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                     b.Property<int>("FacilityId")
                         .HasColumnType("int");
 
+                    b.Property<string>("FacilityReference")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<decimal>("FeesCharged")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
@@ -318,6 +321,9 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
 
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
+
+                    b.Property<string>("OtherDetails")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Owner")
                         .HasColumnType("nvarchar(max)");
@@ -358,14 +364,14 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                     b.Property<int>("ValuationStatusId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ValuerId")
+                    b.Property<int?>("ValuerId")
                         .HasColumnType("int");
 
                     b.HasKey("CollateralId");
 
                     b.HasIndex("ApprovedLocationLocationId");
 
-                    b.HasIndex("FacilityId");
+                    b.HasIndex("FacilityReference");
 
                     b.HasIndex("StateAndCapitalStateId");
 
@@ -429,7 +435,8 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FacilityReference")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal?>("ForceSalesValue")
                         .HasPrecision(18, 2)
@@ -468,6 +475,9 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RMsSolId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RejectionComment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RelationshipManagersPhone")
@@ -565,6 +575,9 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                     b.Property<int?>("FacilityId")
                         .HasColumnType("int");
 
+                    b.Property<string>("FacilityReference")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<bool>("IsParent")
                         .HasColumnType("bit");
 
@@ -576,6 +589,9 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
 
                     b.Property<bool>("IsValuerPayment")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Narration")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OrgnTranDateTime")
                         .HasColumnType("nvarchar(max)");
@@ -605,6 +621,9 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                     b.Property<DateTime>("TransDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("TransactionType")
+                        .HasColumnType("int");
+
                     b.Property<int>("Trial")
                         .HasColumnType("int");
 
@@ -613,7 +632,51 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
 
                     b.HasKey("ProcessId");
 
+                    b.HasIndex("FacilityReference");
+
                     b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("ValuationManagementSolu.Domain.ValuationReport", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DateAssigned")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FacilityRef")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("PaymentStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RejectionComment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ValuationRePortName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ValuerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ValuersName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("approvalStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("reportStatus")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FacilityRef");
+
+                    b.HasIndex("ValuerId");
+
+                    b.ToTable("valuationReports");
                 });
 
             modelBuilder.Entity("ValuationManagementSolu.Domain.Valuer", b =>
@@ -639,8 +702,15 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                     b.Property<string>("PasswordChange")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
+
                     b.Property<string>("TelephoneNumbers")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
@@ -658,6 +728,9 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ValuerId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Valuers");
                 });
@@ -721,9 +794,9 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
 
                     b.HasOne("ValuationManagementSolu.Domain.Facility", "Facility")
                         .WithMany()
-                        .HasForeignKey("FacilityId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("FacilityReference")
+                        .HasPrincipalKey("FacilityReference")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ValuationManagementSolu.Domain.StateAndCapital", "StateAndCapital")
                         .WithMany()
@@ -732,8 +805,7 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                     b.HasOne("ValuationManagementSolu.Domain.Valuer", "Valuer")
                         .WithMany()
                         .HasForeignKey("ValuerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("ApprovedLocation");
 
@@ -742,6 +814,41 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                     b.Navigation("StateAndCapital");
 
                     b.Navigation("Valuer");
+                });
+
+            modelBuilder.Entity("ValuationManagementSolu.Domain.Transaction", b =>
+                {
+                    b.HasOne("ValuationManagementSolu.Domain.Facility", null)
+                        .WithMany()
+                        .HasForeignKey("FacilityReference")
+                        .HasPrincipalKey("FacilityReference")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ValuationManagementSolu.Domain.ValuationReport", b =>
+                {
+                    b.HasOne("ValuationManagementSolu.Domain.Facility", "facility")
+                        .WithMany()
+                        .HasForeignKey("FacilityRef")
+                        .HasPrincipalKey("FacilityReference")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ValuationManagementSolu.Domain.Valuer", "Valuer")
+                        .WithMany()
+                        .HasForeignKey("ValuerId");
+
+                    b.Navigation("Valuer");
+
+                    b.Navigation("facility");
+                });
+
+            modelBuilder.Entity("ValuationManagementSolu.Domain.Valuer", b =>
+                {
+                    b.HasOne("ValuationManagementSolu.Domain.ApplicationUser", null)
+                        .WithOne()
+                        .HasForeignKey("ValuationManagementSolu.Domain.Valuer", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
