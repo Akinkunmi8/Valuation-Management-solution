@@ -1,5 +1,5 @@
-# Stage 1: Build the application using SDK image
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+# Stage 1: Build the application using the modern .NET 10 SDK image
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # Copy all project files to restore dependencies
@@ -15,8 +15,8 @@ COPY . .
 WORKDIR "/src/ValuationManagementSolu.API"
 RUN dotnet publish "ValuationManagementSolu.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# Stage 2: Run the application using ASP.NET runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
+# Stage 2: Run the application using ASP.NET 10 runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
