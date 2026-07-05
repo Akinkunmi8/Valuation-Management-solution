@@ -9,6 +9,7 @@ using ValuationManagementSolu.Application.IServices;
 using ValuationManagementSolu.Application.Repository;
 using ValuationManagementSolu.Application.Services;
 using ValuationManagementSolu.Domain;
+using ValuationManagementSolu.Infrastructure.BackgroundServices;
 using ValuationManagementSolu.Infrastructure.Context;
 using ValuationManagementSolu.Infrastructure.Repository;
 using ValuationManagementSolu.Infrastructure.Services;
@@ -42,7 +43,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactAppPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:3000", "https://your-frontend-guy.vercel.app")
+        policy.WithOrigins("http://localhost:3000", "http://localhost:5173")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -91,6 +92,10 @@ builder.Services.AddScoped<IValuationReportService, ValuationReportService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<ICmActionService, CmActionService>();
 builder.Services.AddScoped<ICmsActionService, CmsActionService>();
+builder.Services.AddScoped<IEventPublisher, DbEventPublisher>();
+builder.Services.AddHostedService<NotificationEventDispatcher>();
+// Register your notification email system engine
+builder.Services.AddScoped<INotificationEmailService, NotificationEmailService>();
 
 
 // Register Application Business Flow Logic Services
