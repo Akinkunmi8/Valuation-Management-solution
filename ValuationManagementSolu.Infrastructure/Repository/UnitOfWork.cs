@@ -11,6 +11,7 @@ public class UnitOfWork : IUnitOfWork
     private readonly ApplicationDbContext _context;
     private IDbContextTransaction? _transaction; // Track active transaction
     private IGenericRepository<ApplicationUser> _users;
+    private IGenericRepository<EventOutbox> _eventOutbox;
 
     public IFacilityRepository Facilities { get; }
     public ICollateralRepository Collaterals { get; }
@@ -28,6 +29,8 @@ public class UnitOfWork : IUnitOfWork
     }
 
     public IGenericRepository<ApplicationUser> Users => _users ??= new GenericRepository<ApplicationUser>(_context);
+
+    public IGenericRepository<EventOutbox> EventOutbox => _eventOutbox ??= new GenericRepository<EventOutbox>(_context);
 
     //public IGenericRepository<ValuationReport> ValuationReports => throw new NotImplementedException();
 

@@ -13,6 +13,7 @@ public interface IUnitOfWork : IDisposable
     //IGenericRepository<ValuationReport> ValuationReports { get; }
     IGenericRepository<ApplicationUser> Users { get; }
     IValuationReportRepository ValuationReports { get; }
+    IGenericRepository<EventOutbox> EventOutbox { get; }
 
     Task<int> CompleteAsync();
 

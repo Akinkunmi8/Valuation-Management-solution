@@ -380,6 +380,44 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                     b.ToTable("Collaterals");
                 });
 
+            modelBuilder.Entity("ValuationManagementSolu.Domain.EventOutbox", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DispatchedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ErrorLog")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EventType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FacilityReference")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDispatched")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Payload")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RetryCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EventOutbox");
+                });
+
             modelBuilder.Entity("ValuationManagementSolu.Domain.Facility", b =>
                 {
                     b.Property<int>("FacilityId")
