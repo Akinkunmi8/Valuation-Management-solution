@@ -5,8 +5,8 @@ namespace ValuationManagementSolu.Application.IServices
 {
     public interface IFacilityService
     {
-        Task<IEnumerable<FacilityDto>> GetAllActiveFacilitiesAsync();
-        Task<FacilityDto?> GetFacilityByIdAsync(int id);
+        Task<IEnumerable<GetFacilityDetailsDto>> GetAllActiveFacilitiesAsync();
+        Task<GetFacilityDetailsDto?> GetFacilityByIdAsync(string FacilityReference);
         Task<bool> CreateNewFacilityAsync(CreateFacilityRequest request, string username);
         Task<string> CreateFacilityWithCollateralAsync(FacilityDto dto);
 

@@ -114,7 +114,10 @@ public class CmActionService : ICmActionService
             throw new ArgumentException("A rejection comment must be provided.");
 
         var reports = await _unitOfWork.ValuationReports.GetAllAsync();
-        var report = reports.FirstOrDefault(r => r.FacilityRef == facilityRef);
+
+        // FIX: Always grab the LATEST report entry trace instead of the oldest one
+        var report = reports.OrderByDescending(r => r.Id).FirstOrDefault(r => r.FacilityRef == facilityRef);
+
         if (report == null) throw new KeyNotFoundException($"No valuation report tracking log found for reference {facilityRef}.");
 
         var facilities = await _unitOfWork.Facilities.GetAllAsync();

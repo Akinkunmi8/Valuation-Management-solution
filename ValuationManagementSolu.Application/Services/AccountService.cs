@@ -67,7 +67,7 @@ namespace ValuationManagementSolu.Application.Services
         public async Task<UserResponse> LoginValuerAsync(ValuerLoginModel model)
         {
             // For external valuers, look up their record in the custom Valuer table first
-            var valuerRecord = (await _unitOfWork.Valuers.FindAsync(v => v.Username == model.Username && v.IsDeleted == false)).FirstOrDefault();
+            var valuerRecord = (await _unitOfWork.Valuers.FindAsync(v => v.ValuerEmail == model.Username && v.IsDeleted == false)).FirstOrDefault();
             if (valuerRecord == null)
             {
                 return new UserResponse { ResponseCode = "99", Message = "Invalid valuer credentials." };

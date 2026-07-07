@@ -82,4 +82,17 @@ public class FacilitiesController : ControllerBase
             return StatusCode(500, new { Message = "An error occurred during database removal operations.", Details = ex.Message });
         }
     }
+
+    [HttpGet("getFacilityDetails/{facilityRefd}")]
+    public async Task<IActionResult> GetFacilityDetails(string facilityRef)
+    {
+        var facilityDetails = await _facilityService.GetFacilityByIdAsync(facilityRef);
+
+        if (facilityDetails == null)
+        {
+            return NotFound(new { message = $"Facility details for tracking ID {facilityRef} could not be resolved." });
+        }
+
+        return Ok(facilityDetails);
+    }
 }

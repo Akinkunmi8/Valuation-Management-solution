@@ -1,0 +1,124 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><title>Credit Review Report</title><style>
+        body { font-family: 'Times New Roman', serif; color: #000000; line-height: 1.5; padding: 20px; }
+        .text-center { text-align: center; }
+        .text-end { text-align: right; }
+        .fw-bold { font-weight: bold; }
+        .text-primary { color: #0d6efd; }
+        .bg-light { background-color: #f8f9fa; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 12px; }
+        table, th, td { border: 1px solid #000000; }
+        th, td { padding: 6px; vertical-align: middle; }
+        th { background-color: #f1f1f1; font-weight: bold; }
+        .section-title { font-weight: bold; font-size: 14px; text-transform: uppercase; border-bottom: 2px solid #333; margin-top: 25px; margin-bottom: 10px; padding-bottom: 3px; }
+        .badge-success { color: #198754; font-weight: bold; }
+        .badge-warning { color: #ffc107; font-weight: bold; }
+        .badge-danger { color: #dc3545; font-weight: bold; }
+    </style></head><body><div class='text-center' style='margin-bottom: 25px;'>
+        <h2 style='margin-bottom: 2px; font-size: 18px; font-weight: bold;'>BANKWIDE CREDIT REVIEW</h2>
+        <div style='font-size: 12px; color: #555555;'>BUSINESS UNIT SUMMARY</div>
+    </div><table>
+        <thead>
+            <tr>
+                <th width='8%' class='text-center'>S/N</th>
+                <th width='32%'>OBLIGOR DETAILS</th>
+                <th width='60%'>COMPLIANCE/EXCEPTION REMARKS</th>
+            </tr>
+        </thead>
+        <tbody><tr><td class='text-center fw-bold'>1.</td><td class='fw-bold bg-light'>CUSTOMER NAME</td><td class='fw-bold text-primary'>Western Apparel Ltd</td></tr><tr><td class='text-center fw-bold'>2.</td><td class='fw-bold bg-light'>RC NUMBER</td><td>RC100013</td></tr><tr><td></td><td class='fw-bold bg-light'>RELATIONSHIP MANAGER</td><td>Akinkunmi Olawale</td></tr><tr><td></td><td class='fw-bold bg-light'>OBLIGOR ANALYSIS</td><td></td></tr><tr><td></td><td class='fw-bold bg-light'>LINKED ACCOUNTS</td><td>1279499625</td></tr></tbody></table><div class='section-title'>2. Performance & Credit Facility Matrix</div><table>
+        <thead>
+            <tr>
+                <th>Facility Type</th>
+                <th>Currency</th>
+                <th>Limit Assigned</th>
+                <th>Outstanding Bal (LCY)</th>
+                <th>Outstanding Bal (FCY)</th>
+                <th>FX Rate</th>
+                <th>Int. Rate (%)</th>
+            </tr>
+        </thead><tbody><tr>
+                <td>Personal Loan</td>
+                <td class='text-center'>USD</td>
+                <td class='text-end'>2,500,000.00</td>
+                <td class='text-end'>1,875,000.00</td>
+                <td class='text-end'>0.00</td>
+                <td class='text-center'>1.00</td>
+                <td class='text-center'>18.5</td>
+            </tr></tbody></table><div class='section-title'>3. Documentation & Uploaded File Matrix</div><table>
+        <thead>
+            <tr>
+                <th width='10%'>S/N</th>
+                <th width='50%'>Document Title / File Name</th>
+                <th width='20%'>Server Validation</th>
+                <th width='20%'>Audit Review Status</th>
+            </tr>
+        </thead><tbody><tr>
+                <td class='text-center'>1</td>
+                <td>Western Apparel Valuation Report</td>
+                <td class='text-center'><span class='badge-success'>✓ Exists</span></td>
+                <td class='text-center'><span class='badge-success'>Verified</span></td>
+            </tr><tr>
+                <td class='text-center'>2</td>
+                <td>Document_Offer Letter (2)</td>
+                <td class='text-center'><span class='badge-success'>✓ Exists</span></td>
+                <td class='text-center'><span class='badge-warning'>Pending</span></td>
+            </tr><tr>
+                <td class='text-center'>3</td>
+                <td>Offer Letter</td>
+                <td class='text-center'><span class='badge-success'>✓ Exists</span></td>
+                <td class='text-center'><span class='badge-success'>Verified</span></td>
+            </tr><tr>
+                <td class='text-center'>4</td>
+                <td>Document_Offer Letter (2)</td>
+                <td class='text-center'><span class='badge-success'>✓ Exists</span></td>
+                <td class='text-center'><span class='badge-warning'>Pending</span></td>
+            </tr><tr>
+                <td class='text-center'>5</td>
+                <td>Document_Offer Letter (3)</td>
+                <td class='text-center'><span class='badge-success'>✓ Exists</span></td>
+                <td class='text-center'><span class='badge-warning'>Pending</span></td>
+            </tr><tr>
+                <td class='text-center'>6</td>
+                <td>Document_Western Apparel Valuation Report</td>
+                <td class='text-center'><span class='badge-success'>✓ Exists</span></td>
+                <td class='text-center'><span class='badge-warning'>Pending</span></td>
+            </tr></tbody></table><div class='section-title'>4. Credit Covenant Evaluation Framework</div><div style='font-size:12px; font-weight:bold; margin-bottom:5px; color:#555;'>A. Quantitative Financial Metrics (Account Ref: 102015)</div><table>
+        <thead>
+            <tr>
+                <th width='25%'>Covenant Classification</th>
+                <th width='40%'>Target Directive Specification</th>
+                <th width='15%'>Baseline Target</th>
+                <th width='20%'>Observed Metrics</th>
+            </tr>
+        </thead><tbody><tr>
+                <td class='fw-bold'>Minimum DSCR</td>
+                <td>The Borrower shall maintain a DSCR of not less than 1.20x at all times
+ DSCR = EBITDA ÷ (Interest + Principal Due)</td>
+                <td class='text-center'>1.20</td>
+                <td class='text-center fw-bold badge-danger'>1</td>
+            </tr><tr>
+                <td class='fw-bold'>Negative Pledge</td>
+                <td>The Montly profit must be Maintain</td>
+                <td class='text-center'>2,000,000.00</td>
+                <td class='text-center fw-bold badge-success'>3000000</td>
+            </tr><tr>
+                <td class='fw-bold'>Asset Integrity</td>
+                <td>The CIA Asset doc must b maintain</td>
+                <td class='text-center'>10.00</td>
+                <td class='text-center fw-bold badge-success'>10</td>
+            </tr><tr>
+                <td class='fw-bold'>Negative Pledge</td>
+                <td>This must be follow</td>
+                <td class='text-center'>55,000.00</td>
+                <td class='text-center fw-bold badge-danger'>54000</td>
+            </tr></tbody></table><div style='font-size:12px; font-weight:bold; margin-top:10px; margin-bottom:5px; color:#555;'>B. Qualitative Operational Covenants</div><table>
+        <thead>
+            <tr>
+                <th width='25%'>Requirement Category</th>
+                <th width='45%'>Covenant Obligation / Directive Details</th>
+                <th width='30%'>Compliance Verification / Remarks</th>
+            </tr>
+        </thead><tbody><tr>
+                <td class='fw-bold'>Asset Integrity</td>
+                <td>Borrower shall maintain: Valid class certificates Insurance (H&M, P&I, WIBA, third-party liability)  - Maintenance logs  - Lender may request periodic inspection reports.</td>
+                <td style='color:#555555;'>The Class certificate Insurance Is not valid.</td>
+            </tr></tbody></table></body></html>

@@ -1,0 +1,48 @@
+2026-07-07 12:37:30.485 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-07 12:37:30.888 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-07 12:37:32.076 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-07 12:37:32.099 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-07 12:37:32.392 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-07 12:37:32.396 +01:00 [INF] Hosting environment: Development
+2026-07-07 12:37:32.400 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-07 12:42:23.569 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-07 12:42:23.857 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-07 12:42:24.516 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-07 12:42:24.528 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-07 12:42:25.001 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-07 12:42:25.007 +01:00 [INF] Hosting environment: Development
+2026-07-07 12:42:25.012 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-07 12:43:37.258 +01:00 [INF] HTTP POST /api/Account/login/valuer responded 400 in 45908.0078 ms
+2026-07-07 12:46:09.050 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-07 12:46:09.410 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-07 12:46:10.280 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-07 12:46:10.295 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-07 12:46:10.671 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-07 12:46:10.766 +01:00 [INF] Hosting environment: Development
+2026-07-07 12:46:10.788 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-07 12:48:02.278 +01:00 [INF] HTTP POST /api/Account/login/valuer responded 400 in 45039.8400 ms
+2026-07-07 12:50:34.525 +01:00 [INF] HTTP POST /api/Account/login/valuer responded 400 in 58872.8097 ms
+2026-07-07 12:57:06.556 +01:00 [WRN] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2026-07-07 12:57:09.204 +01:00 [WRN] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2026-07-07 12:57:11.441 +01:00 [WRN] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2026-07-07 12:57:11.584 +01:00 [INF] HTTP POST /api/Valuer/profile responded 200 in 20335.9026 ms
+2026-07-07 12:58:05.730 +01:00 [INF] HTTP POST /api/Account/login/valuer responded 200 in 21328.5891 ms
+2026-07-07 13:24:18.297 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-07 13:24:18.602 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-07 13:24:19.297 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-07 13:24:19.312 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-07 13:24:19.622 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-07 13:24:19.626 +01:00 [INF] Hosting environment: Development
+2026-07-07 13:24:19.630 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-07 13:26:57.979 +01:00 [INF] HTTP GET /api/Facilities/getFacilityDetails/20260701135545101897 responded 200 in 59401.6894 ms
+2026-07-07 13:27:42.788 +01:00 [INF] HTTP GET /api/CmDashboard/global-metrics responded 200 in 2935.8292 ms
+2026-07-07 13:47:05.815 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-07 13:47:06.072 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-07 13:47:06.683 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-07 13:47:06.696 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-07 13:47:06.957 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-07 13:47:06.966 +01:00 [INF] Hosting environment: Development
+2026-07-07 13:47:06.968 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-07 13:49:43.471 +01:00 [WRN] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2026-07-07 13:49:43.722 +01:00 [INF] HTTP POST /api/CmAction/reject-report/20260630102624120179 responded 200 in 52712.6358 ms
+2026-07-07 13:50:12.615 +01:00 [INF] HTTP GET /api/CmDashboard/global-metrics responded 200 in 2939.2930 ms

@@ -1,0 +1,6 @@
+2026-07-03 14:57:30.444 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-03 14:57:31.295 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-03 14:57:31.309 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-03 14:57:31.640 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-03 14:57:31.665 +01:00 [INF] Hosting environment: Development
+2026-07-03 14:57:31.674 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API

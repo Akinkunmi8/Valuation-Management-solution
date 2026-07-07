@@ -1,0 +1,20 @@
+2026-07-05 11:02:38.733 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-05 11:02:39.090 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-05 11:02:39.785 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-05 11:02:39.801 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-05 11:02:40.155 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-05 11:02:40.158 +01:00 [INF] Hosting environment: Development
+2026-07-05 11:02:40.163 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-05 11:03:18.580 +01:00 [INF] HTTP GET /api/ValuerDashboard/metrics/2 responded 200 in 7826.2149 ms
+2026-07-05 11:04:04.572 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-05 11:04:04.889 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-05 11:04:05.437 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-05 11:04:05.451 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-05 11:04:05.709 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-05 11:04:05.715 +01:00 [INF] Hosting environment: Development
+2026-07-05 11:04:05.720 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-05 11:04:29.928 +01:00 [INF] HTTP GET /api/ValuerDashboard/metrics/2 responded 200 in 1794.9410 ms
+2026-07-05 11:04:39.469 +01:00 [INF] HTTP GET /api/ValuerDashboard/metrics/1 responded 200 in 544.9795 ms
+2026-07-05 11:06:16.964 +01:00 [INF] HTTP GET /api/ValuationReport/download responded 200 in 2687.2891 ms
+2026-07-05 11:07:25.209 +01:00 [INF] HTTP GET /api/RmDashboard/metrics responded 200 in 2046.6250 ms
+2026-07-05 11:09:03.434 +01:00 [INF] HTTP GET /api/CmDashboard/global-metrics responded 200 in 2407.5936 ms

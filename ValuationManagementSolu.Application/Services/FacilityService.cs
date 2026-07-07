@@ -252,13 +252,82 @@ public class FacilityService : IFacilityService
         }
     }
 
-    public Task<IEnumerable<FacilityDto>> GetAllActiveFacilitiesAsync()
+    //public Task<IEnumerable<FacilityDto>> GetAllActiveFacilitiesAsync()
+    //{
+    //    throw new NotImplementedException();
+    //}
+
+    public async Task<GetFacilityDetailsDto?> GetFacilityByIdAsync(string FacilityReference)
     {
-        throw new NotImplementedException();
+        // 1. Fetch all facilities and locate the target record by database ID
+        var allFacilities = await _unitOfWork.Facilities.GetAllAsync();
+        var facility = allFacilities.FirstOrDefault(f => f.FacilityReference == FacilityReference);
+
+        if (facility == null) return null;
+
+        // 2. Fetch the collateral matching the unique facility tracking reference
+        var allCollaterals = await _unitOfWork.Collaterals.GetAllAsync();
+        var collateral = allCollaterals.FirstOrDefault(c => c.FacilityReference == facility.FacilityReference);
+
+        // 3. Map both models seamlessly back into the comprehensive creation DTO
+        return new GetFacilityDetailsDto
+        {
+            FacilityReference = facility.FacilityReference,
+            AccountNumber = facility.AccountNumber,
+            SolId = facility.SOLID,
+            FacilityPurpose = facility.FacilityPurpose,
+            CustomerName = facility.CustomerName,
+            City = facility.CustomerCity,
+            Country = facility.CustomerCountry,
+            RMsNumber = facility.RelationshipManagersPhone,
+            CreatedBy = facility.CreatedBy,
+            DateAdded = facility.DateAdded,
+            ApprovalStatus = facility.ApprovalStatus,
+            ValuationStatus = facility.ValuationStatus,
+
+            // Collateral details required by the Credit Manager for review
+            CollateraOwener = collateral?.Owner,
+            FacilityAddress = collateral?.CollateralAddress,
+            collateralType = collateral?.TitleType,
+            StateOfCollateral = collateral?.State,
+            Location = collateral?.Location,
+            OtherDetails = collateral?.OtherDetails,
+            CollateralValue = collateral?.BranchValuationSum,
+            ValuationsFees = collateral?.FeesCharged,
+
+            // Retain saved file paths so the frontend can generate preview/download links
+            SavedTitleDocumentPath = collateral?.FileName,
+            SavedApprovalFilePath = collateral?.ApprovalFileName,
+            SavedIndemnityLetterPath = collateral?.IndemnityFileName
+        };
     }
 
-    public Task<FacilityDto?> GetFacilityByIdAsync(int id)
+    public async Task<IEnumerable<GetFacilityDetailsDto>> GetAllActiveFacilitiesAsync()
     {
-        throw new NotImplementedException();
+        var allFacilities = await _unitOfWork.Facilities.GetAllAsync();
+        var allCollaterals = await _unitOfWork.Collaterals.GetAllAsync();
+
+        // Filter for workflows needing attention (e.g., Pending review items)
+        var activeFacilities = allFacilities.Where(f => f.ApprovalStatus == ApprovalStatus.Pending);
+
+        var resultList = new List<GetFacilityDetailsDto>();
+
+        foreach (var facility in activeFacilities)
+        {
+            var collateral = allCollaterals.FirstOrDefault(c => c.FacilityReference == facility.FacilityReference);
+
+            resultList.Add(new GetFacilityDetailsDto
+            {
+                FacilityReference = facility.FacilityReference,
+                AccountNumber = facility.AccountNumber,
+                SolId = facility.SOLID,
+                CustomerName = facility.CustomerName,
+                CollateralValue = collateral?.BranchValuationSum,
+                DateAdded = facility.DateAdded,
+                ApprovalStatus = facility.ApprovalStatus
+            });
+        }
+
+        return resultList;
     }
 }
