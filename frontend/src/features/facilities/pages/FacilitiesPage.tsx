@@ -1,0 +1,181 @@
+
+
+
+import { FiPlus, FiSearch } from 'react-icons/fi'
+import { useNavigate } from 'react-router'
+
+import Button from '../../../shared/ui/button/Button'
+
+import MetricCard from '../../dashboard/components/MetricCard'
+import { ROUTES } from '../../../shared/constants/routes'
+import { useState } from 'react'
+
+const FacilitiesPage = () => {
+  const navigate = useNavigate()
+
+  const [activeMetric, setActiveMetric] =
+    useState('ALL')
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+
+        <div>
+          <h1 className="text-3xl font-bold text-text-primary">
+            Facilities
+          </h1>
+
+          <p className="mt-2 text-sm text-text-secondary">
+            Manage customer facilities and collateral valuation requests.
+          </p>
+        </div>
+
+        <Button
+          leftIcon={<FiPlus />}
+          onClick={() =>
+            navigate(ROUTES.rm.createFacility)
+          }
+        >
+          Create Facility
+        </Button>
+
+      </div>
+
+      {/* Metrics */}
+
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+
+        <MetricCard
+          title="Drafts"
+          value={12}
+          description="Work in progress"
+          accent='primary'
+          active={activeMetric === 'DRAFT'}
+          onClick={() => setActiveMetric('DRAFT')}
+        />
+
+        <MetricCard
+          title="Submitted"
+          value={8}
+          description="Awaiting payment"
+          accent="info"
+          active={activeMetric === 'SUBMITTED'}
+          onClick={() => setActiveMetric('SUBMITTED')}
+        />
+
+        <MetricCard
+          title="Awaiting Payment"
+          value={3}
+          description="Customer debit pending"
+          accent="warning"
+          active={activeMetric === 'PAYMENT_PENDING'}
+          onClick={() =>
+            setActiveMetric('PAYMENT_PENDING')
+          }
+        />
+
+        <MetricCard
+          title="Completed"
+          value={25}
+          description="Successfully processed"
+          accent="success"
+          active={activeMetric === 'COMPLETED'}
+          onClick={() =>
+            setActiveMetric('COMPLETED')
+          }
+        />
+
+      </div>
+
+      {/* Search */}
+
+      <>
+        <div className="flex items-center justify-between">
+
+          <div className="relative w-full max-w-md">
+
+            <FiSearch
+              className="
+        absolute
+        left-3
+        top-1/2
+        -translate-y-1/2
+        text-slate-400
+      "
+            />
+
+            <input
+              type="text"
+              placeholder="Search reference no, CIF or customer..."
+              className="
+        h-11
+        w-full
+        rounded-xl
+        border
+        border-slate-300
+        pl-10
+        pr-4
+        text-sm
+        outline-none
+        transition
+        focus:border-teal-500
+        focus:ring-4
+        focus:ring-teal-100
+      "
+            />
+
+          </div>
+
+        </div>
+      </>
+
+      {/* Facility Table */}
+
+      <>
+      <div className="rounded-2xl border border-border bg-surface shadow-sm">
+
+  <div className="overflow-x-auto">
+
+    <table className="min-w-full">
+      ...
+    </table>
+
+  </div>
+
+  <div className="flex items-center justify-between border-t border-border px-5 py-4">
+
+    <p className="text-sm text-text-muted">
+      Showing 1–10 of 48 facilities
+    </p>
+
+    <div className="flex gap-2">
+
+      <button className="rounded-lg border border-border px-3 py-2 text-sm">
+        Previous
+      </button>
+
+      <button className="rounded-lg bg-primary px-3 py-2 text-sm text-white">
+        1
+      </button>
+
+      <button className="rounded-lg border border-border px-3 py-2 text-sm">
+        2
+      </button>
+
+      <button className="rounded-lg border border-border px-3 py-2 text-sm">
+        Next
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+      </>
+    </div>
+  )
+}
+
+export default FacilitiesPage
