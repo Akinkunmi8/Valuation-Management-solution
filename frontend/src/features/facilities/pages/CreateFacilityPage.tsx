@@ -12,6 +12,8 @@ import { ROUTES } from '../../../shared/constants/routes'
 
 import { FACILITY_STEPS } from '../constants/facilitySteps'
 
+import { FACILITY_STEP_FIELDS } from '../constants/facilityStepFields'
+
 import {
     createFacilitySchema,
     type CreateFacilityFormValues,
@@ -103,8 +105,9 @@ const CreateFacilityPage = () => {
             return
         }
 
-        const valid =
-            await trigger()
+       const valid = await trigger(
+    FACILITY_STEP_FIELDS[currentStep]
+)
 
         if (valid) {
             setCurrentStep((step) => step + 1)

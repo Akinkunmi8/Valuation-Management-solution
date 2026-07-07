@@ -1,4 +1,5 @@
 import { useFormContext } from 'react-hook-form'
+import { useState } from 'react'
 
 import {
   Card,
@@ -8,15 +9,49 @@ import {
 } from '../../../shared/ui/card/Card'
 
 import Input from '../../../shared/ui/input/Input'
+import Button from '../../../shared/ui/button/Button'
 
 import type { CreateFacilityFormValues } from '../schemas/facilitySchemas'
+import { lookupCustomer } from '../services/mockCustomerService'
+import { DEV_MODE } from '../../../app/config/development'
 
 const CustomerInformationCard = () => {
   const {
     register,
+    setValue,
+    getValues,
     formState: { errors },
   } =
     useFormContext<CreateFacilityFormValues>()
+
+  const [loading, setLoading] = useState(false);
+
+  const handleLookup =
+    async () => {
+      const accountNumber =
+        getValues(
+          'accountNumber',
+        )
+      if (!accountNumber) {
+        return
+      }
+      setLoading(true)
+      try {
+        const customer =
+          await lookupCustomer(accountNumber,)
+        if (!customer) {
+          alert('Customer not found',)
+          return
+        }
+        setValue('customerName', customer.customerName,)
+        setValue('solid', customer.solid,)
+        setValue('city', customer.city,)
+        setValue('country', customer.country,)
+      } finally {
+        setLoading(false)
+      }
+
+    }
 
   return (
     <Card>
@@ -33,37 +68,80 @@ const CustomerInformationCard = () => {
 
         <div className="grid gap-5 md:grid-cols-2">
 
-          <Input
+          {/* <Input
             label="Account Number"
             placeholder="Enter account number"
             error={errors.accountNumber?.message}
             {...register('accountNumber')}
-          />
+          /> */}
+
+          <div className="md:col-span-2">
+
+            <label
+              className="
+            mb-2
+            block
+            text-sm
+            font-medium
+        "
+            >
+              Account Number
+            </label>
+
+            <div className="flex gap-3">
+
+              <Input
+                className="flex-1"
+                placeholder="Enter account number"
+                error={
+                  errors.accountNumber
+                    ?.message
+                }
+                {...register(
+                  'accountNumber',
+                )}
+              />
+
+              <Button
+                type="button"
+                onClick={
+                  handleLookup
+                }
+                isLoading={
+                  loading
+                }
+              >
+                Lookup
+              </Button>
+
+            </div>
+
+          </div>
 
           <Input
             label="Customer Name"
-            disabled
+            disabled={!DEV_MODE.mockCustomerLookup}
             error={errors.customerName?.message}
             {...register('customerName')}
           />
 
           <Input
             label="SOL ID"
-            disabled
+            disabled={!DEV_MODE.mockCustomerLookup}
             error={errors.solid?.message}
             {...register('solid')}
           />
 
           <Input
             label="City"
-            disabled
+            disabled={!DEV_MODE.mockCustomerLookup}
             error={errors.city?.message}
             {...register('city')}
           />
 
           <Input
             label="Country"
-            disabled
+            disabled={!DEV_MODE.mockCustomerLookup}
             error={errors.country?.message}
             {...register('country')}
           />

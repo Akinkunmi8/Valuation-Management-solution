@@ -52,7 +52,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         className={clsx(
-          'inline-flex shrink-0 items-center justify-center rounded-md border font-semibold transition outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60',
+          'inline-flex shrink-0 items-center justify-center rounded-md border font-semibold transition outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer',
           sizeClasses[size],
           variantClasses[variant],
           className,

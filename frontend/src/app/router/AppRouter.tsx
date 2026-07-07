@@ -23,6 +23,7 @@ import ValuerDashboardPage from '../../features/dashboard/pages/ValuersDashboard
 import AdminDashboardPage from '../../features/dashboard/pages/AdminDashboardPage'
 import BmDashboardPage from '../../features/dashboard/pages/bmDashboardPage'
 import AuditDashboardPage from '../../features/dashboard/pages/auditDashboardPage'
+import CreateFacilityPage from '../../features/facilities/pages/CreateFacilityPage'
 
 
 
@@ -98,6 +99,11 @@ const AppRouter = () => {
             <Route
               path={ROUTES.rm.facilities}
               element={<FacilitiesPage />}
+            />
+
+            <Route
+            path={ROUTES.rm.createFacility}
+            element={<CreateFacilityPage/>}
             />
           </Route>
         </Route>

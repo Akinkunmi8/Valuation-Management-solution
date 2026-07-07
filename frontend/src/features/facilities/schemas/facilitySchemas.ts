@@ -32,20 +32,17 @@ export const createFacilitySchema = z.object({
   collateralValue: z.number().positive(),
 
   valuationsFees: z.number().positive(),
-  titleDocument: z
-    .any()
-    .refine((files) => files?.length === 1, "Title document is required.")
-    .transform((files) => files[0] as File),
+  titleDocument: z.instanceof(File, {
+    message: "Title document is required",
+  }),
 
-  approvalFile: z
-    .any()
-    .refine((files) => files?.length === 1, "Title document is required.")
-    .transform((files) => files[0] as File),
+  approvalFile: z.instanceof(File, {
+    message: "Approval letter is required",
+  }),
 
-  indemnityLetter: z
-    .any()
-    .refine((files) => files?.length === 1, "Title document is required.")
-    .transform((files) => files[0] as File),
+  indemnityLetter: z.instanceof(File, {
+    message: "Indemnity letter is required",
+  }),
 });
 
 export type CreateFacilityFormValues = z.infer<typeof createFacilitySchema>;
