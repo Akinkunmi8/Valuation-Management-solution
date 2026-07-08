@@ -13,7 +13,7 @@ const RegisterPage = lazy(
     ),
 )
 const LoginPage = lazy(() => import('../../features/auth/pages/LoginPage'))
-const VerificationPage = lazy(() => import('../../features/auth/pages/VerificationPage'))
+// const VerificationPage = lazy(() => import('../../features/auth/pages/VerificationPage'))
 
 import ProtectedRoute from '../../shared/auth/ProtectedRoute'
 import RmDashboardPage from '../../features/dashboard/pages/RmDashboardPage'
@@ -21,8 +21,8 @@ import CmDashboardPage from '../../features/dashboard/pages/CmDashboardPage'
 import CmsDashboardPage from '../../features/dashboard/pages/CmsDashboardPage'
 import ValuerDashboardPage from '../../features/dashboard/pages/ValuersDashboardPage'
 import AdminDashboardPage from '../../features/dashboard/pages/AdminDashboardPage'
-import BmDashboardPage from '../../features/dashboard/pages/bmDashboardPage'
-import AuditDashboardPage from '../../features/dashboard/pages/auditDashboardPage'
+// import BmDashboardPage from '../../features/dashboard/pages/bmDashboardPage'
+// import AuditDashboardPage from '../../features/dashboard/pages/auditDashboardPage'
 import CreateFacilityPage from '../../features/facilities/pages/CreateFacilityPage'
 
 
@@ -54,7 +54,7 @@ const AppRouter = () => {
           <Route path={ROUTES.welcome} element={withSuspense(<WelcomePage />)} />
           <Route path={ROUTES.auth.register} element={withSuspense(<RegisterPage />)} />
           <Route path={ROUTES.auth.login} element={withSuspense(<LoginPage />)} />
-          <Route path={ROUTES.auth.verify} element={withSuspense(<VerificationPage />)} />
+          {/* <Route path={ROUTES.auth.verify} element={withSuspense(<VerificationPage />)} /> */}
         </Route>
 
 
@@ -75,20 +75,20 @@ const AppRouter = () => {
               element={<CmsDashboardPage />}
             />
 
-            <Route
+            {/* <Route
               path={ROUTES.bm.dashboard}
               element={<BmDashboardPage />}
-            />
+            /> */}
 
             <Route
               path={ROUTES.valuer.dashboard}
               element={<ValuerDashboardPage />}
             />
 
-            <Route
+            {/* <Route
               path={ROUTES.audit.dashboard}
               element={<AuditDashboardPage />}
-            />
+            /> */}
 
 
             <Route

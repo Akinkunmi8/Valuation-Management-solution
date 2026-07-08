@@ -6,13 +6,6 @@ import {
   FiX,
 } from 'react-icons/fi'
 
-// type NavigationItem = {
-//   label: string
-//   description: string
-//   href: string
-//   icon: IconType
-// }
-
 type SidebarProps = {
   isOpen: boolean
   onClose: () => void

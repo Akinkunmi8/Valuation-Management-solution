@@ -103,16 +103,6 @@ const MetricCard = ({
         {description}
       </p>
 
-      {/* <div className="mt-5 flex items-center justify-between">
-        <span className={`text-sm font-semibold ${style.trend}`}>
-          {trend}
-        </span>
-
-        <span className="flex items-center gap-1 text-sm font-medium text-text-muted group-hover:text-text-primary">
-          View Details
-          <FiArrowRight />
-        </span>
-      </div> */}
     </button>
   )
 }

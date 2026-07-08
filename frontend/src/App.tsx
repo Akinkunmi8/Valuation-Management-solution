@@ -1,5 +1,5 @@
 import AppRouter from './app/router/AppRouter'
-import './App.css'
+// import './App.css'
 
 const App = () => {
   return <AppRouter />

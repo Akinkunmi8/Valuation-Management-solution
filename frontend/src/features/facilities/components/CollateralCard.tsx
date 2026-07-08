@@ -1,4 +1,5 @@
-import { useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
+import { calculateValuationFee } from '../utils/valuationFee'
 
 import { useFormContext } from 'react-hook-form'
 
@@ -32,9 +33,24 @@ const CollateralCard = () => {
   const {
     register,
     watch,
+    setValue,
     formState: { errors },
   } =
     useFormContext<CreateFacilityFormValues>()
+
+  const collateralValue =
+    watch('collateralValue')
+
+  useEffect(() => {
+    if (!collateralValue) {
+      return
+    }
+
+    setValue(
+      'valuationsFees',
+      calculateValuationFee(collateralValue),
+    )
+  }, [collateralValue, setValue])
 
   const selectedState =
     watch('stateOfCollateral')
@@ -47,7 +63,7 @@ const CollateralCard = () => {
 
       return (
         LGA_OPTIONS[
-          selectedState as keyof typeof LGA_OPTIONS
+        selectedState as keyof typeof LGA_OPTIONS
         ] ?? []
       )
     }, [selectedState])
