@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
 import Button from '../../../shared/ui/button/Button'
 // import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../shared/ui/card/Card'
 import Input from '../../../shared/ui/input/Input'
+import loginImage from "../../../assets/login_bg2.png"
 import { getDashboardRouteForRole, ROUTES } from '../../../shared/constants/routes'
 import { loginSchema, type LoginFormValues } from '../schemas/authSchemas'
 // import { login } from '../services/authService'
@@ -65,11 +66,19 @@ const LoginPage = () => {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-4 py-8 sm:px-6 lg:px-8 bg-surface">
+    <main className="mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-4 py-8 sm:px-6 lg:px-8 
+    ">
+      <img
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full scale-105 object-cover -z-10"
+        src={loginImage}
+      />
+      <div className="fixed inset-0 bg-black/60 -z-5" />
 
       <div className=" ">
         <div className='mb-12'>
-          <h1 className='text-5xl text-black'>Login</h1>
+          <h1 className='text-5xl text-white'>Login</h1>
 
         </div>
         <div>
@@ -78,7 +87,8 @@ const LoginPage = () => {
               autoComplete="Username"
               error={errors.username?.message}
               label="Username"
-              leftAdornment={<FiMail aria-hidden="true" className="h-4 w-4" />}
+              labelClassName='text-white'
+              leftAdornment={<FiMail aria-hidden="true" className="h-4 w-4 " />}
               placeholder="Enter your Username"
               type="text"
               required
@@ -89,6 +99,7 @@ const LoginPage = () => {
               autoComplete="current-password"
               error={errors.password?.message}
               label="Password"
+               labelClassName='text-white'
               leftAdornment={<FiLock aria-hidden="true" className="h-4 w-4" />}
               placeholder="Enter your password"
               type="password"
@@ -99,6 +110,7 @@ const LoginPage = () => {
               // autoComplete="current-password"
               error={errors.softToken?.message}
               label="Token"
+               labelClassName='text-white'
               leftAdornment={<FiLock aria-hidden="true" className="h-4 w-4" />}
               placeholder="Enter your soft token"
               type="text"

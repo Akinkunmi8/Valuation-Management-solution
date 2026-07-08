@@ -6,6 +6,7 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string
   hint?: string
   error?: string
+  labelClassName?: string
   leftAdornment?: ReactNode
   rightAdornment?: ReactNode
 }
@@ -19,6 +20,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       hint,
       id,
       label,
+      labelClassName,
       leftAdornment,
       rightAdornment,
       required,
@@ -35,7 +37,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label ? (
-          <label className="mb-1.5 block text-sm font-semibold text-text-primary" htmlFor={inputId}>
+          <label className={`mb-1.5 block text-sm font-semibold  ${labelClassName ||'text-text-primary' }`} htmlFor={inputId}>
             {label}
             {required ? <span className="ml-1 text-red-600">*</span> : null}
           </label>

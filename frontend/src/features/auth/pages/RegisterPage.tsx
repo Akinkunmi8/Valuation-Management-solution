@@ -6,13 +6,13 @@ import Button from '../../../shared/ui/button/Button'
 import {
   Card,
   CardContent,
-  CardDescription,
+  // CardDescription,
   CardHeader,
   CardTitle,
 } from '../../../shared/ui/card/Card'
 import Input from '../../../shared/ui/input/Input'
 import Select from '../../../shared/ui/select/Select'
-
+import loginImage from "../../../assets/login_bg2.png"
 import { registerSchema, type RegisterFormValues } from '../schemas/authSchemas'
 
 import { ROUTES } from '../../../shared/constants/routes'
@@ -74,15 +74,24 @@ const RegisterPage = () => {
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-lg items-center justify-center px-4">
-      <Card className="w-full">
+
+      <img
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full scale-105 object-cover -z-10"
+        src={loginImage}
+      />
+      <div className="fixed inset-0 bg-black/60 -z-5" />
+
+      <Card className="w-full bg-transparent">
         <CardHeader>
-          <CardTitle>
+          <CardTitle className='text-white text-6xl'>
             Register User
           </CardTitle>
 
-          <CardDescription>
+          {/* <CardDescription>
             Development only.
-          </CardDescription>
+          </CardDescription> */}
         </CardHeader>
 
         <CardContent>
@@ -92,6 +101,7 @@ const RegisterPage = () => {
           >
             <Input
               label="Username"
+               labelClassName='text-white'
               error={errors.username?.message}
               {...register('username')}
             />
@@ -99,12 +109,14 @@ const RegisterPage = () => {
             <Input
               type="password"
               label="Password"
+               labelClassName='text-white'
               error={errors.password?.message}
               {...register('password')}
             />
 
             <Select
               label="Role"
+               labelClassName='text-white'
               error={errors.role?.message}
               options={roleOptions}
               placeholder="Select role"
