@@ -60,7 +60,7 @@ namespace ValuationManagementSolu.Application.Services
             {
                 ResponseCode = "00",
                 Message = "Staff login successful.",
-                User = new { tokenData.Token, tokenData.Expiration, user.FullName, user.Email, Roles = roles }
+                User = new { tokenData.Token, tokenData.Expiration, user.FullName, user.Email, Roles = roles, user.SolId }
             };
         }
 
@@ -87,7 +87,7 @@ namespace ValuationManagementSolu.Application.Services
             {
                 ResponseCode = "00",
                 Message = "Valuer login successful.",
-                User = new { tokenData.Token, tokenData.Expiration, valuerRecord.ValuersName, valuerRecord.AccountNumber, Roles = roles }
+                User = new { tokenData.Token, tokenData.Expiration, valuerRecord.ValuersName, valuerRecord.ValuerEmail, valuerRecord.AccountNumber, Roles = roles, valuerRecord.ValuerId }
             };
         }
 
@@ -107,8 +107,9 @@ namespace ValuationManagementSolu.Application.Services
             var user = new ApplicationUser
             {
                 UserName = model.Username,
-                Email = $"{model.Username}@ubagroup.com", // Fallback or collect email explicitly
+                Email = model.Username,
                 FullName = model.Username,
+                SolId = "S0112",
                 IsActive = true
             };
 

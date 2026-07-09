@@ -1,0 +1,24 @@
+2026-07-09 07:16:25.552 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-09 07:16:25.929 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-09 07:16:26.505 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-09 07:16:26.520 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-09 07:16:26.806 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-09 07:16:26.813 +01:00 [INF] Hosting environment: Development
+2026-07-09 07:16:26.818 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-09 07:18:19.030 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-09 07:18:19.299 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-09 07:18:19.812 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-09 07:18:19.821 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-09 07:18:20.072 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-09 07:18:20.080 +01:00 [INF] Hosting environment: Development
+2026-07-09 07:18:20.084 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-09 07:20:30.190 +01:00 [INF] HTTP POST /api/Account/register/staff responded 400 in 111586.8956 ms
+2026-07-09 07:30:21.783 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-09 07:30:22.042 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-09 07:30:22.624 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-09 07:30:22.636 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-09 07:30:22.923 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-09 07:30:22.930 +01:00 [INF] Hosting environment: Development
+2026-07-09 07:30:22.938 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-09 07:31:46.921 +01:00 [INF] HTTP POST /api/Account/register/staff responded 200 in 44852.1787 ms
+2026-07-09 07:33:08.124 +01:00 [INF] HTTP POST /api/Account/login/staff responded 200 in 25631.3964 ms
