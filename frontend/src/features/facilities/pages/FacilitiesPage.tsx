@@ -9,12 +9,116 @@ import Button from '../../../shared/ui/button/Button'
 import MetricCard from '../../dashboard/components/MetricCard'
 import { ROUTES } from '../../../shared/constants/routes'
 import { useState } from 'react'
+import { useGetRmDashboardMetricsQuery } from '../../dashboard/api/rmApiDashboardApi'
+import { useAppSelector } from '../../../app/store/hooks'
+import { getCreatedBy } from '../../auth/utils/createdBy'
+
+
+
+
 
 const FacilitiesPage = () => {
   const navigate = useNavigate()
 
-  const [activeMetric, setActiveMetric] =
-    useState('ALL')
+  const {
+    email,
+    solId,
+  } = useAppSelector(
+    state => state.auth,
+  )
+
+  const createdBy = getCreatedBy(email!);
+
+
+  const {
+    data,
+    // isLoading,
+    // error,
+  } = useGetRmDashboardMetricsQuery({
+    createdBy,
+    solId: solId!,
+  })
+
+  const metrics = data?.metrics
+
+  const totalFacilities = metrics
+    ? metrics.awaitingPaymentCount +
+    metrics.pendingWithSuccessfulPaymentCount +
+    metrics.approvedCount +
+    metrics.rejectedCount +
+    metrics.completedCount +
+    metrics.expiredCount
+    : 0
+
+
+  type Workflow =
+    | 'all'
+    | 'awaitingPayment'
+    | 'pendingWithSuccessfulPayment'
+    | 'approved'
+    | 'rejected'
+    | 'completed'
+    | 'expired'
+
+  const [selectedWorkflow, setSelectedWorkflow] =
+    useState<Workflow>('all')
+
+
+  const workflowCards: {
+    title: string
+    key: Workflow
+    count: number
+  }[] = [
+    {
+      title: 'All',
+      key: 'all',
+      count: totalFacilities,
+    },
+    {
+      title: 'Awaiting Payment',
+      key: 'awaitingPayment',
+      count: metrics?.awaitingPaymentCount ?? 0,
+    },
+    {
+      title: 'Payment Successful',
+      key: 'pendingWithSuccessfulPayment',
+      count: metrics?.pendingWithSuccessfulPaymentCount ??
+        0,
+    },
+    {
+      title: 'Approved',
+      key: 'approved',
+      count: metrics?.approvedCount ?? 0,
+    },
+    {
+      title: 'Rejected',
+      key: 'rejected',
+      count: metrics?.rejectedCount ?? 0,
+    },
+    {
+      title: 'Completed',
+      key: 'completed',
+      count: metrics?.completedCount ?? 0,
+    },
+    {
+      title: 'Expired',
+      key: 'expired',
+      count: metrics?.expiredCount ?? 0,
+    },
+  ] as const;
+
+
+  // const tableData =
+  // selectedWorkflow === 'all'
+  //   ? [
+  //       ...(data?.awaitingPayment ?? []),
+  //       ...(data?.pendingWithSuccessfulPayment ?? []),
+  //       ...(data?.approved ?? []),
+  //       ...(data?.rejected ?? []),
+  //       ...(data?.completed ?? []),
+  //       ...(data?.expired ?? []),
+  //     ]
+  //   : data?.[selectedWorkflow] ?? []
 
   return (
     <div className="space-y-6">
@@ -45,11 +149,11 @@ const FacilitiesPage = () => {
 
       {/* Metrics */}
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      {/* <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
 
         <MetricCard
-          title="Drafts"
-          value={12}
+          title="All"
+          value={totalFacilities}
           description="Work in progress"
           accent='primary'
           active={activeMetric === 'DRAFT'}
@@ -57,8 +161,8 @@ const FacilitiesPage = () => {
         />
 
         <MetricCard
-          title="Submitted"
-          value={8}
+          title="Awaiting Payment"
+          value={metrics.awaitingPaymentCount ?? 0}
           description="Awaiting payment"
           accent="info"
           active={activeMetric === 'SUBMITTED'}
@@ -66,8 +170,8 @@ const FacilitiesPage = () => {
         />
 
         <MetricCard
-          title="Awaiting Payment"
-          value={3}
+          title="Payment Successful"
+          value={metrics?.pendingWithSuccessfulPaymentCount ?? 0}
           description="Customer debit pending"
           accent="warning"
           active={activeMetric === 'PAYMENT_PENDING'}
@@ -76,6 +180,16 @@ const FacilitiesPage = () => {
           }
         />
 
+        <MetricCard
+          title="Approved"
+          value={metrics?.pendingWithSuccessfulPaymentCount ?? 0}
+          description="Successfully processed"
+          accent="success"
+          active={activeMetric === 'COMPLETED'}
+          onClick={() =>
+            setActiveMetric('COMPLETED')
+          }
+        />
         <MetricCard
           title="Completed"
           value={25}
@@ -87,6 +201,22 @@ const FacilitiesPage = () => {
           }
         />
 
+      </div> */}
+
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5">
+        {workflowCards.map((card) => (
+          <MetricCard
+            key={card.key}
+            title={card.title}
+            value={card.count}
+            onClick={() =>
+              setSelectedWorkflow(card.key)
+            }
+            active={
+              selectedWorkflow === card.key
+            }
+          />
+        ))}
       </div>
 
       {/* Search */}
@@ -134,45 +264,45 @@ const FacilitiesPage = () => {
       {/* Facility Table */}
 
       <>
-      <div className="rounded-2xl border border-border bg-surface shadow-sm">
+        <div className="rounded-2xl border border-border bg-surface shadow-sm">
 
-  <div className="overflow-x-auto">
+          <div className="overflow-x-auto">
 
-    <table className="min-w-full">
-      ...
-    </table>
+            <table className="min-w-full">
+              ...
+            </table>
 
-  </div>
+          </div>
 
-  <div className="flex items-center justify-between border-t border-border px-5 py-4">
+          <div className="flex items-center justify-between border-t border-border px-5 py-4">
 
-    <p className="text-sm text-text-muted">
-      Showing 1–10 of 48 facilities
-    </p>
+            <p className="text-sm text-text-muted">
+              Showing 1–10 of 48 facilities
+            </p>
 
-    <div className="flex gap-2">
+            <div className="flex gap-2">
 
-      <button className="rounded-lg border border-border px-3 py-2 text-sm">
-        Previous
-      </button>
+              <button className="rounded-lg border border-border px-3 py-2 text-sm">
+                Previous
+              </button>
 
-      <button className="rounded-lg bg-primary px-3 py-2 text-sm text-white">
-        1
-      </button>
+              <button className="rounded-lg bg-primary px-3 py-2 text-sm text-white">
+                1
+              </button>
 
-      <button className="rounded-lg border border-border px-3 py-2 text-sm">
-        2
-      </button>
+              <button className="rounded-lg border border-border px-3 py-2 text-sm">
+                2
+              </button>
 
-      <button className="rounded-lg border border-border px-3 py-2 text-sm">
-        Next
-      </button>
+              <button className="rounded-lg border border-border px-3 py-2 text-sm">
+                Next
+              </button>
 
-    </div>
+            </div>
 
-  </div>
+          </div>
 
-</div>
+        </div>
       </>
     </div>
   )

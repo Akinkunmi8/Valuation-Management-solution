@@ -43,7 +43,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             aria-describedby={describedBy}
             aria-invalid={error ? 'true' : undefined}
             className={clsx(
-              'h-10 w-full appearance-none rounded-lg border bg-surface px-3 pr-10 text-sm text-text-primary outline-none transition disabled:cursor-not-allowed disabled:bg-background disabled:text-text-muted',
+              'h-10 w-full appearance-none rounded-lg border bg-surface px-3 pr-10 text-sm text-text-primary outline-none cursor-pointer transition disabled:cursor-not-allowed disabled:bg-background disabled:text-text-muted',
               error
                 ? 'border-danger focus:border-danger focus:ring-danger/20'
                 : 'border-border-strong focus:border-primary focus:ring-2 focus:ring-primary/20',
@@ -53,6 +53,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             id={selectId}
             ref={ref}
             required={required}
+            defaultValue=""
             {...props}
           >
             {placeholder ? (

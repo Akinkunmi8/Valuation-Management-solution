@@ -48,6 +48,7 @@ export const buildInitialAuthState =
       email: null,
       roles: [],
       isAuthenticated: false,
+      solId: null,
     }
   }
 
@@ -69,6 +70,7 @@ export const buildInitialAuthState =
       email: null,
       roles: [],
       isAuthenticated: false,
+      solId: null,
     }
   }
 
@@ -79,5 +81,6 @@ export const buildInitialAuthState =
     email: user.email,
     roles: user.roles,
     isAuthenticated: true,
+      solId: null,
   }
 }

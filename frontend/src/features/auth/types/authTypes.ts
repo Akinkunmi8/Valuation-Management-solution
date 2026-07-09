@@ -24,6 +24,7 @@ export type AuthUser = {
   fullName: string;
   email: string;
   roles: AuthRole[];
+  solId: string;
 };
 
 export type MfaMethod = "EMAIL_OTP" | "SMS_OTP" | "AUTHENTICATOR_APP";
@@ -48,4 +49,5 @@ export type AuthState = {
   roles: AuthRole[];
   selectedCountry: SupportedCountry | null;
   isAuthenticated: boolean;
+  solId: string | null;
 };

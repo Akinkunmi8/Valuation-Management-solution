@@ -16,6 +16,9 @@ import { useLoginStaffMutation } from '../api/authApi'
 import { loginSuccess } from '../store/authSlice'
 import { saveAuth } from '../utils/authStorage'
 
+
+
+
 const LoginPage = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -47,6 +50,8 @@ const LoginPage = () => {
         password: values.password,
         softToken: values.softToken,
       }).unwrap()
+
+      console.log("User Info:", response.user);
 
     dispatch(
       loginSuccess(response.user)

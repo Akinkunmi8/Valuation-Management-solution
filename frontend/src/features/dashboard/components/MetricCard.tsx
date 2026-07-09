@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 type MetricCardProps = {
   title: string
   value: number
-  description: string
+  description?: string
   trend?: string
   icon?: ReactNode
   accent?: 'primary' | 'warning' | 'info' | 'success'

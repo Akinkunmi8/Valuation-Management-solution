@@ -13,6 +13,7 @@ const initialState: AuthState = {
   email: null,
   roles: [],
   isAuthenticated: false,
+  solId: null
 };
 
 const authSlice = createSlice({
@@ -33,6 +34,7 @@ const authSlice = createSlice({
       state.email = action.payload.email;
       state.roles = action.payload.roles;
       state.isAuthenticated = true;
+      state.solId = action.payload.solId;
     },
 
     logout: (state) => {
