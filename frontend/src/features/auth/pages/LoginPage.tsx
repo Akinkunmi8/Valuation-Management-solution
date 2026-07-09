@@ -51,7 +51,7 @@ const LoginPage = () => {
         softToken: values.softToken,
       }).unwrap()
 
-      console.log("User Info:", response.user);
+      // console.log("User Info:", response.user);
 
     dispatch(
       loginSuccess(response.user)

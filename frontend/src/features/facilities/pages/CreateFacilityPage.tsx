@@ -26,6 +26,7 @@ import DocumentsCard from '../components/DocumentCard'
 
 import { createFacilityFormData } from '../utils/formData'
 import { useCreateFacilityMutation } from '../api/facilityApi'
+import { useAppSelector } from '../../../app/store/hooks'
 
 
 
@@ -33,6 +34,16 @@ import { useCreateFacilityMutation } from '../api/facilityApi'
 
 
 const CreateFacilityPage = () => {
+
+    const {
+        email,
+        solId,
+    } = useAppSelector(
+        (state) => state.auth,
+    )
+
+    const createdBy =
+        email!.split('@')[0]
 
     const methods =
         useForm<CreateFacilityFormValues>({
@@ -58,8 +69,12 @@ const CreateFacilityPage = () => {
         values: CreateFacilityFormValues,
     ) => {
         try {
-            const formData =
-                createFacilityFormData(values)
+            const formData = createFacilityFormData(values,
+                {
+                    createdBy,
+                    solId: solId!,
+                },
+            )
 
             await createFacility(formData).unwrap()
 
@@ -105,9 +120,9 @@ const CreateFacilityPage = () => {
             return
         }
 
-       const valid = await trigger(
-    FACILITY_STEP_FIELDS[currentStep]
-)
+        const valid = await trigger(
+            FACILITY_STEP_FIELDS[currentStep]
+        )
 
         if (valid) {
             setCurrentStep((step) => step + 1)

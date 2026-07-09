@@ -2,7 +2,7 @@ import type { CreateFacilityFormValues } from "../schemas/facilitySchemas"
 
 const API_FIELDS = {
   accountNumber: 'AccountNumber',
-  solid: 'Solid',
+  solId: 'Solid',
   facilityPurpose: 'FacilityPurpose',
   customerName: 'CustomerName',
   city: 'City',
@@ -28,11 +28,15 @@ const API_FIELDS = {
 
 export const createFacilityFormData = (
   values: CreateFacilityFormValues,
+  auth:{
+    createdBy: string
+    solId: string
+  }
 ): FormData => {
   const formData = new FormData()
 
   formData.append(API_FIELDS.accountNumber, values.accountNumber)
-  formData.append(API_FIELDS.solid, values.solid)
+  formData.append(API_FIELDS.solId, auth.solId)
 
   formData.append(API_FIELDS.facilityPurpose, values.facilityPurpose)
 
@@ -43,7 +47,7 @@ export const createFacilityFormData = (
   formData.append(API_FIELDS.facilityAddress, values.facilityAddress)
 
   formData.append(API_FIELDS.rmsNumber, values.rmsNumber)
-  formData.append(API_FIELDS.createdBy, values.createdBy)
+  formData.append(API_FIELDS.createdBy, auth.createdBy)
 
   formData.append(API_FIELDS.collateralOwner, values.collateralOwner)
   formData.append(API_FIELDS.collateralType, values.collateralType)

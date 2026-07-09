@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import {
   Card,
@@ -14,8 +14,11 @@ import Button from '../../../shared/ui/button/Button'
 import type { CreateFacilityFormValues } from '../schemas/facilitySchemas'
 import { lookupCustomer } from '../services/mockCustomerService'
 import { DEV_MODE } from '../../../app/config/development'
+import { useAppSelector } from '../../../app/store/hooks'
 
 const CustomerInformationCard = () => {
+
+
   const {
     register,
     setValue,
@@ -25,6 +28,15 @@ const CustomerInformationCard = () => {
     useFormContext<CreateFacilityFormValues>()
 
   const [loading, setLoading] = useState(false);
+  const solId = useAppSelector(
+    (state) => state.auth.solId,
+  )
+
+  useEffect(() => {
+    if (solId) {
+      setValue('solid', solId)
+    }
+  }, [solId, setValue])
 
   const handleLookup =
     async () => {
@@ -44,7 +56,6 @@ const CustomerInformationCard = () => {
           return
         }
         setValue('customerName', customer.customerName,)
-        setValue('solid', customer.solid,)
         setValue('city', customer.city,)
         setValue('country', customer.country,)
       } finally {
