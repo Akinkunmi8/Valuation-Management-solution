@@ -268,9 +268,9 @@ const FacilitiesPage = () => {
 
           <div className="overflow-x-auto">
 
-            <table className="min-w-full">
+            {/* <table className="min-w-full">
               ...
-            </table>
+            </table> */}
 
           </div>
 

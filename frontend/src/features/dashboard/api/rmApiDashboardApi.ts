@@ -1,24 +1,19 @@
-import { baseApi } from '../../../shared/api/baseApi'
+import { baseApi } from "../../../shared/api/baseApi";
 
-export const rmDashboardApi =
-  baseApi.injectEndpoints({
-    endpoints: (builder) => ({
-      getRmDashboardMetrics:
-        builder.query({
-          query: ({
-            createdBy,
-            solId,
-          }) => ({
-            url: 'api/RmDashboard/metrics',
-            params: {
-              createdBy,
-              solid: solId,
-            },
-          }),
-        }),
+export const rmDashboardApi = baseApi.injectEndpoints({
+  endpoints: (builder) => ({
+    getRmDashboardMetrics: builder.query({
+      query: ({ createdBy, solId }) => ({
+        url: "api/RmDashboard/metrics",
+        params: {
+          createdBy,
+          solid: solId,
+        },
+      }),
+
+      providesTags: ["RmDashboard"],
     }),
-  })
+  }),
+});
 
-export const {
-  useGetRmDashboardMetricsQuery,
-} = rmDashboardApi
+export const { useGetRmDashboardMetricsQuery } = rmDashboardApi;

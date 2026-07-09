@@ -16,6 +16,7 @@ export const baseApi = createApi({
     'Valuation',
     'Payment',
     'Report',
+    'RmDashboard',
   ],
 
   endpoints: () => ({}),
