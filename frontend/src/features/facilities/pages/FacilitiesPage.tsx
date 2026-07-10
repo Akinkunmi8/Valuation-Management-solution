@@ -12,6 +12,7 @@ import { useState } from 'react'
 import { useGetRmDashboardMetricsQuery } from '../../dashboard/api/rmApiDashboardApi'
 import { useAppSelector } from '../../../app/store/hooks'
 import { getCreatedBy } from '../../auth/utils/createdBy'
+import { MetricCardSkeleton } from '../../../shared/ui/loader'
 
 
 
@@ -32,7 +33,7 @@ const FacilitiesPage = () => {
 
   const {
     data,
-    // isLoading,
+    isLoading,
     // error,
   } = useGetRmDashboardMetricsQuery({
     createdBy,
@@ -205,17 +206,24 @@ const FacilitiesPage = () => {
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5">
         {workflowCards.map((card) => (
-          <MetricCard
-            key={card.key}
-            title={card.title}
-            value={card.count}
-            onClick={() =>
-              setSelectedWorkflow(card.key)
-            }
-            active={
-              selectedWorkflow === card.key
-            }
-          />
+
+          <>
+            {
+              isLoading ? <MetricCardSkeleton /> :
+                <MetricCard
+                  key={card.key}
+                  title={card.title}
+                  value={card.count}
+                  onClick={() =>
+                    setSelectedWorkflow(card.key)
+                  }
+                  active={
+                    selectedWorkflow === card.key
+                  }
+                />}
+
+          </>
+
         ))}
       </div>
 

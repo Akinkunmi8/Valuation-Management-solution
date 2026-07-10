@@ -4,9 +4,10 @@ import {
   FiCreditCard,
   FiCheckCircle,
 } from 'react-icons/fi'
-
+// import { AppLoader } from '../../../shared/ui/loader'
 import { useNavigate } from 'react-router'
 import MetricCard from '../components/MetricCard'
+import { MetricCardSkeleton } from '../../../shared/ui/loader'
 import { ROUTES } from '../../../shared/constants/routes'
 import { getCreatedBy } from '../../auth/utils/createdBy'
 import { useAppSelector } from '../../../app/store/hooks'
@@ -30,12 +31,18 @@ const RmDashboardPage = () => {
 
   const {
     data,
-    // isLoading,
+    isLoading,
     // error,
   } = useGetRmDashboardMetricsQuery({
     createdBy,
     solId: solId!,
   })
+
+  // if (isLoading) {
+  //   return(
+  //     <AppLoader message='Preparing ValuationHub...'/>
+  //   )
+  // }
 
   const metrics = data?.metrics
 
@@ -64,45 +71,61 @@ const RmDashboardPage = () => {
 
 
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-        <MetricCard
-          title="Facilities"
-          value={totalFacilities}
-          description="Total credit facilities"
-          // description="Active credit facilities"
-          // trend="+12% this month"
-          accent="primary"
-          icon={<FiBriefcase size={22} />}
-          onClick={() => navigate(ROUTES.rm.facilities)}
-        />
 
-        <MetricCard
-          title="Valuations"
-          value={12}
-          description="Total Valuations"
-          // description="Awaiting CMU processing"
-          trend="+3 new today"
-          accent="warning"
-          icon={<FiClock size={22} />}
-        />
+        {
+          isLoading ? <MetricCardSkeleton /> :
+            <MetricCard
+              title="Facilities"
+              value={totalFacilities}
+              description="Total credit facilities"
+              // description="Active credit facilities"
+              // trend="+12% this month"
+              accent="primary"
+              icon={<FiBriefcase size={22} />}
+              onClick={() => navigate(ROUTES.rm.facilities)}
+            />
+        }
 
-        <MetricCard
-          title="Payments"
-          // value={data?.metrics?.awaitingPaymentCount ?? 0}
-          value={10}
-          description="Everything payment"
-          trend="Needs follow-up"
-          accent="info"
-          icon={<FiCreditCard size={22} />}
-        />
 
-        <MetricCard
-          title="Reports"
-          value={2}
-          description="Everything Report"
-          trend="+5 this week"
-          accent="success"
-          icon={<FiCheckCircle size={22} />}
-        />
+        {
+          isLoading ? <MetricCardSkeleton /> :
+            <MetricCard
+              title="Valuations"
+              value={12}
+              description="Total Valuations"
+              // description="Awaiting CMU processing"
+              trend="+3 new today"
+              accent="warning"
+              icon={<FiClock size={22} />}
+            />
+        }
+
+
+        {
+          isLoading ? <MetricCardSkeleton /> :
+            <MetricCard
+              title="Payments"
+              // value={data?.metrics?.awaitingPaymentCount ?? 0}
+              value={10}
+              description="Everything payment"
+              trend="Needs follow-up"
+              accent="info"
+              icon={<FiCreditCard size={22} />}
+            />
+        }
+
+
+        {
+          isLoading ? <MetricCardSkeleton /> :
+            <MetricCard
+              title="Reports"
+              value={2}
+              description="Everything Report"
+              trend="+5 this week"
+              accent="success"
+              icon={<FiCheckCircle size={22} />}
+            />}
+
       </div>
     </section>
   )
