@@ -6,7 +6,13 @@ type TopbarProps = {
   onMenuClick: () => void;
 };
 
+import { useAppSelector } from "../../../app/store/hooks";
+
+
 const Topbar = ({ onMenuClick }: TopbarProps) => {
+
+  const {email, roles} = useAppSelector(state => state.auth);
+
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-surface/90 backdrop-blur-sm">
       <div className="flex h-18 items-center gap-4 px-6">
@@ -86,10 +92,10 @@ const Topbar = ({ onMenuClick }: TopbarProps) => {
 
             <div className="hidden text-left sm:block">
               <p className="text-sm font-semibold text-text-primary">
-                Aderemi Abiodun
+                {email}
               </p>
 
-              <p className="text-xs text-text-muted">RM</p>
+              <p className="text-xs text-text-muted">{roles[0]}</p>
             </div>
           </button>
         </div>
