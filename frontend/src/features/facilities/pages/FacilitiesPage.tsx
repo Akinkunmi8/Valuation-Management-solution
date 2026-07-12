@@ -1,6 +1,3 @@
-
-
-
 import { FiPlus, FiSearch } from 'react-icons/fi'
 import { useNavigate } from 'react-router'
 
@@ -13,6 +10,8 @@ import { useGetRmDashboardMetricsQuery } from '../../dashboard/api/rmApiDashboar
 import { useAppSelector } from '../../../app/store/hooks'
 import { getCreatedBy } from '../../auth/utils/createdBy'
 import { MetricCardSkeleton } from '../../../shared/ui/loader'
+import DataTable from '../../../shared/ui/table/DataTable'
+import { facilityColumns } from '../constants/facilityColumns'
 
 
 
@@ -52,6 +51,7 @@ const FacilitiesPage = () => {
     : 0
 
 
+    
   type Workflow =
     | 'all'
     | 'awaitingPayment'
@@ -109,17 +109,17 @@ const FacilitiesPage = () => {
   ] as const;
 
 
-  // const tableData =
-  // selectedWorkflow === 'all'
-  //   ? [
-  //       ...(data?.awaitingPayment ?? []),
-  //       ...(data?.pendingWithSuccessfulPayment ?? []),
-  //       ...(data?.approved ?? []),
-  //       ...(data?.rejected ?? []),
-  //       ...(data?.completed ?? []),
-  //       ...(data?.expired ?? []),
-  //     ]
-  //   : data?.[selectedWorkflow] ?? []
+  const tableData =
+  selectedWorkflow === 'all'
+    ? [
+        ...(data?.awaitingPayment ?? []),
+        ...(data?.pendingWithSuccessfulPayment ?? []),
+        ...(data?.approved ?? []),
+        ...(data?.rejected ?? []),
+        ...(data?.completed ?? []),
+        ...(data?.expired ?? []),
+      ]
+    : data?.[selectedWorkflow] ?? []
 
   return (
     <div className="space-y-6">
@@ -273,9 +273,16 @@ const FacilitiesPage = () => {
 
           <div className="overflow-x-auto">
 
-            {/* <table className="min-w-full">
-              ...
-            </table> */}
+            
+
+            <DataTable
+              columns={facilityColumns}
+              data={tableData}
+              rowKey="facilityReference"
+              loading={isLoading}
+              emptyTitle="No Facilities"
+              emptyMessage="There are no facilities matching this workflow."
+            />
 
           </div>
 

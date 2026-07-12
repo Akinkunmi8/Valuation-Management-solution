@@ -94,3 +94,19 @@ export type CreateFacilityResponse = {
     message: string
     facilityReference: string
 }
+
+
+export type FacilityTableRow = {
+  facilityReference: string
+  customerName: string
+  accountNumber: string
+  facilityPurpose: string
+  collateralValue: number
+  valuationChargeFees: number
+  approvalStatus: string
+  paymentStatus: string
+  valuationStatus: string
+  reportStatus: string
+  rejectionComment: string | null
+  dateAdded: string
+}
