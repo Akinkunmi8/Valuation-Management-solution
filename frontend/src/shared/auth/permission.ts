@@ -91,3 +91,8 @@ export const ROLE_PERMISSIONS: Record<
 
   ADMIN: Object.values(PERMISSIONS),
 }
+
+export type Permission =
+  typeof PERMISSIONS[
+    keyof typeof PERMISSIONS
+  ]

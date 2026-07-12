@@ -25,6 +25,8 @@ import AdminDashboardPage from '../../features/dashboard/pages/AdminDashboardPag
 // import AuditDashboardPage from '../../features/dashboard/pages/auditDashboardPage'
 import CreateFacilityPage from '../../features/facilities/pages/CreateFacilityPage'
 import FacilityDetailsPage from '../../features/facilities/pages/facilityDetailsPage'
+import UnauthorizedPage from '../../shared/pages/UnauthorizedPage'
+import RoleGuard from '../../shared/auth/RoleGuard'
 
 
 
@@ -56,60 +58,117 @@ const AppRouter = () => {
           <Route path={ROUTES.auth.register} element={withSuspense(<RegisterPage />)} />
           <Route path={ROUTES.auth.login} element={withSuspense(<LoginPage />)} />
           {/* <Route path={ROUTES.auth.verify} element={withSuspense(<VerificationPage />)} /> */}
+          <Route
+            path={ROUTES.unauthorized}
+            element={<UnauthorizedPage />}
+          />
         </Route>
 
 
         <Route element={<ProtectedRoute />}>
           <Route element={<MainLayout />}>
+
+            {/*======= RM =======*/}
             <Route
-              path={ROUTES.rm.dashboard}
-              element={<RmDashboardPage />}
-            />
+              element={
+                <RoleGuard
+                  allowedRoles={['RM']}
+                />
+              }
+            >
+              <Route
+                path={ROUTES.rm.dashboard}
+                element={<RmDashboardPage />}
+              />
+
+              <Route
+                path={ROUTES.rm.facilities}
+                element={<FacilitiesPage />}
+              />
+
+              <Route
+                path={ROUTES.rm.createFacility}
+                element={<CreateFacilityPage />}
+              />
+
+              <Route
+                path={ROUTES.rm.facilityDetails}
+                element={<FacilityDetailsPage />}
+              />
+
+            </Route>
+
+            {/*======= CM =======*/}
 
             <Route
-              path={ROUTES.cm.dashboard}
-              element={<CmDashboardPage />}
-            />
+              element={
+                <RoleGuard
+                  allowedRoles={['CM']}
+                />
+              }
+            >
+              <Route
+                path={ROUTES.cm.dashboard}
+                element={<CmDashboardPage />}
+              />
+            </Route>
+
+
+            {/*======= CMS =======*/}
 
             <Route
-              path={ROUTES.cms.dashboard}
-              element={<CmsDashboardPage />}
-            />
+              element={
+                <RoleGuard
+                  allowedRoles={['CMS']}
+                />
+              }
+            >
+              <Route
+                path={ROUTES.cms.dashboard}
+                element={<CmsDashboardPage />}
+              />
+            </Route>
 
             {/* <Route
               path={ROUTES.bm.dashboard}
               element={<BmDashboardPage />}
             /> */}
 
+            {/*======= VALUER =======*/}
             <Route
-              path={ROUTES.valuer.dashboard}
-              element={<ValuerDashboardPage />}
-            />
+              element={
+                <RoleGuard
+                  allowedRoles={['VALUER']}
+                />
+              }
+            >
+              <Route
+                path={ROUTES.valuer.dashboard}
+                element={<ValuerDashboardPage />}
+              />
+            </Route>
 
             {/* <Route
               path={ROUTES.audit.dashboard}
               element={<AuditDashboardPage />}
             /> */}
 
+            {/*======= ADMIN =======*/}
 
             <Route
-              path={ROUTES.admin.dashboard}
-              element={<AdminDashboardPage />}
-            />
+              element={
+                <RoleGuard
+                  allowedRoles={['ADMIN']}
+                />
+              }
+            >
+              <Route
+                path={ROUTES.admin.dashboard}
+                element={<AdminDashboardPage />}
+              />
+            </Route>
 
-            <Route
-              path={ROUTES.rm.facilities}
-              element={<FacilitiesPage />}
-            />
 
-            <Route
-              path={ROUTES.rm.createFacility}
-              element={<CreateFacilityPage />}
-            />
-            <Route
-              path={ROUTES.rm.facilityDetails}
-              element={<FacilityDetailsPage />}
-            />
           </Route>
         </Route>
 

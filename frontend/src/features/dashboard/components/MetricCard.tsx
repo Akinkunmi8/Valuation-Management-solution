@@ -7,7 +7,7 @@ type MetricCardProps = {
   description?: string
   trend?: string
   icon?: ReactNode
-  accent?: 'primary' | 'warning' | 'info' | 'success'
+  accent?: 'primary' | 'warning' | 'info' | 'success' | 'danger'
   active?: boolean
   onClick?: () => void
 }
@@ -37,6 +37,11 @@ const accentStyles = {
     bg: 'bg-success-soft',
     trend: 'text-success',
   },
+  danger: {
+    border: 'border-danger/10',
+    bg: 'bg-danger-soft',
+    trend: 'text-danger',
+  }
 }
 
 const MetricCard = ({

@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 import { ROUTES } from '../../../shared/constants/routes'
 import Button from '../../../shared/ui/button/Button'
+import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { useGetFacilityDetailsQuery } from '../api/facilityApi'
 import { AppLoader } from '../../../shared/ui/loader'
 import {
@@ -53,7 +54,7 @@ const FacilityDetailsPage = () => {
 
 
 
-   
+
 
     const {
         facilityReference,
@@ -103,7 +104,7 @@ const FacilityDetailsPage = () => {
     }
 
 
-     const renderContent = () => {
+    const renderContent = () => {
         switch (activeTab) {
 
             case 'overview':
@@ -116,28 +117,28 @@ const FacilityDetailsPage = () => {
             case 'customer':
                 return (
                     <CustomerTab
-                        // facility={facility}
+                    // facility={facility}
                     />
                 )
 
             case 'collateral':
                 return (
                     <CollateralTab
-                        // facility={facility}
+                    // facility={facility}
                     />
                 )
 
             case 'documents':
                 return (
                     <DocumentsTab
-                        // facility={facility}
+                    // facility={facility}
                     />
                 )
 
             case 'payment':
                 return (
                     <PaymentTab
-                        // facility={facility}
+                    // facility={facility}
                     />
                 )
 
@@ -150,14 +151,17 @@ const FacilityDetailsPage = () => {
     return (
 
         <div className="space-y-6">
-            <Button
-                variant="ghost"
-                onClick={() =>
-                    navigate(ROUTES.rm.facilities)
-                }
+            <Link to={ROUTES.rm.facilities}
+            className='flex items-center gap-2'
+                // variant="ghost"
+                // onClick={() =>
+                //     navigate()
+                // }
             >
-                ← Back to Facilities
-            </Button>
+                <IoArrowBackCircleOutline />
+
+                <>Back to Facilities</>
+            </Link>
 
             <div className="space-y-2">
                 <p className="text-sm text-text-muted">
