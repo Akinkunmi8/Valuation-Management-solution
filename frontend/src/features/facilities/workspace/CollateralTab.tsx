@@ -1,14 +1,17 @@
-import type {
-  FacilityDetailsResponse,
-} from '../types/facilityTypes'
+// import type {
+//   FacilityDetailsResponse,
+// } from '../types/facilityTypes'
 
-type Props = {
-  facility: FacilityDetailsResponse
-}
+// type Props = {
+//   facility: FacilityDetailsResponse
+// }
 
-const CollateralTab = ({
-  facility,
-}: Props) => {
+const CollateralTab = (
+//   {
+//   facility,
+// }: 
+// Props
+) => {
   return (
     <div>
       Customer Tab
