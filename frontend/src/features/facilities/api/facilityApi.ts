@@ -1,6 +1,9 @@
 import { baseApi } from "../../../shared/api/baseApi";
 
-import type { CreateFacilityResponse } from "../types/facilityTypes";
+import type {
+  CreateFacilityResponse,
+  FacilityDetailsResponse,
+} from "../types/facilityTypes";
 
 export const facilityApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -12,7 +15,24 @@ export const facilityApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Facility", "RmDashboard"],
     }),
+    getFacilityDetails: builder.query<FacilityDetailsResponse, string>({
+      query: (facilityReference) => ({
+        url: `/api/Facilities/getFacilityDetails/${facilityReference}`,
+
+        params: {
+          facilityRef: facilityReference,
+        },
+      }),
+
+      providesTags: (result, error, facilityReference) => [
+        {
+          type: "Facility",
+          id: facilityReference,
+        },
+      ],
+    }),
   }),
 });
 
-export const { useCreateFacilityMutation } = facilityApi;
+export const { useCreateFacilityMutation, useGetFacilityDetailsQuery } =
+  facilityApi;
