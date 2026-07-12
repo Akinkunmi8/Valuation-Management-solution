@@ -16,13 +16,13 @@ export const FACILITY_STEP_FIELDS: Array<
     'facilityAddress',
     'rmsNumber',
     'createdBy',
-    'valuationsFees',
   ],
 
   [
     'collateralOwner',
     'collateralType',
     'collateralValue',
+    'valuationsFees',
     'stateOfCollateral',
     'location',
     'otherDetails',

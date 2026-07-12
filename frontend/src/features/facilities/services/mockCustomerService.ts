@@ -12,19 +12,19 @@ const MOCK_CUSTOMERS: Record<
   CustomerLookupResponse
 > = {
   '0123456789': {
-    customerName: 'John Doe',
+    customerName: 'Aderemi Abiodun',
     city: 'Lagos',
     country: 'Nigeria',
   },
 
   '1111111111': {
-    customerName: 'Jane Smith',
+    customerName: 'Adeola Ogunwuyi',
     city: 'Ibadan',
     country: 'Nigeria',
   },
 
   '2222222222': {
-    customerName: 'UBA Industries Ltd.',
+    customerName: 'Olawale Akin',
     city: 'Abuja',
     country: 'Nigeria',
   },

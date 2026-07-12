@@ -205,26 +205,23 @@ const FacilitiesPage = () => {
       </div> */}
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5 fade-up">
-        {workflowCards.map((card) => (
+        {workflowCards.map((card) =>
+          isLoading ? <MetricCardSkeleton /> :
+            <MetricCard
+              key={card.key}
+              title={card.title}
+              value={card.count}
+              onClick={() =>
+                setSelectedWorkflow(card.key)
+              }
+              active={
+                selectedWorkflow === card.key
+              }
+            />
+        )}
 
-          <>
-            {
-              isLoading ? <MetricCardSkeleton /> :
-                <MetricCard
-                  key={card.key}
-                  title={card.title}
-                  value={card.count}
-                  onClick={() =>
-                    setSelectedWorkflow(card.key)
-                  }
-                  active={
-                    selectedWorkflow === card.key
-                  }
-                />}
 
-          </>
 
-        ))}
       </div>
 
       {/* Search */}

@@ -66,7 +66,7 @@ export const createFacilityFormData = (
 
   formData.append(
     API_FIELDS.collateralValue,
-    values.collateralValue.toString(),
+    (values.collateralValue ?? 0).toString(),
   )
 
   formData.append(

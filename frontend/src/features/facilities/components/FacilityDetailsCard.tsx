@@ -123,21 +123,7 @@ const FacilityDetailsCard = () => {
             )}
           />
 
-          <Input
-            type="number"
-            label="Valuation Fee"
-            // disabled
-            error={
-              errors.valuationsFees
-                ?.message
-            }
-            {...register(
-              'valuationsFees',
-              {
-                valueAsNumber: true,
-              },
-            )}
-          />
+       
 
         </div>
 

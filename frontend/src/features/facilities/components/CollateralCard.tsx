@@ -1,5 +1,5 @@
 import { useMemo, useEffect } from 'react'
-import { calculateValuationFee } from '../utils/valuationFee'
+import { calculateShopFee, calculateValuationFee } from '../utils/valuationFee'
 
 import { useFormContext } from 'react-hook-form'
 
@@ -38,11 +38,49 @@ const CollateralCard = () => {
   } =
     useFormContext<CreateFacilityFormValues>()
 
-  const collateralValue =
-    watch('collateralValue')
+
+  const collateralType = watch('collateralType')
+
+  const numberOfShops = watch('numberOfShops')
+
+  const collateralValue = watch('collateralValue')
 
   useEffect(() => {
-    if (!collateralValue) {
+
+    // Nothing selected yet
+    if (!collateralType) {
+
+      setValue('valuationsFees', 0)
+
+      return
+    }
+
+    // Shop
+    if (collateralType === 'Shop') {
+
+      setValue('collateralValue', 0)
+
+      if (!numberOfShops || numberOfShops <= 0) {
+
+        setValue('valuationsFees', 0)
+
+        return
+      }
+
+      setValue(
+        'valuationsFees',
+        calculateShopFee(numberOfShops),
+      )
+
+      return
+    }
+
+    // Every other collateral
+
+    if (!collateralValue || collateralValue <= 0) {
+
+      setValue('valuationsFees', 0)
+
       return
     }
 
@@ -50,7 +88,13 @@ const CollateralCard = () => {
       'valuationsFees',
       calculateValuationFee(collateralValue),
     )
-  }, [collateralValue, setValue])
+
+  }, [
+    collateralType,
+    collateralValue,
+    numberOfShops,
+    setValue,
+  ])
 
   const selectedState =
     watch('stateOfCollateral')
@@ -107,14 +151,84 @@ const CollateralCard = () => {
             )}
           />
 
+          {
+            collateralType === 'Shop' && (
+
+              <Input
+
+                label="Number of Shops"
+
+                type="number"
+
+                {...register(
+                  'numberOfShops',
+                  {
+                    valueAsNumber: true,
+                  },
+                )}
+              />
+
+            )
+          }
+
+          {/* {collateralType === 'Shop' ?
+            <Input
+              label="Number of Shops"
+              type="number"
+              {...register(
+                'numberOfShops',
+                {
+                  valueAsNumber: true,
+                },
+              )}
+            />
+            :
+            <Input
+              type="number"
+              label="Collateral Value"
+              error={
+                errors.collateralValue?.message
+              }
+              {...register(
+                'collateralValue',
+                {
+                  valueAsNumber: true,
+                },
+              )}
+            />
+          } */}
+
           <Input
-            type="number"
             label="Collateral Value"
-            error={
-              errors.collateralValue?.message
+
+            disabled={
+              collateralType === 'Shop'
             }
+            placeholder={
+              collateralType === 'Shop'
+                ? 'Not applicable for Shop'
+                : 'Enter collateral value'
+            }
+
             {...register(
               'collateralValue',
+              {
+                valueAsNumber: true,
+              },
+            )}
+          />
+
+          <Input
+            type="number"
+            label="Valuation Fee"
+            disabled
+            // readOnly
+            error={
+              errors.valuationsFees
+                ?.message
+            }
+            {...register(
+              'valuationsFees',
               {
                 valueAsNumber: true,
               },

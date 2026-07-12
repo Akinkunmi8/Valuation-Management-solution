@@ -23,3 +23,18 @@ export const calculateValuationFee = (
 
   return 0
 }
+
+export const calculateShopFee = (
+  numberOfShops: number,
+) => {
+
+  if (numberOfShops <= 0) {
+    return 0
+  }
+
+  return (
+    25000 +
+    (numberOfShops - 1) * 10000
+  )
+
+}

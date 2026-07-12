@@ -47,6 +47,10 @@ export const COLLATERAL_TYPE_OPTIONS = [
     value: 'Industrial Property',
   },
   {
+    label: 'Shop',
+    value: 'Shop',
+  },
+  {
     label: 'Vehicle',
     value: 'Vehicle',
   },
