@@ -110,3 +110,39 @@ export type FacilityTableRow = {
   rejectionComment: string | null
   dateAdded: string
 }
+
+export type FacilityDetailsResponse = {
+  facilityReference: string
+  accountNumber: string
+  solId: string
+
+  facilityPurpose: string
+
+  customerName: string
+  city: string
+  country: string
+
+  facilityAddress: string
+
+  rMsNumber: string
+  createdBy: string
+
+  collateraOwener: string | null
+
+  collateralType: string
+  stateOfCollateral: string
+  location: string
+  otherDetails: string
+
+  collateralValue: number
+  valuationsFees: number
+
+  dateAdded: string
+
+  approvalStatus: number
+  valuationStatus: number
+
+  savedTitleDocumentPath: string
+  savedApprovalFilePath: string
+  savedIndemnityLetterPath: string
+}
