@@ -116,28 +116,28 @@ const FacilityDetailsPage = () => {
             case 'customer':
                 return (
                     <CustomerTab
-                        facility={facility}
+                        // facility={facility}
                     />
                 )
 
             case 'collateral':
                 return (
                     <CollateralTab
-                        facility={facility}
+                        // facility={facility}
                     />
                 )
 
             case 'documents':
                 return (
                     <DocumentsTab
-                        facility={facility}
+                        // facility={facility}
                     />
                 )
 
             case 'payment':
                 return (
                     <PaymentTab
-                        facility={facility}
+                        // facility={facility}
                     />
                 )
 
