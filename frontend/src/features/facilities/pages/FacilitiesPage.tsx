@@ -51,7 +51,7 @@ const FacilitiesPage = () => {
     : 0
 
 
-    
+
   type Workflow =
     | 'all'
     | 'awaitingPayment'
@@ -110,8 +110,8 @@ const FacilitiesPage = () => {
 
 
   const tableData =
-  selectedWorkflow === 'all'
-    ? [
+    selectedWorkflow === 'all'
+      ? [
         ...(data?.awaitingPayment ?? []),
         ...(data?.pendingWithSuccessfulPayment ?? []),
         ...(data?.approved ?? []),
@@ -119,7 +119,7 @@ const FacilitiesPage = () => {
         ...(data?.completed ?? []),
         ...(data?.expired ?? []),
       ]
-    : data?.[selectedWorkflow] ?? []
+      : data?.[selectedWorkflow] ?? []
 
   return (
     <div className="space-y-6">
@@ -273,7 +273,7 @@ const FacilitiesPage = () => {
 
           <div className="overflow-x-auto">
 
-            
+
 
             <DataTable
               columns={facilityColumns}
@@ -282,6 +282,12 @@ const FacilitiesPage = () => {
               loading={isLoading}
               emptyTitle="No Facilities"
               emptyMessage="There are no facilities matching this workflow."
+
+              onRowClick={(facility) =>
+                navigate(
+                  `/dashboard/rm/facilities/${facility.facilityReference}`,
+                )
+              }
             />
 
           </div>

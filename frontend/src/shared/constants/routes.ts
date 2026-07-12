@@ -13,6 +13,7 @@ export const ROUTES = {
     dashboard: "/dashboard/rm",
     facilities: "/dashboard/rm/facilities",
     createFacility: "/dashboard/rm/facilities/create",
+    facilityDetails: "/dashboard/rm/facilities/:facilityReference",
     payments: "/dashboard/rm/payments",
     reports: "/dashboard/rm/reports",
   },

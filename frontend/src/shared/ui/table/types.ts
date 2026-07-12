@@ -16,4 +16,5 @@ export type DataTableProps<T> = {
   loading?: boolean
   emptyTitle?: string
   emptyMessage?: string
+  onRowClick?: (row: T) => void
 }

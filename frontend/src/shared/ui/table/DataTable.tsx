@@ -11,6 +11,7 @@ export default function DataTable<T>({
     loading = false,
     emptyTitle = 'No Records',
     emptyMessage = 'No records found.',
+    onRowClick,
 }: DataTableProps<T>) {
     if (loading) {
         return (
@@ -79,7 +80,17 @@ export default function DataTable<T>({
 
                             <tr
                                 key={String(row[rowKey])}
-                                className="border-b border-border transition-colors hover:bg-primary-soft"
+                                onClick={() => onRowClick?.(row)}
+                                className={`
+                                        border-b
+                                        border-border
+                                        transition-all
+                                        duration-150
+                                        ${onRowClick
+                                        ? 'cursor-pointer hover:bg-primary-soft'
+                                        : ''
+                                    }
+    `}
                             >
 
                                 {columns.map(column => (
