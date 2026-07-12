@@ -6,6 +6,9 @@ import {
   type SupportedCountry,
 } from "../types/authTypes";
 
+const AUTH_KEY = "cvms.auth";
+
+
 const initialState: AuthState = {
   selectedCountry: null,
   token: null,
@@ -42,8 +45,11 @@ const authSlice = createSlice({
       state.fullName = null;
       state.email = null;
       state.roles = [];
+      state.solId = null;
       state.isAuthenticated = false;
+      localStorage.removeItem(AUTH_KEY);
     },
+
     // completeVerification: (state) => {
     //   state.isVerified = true;
     // },

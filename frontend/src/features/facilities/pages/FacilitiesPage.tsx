@@ -206,7 +206,7 @@ const FacilitiesPage = () => {
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5 fade-up">
         {workflowCards.map((card) =>
-          isLoading ? <MetricCardSkeleton /> :
+          isLoading ? <MetricCardSkeleton key={card.key} /> :
             <MetricCard
               key={card.key}
               title={card.title}
