@@ -1,17 +1,18 @@
 // import type { IconType } from 'react-icons'
 import { Link, useLocation } from 'react-router'
 import { ROLE_MENUS } from '../../constants/navigation'
-import { 
-// useAppDispatch, 
-useAppSelector } from '../../../app/store/hooks'
+import {
+  useAppDispatch,
+  useAppSelector
+} from '../../../app/store/hooks'
 
 import {
-  // FiLogOut,
+  FiLogOut,
   FiX,
 } from 'react-icons/fi'
-// import Button from '../button/Button'
-// import { logout } from '../../../features/auth/store/authSlice'
-// import { baseApi } from '../../api/baseApi'
+import Button from '../button/Button'
+import { logout } from '../../../features/auth/store/authSlice'
+import { baseApi } from '../../api/baseApi'
 
 type SidebarProps = {
   isOpen: boolean
@@ -37,14 +38,14 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
   const role = useAppSelector(
     (state) => state.auth.roles[0]
   )
-//  const dispatch =  useAppDispatch();
+  const dispatch = useAppDispatch();
 
-//  const handleLogOut = () => {
-//   dispatch(logout())
-//  dispatch(
-//         baseApi.util.resetApiState()
-//     )
-// }
+  const handleLogOut = () => {
+    dispatch(logout())
+    dispatch(
+      baseApi.util.resetApiState()
+    )
+  }
 
   const navigationItems =
     role ? ROLE_MENUS[role] : []
@@ -125,17 +126,20 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
             )
           })}
 
-         
+
         </nav>
 
-         {/* <div>
-            <Button
-            variant='danger'
-            size='md'
-            leftIcon={<FiLogOut/>}
-            onClick={() => handleLogOut()}
-            />
-          </div> */}
+        <div className="border-t border-border p-4">
+          <Button
+            variant="ghost"
+            size="md"
+            leftIcon={<FiLogOut />}
+            className="w-full justify-start"
+            onClick={handleLogOut}
+          >
+            Logout
+          </Button>
+        </div>
       </aside>
     </>
   )
