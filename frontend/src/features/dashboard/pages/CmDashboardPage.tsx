@@ -10,9 +10,7 @@ import { useGetCmDashboardMetricsQuery } from '../api/cmDashboardApi'
 
 import { MetricCardSkeleton } from '../../../shared/ui/loader'
 import DataTable from '../../../shared/ui/table/DataTable'
-import { facilityColumns } from '../../facilities/constants/facilityColumns'
-// import { facilityColumns } from '../constants/facilityColumns'
-
+import { cmColumns } from '../../facilities/constants/cmColumns'
 
 
 
@@ -192,39 +190,16 @@ const CmDashboardPage = () => {
         <div className="flex items-center justify-between">
 
           <div className="relative w-full max-w-md">
-
-            <FiSearch
-              className="
-        absolute
-        left-3
-        top-1/2
-        -translate-y-1/2
-        text-slate-400
-      "
+            <FiSearch className="absolute left-3 top-1/2 translate-y-1/2 text-slate-400"
             />
 
             <input
               type="text"
               placeholder="Search reference no, CIF or customer..."
-              className="
-        h-11
-        w-full
-        rounded-xl
-        border
-        border-slate-300
-        pl-10
-        pr-4
-        text-sm
-        outline-none
-        transition
-        focus:border-teal-500
-        focus:ring-4
-        focus:ring-teal-100
-      "
+              className=" h-11 w-full rounded-xl border border-slate-300 pl-10 pr-4 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100"
             />
 
           </div>
-
         </div>
       </>
 
@@ -236,7 +211,7 @@ const CmDashboardPage = () => {
           <div className="overflow-x-auto">
 
             <DataTable
-              columns={facilityColumns}
+              columns={cmColumns}
               data={tableData}
               rowKey="facilityReference"
               loading={isLoading}

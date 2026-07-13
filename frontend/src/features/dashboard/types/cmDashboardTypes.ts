@@ -1,4 +1,21 @@
-import type { FacilityTableRow } from "../../facilities/types/facilityTypes"
+export type CmFacilityTableRow = {
+  facilityReference: string
+  customerName: string
+  accountNumber: string
+  facilityPurpose: string
+  collateralValue: number
+  valuationFees: number
+  valuerId: number
+  openMarketValue: number
+  forceSalesValue: number
+  insuranceValue: number
+  facilityApprovalStatus: number | string
+  reportApprovalStatus: number | string
+  customerPaymentStatus: number | string
+  valuationStatus: number | string
+  reportStatus: number | string
+  dateAdded: string
+}
 
 export interface CmDashboardResponse {
   metrics: {
@@ -11,11 +28,13 @@ export interface CmDashboardResponse {
     pendingReportReviewCount: number
   }
 
-  pendingReview: FacilityTableRow[]
-  approved: FacilityTableRow[]
-  rejected: FacilityTableRow[]
-  awaitingValuerAssignment: FacilityTableRow[]
-  completed: FacilityTableRow[]
-  beyondTat: FacilityTableRow[]
-  pendingReportReview: FacilityTableRow[]
+  pendingReview: CmFacilityTableRow[]
+  approved: CmFacilityTableRow[]
+  rejected: CmFacilityTableRow[]
+  awaitingValuerAssignment: CmFacilityTableRow[]
+  completed: CmFacilityTableRow[]
+  beyondTat: CmFacilityTableRow[]
+  pendingReportReview: CmFacilityTableRow[]
 }
+
+
