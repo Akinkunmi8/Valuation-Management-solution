@@ -1,13 +1,13 @@
-import Button from '../../../shared/ui/button/Button'
-import { Card, CardHeader, CardContent } from '../../../shared/ui/card/Card'
-import { formatCurrency } from '../../../shared/utils/formatCurrency'
+import Button from '@/shared/ui/button/Button'
+import { Card, CardHeader, CardContent } from '@/shared/ui/card/Card'
+import { formatCurrency } from '@/shared/utils/formatCurrency'
 import type {
   FacilityDetailsResponse,
-} from '../../facilities/types/facilityTypes'
-import DetailItem from '../../facilities/workspace/DetailItem'
+} from '@/features/facilities/types/facilityTypes'
+import DetailItem from '@/features/facilities/workspace/DetailItem'
 import { useProcessFacilityPaymentMutation } from '../api/paymentApi'
 
-import { notify } from '../../../shared/lib/toast'
+import { notify } from '@/shared/lib/toast'
 
 type PaymentTabProps = {
   facility: FacilityDetailsResponse
