@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router'
 import AuthLayout from '../layouts/AuthLayout'
 import MainLayout from '../layouts/MainLayout'
 import { ROUTES } from '../../shared/constants/routes'
-import Spinner from '../../shared/ui/spinner/Spinner'
+// import Spinner from '../../shared/ui/spinner/Spinner'
 
 const WelcomePage = lazy(() => import('../../features/auth/pages/WelcomePage'))
 const RegisterPage = lazy(
@@ -27,6 +27,7 @@ import CreateFacilityPage from '../../features/facilities/pages/CreateFacilityPa
 import FacilityDetailsPage from '../../features/facilities/pages/facilityDetailsPage'
 import UnauthorizedPage from '../../shared/pages/UnauthorizedPage'
 import RoleGuard from '../../shared/auth/RoleGuard'
+import { AppLoader } from '../../shared/ui/loader'
 
 
 
@@ -39,8 +40,12 @@ const FacilitiesPage = lazy(
 
 const PageFallback = () => {
   return (
-    <div className="grid min-h-screen place-items-center bg-zinc-950 text-white">
-      <Spinner label="Loading page" size="lg" />
+    <div className="grid min-h-screen place-items-center
+    ">
+      {/* <Spinner label="Loading page" size="lg" /> */}
+    //  bg-zinc-950 text-white
+
+      <AppLoader/>
     </div>
   )
 }
