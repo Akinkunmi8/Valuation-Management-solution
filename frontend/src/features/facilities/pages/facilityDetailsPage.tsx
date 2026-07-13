@@ -43,18 +43,12 @@ const TABS = [
 
 
 
-
-
 const FacilityDetailsPage = () => {
     const navigate = useNavigate()
     const [activeTab, setActiveTab] =
         useState<
             typeof TABS[number]['id']
         >('overview')
-
-
-
-
 
     const {
         facilityReference,
@@ -103,7 +97,6 @@ const FacilityDetailsPage = () => {
         )
     }
 
-
     const renderContent = () => {
         switch (activeTab) {
 
@@ -117,7 +110,7 @@ const FacilityDetailsPage = () => {
             case 'customer':
                 return (
                     <CustomerTab
-                    // facility={facility}
+                    facility={facility}
                     />
                 )
 
@@ -147,19 +140,12 @@ const FacilityDetailsPage = () => {
         }
     }
 
-
     return (
-
         <div className="space-y-6">
             <Link to={ROUTES.rm.facilities}
             className='flex items-center gap-2'
-                // variant="ghost"
-                // onClick={() =>
-                //     navigate()
-                // }
             >
                 <IoArrowBackCircleOutline />
-
                 <>Back to Facilities</>
             </Link>
 
@@ -206,15 +192,11 @@ const FacilityDetailsPage = () => {
 
             </div>
 
-
             <div className="rounded-2xl border border-border bg-surface p-6">
                 {renderContent()}
             </div>
-
         </div>
-
     )
-
 }
 
 export default FacilityDetailsPage
