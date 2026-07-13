@@ -13,7 +13,8 @@ import CustomerTab from '../workspace/CustomerTab'
 import CollateralTab from '../workspace/CollateralTab'
 import OverviewTab from '../workspace/OverviewTab'
 import DocumentsTab from '../workspace/DocumentsTab'
-import PaymentTab from '../workspace/PaymentTab'
+import PaymentTab from '../../payments/components/PaymentTab'
+
 
 const TABS = [
     {
@@ -110,28 +111,28 @@ const FacilityDetailsPage = () => {
             case 'customer':
                 return (
                     <CustomerTab
-                    facility={facility}
+                        facility={facility}
                     />
                 )
 
             case 'collateral':
                 return (
                     <CollateralTab
-                    facility={facility}
+                        facility={facility}
                     />
                 )
 
             case 'documents':
                 return (
                     <DocumentsTab
-                    facility={facility}
+                        facility={facility}
                     />
                 )
 
             case 'payment':
                 return (
                     <PaymentTab
-                    // facility={facility}
+                    facility={facility}
                     />
                 )
 
@@ -143,7 +144,7 @@ const FacilityDetailsPage = () => {
     return (
         <div className="space-y-6">
             <Link to={ROUTES.rm.facilities}
-            className='flex items-center gap-2'
+                className='flex items-center gap-2'
             >
                 <IoArrowBackCircleOutline />
                 <>Back to Facilities</>
@@ -162,6 +163,7 @@ const FacilityDetailsPage = () => {
                     Pending Approval
                 </p>
             </div>
+
 
             <div className="flex gap-2 border-b border-border">
 
