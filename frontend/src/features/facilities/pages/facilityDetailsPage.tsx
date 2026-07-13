@@ -117,7 +117,7 @@ const FacilityDetailsPage = () => {
             case 'collateral':
                 return (
                     <CollateralTab
-                    // facility={facility}
+                    facility={facility}
                     />
                 )
 
