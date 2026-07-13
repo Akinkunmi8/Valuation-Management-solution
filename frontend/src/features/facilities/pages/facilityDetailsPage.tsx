@@ -124,7 +124,7 @@ const FacilityDetailsPage = () => {
             case 'documents':
                 return (
                     <DocumentsTab
-                    // facility={facility}
+                    facility={facility}
                     />
                 )
 
