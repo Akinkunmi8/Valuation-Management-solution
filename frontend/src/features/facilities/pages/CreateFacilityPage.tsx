@@ -27,6 +27,7 @@ import DocumentsCard from '../components/DocumentCard'
 import { createFacilityFormData } from '../utils/formData'
 import { useCreateFacilityMutation } from '../api/facilityApi'
 import { useAppSelector } from '../../../app/store/hooks'
+import { notify } from '../../../shared/lib/toast'
 
 
 
@@ -77,6 +78,7 @@ const CreateFacilityPage = () => {
             )
 
             await createFacility(formData).unwrap()
+            notify.success("Facility Created Successfully");
 
             navigate(
                 ROUTES.rm.facilities,
@@ -85,7 +87,8 @@ const CreateFacilityPage = () => {
                 },
             )
         } catch (error) {
-            console.error(error)
+            console.log(error)
+            notify.error("Error Creating Facility");
         }
     }
 

@@ -7,6 +7,8 @@ import type {
 import DetailItem from '../../facilities/workspace/DetailItem'
 import { useProcessFacilityPaymentMutation } from '../api/paymentApi'
 
+import { notify } from '../../../shared/lib/toast'
+
 type PaymentTabProps = {
   facility: FacilityDetailsResponse
 }
@@ -30,7 +32,9 @@ const PaymentTab = ({
         await processFacilityPayment(
           facility.facilityReference,
         ).unwrap()
+        
       // success toast goes here
+      notify.success("Payment collected successfully.")
       console.log(response.message)
     } catch (error) {
       console.error(error)
