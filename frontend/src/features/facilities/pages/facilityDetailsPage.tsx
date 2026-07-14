@@ -1,51 +1,68 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
-import { ROUTES } from '../../../shared/constants/routes'
-import Button from '../../../shared/ui/button/Button'
+import { ROUTES } from '@/shared/constants/routes'
+import Button from '@/shared/ui/button/Button'
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { useGetFacilityDetailsQuery } from '../api/facilityApi'
-import { AppLoader } from '../../../shared/ui/loader'
+import { AppLoader } from '@/shared/ui/loader'
 import {
     Card, CardContent,
     // CardHeader, CardTitle
-} from '../../../shared/ui/card/Card'
+} from '@/shared/ui/card/Card'
 import CustomerTab from '../workspace/CustomerTab'
 import CollateralTab from '../workspace/CollateralTab'
 import OverviewTab from '../workspace/OverviewTab'
 import DocumentsTab from '../workspace/DocumentsTab'
 import PaymentTab from '../../payments/components/PaymentTab'
+import { getFacilityWorkspaceTabs } from '../workspace/WorkspaceTab';
+import WorkflowTab from '@/features/workflow/components/WorkflowTab';
+import { useAppSelector } from '@/app/store/hooks';
 
 
-const TABS = [
-    {
-        id: 'overview',
-        label: 'Overview',
-    },
-    {
-        id: 'customer',
-        label: 'Customer',
-    },
+// const TABS = [
+//     {
+//         id: 'overview',
+//         label: 'Overview',
+//     },
+//     {
+//         id: 'customer',
+//         label: 'Customer',
+//     },
 
-    {
-        id: 'collateral',
-        label: 'Collateral',
-    },
+//     {
+//         id: 'collateral',
+//         label: 'Collateral',
+//     },
 
-    {
-        id: 'documents',
-        label: 'Documents',
-    },
+//     {
+//         id: 'documents',
+//         label: 'Documents',
+//     },
 
-    {
-        id: 'payment',
-        label: 'Payment',
-    },
-]
+//     {
+//         id: 'payment',
+//         label: 'Payment',
+//     },
+// ]
 
 
 
 const FacilityDetailsPage = () => {
     const navigate = useNavigate()
+
+    const {
+        roles,
+    } = useAppSelector(
+        state => state.auth,
+    )
+
+    const TABS =
+        getFacilityWorkspaceTabs(
+            roles[0],
+        )
+
+
+
     const [activeTab, setActiveTab] =
         useState<
             typeof TABS[number]['id']
@@ -132,7 +149,15 @@ const FacilityDetailsPage = () => {
             case 'payment':
                 return (
                     <PaymentTab
-                    facility={facility}
+                        facility={facility}
+                    />
+                )
+
+            case 'workflow':
+
+                return (
+                    <WorkflowTab
+                        facility={facility}
                     />
                 )
 

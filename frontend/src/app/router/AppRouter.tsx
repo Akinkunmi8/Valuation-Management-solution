@@ -45,7 +45,7 @@ const PageFallback = () => {
       {/* <Spinner label="Loading page" size="lg" /> */}
     //  bg-zinc-950 text-white
 
-      <AppLoader/>
+      <AppLoader />
     </div>
   )
 }
@@ -117,6 +117,11 @@ const AppRouter = () => {
                 element={<CmDashboardPage />}
               />
             </Route>
+
+            <Route
+              path={ROUTES.cm.facilityReviews}
+              element={<FacilityDetailsPage />}
+            />
 
 
             {/*======= CMS =======*/}

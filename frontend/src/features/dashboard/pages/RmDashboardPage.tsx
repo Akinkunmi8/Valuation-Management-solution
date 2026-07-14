@@ -7,11 +7,11 @@ import {
 // import { AppLoader } from '../../../shared/ui/loader'
 import { useNavigate } from 'react-router'
 import MetricCard from '../components/MetricCard'
-import { MetricCardSkeleton } from '../../../shared/ui/loader'
-import { ROUTES } from '../../../shared/constants/routes'
+import { MetricCardSkeleton } from '@/shared/ui/loader'
+import { ROUTES } from '@/shared/constants/routes'
 import { getCreatedBy } from '../../auth/utils/createdBy'
-import { useAppSelector } from '../../../app/store/hooks'
-import { useGetRmDashboardMetricsQuery } from '../api/rmApiDashboardApi'
+import { useAppSelector } from '@/app/store/hooks'
+import { useGetRmDashboardMetricsQuery } from '../api/rmDashboardApi'
 
 
 

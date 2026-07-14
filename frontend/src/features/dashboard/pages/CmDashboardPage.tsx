@@ -220,7 +220,8 @@ const CmDashboardPage = () => {
 
               onRowClick={(facility) =>
                 navigate(
-                  `/dashboard/rm/facilities/${facility.facilityReference}`,
+                  `/dashboard/cm/facility-reviews/${facility.facilityReference}`
+                  // `/dashboard/cm/facilities/${facility.facilityReference}`,
                 )
               }
             />

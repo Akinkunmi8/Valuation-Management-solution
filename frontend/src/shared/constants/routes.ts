@@ -21,7 +21,7 @@ export const ROUTES = {
 
   cm: {
     dashboard: "/dashboard/cm",
-    facilityReviews: "/dashboard/cm/facility-reviews",
+    facilityReviews: "/dashboard/cm/facility-reviews/:facilityReference",
     reportReviews: "/dashboard/cm/report-reviews",
   },
 

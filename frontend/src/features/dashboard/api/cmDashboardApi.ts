@@ -16,7 +16,11 @@ export const cmDashboardApi =
               '/api/CmDashboard/global-metrics',
           }),
 
+          providesTags: ['CmDashboard'],
+
         }),
+
+        
 
     }),
   })

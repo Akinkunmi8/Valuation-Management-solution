@@ -24,14 +24,15 @@ export const facilityApi = baseApi.injectEndpoints({
         },
       }),
 
-      // providesTags: (
-      //   // result, error, 
-      //   facilityReference) => [
-      //   {
-      //     type: "Facility",
-      //     id: facilityReference,
-      //   },
-      // ],
+      providesTags: (
+        _result, 
+        _error, 
+        facilityReference) => [
+        {
+          type: "Facility",
+          id: facilityReference,
+        },
+      ],
     }),
   }),
 });
