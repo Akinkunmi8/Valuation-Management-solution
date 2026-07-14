@@ -479,6 +479,9 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("FacilityReviewBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal?>("ForceSalesValue")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
@@ -684,6 +687,9 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AssignedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("DateAssigned")
                         .HasColumnType("datetime2");
 
@@ -694,6 +700,9 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RejectionComment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReportReviewBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ValuationRePortName")

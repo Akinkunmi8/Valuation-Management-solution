@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Xml.Serialization;
 using ValuationManagementSolu.Application.DTOs;
+using ValuationManagementSolu.Application.Events;
 using ValuationManagementSolu.Application.IServices;
 using ValuationManagementSolu.Application.Repository;
 using ValuationManagementSolu.Domain;
@@ -16,6 +17,22 @@ public class PaymentService : IPaymentService
     {
         _unitOfWork = unitOfWork;
         _config = config;
+    }
+
+    private async Task StageOutboxEventAsync<T>(string facilityRef, T eventData) where T : class
+    {
+        var outboxEntry = new EventOutbox
+        {
+            Id = Guid.NewGuid(), // Ensure this matches your DB type (Guid or string representation)
+            FacilityReference = facilityRef,
+            EventType = typeof(T).Name,
+            Payload = System.Text.Json.JsonSerializer.Serialize(eventData),
+            IsDispatched = false,
+            RetryCount = 0,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        await _unitOfWork.EventOutbox.AddAsync(outboxEntry);
     }
 
     // ==========================================
@@ -35,8 +52,32 @@ public class PaymentService : IPaymentService
 
         string reservedField = $"{facilityRef}/{facility.FacilityAmount:F2}/Valuation Fees";
 
-        // PASSING: TransactionType.CustomerFee explicitly
-        return await ExecuteFinaclePostingAsync(facilityRef, drAccount, cmAccount, amount, reservedField, "Facility Fees", TransactionType.CustomerFee);
+        await _unitOfWork.BeginTransactionAsync();
+        try
+        {
+            bool success = await ExecuteFinaclePostingAsync(facilityRef, drAccount, cmAccount, amount, reservedField, "Facility Fees", TransactionType.CustomerFee);
+
+            // Stage notification event
+            var paymentEvent = new FacilityPaymentProcessedEvent(
+
+                facilityRef,
+                TransactionType.CustomerFee.ToString(),
+                facility.CreatedBy,
+                success ? "Successful" : "Failed",
+                amount,
+                DateTime.UtcNow
+           ); 
+            await StageOutboxEventAsync(facilityRef, paymentEvent);
+
+            await _unitOfWork.CompleteAsync();
+            await _unitOfWork.CommitTransactionAsync();
+            return success;
+        }
+        catch
+        {
+            await _unitOfWork.RollbackTransactionAsync();
+            throw;
+        }
     }
 
     // ==========================================
@@ -44,8 +85,39 @@ public class PaymentService : IPaymentService
     // ==========================================
     public async Task<bool> ReverseFacilityFeesAsync(string facilityRef)
     {
-        // REVERSING: Specifically filtering on CustomerFee type
-        return await ExecuteReversalAsync(facilityRef, "Facility Fees Reversal", TransactionType.CustomerFee);
+        var facility = (await _unitOfWork.Facilities.GetAllAsync()).FirstOrDefault(f => f.FacilityReference == facilityRef);
+        if (facility == null) throw new KeyNotFoundException($"Facility reference {facilityRef} not found.");
+        var collateral = (await _unitOfWork.Collaterals.GetAllAsync()).FirstOrDefault(c => c.FacilityReference == facilityRef);
+
+        await _unitOfWork.BeginTransactionAsync();
+        try
+        {
+            bool success = await ExecuteReversalAsync(facilityRef, "Facility Fees Reversal", TransactionType.CustomerFee);
+
+            if (success)
+            {
+                var paymentEvent = new ReversedFacilityPaymentProcessedEvent(
+
+               facilityRef,
+               TransactionType.CustomerFee.ToString(),
+               facility.CreatedBy,
+               success ? "Successful" : "Failed",
+               "Facility Fees Reversal",
+               collateral.FeesCharged,
+               DateTime.UtcNow
+          );
+                await StageOutboxEventAsync(facilityRef, paymentEvent);
+            }
+
+            await _unitOfWork.CompleteAsync();
+            await _unitOfWork.CommitTransactionAsync();
+            return success;
+        }
+        catch
+        {
+            await _unitOfWork.RollbackTransactionAsync();
+            throw;
+        }
     }
 
     // ==========================================
@@ -72,8 +144,32 @@ public class PaymentService : IPaymentService
 
         string reservedField = $"{facilityRef}/{facility.CustomerName}/{collateral.FeesCharged:F2}";
 
-        // PASSING: TransactionType.ValuerPayout explicitly
-        return await ExecuteFinaclePostingAsync(facilityRef, cmAccount, crAccount, amount, reservedField, "Valuer Fees Payout", TransactionType.ValuerPayout);
+        await _unitOfWork.BeginTransactionAsync();
+        try
+        {
+            bool success = await ExecuteFinaclePostingAsync(facilityRef, cmAccount, crAccount, amount, reservedField, "Valuer Fees Payout", TransactionType.ValuerPayout);
+
+            // Stage notification event
+            var payoutEvent = new ValuerPaymentProcessedEvent
+            (
+                facilityRef,
+                TransactionType.ValuerPayout.ToString(),
+                valuer.ValuerEmail,
+                success ? "Successful" : "Failed",
+                amount,
+                DateTime.UtcNow
+            );
+            await StageOutboxEventAsync(facilityRef, payoutEvent);
+
+            await _unitOfWork.CompleteAsync();
+            await _unitOfWork.CommitTransactionAsync();
+            return success;
+        }
+        catch
+        {
+            await _unitOfWork.RollbackTransactionAsync();
+            throw;
+        }
     }
 
     // ==========================================
@@ -81,8 +177,43 @@ public class PaymentService : IPaymentService
     // ==========================================
     public async Task<bool> ReverseValuerFeesAsync(string facilityRef)
     {
-        // REVERSING: Specifically filtering on ValuerPayout type
-        return await ExecuteReversalAsync(facilityRef, "Valuer Fees Reversal", TransactionType.ValuerPayout);
+        var collateral = (await _unitOfWork.Collaterals.GetAllAsync()).FirstOrDefault(c => c.FacilityReference == facilityRef);
+        if (collateral == null) throw new KeyNotFoundException($"Collateral not found for reference {facilityRef}.");
+
+        if (!collateral.ValuerId.HasValue)
+            throw new InvalidOperationException("No valuer has been assigned to this collateral profile.");
+
+        var valuer = await _unitOfWork.Valuers.GetByIdAsync(collateral.ValuerId.Value);
+        if (valuer == null) throw new InvalidOperationException("The assigned valuer records could not be loaded.");
+
+        await _unitOfWork.BeginTransactionAsync();
+        try
+        {
+            bool success = await ExecuteReversalAsync(facilityRef, "Valuer Fees Reversal", TransactionType.ValuerPayout);
+
+            if (success)
+            {
+                var payoutEvent = new ReverseValuerPaymentProcessedEvent
+            (
+                facilityRef,
+                TransactionType.ValuerPayout.ToString(),
+                valuer.ValuerEmail,
+                success ? "Successful" : "Failed",
+                collateral.FeesCharged,
+                DateTime.UtcNow
+            );
+                await StageOutboxEventAsync(facilityRef, payoutEvent);
+            }
+
+            await _unitOfWork.CompleteAsync();
+            await _unitOfWork.CommitTransactionAsync();
+            return success;
+        }
+        catch
+        {
+            await _unitOfWork.RollbackTransactionAsync();
+            throw;
+        }
     }
 
     public async Task<IEnumerable<ValuerReportItemDto>> GetTransactionsByStatusAsync(string status)

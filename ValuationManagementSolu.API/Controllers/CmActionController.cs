@@ -13,11 +13,11 @@ public class CmActionController : ControllerBase
     }
 
     [HttpPost("approve-facility/{facilityRef}")]
-    public async Task<IActionResult> ApproveFacility([FromRoute] string facilityRef)
+    public async Task<IActionResult> ApproveFacility([FromRoute] string facilityRef, string Username)
     {
         try
         {
-            await _cmService.ApproveFacilityAsync(facilityRef);
+            await _cmService.ApproveFacilityAsync(facilityRef, Username);
             return Ok(new { Success = true, Message = "Facility successfully approved and forwarded to the Supervisor for assignment." });
         }
         catch (KeyNotFoundException ex)
@@ -35,7 +35,7 @@ public class CmActionController : ControllerBase
     {
         try
         {
-            await _cmService.RejectFacilityAsync(dto.FacilityReference,dto.Comment);
+            await _cmService.RejectFacilityAsync(dto.FacilityReference,dto.Username, dto.Comment);
             return Ok(new { Success = true, Message = "Facility rejected and returned to the Relationship Manager's dashboard." });
         }
         catch (KeyNotFoundException ex)
@@ -49,11 +49,11 @@ public class CmActionController : ControllerBase
     }
 
     [HttpPost("approve-report/{facilityRef}")]
-    public async Task<IActionResult> ApproveReport([FromRoute] string facilityRef)
+    public async Task<IActionResult> ApproveReport([FromRoute] string facilityRef, string Username)
     {
         try
         {
-            await _cmService.ApproveReportAsync(facilityRef);
+            await _cmService.ApproveReportAsync(facilityRef, Username);
             return Ok(new { Success = true, Message = "Valuation report successfully approved and closed out by CM." });
         }
         catch (Exception ex)
@@ -67,7 +67,7 @@ public class CmActionController : ControllerBase
     {
         try
         {
-            await _cmService.RejectReportAsync(dto.FacilityReference,dto.Comment);
+            await _cmService.RejectReportAsync(dto.FacilityReference,dto.Username, dto.Comment);
             return Ok(new { Success = true, Message = "Valuation report rejected and returned to the valuer for modifications." });
         }
         catch (Exception ex)

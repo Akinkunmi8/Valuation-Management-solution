@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using ValuationManagementSolu.Application.Data;
 using ValuationManagementSolu.Application.DTOs;
+using ValuationManagementSolu.Application.Events;
 using ValuationManagementSolu.Application.IServices;
 using ValuationManagementSolu.Application.Repository;
 using ValuationManagementSolu.Application.Static;
@@ -20,6 +22,21 @@ public class FacilityService : IFacilityService
         _fileStorage = fileStorage;
     }
 
+    private async Task StageOutboxEventAsync<T>(string facilityRef, T eventData) where T : class
+    {
+        var outboxEntry = new EventOutbox
+        {
+            Id = Guid.NewGuid(),
+            FacilityReference = facilityRef,
+            EventType = typeof(T).Name,
+            Payload = JsonSerializer.Serialize(eventData),
+            IsDispatched = false,
+            RetryCount = 0,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        await _unitOfWork.EventOutbox.AddAsync(outboxEntry);
+    }
     public async Task<string> CreateFacilityWithCollateralAsync(FacilityDto dto)
     {
         // 1. Generate the custom unique reference
@@ -68,9 +85,21 @@ public class FacilityService : IFacilityService
                 ApprovalFileName = approvalPath,
                 IndemnityFileName = indemnityPath
             };
+
+            var ev = new FacilityCreatedEvent
+            (
+                facilityRef,
+                dto.CustomerName,
+                dto.AccountNumber,
+                dto.CreatedBy,
+                dto.SolId,
+                DateTime.UtcNow
+
+            );
             await _unitOfWork.Collaterals.AddAsync(collateral);
 
             // 6. Save changes and commit transaction atomically
+            await StageOutboxEventAsync(facilityRef, ev);
             await _unitOfWork.CompleteAsync();
             await _unitOfWork.CommitTransactionAsync();
 
@@ -230,6 +259,17 @@ public class FacilityService : IFacilityService
                 collateral.FeesCharged = dto.ValuationsFees;
             }
 
+            var ev = new FacilityCreatedEvent
+            (
+                facilityRef,
+                dto.CustomerName,
+                dto.AccountNumber,
+                facility.CreatedBy,
+                dto.SolId,
+                DateTime.UtcNow
+
+            );
+            await StageOutboxEventAsync(facilityRef, ev);
             await _unitOfWork.CompleteAsync(); // Persist explicitly to DB context layer
             await _unitOfWork.CommitTransactionAsync();
 

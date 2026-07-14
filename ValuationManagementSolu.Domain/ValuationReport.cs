@@ -12,6 +12,9 @@ namespace ValuationManagementSolu.Domain
         public virtual Facility? facility { get; set; }
         public string? ValuationRePortName { get; set; }
         public virtual Valuer? Valuer { get; set; }
+
+        public string? ReportReviewBy { get; set; }
+        public string? AssignedBy { get; set; }
         public string? ValuersName { get; set; }
         public DateTime? DateAssigned { get; set; }
         public ReportStatus reportStatus { get; set; }

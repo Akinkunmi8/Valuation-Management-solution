@@ -68,6 +68,11 @@ public class NotificationEventDispatcher : BackgroundService
                         if (createdData != null) await notificationMailService.NotifyFacilityCreatedAsync(createdData);
                         break;
 
+                    case nameof(FacilityApprovedEvent):
+                        var approvedData = JsonSerializer.Deserialize<FacilityApprovedEvent>(ev.Payload);
+                        if (approvedData != null) await notificationMailService.NotifyFacilityApprovedAsync(approvedData);
+                        break;
+
                     case nameof(FacilityRejectedEvent):
                         var rejectedData = JsonSerializer.Deserialize<FacilityRejectedEvent>(ev.Payload);
                         if (rejectedData != null) await notificationMailService.NotifyFacilityRejectedAsync(rejectedData);
@@ -83,30 +88,52 @@ public class NotificationEventDispatcher : BackgroundService
                         if (uploadData != null) await notificationMailService.NotifyReportUploadedAsync(uploadData);
                         break;
 
+                    case nameof(FacilityReportApprovedEvent):
+                        var reportApproveData = JsonSerializer.Deserialize<FacilityReportApprovedEvent>(ev.Payload);
+                        if (reportApproveData != null) await notificationMailService.NotifyReportApproveAsync(reportApproveData);
+                        break;
+
                     case nameof(FacilityReportRejectedEvent):
                         var reportRejectData = JsonSerializer.Deserialize<FacilityReportRejectedEvent>(ev.Payload);
                         if (reportRejectData != null) await notificationMailService.NotifyReportRejectedAsync(reportRejectData);
                         break;
 
                     case nameof(FacilityPaymentProcessedEvent):
-                        var payData = JsonSerializer.Deserialize<FacilityPaymentProcessedEvent>(ev.Payload);
-                        if (payData != null) await notificationMailService.NotifyCustomerPaymentStatusAsync(payData);
+                        var customerPay = JsonSerializer.Deserialize<FacilityPaymentProcessedEvent>(ev.Payload);
+                        if (customerPay != null) await notificationMailService.NotifyCustomerPaymentProcessedAsync(customerPay);
+                        break;
+
+                    case nameof(ReversedFacilityPaymentProcessedEvent):
+                        var customerReverse = JsonSerializer.Deserialize<ReversedFacilityPaymentProcessedEvent>(ev.Payload);
+                        if (customerReverse != null) await notificationMailService.NotifyCustomerPaymentReversedAsync(customerReverse);
                         break;
 
                     case nameof(ValuerPaymentProcessedEvent):
-                        var valuerPayData = JsonSerializer.Deserialize<ValuerPaymentProcessedEvent>(ev.Payload);
-                        if (valuerPayData != null) await notificationMailService.NotifyValuerPayoutStatusAsync(valuerPayData);
+                        var valuerPayout = JsonSerializer.Deserialize<ValuerPaymentProcessedEvent>(ev.Payload);
+                        if (valuerPayout != null) await notificationMailService.NotifyValuerPayoutProcessedAsync(valuerPayout);
                         break;
 
+                    case nameof(ReverseValuerPaymentProcessedEvent):
+                        var valuerReverse = JsonSerializer.Deserialize<ReverseValuerPaymentProcessedEvent>(ev.Payload);
+                        if (valuerReverse != null) await notificationMailService.NotifyValuerPayoutReversedAsync(valuerReverse);
+                        break;
                     case nameof(FacilityReassignedAndWithdrawnEvent):
                         var withdrawData = JsonSerializer.Deserialize<FacilityReassignedAndWithdrawnEvent>(ev.Payload);
                         if (withdrawData != null) await notificationMailService.NotifyWithdrawnAndReassignedAsync(withdrawData);
                         break;
 
+                    case nameof(FacilityReportCompletedEvent):
+                        var completedData = JsonSerializer.Deserialize<FacilityReportCompletedEvent>(ev.Payload);
+                        if (completedData != null) await notificationMailService.NotifyReportCompletedAsync(completedData);
+                        break;
+
+
                     // ... Implement remaining simple handler routing mapping clauses similarly
                     default:
                         _logger.LogWarning($"No explicit consumer handler mapped for notification event type: {ev.EventType}");
                         break;
+
+
                 }
 
                 ev.IsDispatched = true;

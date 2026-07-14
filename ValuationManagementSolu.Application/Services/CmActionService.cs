@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using ValuationManagementSolu.Application.Events;
 using ValuationManagementSolu.Application.IServices;
 using ValuationManagementSolu.Application.Repository;
 using ValuationManagementSolu.Domain;
-
-namespace ValuationManagementSolu.Infrastructure.Services;
+namespace ValuationManagementSolu.Application.Services;
 
 public class CmActionService : ICmActionService
 {
@@ -16,7 +18,23 @@ public class CmActionService : ICmActionService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<bool> ApproveFacilityAsync(string facilityRef)
+    private async Task StageOutboxEventAsync<T>(string facilityRef, T eventData) where T : class
+    {
+        var outboxEntry = new EventOutbox
+        {
+            Id = Guid.NewGuid(),
+            FacilityReference = facilityRef,
+            EventType = typeof(T).Name,
+            Payload = JsonSerializer.Serialize(eventData),
+            IsDispatched = false,
+            RetryCount = 0,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        await _unitOfWork.EventOutbox.AddAsync(outboxEntry);
+    }
+
+    public async Task<bool> ApproveFacilityAsync(string facilityRef, string Username)
     {
         var facilities = await _unitOfWork.Facilities.GetAllAsync();
         var facility = facilities.FirstOrDefault(f => f.FacilityReference == facilityRef);
@@ -25,9 +43,20 @@ public class CmActionService : ICmActionService
         await _unitOfWork.BeginTransactionAsync();
         try
         {
-            // Set the status to Approved so it appears in the Supervisor's "Awaiting Assignment" grid
+            // 1. Update the status tracking fields
             facility.ApprovalStatus = ApprovalStatus.Approved;
             facility.ValuationStatus = ValuationStatus.UnAssigned;
+            facility.FacilityReviewBy = Username;
+
+            // 3. Stage the Outbox Event with structural email properties
+            var ev = new FacilityApprovedEvent(
+            facilityRef,
+            facility.FacilityReviewBy,
+            facility.CreatedBy,
+            DateTime.UtcNow
+           );
+
+            await StageOutboxEventAsync(facilityRef, ev);
 
             await _unitOfWork.CompleteAsync();
             await _unitOfWork.CommitTransactionAsync();
@@ -40,7 +69,7 @@ public class CmActionService : ICmActionService
         }
     }
 
-    public async Task<bool> ApproveReportAsync(string facilityRef)
+    public async Task<bool> ApproveReportAsync(string facilityRef, string Username)
     {
         var reports = await _unitOfWork.ValuationReports.GetAllAsync();
         var report = reports.FirstOrDefault(r => r.FacilityRef == facilityRef);
@@ -52,15 +81,24 @@ public class CmActionService : ICmActionService
         await _unitOfWork.BeginTransactionAsync();
         try
         {
-            // Update the report tracking parameters
             report.approvalStatus = ApprovalStatus.Approved;
             report.reportStatus = ReportStatus.Completed;
+            report.ReportReviewBy = Username;
 
-            // Push final approval state to the primary facility if required
             if (facility != null)
             {
                 facility.ValuationStatus = ValuationStatus.Completed;
             }
+
+            // 2. Stage the Outbox Event (Uses the valuer name linked to the report)
+            var ev = new FacilityReportApprovedEvent(
+
+                facilityRef,
+                report.ValuersName ?? "Assigned Valuer",
+                report.AssignedBy,
+                DateTime.Now
+            );
+            await StageOutboxEventAsync(facilityRef, ev);
 
             await _unitOfWork.CompleteAsync();
             await _unitOfWork.CommitTransactionAsync();
@@ -73,10 +111,7 @@ public class CmActionService : ICmActionService
         }
     }
 
-    // =========================================================================
-    // 1. REJECT FACILITY (CM rejects fresh application back to RM)
-    // =========================================================================
-    public async Task<bool> RejectFacilityAsync(string facilityRef, string comment)
+    public async Task<bool> RejectFacilityAsync(string facilityRef, string Username, string comment)
     {
         if (string.IsNullOrWhiteSpace(comment))
             throw new ArgumentException("A rejection comment must be provided.");
@@ -88,11 +123,19 @@ public class CmActionService : ICmActionService
         await _unitOfWork.BeginTransactionAsync();
         try
         {
-            // Return to RM's workspace
             facility.ApprovalStatus = ApprovalStatus.Rejected;
-
-            // Save the audit comment on the facility record row
             facility.RejectionComment = comment;
+            facility.FacilityReviewBy = Username;
+
+            // 3. Stage the Outbox Event
+            var ev = new FacilityRejectedEvent(
+            facilityRef,
+            Username,
+            facility.CreatedBy,
+            comment,
+            DateTime.UtcNow
+        );
+            await StageOutboxEventAsync(facilityRef, ev);
 
             await _unitOfWork.CompleteAsync();
             await _unitOfWork.CommitTransactionAsync();
@@ -105,19 +148,13 @@ public class CmActionService : ICmActionService
         }
     }
 
-    // =========================================================================
-    // 2. REJECT REPORT (CM/CMS rejects uploaded report back to Valuer)
-    // =========================================================================
-    public async Task<bool> RejectReportAsync(string facilityRef, string comment)
+    public async Task<bool> RejectReportAsync(string facilityRef, string Username, string comment)
     {
         if (string.IsNullOrWhiteSpace(comment))
             throw new ArgumentException("A rejection comment must be provided.");
 
         var reports = await _unitOfWork.ValuationReports.GetAllAsync();
-
-        // FIX: Always grab the LATEST report entry trace instead of the oldest one
         var report = reports.OrderByDescending(r => r.Id).FirstOrDefault(r => r.FacilityRef == facilityRef);
-
         if (report == null) throw new KeyNotFoundException($"No valuation report tracking log found for reference {facilityRef}.");
 
         var facilities = await _unitOfWork.Facilities.GetAllAsync();
@@ -126,20 +163,25 @@ public class CmActionService : ICmActionService
         await _unitOfWork.BeginTransactionAsync();
         try
         {
-            // Flag the specific report entry trace as rejected
             report.approvalStatus = ApprovalStatus.Rejected;
-
-            // Revert report progress status so it flags inside the Valuer's workspace panels again
             report.reportStatus = ReportStatus.Ongoing;
-
-            // Save the correction instructions comment directly to the report record track
             report.RejectionComment = comment;
+            report.ReportReviewBy = Username;
 
             if (facility != null)
             {
-                // Keep facility tracked as Assigned since the valuer is still working on a fix
                 facility.ValuationStatus = ValuationStatus.Assigned;
             }
+
+            // 4. Stage the Outbox Event
+            var ev = new FacilityReportRejectedEvent(
+            facilityRef,
+            Username,
+            report.Valuer.ValuerEmail,
+            comment,
+            DateTime.UtcNow
+        );
+            await StageOutboxEventAsync(facilityRef, ev);
 
             await _unitOfWork.CompleteAsync();
             await _unitOfWork.CommitTransactionAsync();

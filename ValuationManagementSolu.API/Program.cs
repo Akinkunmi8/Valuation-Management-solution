@@ -10,6 +10,7 @@ using ValuationManagementSolu.Application.Repository;
 using ValuationManagementSolu.Application.Services;
 using ValuationManagementSolu.Domain;
 using ValuationManagementSolu.Infrastructure.BackgroundServices;
+using ValuationManagementSolu.Infrastructure.Configuration;
 using ValuationManagementSolu.Infrastructure.Context;
 using ValuationManagementSolu.Infrastructure.Repository;
 using ValuationManagementSolu.Infrastructure.Services;
@@ -112,7 +113,8 @@ builder.Services.AddScoped<IEventPublisher, DbEventPublisher>();
 builder.Services.AddHostedService<NotificationEventDispatcher>();
 // Register your notification email system engine
 builder.Services.AddScoped<INotificationEmailService, NotificationEmailService>();
-
+// Bind setting sections
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 
 // Register Application Business Flow Logic Services
 builder.Services.AddScoped<IFacilityService, FacilityService>();

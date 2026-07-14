@@ -16,6 +16,8 @@ public class Facility
     public string? CustomerCountry { get; set; }
     public DateTime? DateAdded { get; set; }
     public string? CreatedBy { get; set; }
+
+    public string? FacilityReviewBy { get; set; }
     public string? CustomerAddress { get; set; }
     public string? RMsSolId { get; set; }
     public string? RMsAddress { get; set; }

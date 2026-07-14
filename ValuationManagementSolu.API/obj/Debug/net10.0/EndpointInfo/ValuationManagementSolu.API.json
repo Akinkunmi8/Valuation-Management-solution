@@ -280,6 +280,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "Username",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -340,6 +347,13 @@
             "name": "facilityRef",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Username",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -433,6 +447,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "Username",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -452,6 +473,13 @@
             "name": "facilityRef",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Username",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -1514,6 +1542,10 @@
         "type": "object",
         "properties": {
           "facilityReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "username": {
             "type": "string",
             "nullable": true
           },

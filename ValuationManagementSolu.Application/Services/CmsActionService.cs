@@ -16,7 +16,7 @@ public class CmsActionService : ICmsActionService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<bool> AssignFacilityAsync(string facilityRef, int valuerId, string valuerName)
+    public async Task<bool> AssignFacilityAsync(string facilityRef, int valuerId, string valuerName, string Username)
     {
         var collaterals = await _unitOfWork.Collaterals.GetAllAsync();
         var collateral = collaterals.FirstOrDefault(c => c.FacilityReference == facilityRef);
@@ -46,6 +46,7 @@ public class CmsActionService : ICmsActionService
                 {
                     FacilityRef = facilityRef,
                     ValuersName = valuerName,
+                    AssignedBy = Username,
                     reportStatus = ReportStatus.Ongoing,
                     approvalStatus = ApprovalStatus.Pending,
                     PaymentStatus = PaymentStatus.UnProcessed
@@ -71,7 +72,7 @@ public class CmsActionService : ICmsActionService
         }
     }
 
-    public async Task<bool> CancelFacilityAsync(string facilityRef)
+    public async Task<bool> CancelFacilityAsync(string facilityRef, string Username)
     {
         var facilities = await _unitOfWork.Facilities.GetAllAsync();
         var facility = facilities.FirstOrDefault(f => f.FacilityReference == facilityRef);
@@ -89,6 +90,8 @@ public class CmsActionService : ICmsActionService
             if (report != null)
             {
                 report.approvalStatus = ApprovalStatus.Rejected;
+                report.AssignedBy = Username;
+                
             }
 
             await _unitOfWork.CompleteAsync();

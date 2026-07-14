@@ -1,0 +1,72 @@
+2026-07-14 13:50:17.087 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-14 13:50:17.464 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-14 13:50:18.520 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-14 13:50:18.530 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-14 13:50:18.805 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-14 13:50:18.812 +01:00 [INF] Hosting environment: Development
+2026-07-14 13:50:18.826 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-14 13:51:30.002 +01:00 [INF] HTTP GET /api/CmDashboard/global-metrics responded 200 in 6762.7215 ms
+2026-07-14 13:56:15.756 +01:00 [WRN] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2026-07-14 13:56:20.164 +01:00 [INF] HTTP POST /api/CmAction/approve-facility/20260630102624120179 responded 200 in 51466.1257 ms
+2026-07-14 13:56:50.822 +01:00 [ERR] Critical failure dispatching SMTP email message block down network port to: Ak
+System.FormatException: The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.TryReadCfwsAndThrowIfIncomplete(String data, Int32 index, Int32& outIndex, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.TryParseDomain(String data, Int32& index, String& domain, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.TryParseAddress(String data, Boolean expectMultipleAddresses, Int32& index, ParseAddressInfo& parseAddressInfo, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at ValuationManagementSolu.Infrastructure.Services.NotificationEmailService.SendEmailAsync(String recipientEmail, String subject, String htmlBody, List`1 copy) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Services\NotificationEmailService.cs:line 28
+2026-07-14 13:56:51.015 +01:00 [ERR] Failed to dispatch event ID f4adde8b-e797-43fc-8264-c1c3b76fb051, Event Type: FacilityApprovedEvent. Attempt #1
+System.FormatException: The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.TryReadCfwsAndThrowIfIncomplete(String data, Int32 index, Int32& outIndex, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.TryParseDomain(String data, Int32& index, String& domain, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.TryParseAddress(String data, Boolean expectMultipleAddresses, Int32& index, ParseAddressInfo& parseAddressInfo, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at ValuationManagementSolu.Infrastructure.Services.NotificationEmailService.SendEmailAsync(String recipientEmail, String subject, String htmlBody, List`1 copy) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Services\NotificationEmailService.cs:line 28
+   at ValuationManagementSolu.Infrastructure.Services.NotificationEmailService.NotifyFacilityApprovedAsync(FacilityApprovedEvent ev) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Services\NotificationEmailService.cs:line 76
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 73
+2026-07-14 13:57:07.890 +01:00 [ERR] Critical failure dispatching SMTP email message block down network port to: Ak
+System.FormatException: The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.TryReadCfwsAndThrowIfIncomplete(String data, Int32 index, Int32& outIndex, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.TryParseDomain(String data, Int32& index, String& domain, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.TryParseAddress(String data, Boolean expectMultipleAddresses, Int32& index, ParseAddressInfo& parseAddressInfo, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at ValuationManagementSolu.Infrastructure.Services.NotificationEmailService.SendEmailAsync(String recipientEmail, String subject, String htmlBody, List`1 copy) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Services\NotificationEmailService.cs:line 28
+2026-07-14 13:57:07.968 +01:00 [ERR] Failed to dispatch event ID f4adde8b-e797-43fc-8264-c1c3b76fb051, Event Type: FacilityApprovedEvent. Attempt #2
+System.FormatException: The specified string is not in the form required for an e-mail address.
+   at System.Net.Mail.MailAddressParser.TryReadCfwsAndThrowIfIncomplete(String data, Int32 index, Int32& outIndex, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.TryParseDomain(String data, Int32& index, String& domain, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.TryParseAddress(String data, Boolean expectMultipleAddresses, Int32& index, ParseAddressInfo& parseAddressInfo, Boolean throwExceptionIfFail)
+   at System.Net.Mail.MailAddressParser.ParseMultipleAddresses(String data)
+   at System.Net.Mail.MailAddressCollection.ParseValue(String addresses)
+   at ValuationManagementSolu.Infrastructure.Services.NotificationEmailService.SendEmailAsync(String recipientEmail, String subject, String htmlBody, List`1 copy) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Services\NotificationEmailService.cs:line 28
+   at ValuationManagementSolu.Infrastructure.Services.NotificationEmailService.NotifyFacilityApprovedAsync(FacilityApprovedEvent ev) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Services\NotificationEmailService.cs:line 76
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 73
+2026-07-14 15:33:28.692 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-14 15:33:29.095 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-14 15:41:48.303 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-14 15:41:48.638 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-14 15:46:31.585 +01:00 [ERR] [SMTP Guard] Aborting dispatch. Recipient email 'Ak' is null, empty, or malformed.
+2026-07-14 15:46:31.706 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-14 15:46:31.726 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-14 15:46:31.735 +01:00 [ERR] Failed to dispatch event ID f4adde8b-e797-43fc-8264-c1c3b76fb051, Event Type: FacilityApprovedEvent. Attempt #3
+System.FormatException: [SMTP Guard] Aborting dispatch. Recipient email 'Ak' is null, empty, or malformed.
+   at ValuationManagementSolu.Infrastructure.Services.NotificationEmailService.SendEmailAsync(String recipientEmail, String subject, String htmlBody, List`1 copy) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Services\NotificationEmailService.cs:line 29
+   at ValuationManagementSolu.Infrastructure.Services.NotificationEmailService.NotifyFacilityApprovedAsync(FacilityApprovedEvent ev) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Services\NotificationEmailService.cs:line 84
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 73
+2026-07-14 15:46:31.955 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-14 15:46:31.960 +01:00 [INF] Hosting environment: Development
+2026-07-14 15:46:31.965 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-14 15:47:00.583 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-14 15:47:00.854 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-14 15:47:01.518 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-14 15:47:01.529 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-14 15:47:01.782 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-14 15:47:01.787 +01:00 [INF] Hosting environment: Development
+2026-07-14 15:47:01.791 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-14 15:50:23.076 +01:00 [INF] HTTP GET /api/CmDashboard/global-metrics responded 200 in 9701.4946 ms
+2026-07-14 15:51:24.067 +01:00 [WRN] Savepoints are disabled because Multiple Active Result Sets (MARS) is enabled. If 'SaveChanges' fails, then the transaction cannot be automatically rolled back to a known clean state. Instead, the transaction should be rolled back by the application before retrying 'SaveChanges'. See https://go.microsoft.com/fwlink/?linkid=2149338 for more information and examples. To identify the code which triggers this warning, call 'ConfigureWarnings(w => w.Throw(SqlServerEventId.SavepointsDisabledBecauseOfMARS))'.
+2026-07-14 15:51:24.216 +01:00 [INF] HTTP POST /api/CmAction/reject-facility/20260630102624120179 responded 200 in 4682.6296 ms
+2026-07-14 15:52:20.997 +01:00 [INF] Successfully transmitted email notification out to: akinkunmi.olawale@ubagroup.com
