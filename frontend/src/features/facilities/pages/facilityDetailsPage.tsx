@@ -17,6 +17,9 @@ import PaymentTab from '../../payments/components/PaymentTab'
 import { getFacilityWorkspaceTabs } from '../workspace/WorkspaceTab';
 import WorkflowTab from '@/features/workflow/components/WorkflowTab';
 import { useAppSelector } from '@/app/store/hooks';
+import { getApprovalStatus } from '../utils/status';
+import StatusBadge from '@/shared/ui/badge/Badge';
+import { getHomeRoute } from '@/shared/utils/getHomeRoute';
 
 
 // const TABS = [
@@ -56,6 +59,8 @@ const FacilityDetailsPage = () => {
         state => state.auth,
     )
 
+    const activeRole = roles[0]
+
     const TABS =
         getFacilityWorkspaceTabs(
             roles[0],
@@ -71,6 +76,7 @@ const FacilityDetailsPage = () => {
     const {
         facilityReference,
     } = useParams()
+
     const {
         data: facility,
         isLoading,
@@ -168,7 +174,7 @@ const FacilityDetailsPage = () => {
 
     return (
         <div className="space-y-6">
-            <Link to={ROUTES.rm.facilities}
+            <Link to={getHomeRoute(activeRole)}
                 className='flex items-center gap-2'
             >
                 <IoArrowBackCircleOutline />
@@ -184,9 +190,13 @@ const FacilityDetailsPage = () => {
                     {facilityReference}
                 </h1>
 
-                <p className="text-sm text-warning">
-                    Pending Approval
-                </p>
+                <div className="mt-2">
+                    <StatusBadge
+                        {...getApprovalStatus(
+                            facility.approvalStatus,
+                        )}
+                    />
+                </div>
             </div>
 
 
