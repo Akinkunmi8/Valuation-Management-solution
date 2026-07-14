@@ -2,19 +2,21 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { FiArrowRight, FiLock, FiMail } from 'react-icons/fi'
 import { Link, Navigate, useNavigate } from 'react-router'
-import { useAppDispatch, useAppSelector } from '../../../app/store/hooks'
-// import Badge from '../../../shared/ui/badge/Badge'
-import Button from '../../../shared/ui/button/Button'
-// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../shared/ui/card/Card'
-import Input from '../../../shared/ui/input/Input'
-import loginImage from "../../../assets/login_bg2.png"
-import { getDashboardRouteForRole, ROUTES } from '../../../shared/constants/routes'
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks'
+
+import Button from '@/shared/ui/button/Button'
+
+import Input from '@/shared/ui/input/Input'
+import loginImage from "@/assets/login_bg2.png"
+import { getDashboardRouteForRole, ROUTES } from '@/shared/constants/routes'
 import { loginSchema, type LoginFormValues } from '../schemas/authSchemas'
 // import { login } from '../services/authService'
 // import { setLoginChallenge } from '../store/authSlice'
 import { useLoginStaffMutation } from '../api/authApi'
 import { loginSuccess } from '../store/authSlice'
 import { saveAuth } from '../utils/authStorage'
+import { notify } from '@/shared/lib/toast'
+import { NOTIFY_TITLES } from '@/shared/constants/notifyTitles'
 
 
 
@@ -44,30 +46,42 @@ const LoginPage = () => {
   }
 
   const onSubmit = async (values: LoginFormValues) => {
-    const response =
-      await loginStaff({
-        username: values.username,
-        password: values.password,
-        softToken: values.softToken,
-      }).unwrap()
+    try {
 
-      // console.log("User Info:", response.user);
+      const response =
+        await loginStaff({
+          username: values.username,
+          password: values.password,
+          softToken: values.softToken,
+        }).unwrap()
 
-    dispatch(
-      loginSuccess(response.user)
-    )
-    // Save to localStorage
-    saveAuth(response.user)
-    // dispatch(setLoginChallenge(response))
-    const role = response.user.roles[0]
-    if (!role) {
-      throw new Error('No role returned from server')
+      notify.success(
+        NOTIFY_TITLES.LOGIN_SUCCESS,
+        "You have successfully login"
+      )
+
+      dispatch(
+        loginSuccess(response.user)
+      )
+      // Save to localStorage
+      saveAuth(response.user)
+      // dispatch(setLoginChallenge(response))
+      const role = response.user.roles[0]
+      if (!role) {
+        throw new Error('No role returned from server')
+      }
+      navigate(
+        getDashboardRouteForRole(role),
+        { replace: true }
+      )
+      // navigate(ROUTES.auth.verify)
     }
-    navigate(
-      getDashboardRouteForRole(role),
-      { replace: true }
-    )
-    // navigate(ROUTES.auth.verify)
+    catch (error) {
+      notify.apiError(
+        error,
+        NOTIFY_TITLES.LOGIN_FAILED,
+      )
+    }
   }
 
   return (
@@ -104,7 +118,7 @@ const LoginPage = () => {
               autoComplete="current-password"
               error={errors.password?.message}
               label="Password"
-               labelClassName='text-white'
+              labelClassName='text-white'
               leftAdornment={<FiLock aria-hidden="true" className="h-4 w-4" />}
               placeholder="Enter your password"
               type="password"
@@ -115,7 +129,7 @@ const LoginPage = () => {
               // autoComplete="current-password"
               error={errors.softToken?.message}
               label="Token"
-               labelClassName='text-white'
+              labelClassName='text-white'
               leftAdornment={<FiLock aria-hidden="true" className="h-4 w-4" />}
               placeholder="Enter your soft token"
               type="text"
@@ -139,6 +153,7 @@ const LoginPage = () => {
 
     </main>
   )
+
 }
 
 export default LoginPage

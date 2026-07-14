@@ -8,6 +8,7 @@ import DetailItem from '@/features/facilities/workspace/DetailItem'
 import { useProcessFacilityPaymentMutation } from '../api/paymentApi'
 
 import { notify } from '@/shared/lib/toast'
+import { NOTIFY_TITLES } from '@/shared/constants/notifyTitles'
 
 type PaymentTabProps = {
   facility: FacilityDetailsResponse
@@ -27,18 +28,21 @@ const PaymentTab = ({
   ] = useProcessFacilityPaymentMutation()
 
   const handleCollectCharges = async () => {
+
     try {
-      const response =
-        await processFacilityPayment(
-          facility.facilityReference,
-        ).unwrap()
-        
-      // success toast goes here
-      notify.success("Payment collected successfully.")
-      console.log(response.message)
+      const response = await processFacilityPayment(
+        facility.facilityReference,
+      ).unwrap()
+
+      notify.success(
+        NOTIFY_TITLES.PAYMENT_SUCCESS,
+        response.message,
+      )
     } catch (error) {
-      console.error(error)
-      // error toast goes here
+      notify.apiError(
+        error,
+        NOTIFY_TITLES.PAYMENT_FAILED,
+      )
     }
   }
 
