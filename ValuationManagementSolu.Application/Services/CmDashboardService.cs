@@ -86,7 +86,7 @@ public class CmDashboardService : ICmDashboardService
         dashboardData.Metrics.PendingReviewCount = dashboardData.PendingReview.Count;
 
         // Metric 2: Approved (Valuation engine is assigned and actively ongoing in field)
-        var approvedItems = joinedItems.Where(x => x.ValuationStatus == ValuationStatus.Assigned).ToList();
+        var approvedItems = joinedItems.Where(x => x.Facility.ApprovalStatus == ApprovalStatus.Approved).ToList();
         dashboardData.Approved = approvedItems.Select(mapToSummary).OrderByDescending(x => x.DateAdded).ToList();
         dashboardData.Metrics.ApprovedCount = dashboardData.Approved.Count;
 
@@ -103,7 +103,7 @@ public class CmDashboardService : ICmDashboardService
         dashboardData.Metrics.AwaitingValuerAssignmentCount = dashboardData.AwaitingValuerAssignment.Count;
 
         // Metric 5: Completed (Valuation workflow complete)
-        var completedItems = joinedItems.Where(x => x.ValuationStatus == ValuationStatus.Completed).ToList();
+        var completedItems = joinedItems.Where(x => x.ValuationStatus == ValuationStatus.Completed && x.ReportStatus == ReportStatus.Completed).ToList();
         dashboardData.Completed = completedItems.Select(mapToSummary).OrderByDescending(x => x.DateAdded).ToList();
         dashboardData.Metrics.CompletedCount = dashboardData.Completed.Count;
 

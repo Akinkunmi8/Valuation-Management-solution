@@ -81,7 +81,7 @@ public class CmsDashboardService : ICmsDashboardService
         // Metric 1: Awaiting Assignment
         var awaitingAssignItems = joinedItems.Where(x =>
             x.Facility.ApprovalStatus == ApprovalStatus.Approved &&
-            x.ValuationStatus == null &&
+            x.ValuationStatus == ValuationStatus.UnAssigned &&
             x.ValuerPaymentStatus == PaymentStatus.UnProcessed).ToList();
         dashboardData.AwaitingAssignment = awaitingAssignItems.Select(mapToSummary).OrderByDescending(x => x.DateAdded).ToList();
         dashboardData.Metrics.AwaitingAssignmentCount = dashboardData.AwaitingAssignment.Count;

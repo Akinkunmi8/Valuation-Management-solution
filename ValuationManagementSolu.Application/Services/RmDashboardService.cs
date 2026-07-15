@@ -75,15 +75,13 @@ public class RmDashboardService : IRmDashboardService
         // 1. Pending with Successful Payment
         var pendingItems = joinedItems
             .Where(x => x.Facility.ApprovalStatus == ApprovalStatus.Pending
-                     && x.CustomerPaymentStatus == PaymentStatus.Successful
-                     && x.ValuationStatus == ValuationStatus.UnAssigned)
+                     && x.CustomerPaymentStatus == PaymentStatus.Successful)
             .Select(mapToSummaryDto).OrderByDescending(f => f.DateAdded).ToList();
 
         // 2. Awaiting Payment (Unpaid, Fresh, and NOT yet assigned to a valuer)
         var awaitingItems = joinedItems
             .Where(x => (x.CustomerPaymentStatus == PaymentStatus.UnProcessed || x.CustomerPaymentStatus == PaymentStatus.Declined)
-                     && x.Facility.ApprovalStatus == ApprovalStatus.Pending
-                     && x.ValuationStatus == ValuationStatus.UnAssigned)
+                     && x.Facility.ApprovalStatus == ApprovalStatus.Pending)
             .Select(mapToSummaryDto).OrderByDescending(f => f.DateAdded).ToList();
 
         // 3. Rejected (Returned back to RM)
@@ -98,7 +96,7 @@ public class RmDashboardService : IRmDashboardService
 
         // 5. Completed
         var completedItems = joinedItems
-            .Where(x => x.ValuationStatus == ValuationStatus.Completed)
+            .Where(x => x.ValuationStatus == ValuationStatus.Completed && x.ReportStatus == ReportStatus.Completed)
             .Select(mapToSummaryDto).OrderByDescending(f => f.DateAdded).ToList();
 
         // 6. Expired (Cancelled)
