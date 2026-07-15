@@ -28,6 +28,16 @@ const MOCK_CUSTOMERS: Record<
     city: 'Abuja',
     country: 'Nigeria',
   },
+  '3333333333': {
+    customerName: 'Okin Folusho',
+    city: 'Ibadan',
+    country: 'Nigeria',
+  },
+  '4444444444': {
+    customerName: 'Ramat Iyiola',
+    city: 'Lagos',
+    country: 'Nigeria',
+  },
 }
 
 export const lookupCustomer = async (

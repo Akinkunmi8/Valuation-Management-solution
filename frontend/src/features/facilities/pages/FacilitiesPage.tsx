@@ -40,6 +40,7 @@ const FacilitiesPage = () => {
   })
 
   const metrics = data?.metrics
+  console.log("data", data);
 
   const totalFacilities = metrics
     ? metrics.awaitingPaymentCount +

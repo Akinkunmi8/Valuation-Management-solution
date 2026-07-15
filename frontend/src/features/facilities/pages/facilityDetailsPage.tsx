@@ -178,7 +178,7 @@ const FacilityDetailsPage = () => {
                 className='flex items-center gap-2'
             >
                 <IoArrowBackCircleOutline />
-                <>Back to Facilities</>
+                <>Back</>
             </Link>
 
             <div className="space-y-2">
