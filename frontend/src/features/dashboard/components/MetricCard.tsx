@@ -62,19 +62,20 @@ const MetricCard = ({
     <button
       onClick={onClick}
       type="button"
+      aria-label={`${title}: ${value}`}
       className={`
   group
   text-left
   rounded-2xl
   border
-  p-5
+  px-3 py-2
   transition-all
   duration-200
   cursor-pointer
 
   ${active
-          ? 'border-primary bg-primary-soft shadow-md'
-          : 'border-border bg-surface hover:border-primary/30 hover:-translate-y-1 hover:shadow-md'
+          ? 'border-primary bg-primary-soft shadow-sm'
+          : 'border-border bg-surface hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-sm'
         }
 `}
     >
@@ -84,15 +85,15 @@ const MetricCard = ({
             {title}
           </p>
 
-          <h3 className="mt-3 text-3xl font-bold text-text-primary">
+          <h3 className="mt-3 text-2xl font-bold text-text-primary">
             {value}
           </h3>
         </div>
 
         <div
           className={`
-            rounded-xl
-            p-3
+            rounded-lg
+            p-1.5
              ${style.bg}
              ${style.border} 
           `}
@@ -104,7 +105,7 @@ const MetricCard = ({
         </div>
       </div>
 
-      <p className="mt-3 text-sm text-text-secondary">
+      <p className="mt-0.5 text-sm text-text-secondary">
         {description}
       </p>
 

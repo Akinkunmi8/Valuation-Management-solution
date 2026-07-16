@@ -70,7 +70,7 @@ const RmDashboardPage = () => {
       </div>
 
 
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4 fade-up">
+      <div className="grid grid-cols-3 gap-5 md:grid-cols-4 xl:grid-cols-6 fade-up">
 
         {
           isLoading ? <MetricCardSkeleton /> :

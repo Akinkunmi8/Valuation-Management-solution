@@ -5,13 +5,14 @@ import Button from '../../../shared/ui/button/Button'
 
 import MetricCard from '../../dashboard/components/MetricCard'
 import { ROUTES } from '../../../shared/constants/routes'
-import { useState } from 'react'
+// import { useState } from 'react'
 import { useGetRmDashboardMetricsQuery } from '../../dashboard/api/rmDashboardApi'
 import { useAppSelector } from '../../../app/store/hooks'
 import { getCreatedBy } from '../../auth/utils/createdBy'
 import { MetricCardSkeleton } from '../../../shared/ui/loader'
 import DataTable from '../../../shared/ui/table/DataTable'
 import { facilityColumns } from '../constants/facilityColumns'
+import { useMetricFilter } from '@/shared/hooks/useMetricFilter'
 
 
 
@@ -62,8 +63,16 @@ const FacilitiesPage = () => {
     | 'completed'
     | 'expired'
 
-  const [selectedWorkflow, setSelectedWorkflow] =
-    useState<Workflow>('all')
+  const {
+    selectedFilter:
+    selectedWorkflow,
+    setFilter:
+    setSelectedWorkflow,
+    tableRef,
+  } =
+    useMetricFilter<Workflow>(
+      'all',
+    )
 
 
   const workflowCards: {
@@ -205,7 +214,7 @@ const FacilitiesPage = () => {
 
       </div> */}
 
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5 fade-up">
+      <div className="grid grid-cols-3 gap-4 md:grid-cols-4 xl:grid-cols-6 fade-up">
         {workflowCards.map((card) =>
           isLoading ? <MetricCardSkeleton key={card.key} /> :
             <MetricCard
@@ -270,7 +279,9 @@ const FacilitiesPage = () => {
       {/* Facility Table */}
 
       <>
-        <div className="rounded-2xl border border-border bg-surface shadow-sm">
+        <div 
+        ref={tableRef}
+        className="rounded-2xl border border-border bg-surface shadow-sm">
 
           <div className="overflow-x-auto">
 

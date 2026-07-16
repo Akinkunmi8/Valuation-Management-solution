@@ -45,6 +45,7 @@ const CreateFacilityPage = () => {
 
     const createdBy =
         email!.split('@')[0]
+    // const createdBy =
 
     const methods =
         useForm<CreateFacilityFormValues>({
