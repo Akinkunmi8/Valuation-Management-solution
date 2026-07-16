@@ -44,7 +44,7 @@ const CreateFacilityPage = () => {
     )
 
     const createdBy =
-        email!.split('@')[0]
+        email!
     // const createdBy =
 
     const methods =
