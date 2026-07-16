@@ -116,6 +116,10 @@ const AppRouter = () => {
                 path={ROUTES.cm.dashboard}
                 element={<CmDashboardPage />}
               />
+              <Route
+                path={ROUTES.cms.assignValuer}
+                element={<FacilityDetailsPage />}
+              />
             </Route>
 
             <Route

@@ -27,6 +27,7 @@ export const ROUTES = {
 
   cms: {
     dashboard: "/dashboard/cms",
+        assignValuer: "/dashboard/cms/assignValuer/:facilityReference",
     assignments: "/dashboard/cms/assignments",
     monitoring: "/dashboard/cms/monitoring",
   },

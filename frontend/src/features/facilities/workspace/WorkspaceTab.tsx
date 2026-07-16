@@ -27,7 +27,7 @@ export const getFacilityWorkspaceTabs = (
         },
       ]
 
-    default:
+    case 'CM':
       return [
         ...COMMON_TABS,
         {
@@ -35,6 +35,18 @@ export const getFacilityWorkspaceTabs = (
           label: 'Workflow',
         },
       ]
+
+    case 'CMS':
+      return [
+        ...COMMON_TABS,
+        {
+          id: 'assignment',
+          label: 'Assignment',
+        },
+      ]
+
+    default:
+      return COMMON_TABS
 
   }
 

@@ -20,6 +20,7 @@ import { useAppSelector } from '@/app/store/hooks';
 import { getApprovalStatus } from '../utils/status';
 import StatusBadge from '@/shared/ui/badge/Badge';
 import { getHomeRoute } from '@/shared/utils/getHomeRoute';
+import AssignmentTab from '@/features/workflow/components/AssignmentTab';
 
 
 // const TABS = [
@@ -164,6 +165,13 @@ const FacilityDetailsPage = () => {
                 return (
                     <WorkflowTab
                         facility={facility}
+                    />
+                )
+
+            case 'assignment':
+                return (
+                    <AssignmentTab
+                        // facility={facility}
                     />
                 )
 
