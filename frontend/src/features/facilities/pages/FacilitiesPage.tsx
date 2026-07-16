@@ -8,7 +8,7 @@ import { ROUTES } from '../../../shared/constants/routes'
 // import { useState } from 'react'
 import { useGetRmDashboardMetricsQuery } from '../../dashboard/api/rmDashboardApi'
 import { useAppSelector } from '../../../app/store/hooks'
-import { getCreatedBy } from '../../auth/utils/createdBy'
+// import { getCreatedBy } from '../../auth/utils/createdBy'
 import { MetricCardSkeleton } from '../../../shared/ui/loader'
 import DataTable from '../../../shared/ui/table/DataTable'
 import { facilityColumns } from '../constants/facilityColumns'
@@ -28,7 +28,7 @@ const FacilitiesPage = () => {
     state => state.auth,
   )
 
-  const createdBy = getCreatedBy(email!);
+  // const createdBy = getCreatedBy(email!);
 
 
   const {
@@ -36,12 +36,12 @@ const FacilitiesPage = () => {
     isLoading,
     // error,
   } = useGetRmDashboardMetricsQuery({
-    createdBy,
+    createdBy: email!,
     solId: solId!,
   })
 
   const metrics = data?.metrics
-  console.log("data", data);
+  // console.log("data", data);
 
   const totalFacilities = metrics
     ? metrics.awaitingPaymentCount +

@@ -8,8 +8,8 @@ import MetricCard from '../../dashboard/components/MetricCard'
 import { useState } from 'react'
 import { useGetCmDashboardMetricsQuery } from '../api/cmDashboardApi'
 
-import { MetricCardSkeleton } from '../../../shared/ui/loader'
-import DataTable from '../../../shared/ui/table/DataTable'
+import { MetricCardSkeleton } from '@/shared/ui/loader'
+import DataTable from '@/shared/ui/table/DataTable'
 import { cmColumns } from '../../facilities/constants/cmColumns'
 
 
@@ -163,7 +163,7 @@ const CmDashboardPage = () => {
       {/* Metrics */}
 
 
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5 fade-up">
+      <div className="grid grid-cols-3 gap-4 md:grid-cols-4 xl:grid-cols-5 fade-up">
         {workflowCards.map((card) =>
           isLoading ? <MetricCardSkeleton key={card.key} /> :
             <MetricCard

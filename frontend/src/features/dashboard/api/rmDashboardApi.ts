@@ -7,7 +7,7 @@ export const rmDashboardApi = baseApi.injectEndpoints({
         url: "api/RmDashboard/metrics",
         params: {
           createdBy,
-          solid: solId,
+           solId,
         },
       }),
 

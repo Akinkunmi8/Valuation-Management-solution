@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router'
 import MetricCard from '../components/MetricCard'
 import { MetricCardSkeleton } from '@/shared/ui/loader'
 import { ROUTES } from '@/shared/constants/routes'
-import { getCreatedBy } from '../../auth/utils/createdBy'
+// import { getCreatedBy } from '../../auth/utils/createdBy'
 import { useAppSelector } from '@/app/store/hooks'
 import { useGetRmDashboardMetricsQuery } from '../api/rmDashboardApi'
 
@@ -26,7 +26,7 @@ const RmDashboardPage = () => {
     state => state.auth,
   )
 
-  const createdBy = getCreatedBy(email!);
+  // const createdBy = getCreatedBy(email!);
 
 
   const {
@@ -34,7 +34,7 @@ const RmDashboardPage = () => {
     isLoading,
     // error,
   } = useGetRmDashboardMetricsQuery({
-    createdBy,
+    createdBy: email!,
     solId: solId!,
   })
 
@@ -91,7 +91,7 @@ const RmDashboardPage = () => {
           isLoading ? <MetricCardSkeleton /> :
             <MetricCard
               title="Valuations"
-              value={12}
+              value={0}
               description="Total Valuations"
               // description="Awaiting CMU processing"
               trend="+3 new today"
@@ -106,7 +106,7 @@ const RmDashboardPage = () => {
             <MetricCard
               title="Payments"
               // value={data?.metrics?.awaitingPaymentCount ?? 0}
-              value={10}
+              value={0}
               description="Everything payment"
               trend="Needs follow-up"
               accent="info"
@@ -119,7 +119,7 @@ const RmDashboardPage = () => {
           isLoading ? <MetricCardSkeleton /> :
             <MetricCard
               title="Reports"
-              value={2}
+              value={0}
               description="Everything Report"
               trend="+5 this week"
               accent="success"
