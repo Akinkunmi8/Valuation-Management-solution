@@ -7,9 +7,12 @@ import { getApprovalStatus } from '@/features/facilities/utils/status'
 import StatusBadge from '@/shared/ui/badge/Badge'
 import DetailItem from '@/features/facilities/workspace/DetailItem'
 import Button from '@/shared/ui/button/Button'
-import { useApproveFacilityMutation } from '../api/cmActionApi'
+import { useApproveFacilityMutation, useRejectFacilityMutation } from '../api/cmActionApi'
 import { notify } from '@/shared/lib/toast'
 import { NOTIFY_TITLES } from '@/shared/constants/notifyTitles'
+import { useState } from 'react'
+import { useAppSelector } from '@/app/store/hooks'
+import RejectFacilityModal from './RejectFacilityModal'
 
 type WorkflowTabProps = {
     facility: FacilityDetailsResponse
@@ -19,6 +22,10 @@ const WorkflowTab = ({
     facility,
 }: WorkflowTabProps) => {
 
+    const { email: username } =
+        useAppSelector(
+            state => state.auth,
+        )
 
     const [
         approveFacility,
@@ -50,6 +57,72 @@ const WorkflowTab = ({
         }
 
     }
+
+    const [
+        rejectFacility,
+        {
+            isLoading: isRejecting,
+        },
+    ] =
+        useRejectFacilityMutation()
+
+    const [showRejectModal,
+        setShowRejectModal] =
+        useState(false)
+
+    const handleReject = async (
+        comment: string,
+    ) => {
+
+        if (!comment.trim()) {
+
+            notify.warning(
+                'Comment Required',
+                'Please enter a rejection reason.',
+            )
+
+            return
+
+        }
+
+        try {
+
+            const response =
+                await rejectFacility({
+
+                    facilityReference:
+                        facility.facilityReference,
+
+                    username: username!,
+
+                    comment,
+
+                }).unwrap()
+
+            notify.success(
+                'Facility Rejected',
+                response.message,
+            )
+
+            setShowRejectModal(false)
+
+        } catch (error) {
+
+            notify.apiError(error, "Error Rejecting Facility")
+
+        }
+
+    }
+
+    const approvalStatus = getApprovalStatus(
+        facility.approvalStatus,
+    )
+
+    const isApproved =
+        approvalStatus.label === 'Approved'
+
+    const isRejected =
+        approvalStatus.label === 'Rejected'
 
     return (
         <Card>
@@ -101,13 +174,20 @@ const WorkflowTab = ({
                         <Button
                             isLoading={isLoading}
                             onClick={handleApprove}
+                            disabled={isApproved || isRejected}
                         >
-                            Approve Facility
+                            {isApproved
+                                ? 'Facility Approved'
+                                : 'Approve Facility'}
                         </Button>
 
                         <Button
-                            // variant="outline"
-                            disabled
+                            // isLoading={isLoading}
+                            isLoading={isRejecting}
+                            disabled={isApproved || isRejected}
+                            onClick={() =>
+                                setShowRejectModal(true)
+                            }
                         >
                             Reject Facility
                         </Button>
@@ -119,6 +199,15 @@ const WorkflowTab = ({
 
             <CardContent>
             </CardContent>
+
+            <RejectFacilityModal
+                open={showRejectModal}
+                loading={isRejecting}
+                onClose={() =>
+                    setShowRejectModal(false)
+                }
+                onSubmit={handleReject}
+            />
         </Card>
     )
 }

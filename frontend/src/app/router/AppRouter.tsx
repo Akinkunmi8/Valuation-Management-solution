@@ -24,7 +24,7 @@ import AdminDashboardPage from '../../features/dashboard/pages/AdminDashboardPag
 // import BmDashboardPage from '../../features/dashboard/pages/bmDashboardPage'
 // import AuditDashboardPage from '../../features/dashboard/pages/auditDashboardPage'
 import CreateFacilityPage from '../../features/facilities/pages/CreateFacilityPage'
-import FacilityDetailsPage from '../../features/facilities/pages/facilityDetailsPage'
+import FacilityDetailsPage from '../../features/facilities/pages/FacilityDetailsPage'
 import UnauthorizedPage from '../../shared/pages/UnauthorizedPage'
 import RoleGuard from '../../shared/auth/RoleGuard'
 import { AppLoader } from '../../shared/ui/loader'

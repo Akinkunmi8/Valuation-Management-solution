@@ -8,11 +8,11 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from '../../../shared/ui/card/Card'
+} from '@/shared/ui/card/Card'
 
-import Input from '../../../shared/ui/input/Input'
+import Input from '@/shared/ui/input/Input'
 
-import Select from '../../../shared/ui/select/Select'
+import Select from '@/shared/ui/select/Select'
 
 import {
   STATE_OPTIONS,
@@ -153,17 +153,21 @@ const CollateralCard = () => {
 
           {
             collateralType === 'Shop' && (
-
               <Input
-
                 label="Number of Shops"
-
                 type="number"
-
+                pattern='[0-9]*'
                 {...register(
                   'numberOfShops',
                   {
                     valueAsNumber: true,
+                    setValueAs: value =>
+                      value === "" ?
+                        undefined :
+                        Number(String(value).replace(
+                          /\D/g, ''
+                        ))
+                    ,
                   },
                 )}
               />
@@ -171,36 +175,11 @@ const CollateralCard = () => {
             )
           }
 
-          {/* {collateralType === 'Shop' ?
-            <Input
-              label="Number of Shops"
-              type="number"
-              {...register(
-                'numberOfShops',
-                {
-                  valueAsNumber: true,
-                },
-              )}
-            />
-            :
-            <Input
-              type="number"
-              label="Collateral Value"
-              error={
-                errors.collateralValue?.message
-              }
-              {...register(
-                'collateralValue',
-                {
-                  valueAsNumber: true,
-                },
-              )}
-            />
-          } */}
 
           <Input
             label="Collateral Value"
-
+            inputMode='numeric'
+            pattern='[0-9]*'
             disabled={
               collateralType === 'Shop'
             }
@@ -219,9 +198,10 @@ const CollateralCard = () => {
           />
 
           <Input
-            type="number"
+            // type="number"
             label="Valuation Fee"
             disabled
+            pattern='[0-9]*'
             // readOnly
             error={
               errors.valuationsFees

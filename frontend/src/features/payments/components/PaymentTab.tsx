@@ -24,8 +24,9 @@ const PaymentTab = ({
     processFacilityPayment,
     {
       isLoading,
+      // isSuccess,
     },
-  ] = useProcessFacilityPaymentMutation()
+  ] = useProcessFacilityPaymentMutation();
 
   const handleCollectCharges = async () => {
 
@@ -46,6 +47,7 @@ const PaymentTab = ({
     }
   }
 
+  
   return (
     <>
       <Card>

@@ -104,6 +104,7 @@ const CustomerInformationCard = () => {
               <Input
                 className="flex-1"
                 placeholder="Enter account number"
+                pattern='[0-9]*'
                 error={
                   errors.accountNumber
                     ?.message

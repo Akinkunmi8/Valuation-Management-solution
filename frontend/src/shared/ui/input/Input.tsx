@@ -9,6 +9,7 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   labelClassName?: string
   leftAdornment?: ReactNode
   rightAdornment?: ReactNode
+  numbersOnly? : boolean
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
