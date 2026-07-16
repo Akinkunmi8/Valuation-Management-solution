@@ -74,6 +74,20 @@ public class PaymentController : ControllerBase
         }
     }
 
+    [HttpGet("validate-facility-fee/{facilityRef}")]
+    public async Task<IActionResult> ValidateFacilityFee(string facilityRef)
+    {
+        var isPaid = await _paymentService.ValidateFacilityFeePaymentStatusAsync(facilityRef);
+        return Ok(new { facilityReference = facilityRef, isPaid = isPaid });
+    }
+
+    [HttpGet("validate-valuer-fee/{facilityRef}")]
+    public async Task<IActionResult> ValidateValuerFee(string facilityRef)
+    {
+        var isPaid = await _paymentService.ValidateValuerFeePaymentStatusAsync(facilityRef);
+        return Ok(new { facilityReference = facilityRef, isPaid = isPaid });
+    }
+
     [HttpGet("history")]
     public async Task<IActionResult> GetTransactionLogs([FromQuery] string status)
     {

@@ -74,8 +74,7 @@ public class RmDashboardService : IRmDashboardService
 
         // 1. Pending with Successful Payment
         var pendingItems = joinedItems
-            .Where(x => x.Facility.ApprovalStatus == ApprovalStatus.Pending
-                     && x.CustomerPaymentStatus == PaymentStatus.Successful)
+            .Where(x => x.CustomerPaymentStatus == PaymentStatus.Successful)
             .Select(mapToSummaryDto).OrderByDescending(f => f.DateAdded).ToList();
 
         // 2. Awaiting Payment (Unpaid, Fresh, and NOT yet assigned to a valuer)

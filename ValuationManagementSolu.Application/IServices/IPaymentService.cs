@@ -16,4 +16,6 @@ public interface IPaymentService
 
     // History Archive
     Task<IEnumerable<ValuerReportItemDto>> GetTransactionsByStatusAsync(string status);
+    Task<bool> ValidateFacilityFeePaymentStatusAsync(string FacilityRef);
+    Task<bool> ValidateValuerFeePaymentStatusAsync(string FacilityRef);
 }

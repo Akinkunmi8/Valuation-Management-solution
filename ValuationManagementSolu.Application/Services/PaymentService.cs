@@ -346,5 +346,29 @@ public class PaymentService : IPaymentService
             </NS1:Body>
         </NS1:Envelope>";
     }
+
+    public async Task<bool> ValidateFacilityFeePaymentStatusAsync(string facilityRef)
+    {
+        var transactions = await _unitOfWork.Transactions.GetAllAsync();
+
+        // Check if there is any successful transaction for this facility matching CustomerFee (0)
+        return transactions.Any(t =>
+            t.FacilityReference == facilityRef &&
+            t.TransactionType == (TransactionType)0 &&
+            t.Status == PaymentStatus.Successful
+        );
+    }
+
+    public async Task<bool> ValidateValuerFeePaymentStatusAsync(string facilityRef)
+    {
+        var transactions = await _unitOfWork.Transactions.GetAllAsync();
+
+        // Check if there is any successful transaction for this facility matching ValuerPayout (1)
+        return transactions.Any(t =>
+            t.FacilityReference == facilityRef &&
+            t.TransactionType == (TransactionType)1 &&
+            t.Status == PaymentStatus.Successful
+        );
+    }
     #endregion
 }

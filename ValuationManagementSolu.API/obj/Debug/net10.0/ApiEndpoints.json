@@ -602,6 +602,38 @@
   },
   {
     "ContainingType": "ValuationManagementSolu.API.Controllers.PaymentController",
+    "Method": "ValidateFacilityFee",
+    "RelativePath": "api/Payment/validate-facility-fee/{facilityRef}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "facilityRef",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.PaymentController",
+    "Method": "ValidateValuerFee",
+    "RelativePath": "api/Payment/validate-valuer-fee/{facilityRef}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "facilityRef",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.PaymentController",
     "Method": "ProcessValuerFees",
     "RelativePath": "api/Payment/valuer-fees/process/{facilityRef}",
     "HttpMethod": "POST",
