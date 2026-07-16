@@ -23,6 +23,38 @@ export const registerSchema = z.object({
     'AUDIT',
     'ADMIN',
   ]),
+
+  // Temporary For Valuers Registration
+  valuersName: z.string().optional(),
+    valuerEmail: z.string().email().optional(),
+    valuerAddress: z.string().optional(),
+    telephoneNumbers: z.string().optional(),
+    accountManager: z.string().optional(),
+    accountNumber: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.role !== 'VALUER') {
+      return
+    }
+
+    const requiredFields = [
+      ['valuersName', data.valuersName],
+      ['valuerEmail', data.valuerEmail],
+      ['valuerAddress', data.valuerAddress],
+      ['telephoneNumbers', data.telephoneNumbers],
+      ['accountManager', data.accountManager],
+      ['accountNumber', data.accountNumber],
+    ] as const
+
+    requiredFields.forEach(([field, value]) => {
+      if (!value?.trim()) {
+        ctx.addIssue({
+          code: "custom",
+          path: [field],
+          message: 'This field is required',
+        })
+      }
+    })
 })
 
 export const loginSchema = z.object({

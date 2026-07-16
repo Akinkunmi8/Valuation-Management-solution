@@ -124,10 +124,10 @@ const CmsDashboardPage = () => {
         </div>
 
       </div>
-      
+
 
       {/* Metrics */}
-      <div className="grid grid-cols-3 gap-4 md:grid-cols-4 xl:grid-cols-5 fade-up">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-5 fade-up">
         {workflowCards.map((card) =>
           isLoading ? <MetricCardSkeleton key={card.key} /> :
             <MetricCard
