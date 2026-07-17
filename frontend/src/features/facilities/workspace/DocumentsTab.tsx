@@ -5,9 +5,9 @@ import {
 } from 'react-icons/fi'
 
 
-import { CardContent, Card, CardHeader } from '../../../shared/ui/card/Card'
+import { CardContent, Card, CardHeader } from '@/shared/ui/card/Card'
 
-import Button from '../../../shared/ui/button/Button'
+import Button from '@/shared/ui/button/Button'
 
 import type { FacilityDetailsResponse } from '../types/facilityTypes'
 

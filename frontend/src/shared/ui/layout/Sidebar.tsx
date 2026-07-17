@@ -4,14 +4,14 @@ import { ROLE_MENUS } from '../../constants/navigation'
 import {
   useAppDispatch,
   useAppSelector
-} from '../../../app/store/hooks'
+} from '@/app/store/hooks'
 
 import {
   FiLogOut,
   FiX,
 } from 'react-icons/fi'
 import Button from '../button/Button'
-import { logout } from '../../../features/auth/store/authSlice'
+import { logout } from '@/features/auth/store/authSlice'
 import { baseApi } from '../../api/baseApi'
 
 type SidebarProps = {

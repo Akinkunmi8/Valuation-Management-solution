@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router'
 
 import Button from '../ui/button/Button'
 // import { ROUTES } from '../constants/routes'
-import { useAppSelector } from '../../app/store/hooks'
+import { useAppSelector } from '@/app/store/hooks'
 import { getDashboardRoute } from '../auth/getDashboardRoute'
 
 const UnauthorizedPage = () => {

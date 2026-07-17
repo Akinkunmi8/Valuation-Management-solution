@@ -1,16 +1,16 @@
 import { FiPlus, FiSearch } from 'react-icons/fi'
 import { useNavigate } from 'react-router'
 
-import Button from '../../../shared/ui/button/Button'
+import Button from '@/shared/ui/button/Button'
 
 import MetricCard from '../../dashboard/components/MetricCard'
-import { ROUTES } from '../../../shared/constants/routes'
+import { ROUTES } from '@/shared/constants/routes'
 // import { useState } from 'react'
 import { useGetRmDashboardMetricsQuery } from '../../dashboard/api/rmDashboardApi'
-import { useAppSelector } from '../../../app/store/hooks'
+import { useAppSelector } from '@/app/store/hooks'
 // import { getCreatedBy } from '../../auth/utils/createdBy'
-import { MetricCardSkeleton } from '../../../shared/ui/loader'
-import DataTable from '../../../shared/ui/table/DataTable'
+import { MetricCardSkeleton } from '@/shared/ui/loader'
+import DataTable from '@/shared/ui/table/DataTable'
 import { facilityColumns } from '../constants/facilityColumns'
 import { useMetricFilter } from '@/shared/hooks/useMetricFilter'
 
@@ -279,9 +279,9 @@ const FacilitiesPage = () => {
       {/* Facility Table */}
 
       <>
-        <div 
-        ref={tableRef}
-        className="rounded-2xl border border-border bg-surface shadow-sm">
+        <div
+          ref={tableRef}
+          className="rounded-2xl border border-border bg-surface shadow-sm">
 
           <div className="overflow-x-auto">
 

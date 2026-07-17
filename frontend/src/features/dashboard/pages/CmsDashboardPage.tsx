@@ -8,8 +8,8 @@ import MetricCard from '../../dashboard/components/MetricCard'
 import { useState } from 'react'
 import { useGetCmsDashboardMetricsQuery } from '../api/cmsDashboardApi'
 
-import { MetricCardSkeleton } from '../../../shared/ui/loader'
-import DataTable from '../../../shared/ui/table/DataTable'
+import { MetricCardSkeleton } from '@/shared/ui/loader'
+import DataTable from '@/shared/ui/table/DataTable'
 import { cmsColumns } from '../../facilities/constants/cmsColumns'
 
 

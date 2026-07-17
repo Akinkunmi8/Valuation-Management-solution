@@ -2,32 +2,32 @@ import { lazy, Suspense, type ReactElement } from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router'
 import AuthLayout from '../layouts/AuthLayout'
 import MainLayout from '../layouts/MainLayout'
-import { ROUTES } from '../../shared/constants/routes'
+import { ROUTES } from '@/shared/constants/routes'
 // import Spinner from '../../shared/ui/spinner/Spinner'
 
-const WelcomePage = lazy(() => import('../../features/auth/pages/WelcomePage'))
+const WelcomePage = lazy(() => import('@/features/auth/pages/WelcomePage'))
 const RegisterPage = lazy(
   () =>
     import(
-      '../../features/auth/pages/RegisterPage'
+      '@/features/auth/pages/RegisterPage'
     ),
 )
-const LoginPage = lazy(() => import('../../features/auth/pages/LoginPage'))
+const LoginPage = lazy(() => import('@/features/auth/pages/LoginPage'))
 // const VerificationPage = lazy(() => import('../../features/auth/pages/VerificationPage'))
 
-import ProtectedRoute from '../../shared/auth/ProtectedRoute'
-import RmDashboardPage from '../../features/dashboard/pages/RmDashboardPage'
-import CmDashboardPage from '../../features/dashboard/pages/CmDashboardPage'
-import CmsDashboardPage from '../../features/dashboard/pages/CmsDashboardPage'
-import ValuerDashboardPage from '../../features/dashboard/pages/ValuersDashboardPage'
-import AdminDashboardPage from '../../features/dashboard/pages/AdminDashboardPage'
+import ProtectedRoute from '@/shared/auth/ProtectedRoute'
+import RmDashboardPage from '@/features/dashboard/pages/RmDashboardPage'
+import CmDashboardPage from '@/features/dashboard/pages/CmDashboardPage'
+import CmsDashboardPage from '@/features/dashboard/pages/CmsDashboardPage'
+import ValuerDashboardPage from '@/features/dashboard/pages/ValuersDashboardPage'
+import AdminDashboardPage from '@/features/dashboard/pages/AdminDashboardPage'
 // import BmDashboardPage from '../../features/dashboard/pages/bmDashboardPage'
 // import AuditDashboardPage from '../../features/dashboard/pages/auditDashboardPage'
-import CreateFacilityPage from '../../features/facilities/pages/CreateFacilityPage'
-import FacilityDetailsPage from '../../features/facilities/pages/FacilityDetailsPage'
-import UnauthorizedPage from '../../shared/pages/UnauthorizedPage'
-import RoleGuard from '../../shared/auth/RoleGuard'
-import { AppLoader } from '../../shared/ui/loader'
+import CreateFacilityPage from '@/features/facilities/pages/CreateFacilityPage'
+import FacilityDetailsPage from '@/features/facilities/pages/FacilityDetailsPage'
+import UnauthorizedPage from '@/shared/pages/UnauthorizedPage'
+import RoleGuard from '@/shared/auth/RoleGuard'
+import { AppLoader } from '@/shared/ui/loader'
 
 
 

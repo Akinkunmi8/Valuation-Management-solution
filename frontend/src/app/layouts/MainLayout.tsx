@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router'
 
-import Sidebar from '../../shared/ui/layout/Sidebar'
-import Topbar from '../../shared/ui/layout/Topbar'
+import Sidebar from '@/shared/ui/layout/Sidebar'
+import Topbar from '@/shared/ui/layout/Topbar'
 // import Breadcrumbs from '../../shared/ui/navigation/Breadcrumbs'
 
 const MainLayout = () => {

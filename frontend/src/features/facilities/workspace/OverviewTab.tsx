@@ -3,17 +3,17 @@ import {
     CardContent,
     CardHeader,
     CardTitle,
-} from '../../../shared/ui/card/Card'
+} from '@/shared/ui/card/Card'
 
 import DetailItem from './DetailItem'
 
 import {
     formatCurrency,
-} from '../../../shared/utils/formatCurrency'
+} from '@/shared/utils/formatCurrency'
 
 import {
     formatDate,
-} from '../../../shared/utils/formatDate'
+} from '@/shared/utils/formatDate'
 
 import {
     getApprovalStatus,
@@ -23,7 +23,7 @@ import {
 import type {
     FacilityDetailsResponse,
 } from '../types/facilityTypes'
-import StatusBadge from '../../../shared/ui/badge/Badge'
+import StatusBadge from '@/shared/ui/badge/Badge'
 
 type Props = {
     facility: FacilityDetailsResponse

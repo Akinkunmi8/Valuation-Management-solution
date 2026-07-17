@@ -1,8 +1,8 @@
-import type { AuthRole } from "../../features/auth/types/authTypes";
+import type { AuthRole } from "@/features/auth/types/authTypes";
 
 export const ROUTES = {
   welcome: "/",
-  unauthorized: '/unauthorized',
+  unauthorized: "/unauthorized",
 
   auth: {
     login: "/auth/login",
@@ -27,7 +27,7 @@ export const ROUTES = {
 
   cms: {
     dashboard: "/dashboard/cms",
-        assignValuer: "/dashboard/cms/assignValuer/:facilityReference",
+    assignValuer: "/dashboard/cms/assignValuer/:facilityReference",
     assignments: "/dashboard/cms/assignments",
     monitoring: "/dashboard/cms/monitoring",
   },

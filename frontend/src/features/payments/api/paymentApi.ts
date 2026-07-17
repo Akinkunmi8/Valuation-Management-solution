@@ -1,4 +1,4 @@
-import { baseApi } from '../../../shared/api/baseApi'
+import { baseApi } from '@/shared/api/baseApi'
 import type { PaymentResponse } from '../types/paymentTypes'
 
 export const paymentApi = baseApi.injectEndpoints({

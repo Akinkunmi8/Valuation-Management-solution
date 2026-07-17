@@ -6,15 +6,15 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from '../../../shared/ui/card/Card'
+} from '@/shared/ui/card/Card'
 
-import Input from '../../../shared/ui/input/Input'
-import Button from '../../../shared/ui/button/Button'
+import Input from '@/shared/ui/input/Input'
+import Button from '@/shared/ui/button/Button'
 
 import type { CreateFacilityFormValues } from '../schemas/facilitySchemas'
 import { lookupCustomer } from '../services/mockCustomerService'
-import { DEV_MODE } from '../../../app/config/development'
-import { useAppSelector } from '../../../app/store/hooks'
+import { DEV_MODE } from '@/app/config/development'
+import { useAppSelector } from '@/app/store/hooks'
 
 const CustomerInformationCard = () => {
 

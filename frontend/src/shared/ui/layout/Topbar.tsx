@@ -6,7 +6,7 @@ type TopbarProps = {
   onMenuClick: () => void;
 };
 
-import { useAppSelector } from "../../../app/store/hooks";
+import { useAppSelector } from "@/app/store/hooks";
 
 
 const Topbar = ({ onMenuClick }: TopbarProps) => {

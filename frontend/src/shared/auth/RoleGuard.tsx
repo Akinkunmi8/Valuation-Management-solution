@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router"
-import { useAppSelector } from "../../app/store/hooks"
-import type { AuthRole } from "../../features/auth/types/authTypes"
+import { useAppSelector } from "@/app/store/hooks"
+import type { AuthRole } from "@/features/auth/types/authTypes"
 import { ROUTES } from '../constants/routes'
 
 type RoleGuardProps = {

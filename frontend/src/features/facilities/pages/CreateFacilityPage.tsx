@@ -26,10 +26,8 @@ import DocumentsCard from '../components/DocumentCard'
 
 import { createFacilityFormData } from '../utils/formData'
 import { useCreateFacilityMutation } from '../api/facilityApi'
-import { useAppSelector } from '../../../app/store/hooks'
-import { notify } from '../../../shared/lib/toast'
-
-
+import { useAppSelector } from '@/app/store/hooks'
+import { notify } from '@/shared/lib/toast'
 
 
 

@@ -1,5 +1,5 @@
 import { ROUTES } from '../constants/routes'
-import type { AuthRole } from '../../features/auth/types/authTypes'
+import type { AuthRole } from '@/features/auth/types/authTypes'
 
 export const getDashboardRoute = (
   role: AuthRole,

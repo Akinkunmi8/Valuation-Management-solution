@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router'
-import { useAppSelector } from '../../app/store/hooks'
+import { useAppSelector } from '@/app/store/hooks'
 import { ROUTES } from '../constants/routes'
 
 const ProtectedRoute = () => {

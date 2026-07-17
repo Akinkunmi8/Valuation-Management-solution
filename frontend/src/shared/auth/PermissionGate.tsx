@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { useAppSelector } from '../../app/store/hooks'
+import { useAppSelector } from '@/app/store/hooks'
 import {
     ROLE_PERMISSIONS,
     type Permission,

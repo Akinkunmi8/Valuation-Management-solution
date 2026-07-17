@@ -1,7 +1,7 @@
-import type { Column } from '../../../shared/ui/table/types'
-import StatusBadge from '../../../shared/ui/badge/Badge'
-import { formatCurrency } from '../../../shared/utils/formatCurrency'
-import { formatDate } from '../../../shared/utils/formatDate'
+import type { Column } from '@/shared/ui/table/types'
+import StatusBadge from '@/shared/ui/badge/Badge'
+import { formatCurrency } from '@/shared/utils/formatCurrency'
+import { formatDate } from '@/shared/utils/formatDate'
 
 import {
     getApprovalStatus,

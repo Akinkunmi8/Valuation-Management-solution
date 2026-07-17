@@ -1,5 +1,5 @@
 import DetailItem from './DetailItem'
-import {Card, CardHeader, CardContent } from '../../../shared/ui/card/Card'
+import {Card, CardHeader, CardContent } from '@/shared/ui/card/Card'
 
 import type { FacilityDetailsResponse } from '../types/facilityTypes'
 

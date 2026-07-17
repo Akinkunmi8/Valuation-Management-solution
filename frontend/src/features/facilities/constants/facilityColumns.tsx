@@ -1,10 +1,10 @@
-import type { Column } from "../../../shared/ui/table/types";
+import type { Column } from "@/shared/ui/table/types";
 import type { FacilityTableRow } from "../types/facilityTypes";
-import { formatCurrency } from "../../../shared/utils/formatCurrency";
-import { formatDate } from "../../../shared/utils/formatDate";
+import { formatCurrency } from "@/shared/utils/formatCurrency";
+import { formatDate } from "@/shared/utils/formatDate";
 
 import { getApprovalStatus, getPaymentStatus } from "../utils/status";
-import StatusBadge from "../../../shared/ui/badge/Badge";
+import StatusBadge from "@/shared/ui/badge/Badge";
 
 export const facilityColumns: Column<FacilityTableRow>[] = [
   {

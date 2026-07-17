@@ -6,12 +6,12 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from '../../../shared/ui/card/Card'
+} from '@/shared/ui/card/Card'
 
-import Input from '../../../shared/ui/input/Input'
-import Select from '../../../shared/ui/select/Select'
+import Input from '@/shared/ui/input/Input'
+import Select from '@/shared/ui/select/Select'
 
-import { useAppSelector } from '../../../app/store/hooks'
+import { useAppSelector } from '@/app/store/hooks'
 
 import type { CreateFacilityFormValues } from '../schemas/facilitySchemas'
 

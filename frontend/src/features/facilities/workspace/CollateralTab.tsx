@@ -1,8 +1,8 @@
 import DetailItem from './DetailItem'
 
-import { Card, CardContent, CardHeader } from '../../../shared/ui/card/Card'
+import { Card, CardContent, CardHeader } from '@/shared/ui/card/Card'
 
-import { formatCurrency } from '../../../shared/utils/formatCurrency'
+import { formatCurrency } from '@/shared/utils/formatCurrency'
 
 import type { FacilityDetailsResponse } from '../types/facilityTypes'
 

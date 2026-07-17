@@ -11,7 +11,7 @@ import {
 
 import type { IconType } from 'react-icons'
 
-import type { AuthRole } from '../../features/auth/types/authTypes'
+import type { AuthRole } from '@/features/auth/types/authTypes'
 
 import { ROUTES } from './routes'
 

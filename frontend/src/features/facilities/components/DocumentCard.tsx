@@ -5,9 +5,9 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from '../../../shared/ui/card/Card'
+} from '@/shared/ui/card/Card'
 
-import { DOCUMENT_TYPES, FileUpload } from '../../../shared/file-upload'
+import { DOCUMENT_TYPES, FileUpload } from '@/shared/file-upload'
 
 import type { CreateFacilityFormValues } from '../schemas/facilitySchemas'
 

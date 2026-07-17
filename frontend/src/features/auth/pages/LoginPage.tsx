@@ -67,6 +67,7 @@ const LoginPage = () => {
       saveAuth(response.user)
       // dispatch(setLoginChallenge(response))
       const role = response.user.roles[0]
+      console.log("role:", role)
       if (!role) {
         throw new Error('No role returned from server')
       }

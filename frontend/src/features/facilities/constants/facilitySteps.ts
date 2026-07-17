@@ -1,4 +1,4 @@
-import type { Step } from '../../../shared/ui/stepper'
+import type { Step } from '@/shared/ui/stepper'
 
 export const FACILITY_STEPS: Step[] = [
   {
