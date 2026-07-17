@@ -13,6 +13,7 @@ import {
 import Button from '../button/Button'
 import { logout } from '@/features/auth/store/authSlice'
 import { baseApi } from '../../api/baseApi'
+import type { AuthRole } from '@/features/auth/types/authTypes'
 
 type SidebarProps = {
   isOpen: boolean
@@ -48,7 +49,13 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
   }
 
   const navigationItems =
-    role ? ROLE_MENUS[role] : []
+
+    // role ? ROLE_MENUS[role] : []
+    role
+      ? ROLE_MENUS[role as AuthRole] ?? []
+      : []
+
+
   const location = useLocation()
   return (
     <>

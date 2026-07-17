@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { FiArrowRight, FiLock, FiMail } from 'react-icons/fi'
 import { Link, Navigate, useNavigate } from 'react-router'
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks'
+import { type AuthRole } from '../types/authTypes'
 
 import Button from '@/shared/ui/button/Button'
 
@@ -60,19 +61,29 @@ const LoginPage = () => {
         "You have successfully login"
       )
 
+      const normalizedUser = {
+        ...response.user,
+        roles: response.user.roles.map((role: AuthRole) =>
+          role.toUpperCase(),
+        ),
+      }
+
       dispatch(
-        loginSuccess(response.user)
+        loginSuccess(normalizedUser)
       )
       // Save to localStorage
-      saveAuth(response.user)
+      saveAuth(normalizedUser)
       // dispatch(setLoginChallenge(response))
-      const role = response.user.roles[0]
-      console.log("role:", role)
-      if (!role) {
+
+      if (!normalizedUser.roles[0]) {
         throw new Error('No role returned from server')
       }
+      // console.log(normalizedUser)
+      // console.log(normalizedUser.roles)
+      // console.log(typeof normalizedUser.roles)
+      // console.log(normalizedUser.roles[0])
       navigate(
-        getDashboardRouteForRole(role),
+        getDashboardRouteForRole(normalizedUser.roles[0]),
         { replace: true }
       )
       // navigate(ROUTES.auth.verify)
