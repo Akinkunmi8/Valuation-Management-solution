@@ -13,9 +13,11 @@ export const baseApi = createApi({
     "Valuation",
     "Payment",
     "Report",
+    "Valuer",
     "RmDashboard",
     "CmDashboard",
     "CmsDashboard",
+    "ValuerDashboard"
   ],
 
   endpoints: () => ({}),

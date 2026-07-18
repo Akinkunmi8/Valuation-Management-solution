@@ -23,34 +23,6 @@ import { getHomeRoute } from '@/shared/utils/getHomeRoute';
 import AssignmentTab from '@/features/workflow/components/AssignmentTab';
 
 
-// const TABS = [
-//     {
-//         id: 'overview',
-//         label: 'Overview',
-//     },
-//     {
-//         id: 'customer',
-//         label: 'Customer',
-//     },
-
-//     {
-//         id: 'collateral',
-//         label: 'Collateral',
-//     },
-
-//     {
-//         id: 'documents',
-//         label: 'Documents',
-//     },
-
-//     {
-//         id: 'payment',
-//         label: 'Payment',
-//     },
-// ]
-
-
-
 const FacilityDetailsPage = () => {
     const navigate = useNavigate()
 
@@ -171,7 +143,7 @@ const FacilityDetailsPage = () => {
             case 'assignment':
                 return (
                     <AssignmentTab
-                        // facility={facility}
+                        facility={facility}
                     />
                 )
 
