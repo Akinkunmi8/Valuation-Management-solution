@@ -5,7 +5,7 @@ import type {
   FacilityDetailsResponse,
 } from '@/features/facilities/types/facilityTypes'
 import DetailItem from '@/features/facilities/workspace/DetailItem'
-import { useProcessFacilityPaymentMutation } from '../api/paymentApi'
+import { useProcessFacilityPaymentMutation, useValidateFacilityPaymentQuery } from '../api/paymentApi'
 
 import { notify } from '@/shared/lib/toast'
 import { NOTIFY_TITLES } from '@/shared/constants/notifyTitles'
@@ -24,9 +24,17 @@ const PaymentTab = ({
     processFacilityPayment,
     {
       isLoading,
-      // isSuccess,
     },
-  ] = useProcessFacilityPaymentMutation();
+  ] =
+    useProcessFacilityPaymentMutation()
+
+  const {
+    data: paymentValidation,
+    refetch,
+  } =
+    useValidateFacilityPaymentQuery(
+      facility.facilityReference,
+    )
 
   const handleCollectCharges = async () => {
 
@@ -39,6 +47,8 @@ const PaymentTab = ({
         NOTIFY_TITLES.PAYMENT_SUCCESS,
         response.message,
       )
+
+      await refetch();
     } catch (error) {
       notify.apiError(
         error,
@@ -47,7 +57,7 @@ const PaymentTab = ({
     }
   }
 
-  
+
   return (
     <>
       <Card>
@@ -85,8 +95,11 @@ const PaymentTab = ({
             <Button
               onClick={handleCollectCharges}
               isLoading={isLoading}
+              disabled={paymentValidation?.isPaid}
             >
-              Collect Charges
+              {paymentValidation?.isPaid
+                ? "Charges Collected"
+                : "Collect Charges"}
             </Button>
           </div>
         </CardContent>
