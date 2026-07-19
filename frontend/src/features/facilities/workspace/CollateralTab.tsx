@@ -26,13 +26,14 @@ const CollateralTab = ({
             value={facility.collateralType}
           />
 
-          <DetailItem
+          {/* <DetailItem
             label="Collateral Owner"
             value={
-              facility.collateraOwener ??
-              '-'
+              // facility.collateraOwener ??
+              // '-'
+              facility.collateraOwener
             }
-          />
+          /> */}
 
           <DetailItem
             label="Collateral Value"

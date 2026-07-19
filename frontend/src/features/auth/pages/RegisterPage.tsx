@@ -17,6 +17,7 @@ import { registerSchema, type RegisterFormValues } from '../schemas/authSchemas'
 import { ROUTES } from '@/shared/constants/routes'
 // import { registerUser } from '../services/registerServices'
 import { useCreateValuerProfileMutation, useRegisterStaffMutation } from '../api/authApi'
+import { notify } from '@/shared/lib/toast'
 
 
 const roleOptions = [
@@ -88,16 +89,10 @@ const RegisterPage = () => {
           role: values.role,
         }).unwrap()
       }
-
+      notify.success("Registration Successful");
       navigate(ROUTES.auth.login)
     } catch (error) {
-      console.error(error)
-
-      alert(
-        error instanceof Error
-          ? error.message
-          : 'Registration failed',
-      )
+      notify.apiError(error, "Registration Failed")
     }
   }
 

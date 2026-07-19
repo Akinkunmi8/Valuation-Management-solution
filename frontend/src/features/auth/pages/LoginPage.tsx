@@ -78,10 +78,7 @@ const LoginPage = () => {
       if (!normalizedUser.roles[0]) {
         throw new Error('No role returned from server')
       }
-      // console.log(normalizedUser)
-      // console.log(normalizedUser.roles)
-      // console.log(typeof normalizedUser.roles)
-      // console.log(normalizedUser.roles[0])
+
       navigate(
         getDashboardRouteForRole(normalizedUser.roles[0]),
         { replace: true }
