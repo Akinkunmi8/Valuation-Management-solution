@@ -5,14 +5,13 @@ import { useNavigate } from 'react-router'
 
 import MetricCard from '../../dashboard/components/MetricCard'
 // import { ROUTES } from '../../../shared/constants/routes'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useGetCmDashboardMetricsQuery } from '../api/cmDashboardApi'
 
 import { MetricCardSkeleton } from '@/shared/ui/loader'
 import DataTable from '@/shared/ui/table/DataTable'
 import { cmColumns } from '../../facilities/constants/cmColumns'
-
-
+import { mergeUniqueByKey } from '@/shared/utils/mergeUniqueByKeys'
 
 
 const CmDashboardPage = () => {
@@ -26,24 +25,13 @@ const CmDashboardPage = () => {
 
   const metrics = data?.metrics
 
-  const totalFacilities =
-    metrics
-      ? metrics.pendingReviewCount +
-      metrics.approvedCount +
-      metrics.rejectedCount +
-      metrics.awaitingValuerAssignmentCount +
-      metrics.pendingReportReviewCount +
-      metrics.completedCount +
-      metrics.beyondTatCount
-      : 0
-
   // TODO:
   // Confirm with backend that these
   // workflow buckets are mutually exclusive.
 
 
+
   type Workflow =
-    | 'all'
     | 'pendingReview'
     | 'approved'
     | 'rejected'
@@ -53,18 +41,10 @@ const CmDashboardPage = () => {
     | 'beyondTat'
 
   const [selectedWorkflow, setSelectedWorkflow] =
-    useState<Workflow>('all')
+    useState<Workflow>('pendingReview')
 
 
   const workflowCards = [
-
-    {
-      title: 'All',
-      key: 'all',
-      count: totalFacilities,
-      accent: 'primary',
-    },
-
     {
       title: 'Pending Review',
       key: 'pendingReview',
@@ -127,20 +107,17 @@ const CmDashboardPage = () => {
 
   ] as const
 
-  const tableData =
-    selectedWorkflow === 'all'
-      ? [
-        ...(data?.pendingReview ?? []),
-        ...(data?.approved ?? []),
-        ...(data?.rejected ?? []),
-        ...(data?.awaitingValuerAssignment ??
-          []),
-        ...(data?.pendingReportReview ??
-          []),
-        ...(data?.completed ?? []),
-        ...(data?.beyondTat ?? []),
-      ]
-      : data?.[selectedWorkflow] ?? []
+  const tableData = useMemo(() => {
+    const rows =
+      data?.[selectedWorkflow] ?? [];
+
+    return mergeUniqueByKey(
+      rows,
+      row => row.facilityReference,
+    );
+  }, [data, selectedWorkflow]);
+
+
 
   return (
     <div className="space-y-6">

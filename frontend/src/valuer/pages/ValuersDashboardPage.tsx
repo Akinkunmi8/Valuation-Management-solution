@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router'
 
 import MetricCard from '@/features/dashboard/components/MetricCard'
 // import { ROUTES } from '../../../shared/constants/routes'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useGetValuerDashboardMetricsQuery } from '../api/valuerDashboardApi'
 
-import { MetricCardSkeleton } from '@/shared/ui/loader'
+import { AppLoader, MetricCardSkeleton } from '@/shared/ui/loader'
 import DataTable from '@/shared/ui/table/DataTable'
 import { valuerColumns } from '../constants/valuerColumns'
 import { useCurrentValuer } from '../hooks/useCurrentValuer'
+import { mergeUniqueByKey } from '@/shared/utils/mergeUniqueByKeys'
 
 
 
@@ -29,19 +30,20 @@ const ValuersDashboardPage = () => {
         skip: !valuerId,
       })
 
+  //   console.log(data?.assignedFacilities)
+  //   console.log(data?.ongoingReports)
+  //   console.log(data?.awaitingCompletedReports)
+  //   console.log(data?.approvedCompletedReports)
+  //   console.log(data?.returnedReports)
+  //   console.log(data?.beyondTat)
+
+  //   console.log(
+  //   data?.ongoingReports.map(x => x.facilityReference)
+  // )
+
   const metrics = data?.metrics
 
-  console.log("data", data);
-
-  const totalJobs =
-    metrics
-      ? metrics.assignedFacilityCount +
-      metrics.ongoingReportCount +
-      metrics.awaitingCompletedReportCount +
-      metrics.approvedCompletedReportCount +
-      metrics.returnedReportCount +
-      metrics.beyondTatCount
-      : 0
+  // console.log("data", data);
 
   // TODO:
   // Confirm with backend that these
@@ -61,6 +63,28 @@ const ValuersDashboardPage = () => {
     useState<Workflow>('all')
 
 
+  const allFacilities = useMemo(() => {
+
+    if (!data) return []
+
+    return mergeUniqueByKey(
+
+      [
+        ...data.assignedFacilities,
+        ...data.ongoingReports,
+        ...data.awaitingCompletedReports,
+        ...data.approvedCompletedReports,
+        ...data.returnedReports,
+        ...data.beyondTat,
+      ],
+
+      item => item.facilityReference,
+    )
+
+  }, [data])
+
+
+  const totalJobs = allFacilities.length;
 
   const workflowCards = [
     {
@@ -115,15 +139,12 @@ const ValuersDashboardPage = () => {
 
   const tableData =
     selectedWorkflow === 'all'
-      ? [
-        ...(data?.assignedFacilities ?? []),
-        ...(data?.ongoingReports ?? []),
-        ...(data?.awaitingCompletedReports ?? []),
-        ...(data?.approvedCompletedReports ?? []),
-        ...(data?.returnedReports ?? []),
-        ...(data?.beyondTat ?? []),
-      ]
+      ? allFacilities
       : data?.[selectedWorkflow] ?? []
+
+  if (!valuerId) {
+    return <AppLoader />
+  }
 
   return (
     <div className="space-y-6">
