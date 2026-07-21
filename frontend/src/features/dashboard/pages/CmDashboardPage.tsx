@@ -107,6 +107,7 @@ const CmDashboardPage = () => {
 
   ] as const
 
+  // Temporary till backend addresses duplicate data
   const tableData = useMemo(() => {
     const rows =
       data?.[selectedWorkflow] ?? [];

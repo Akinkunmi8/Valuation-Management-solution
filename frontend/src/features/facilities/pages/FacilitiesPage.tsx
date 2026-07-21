@@ -13,6 +13,7 @@ import { MetricCardSkeleton } from '@/shared/ui/loader'
 import DataTable from '@/shared/ui/table/DataTable'
 import { facilityColumns } from '../constants/facilityColumns'
 import { useMetricFilter } from '@/shared/hooks/useMetricFilter'
+import { useMemo } from 'react'
 
 
 
@@ -41,21 +42,8 @@ const FacilitiesPage = () => {
   })
 
   const metrics = data?.metrics
-  // console.log("data", data);
-
-  const totalFacilities = metrics
-    ? metrics.awaitingPaymentCount +
-    metrics.pendingWithSuccessfulPaymentCount +
-    metrics.approvedCount +
-    metrics.rejectedCount +
-    metrics.completedCount +
-    metrics.expiredCount
-    : 0
-
-
 
   type Workflow =
-    | 'all'
     | 'awaitingPayment'
     | 'pendingWithSuccessfulPayment'
     | 'approved'
@@ -64,15 +52,10 @@ const FacilitiesPage = () => {
     | 'expired'
 
   const {
-    selectedFilter:
-    selectedWorkflow,
-    setFilter:
-    setSelectedWorkflow,
+    selectedFilter: selectedWorkflow,
+    setFilter: setSelectedWorkflow,
     tableRef,
-  } =
-    useMetricFilter<Workflow>(
-      'all',
-    )
+  } = useMetricFilter<Workflow>('awaitingPayment')
 
 
   const workflowCards: {
@@ -80,11 +63,6 @@ const FacilitiesPage = () => {
     key: Workflow
     count: number
   }[] = [
-    {
-      title: 'All',
-      key: 'all',
-      count: totalFacilities,
-    },
     {
       title: 'Awaiting Payment',
       key: 'awaitingPayment',
@@ -118,18 +96,9 @@ const FacilitiesPage = () => {
     },
   ] as const;
 
-
-  const tableData =
-    selectedWorkflow === 'all'
-      ? [
-        ...(data?.awaitingPayment ?? []),
-        ...(data?.pendingWithSuccessfulPayment ?? []),
-        ...(data?.approved ?? []),
-        ...(data?.rejected ?? []),
-        ...(data?.completed ?? []),
-        ...(data?.expired ?? []),
-      ]
-      : data?.[selectedWorkflow] ?? []
+  const tableData = useMemo(() => {
+    return data?.[selectedWorkflow] ?? [];
+  }, [data, selectedWorkflow]);
 
   return (
     <div className="space-y-6">
