@@ -288,4 +288,65 @@ public class ValuationReportService : IValuationReportService
             throw;
         }
     }
+
+    public async Task<ValuationReportDetailsDto> GetValuationReportDetailsAsync(string facilityRef, string baseUrl)
+    {
+        if (string.IsNullOrWhiteSpace(facilityRef))
+            throw new ArgumentException("Facility Reference must be provided.");
+
+        // 1. Retrieve all matching records across tracking entities
+        var allReports = await _unitOfWork.ValuationReports.GetAllAsync();
+        var report = allReports.OrderByDescending(r => r.DateAssigned)
+                               .FirstOrDefault(r => r.FacilityRef == facilityRef);
+
+        if (report == null)
+            throw new KeyNotFoundException($"No valuation report found for reference '{facilityRef}'.");
+
+        var allFacilities = await _unitOfWork.Facilities.GetAllAsync();
+        var facility = allFacilities.FirstOrDefault(f => f.FacilityReference == facilityRef);
+
+        var allCollateral = await _unitOfWork.Collaterals.GetAllAsync();
+        var collateral = allCollateral.FirstOrDefault(c => c.FacilityReference == facilityRef);
+
+        // 2. Construct the downloadable file URL dynamically
+        string downloadUrl = string.Empty;
+        if (!string.IsNullOrEmpty(report.ValuationRePortName))
+        {
+            // Formats URL e.g., https://your-domain.com/api/ValuationReport/download/20260715100356862984
+            downloadUrl = $"{baseUrl.TrimEnd('/')}/api/ValuationReport/download/{facilityRef}";
+        }
+
+        // 3. Map into response DTO
+        return new ValuationReportDetailsDto
+        {
+            ReportId = report.Id,
+            FacilityReference = report.FacilityRef,
+            ValuerName = report.ValuersName,
+            DateAssigned = report.DateAssigned,
+            ReportStatus = report.reportStatus.ToString(),
+            ReportApprovalStatus = report.approvalStatus.ToString(),
+            PaymentStatus = report.PaymentStatus.ToString(),
+
+            ReportFileName = report.ValuationRePortName,
+            FileDownloadUrl = downloadUrl,
+
+            CustomerName = facility?.CustomerName ?? string.Empty,
+            City = facility?.CustomerCity ?? string.Empty,
+            LocalGov = facility?.LocalGov ?? string.Empty,
+            State = facility?.State ?? string.Empty,
+            SalesLocation = facility?.SalesLocation ?? string.Empty,
+
+            OpenMarketValue = facility?.OpenMarketValue ?? 0m,
+            ForceSalesValue = facility?.ForceSalesValue ?? 0m,
+            InsuranceValue = facility?.InsuranceValue ?? 0m,
+            ValuationDate = facility?.ValuationDate,
+
+            CollateralOwner = collateral?.Owner ?? string.Empty,
+            AssetCategoryId = collateral?.AssetCategoryId ?? AssetCategory.Mortage,
+            BranchValuationSum = collateral?.BranchValuationSum ?? 0m,
+            CollateralLocation = collateral?.Location ?? string.Empty,
+            OtherDetails = collateral?.OtherDetails ?? string.Empty
+        };
+    }
+
 }

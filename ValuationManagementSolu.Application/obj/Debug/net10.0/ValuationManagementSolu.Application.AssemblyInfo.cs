@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ValuationManagementSolu.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82b01bbc822e3a53ac31809292224aa3c1530723")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e2a9718db36eb098d9bb90f4a4233219eda46fbd")]
 [assembly: System.Reflection.AssemblyProductAttribute("ValuationManagementSolu.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ValuationManagementSolu.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

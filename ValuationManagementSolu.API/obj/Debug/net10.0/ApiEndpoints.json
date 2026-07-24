@@ -304,6 +304,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ValuationManagementSolu.Controllers.DocumentController",
+    "Method": "ViewFile",
+    "RelativePath": "api/Document/view-file",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "filePath",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "download",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ValuationManagementSolu.API.Controllers.FacilitiesController",
     "Method": "CreateFacility",
     "RelativePath": "api/Facilities/create",
@@ -554,6 +575,26 @@
   },
   {
     "ContainingType": "ValuationManagementSolu.API.Controllers.PaymentController",
+    "Method": "GetFacilityFeesDashboard",
+    "RelativePath": "api/Payment/dashboard/facility-fees",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.PaymentController",
+    "Method": "GetValuerFeesDashboard",
+    "RelativePath": "api/Payment/dashboard/valuer-fees",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.PaymentController",
     "Method": "ProcessFacilityFees",
     "RelativePath": "api/Payment/facility-fees/process/{facilityRef}",
     "HttpMethod": "POST",
@@ -681,6 +722,32 @@
         "Name": "solId",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.ValuationReportController",
+    "Method": "GetReportDashboard",
+    "RelativePath": "api/ValuationReport/dashboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.ValuationReportController",
+    "Method": "GetReportDetails",
+    "RelativePath": "api/ValuationReport/details/{facilityRef}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "facilityRef",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

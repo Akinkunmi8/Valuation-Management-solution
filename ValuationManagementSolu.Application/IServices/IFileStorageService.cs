@@ -14,4 +14,6 @@ public interface IFileStorageService
     /// Deletes a file from the server using its stored relative path.
     /// </summary>
     Task DeleteFileAsync(string relativePath);
+
+    Task<(byte[] FileBytes, string ContentType, string FileName)?> GetFileAsync(string relativePath);
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using ValuationManagementSolu.Application.IServices;
+using ValuationManagementSolu.Infrastructure.Services;
 
 namespace ValuationManagementSolu.API.Controllers;
 
@@ -10,10 +11,12 @@ namespace ValuationManagementSolu.API.Controllers;
 public class PaymentController : ControllerBase
 {
     private readonly IPaymentService _paymentService;
+    private readonly IPaymentDashboardService _paymentDashboardService;
 
-    public PaymentController(IPaymentService paymentService)
+    public PaymentController(IPaymentService paymentService, IPaymentDashboardService paymentDashboardService)
     {
         _paymentService = paymentService;
+        _paymentDashboardService = paymentDashboardService;
     }
 
     [HttpPost("facility-fees/process/{facilityRef}")]
@@ -101,5 +104,19 @@ public class PaymentController : ControllerBase
         {
             return StatusCode(500, new { Message = "Error gathering data entries.", Details = ex.Message });
         }
+    }
+
+    [HttpGet("dashboard/facility-fees")]
+    public async Task<IActionResult> GetFacilityFeesDashboard()
+    {
+        var result = await _paymentDashboardService.GetFacilityFeesDashboardAsync();
+        return Ok(result);
+    }
+
+    [HttpGet("dashboard/valuer-fees")]
+    public async Task<IActionResult> GetValuerFeesDashboard()
+    {
+        var result = await _paymentDashboardService.GetValuerFeesDashboardAsync();
+        return Ok(result);
     }
 }

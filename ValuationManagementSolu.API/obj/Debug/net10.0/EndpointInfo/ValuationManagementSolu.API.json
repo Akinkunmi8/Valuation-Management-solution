@@ -504,6 +504,35 @@
         }
       }
     },
+    "/api/Document/view-file": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "parameters": [
+          {
+            "name": "filePath",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "download",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Facilities/create": {
       "post": {
         "tags": [
@@ -1000,6 +1029,30 @@
         }
       }
     },
+    "/api/Payment/dashboard/facility-fees": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/dashboard/valuer-fees": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/RmDashboard/metrics": {
       "get": {
         "tags": [
@@ -1440,6 +1493,40 @@
         }
       }
     },
+    "/api/ValuationReport/details/{facilityRef}": {
+      "get": {
+        "tags": [
+          "ValuationReport"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ValuationReport/dashboard": {
+      "get": {
+        "tags": [
+          "ValuationReport"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Valuer/profile": {
       "post": {
         "tags": [
@@ -1736,6 +1823,9 @@
     },
     {
       "name": "CmsDashboard"
+    },
+    {
+      "name": "Document"
     },
     {
       "name": "Facilities"

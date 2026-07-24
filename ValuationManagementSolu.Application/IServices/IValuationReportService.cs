@@ -13,4 +13,6 @@ public interface IValuationReportService
     Task<bool> WithdrawAndReassignValuationAsync(string facilityRef, int newValuerId, string newValuerName);
 
     Task<bool> EditAndResubmitReportAsync(string facilityRef, CreateValuationReportDto dto, string valuerName);
+
+    Task<ValuationReportDetailsDto> GetValuationReportDetailsAsync(string facilityRef, string baseUrl);
 }

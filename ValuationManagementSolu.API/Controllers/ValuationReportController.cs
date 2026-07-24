@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ValuationManagementSolu.Application.DTOs;
 using ValuationManagementSolu.Application.IServices;
 using ValuationManagementSolu.Application.Repository;
+using ValuationManagementSolu.Infrastructure.Services;
 
 namespace ValuationManagementSolu.API.Controllers;
 
@@ -15,12 +16,14 @@ namespace ValuationManagementSolu.API.Controllers;
 public class ValuationReportController : ControllerBase
 {
     private readonly IValuationReportService _reportService;
+    private readonly IValuationReportDashboardService _valuationReportDashboardService;
     private readonly IUnitOfWork _unitOfWork;
 
-    public ValuationReportController(IValuationReportService reportService, IUnitOfWork unitOfWork)
+    public ValuationReportController(IValuationReportService reportService, IUnitOfWork unitOfWork, IValuationReportDashboardService valuationReportDashboardService)
     {
         _reportService = reportService;
         _unitOfWork = unitOfWork;
+        _valuationReportDashboardService = valuationReportDashboardService;
     }
 
     [HttpPost("submit")]
@@ -136,5 +139,22 @@ public class ValuationReportController : ControllerBase
         {
             return StatusCode(500, new { Message = "Error processing report resubmission pipeline.", Details = ex.Message });
         }
+    }
+
+    [HttpGet("details/{facilityRef}")]
+    public async Task<IActionResult> GetReportDetails(string facilityRef)
+    {
+        // Build base URL dynamically from HTTP request context (works across localhost and SmarterASP.NET cloud)
+        string baseUrl = $"{Request.Scheme}://{Request.Host}";
+
+        var details = await _reportService.GetValuationReportDetailsAsync(facilityRef, baseUrl);
+        return Ok(details);
+    }
+
+    [HttpGet("dashboard")]
+    public async Task<IActionResult> GetReportDashboard()
+    {
+        var dashboardData = await _valuationReportDashboardService.GetReportDashboardDataAsync();
+        return Ok(dashboardData);
     }
 }

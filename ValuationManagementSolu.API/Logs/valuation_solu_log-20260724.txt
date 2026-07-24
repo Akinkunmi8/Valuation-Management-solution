@@ -1,0 +1,706 @@
+2026-07-24 10:23:11.832 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-24 10:23:12.225 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-24 10:23:12.913 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-24 10:23:12.935 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-24 10:23:13.188 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-24 10:23:13.193 +01:00 [INF] Hosting environment: Development
+2026-07-24 10:23:13.199 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-24 10:23:43.599 +01:00 [ERR] HTTP GET /api/Payment/dashboard/facility-fees responded 500 in 4556.6482 ms
+System.InvalidOperationException: Unable to resolve service for type 'ValuationManagementSolu.Application.IServices.IPaymentDashboardService' while attempting to activate 'ValuationManagementSolu.API.Controllers.PaymentController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method236(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-07-24 10:23:43.684 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'ValuationManagementSolu.Application.IServices.IPaymentDashboardService' while attempting to activate 'ValuationManagementSolu.API.Controllers.PaymentController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method236(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-07-24 10:25:03.929 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-24 10:25:04.291 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-24 10:25:05.129 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-24 10:25:05.178 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-24 10:25:05.434 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-24 10:25:05.439 +01:00 [INF] Hosting environment: Development
+2026-07-24 10:25:05.446 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-24 10:26:02.482 +01:00 [INF] HTTP GET /api/Payment/dashboard/facility-fees responded 200 in 37079.4205 ms
+2026-07-24 10:27:42.142 +01:00 [INF] HTTP GET /api/Payment/dashboard/valuer-fees responded 200 in 3401.2238 ms
+2026-07-24 12:43:52.431 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-24 12:43:52.818 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-24 12:43:53.390 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-24 12:43:53.400 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-24 12:43:53.671 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-24 12:43:53.700 +01:00 [INF] Hosting environment: Development
+2026-07-24 12:43:53.704 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-24 12:45:09.849 +01:00 [INF] HTTP GET /api/ValuationReport/dashboard responded 200 in 2022.7595 ms
+2026-07-24 12:46:06.590 +01:00 [INF] HTTP GET /api/ValuationReport/details/20260705092648306704 responded 200 in 7878.8789 ms
+2026-07-24 13:18:48.424 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-24 13:18:48.784 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-24 13:18:49.694 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-24 13:18:49.743 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-24 13:18:50.017 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-24 13:18:50.022 +01:00 [INF] Hosting environment: Development
+2026-07-24 13:18:50.028 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-24 13:20:29.635 +01:00 [INF] HTTP GET /api/Payment/dashboard/facility-fees responded 200 in 5045.9227 ms
+2026-07-24 13:22:16.813 +01:00 [INF] HTTP GET /api/Payment/dashboard/valuer-fees responded 200 in 2790.3241 ms
+2026-07-24 13:24:03.723 +01:00 [INF] HTTP GET /api/ValuationReport/dashboard responded 200 in 1289.5403 ms
+2026-07-24 13:26:10.119 +01:00 [INF] HTTP GET /api/ValuationReport/details/20260705092648306704 responded 200 in 981.2289 ms
+2026-07-24 13:28:00.649 +01:00 [INF] HTTP GET /api/ValuationReport/download responded 404 in 2941.4654 ms
+2026-07-24 13:29:28.472 +01:00 [INF] HTTP GET /api/ValuationReport/download responded 404 in 50450.7466 ms
+2026-07-24 13:58:10.126 +01:00 [ERR] Failed executing DbCommand (23,074ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedAt], [e].[DispatchedAt], [e].[ErrorLog], [e].[EventType], [e].[FacilityReference], [e].[IsDispatched], [e].[Payload], [e].[RetryCount]
+FROM [EventOutbox] AS [e]
+2026-07-24 13:58:10.210 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ValuationManagementSolu.Infrastructure.Context.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:843ca67a-66f2-4d19-ba36-c3c0d77f42fa
+Error Number:-2146893008,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:843ca67a-66f2-4d19-ba36-c3c0d77f42fa
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 13:58:10.453 +01:00 [ERR] An unhandled exception occurred in the Event Polling background process loop.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ValuationManagementSolu.Infrastructure.Repository.GenericRepository`1.GetAllAsync() in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Repository\GenericRepository.cs:line 14
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 49
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 31
+ClientConnectionId:843ca67a-66f2-4d19-ba36-c3c0d77f42fa
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 13:58:29.480 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ValuationManagementSolu.Infrastructure.Context.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:9816d68e-642e-4337-bbbe-905ddd9df25f
+Error Number:-2146893008,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:9816d68e-642e-4337-bbbe-905ddd9df25f
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 13:58:29.678 +01:00 [ERR] An unhandled exception occurred in the Event Polling background process loop.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ValuationManagementSolu.Infrastructure.Repository.GenericRepository`1.GetAllAsync() in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Repository\GenericRepository.cs:line 14
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 49
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 31
+ClientConnectionId:9816d68e-642e-4337-bbbe-905ddd9df25f
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 13:59:14.202 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ValuationManagementSolu.Infrastructure.Context.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:9d20469f-dae7-4256-ae3b-c6b0c1a4c0a0
+Error Number:-2146893008,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:9d20469f-dae7-4256-ae3b-c6b0c1a4c0a0
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 13:59:14.343 +01:00 [ERR] An unhandled exception occurred in the Event Polling background process loop.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ValuationManagementSolu.Infrastructure.Repository.GenericRepository`1.GetAllAsync() in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Repository\GenericRepository.cs:line 14
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 49
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 31
+ClientConnectionId:9d20469f-dae7-4256-ae3b-c6b0c1a4c0a0
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:00:11.479 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ValuationManagementSolu.Infrastructure.Context.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSni(TaskCompletionSource`1 completion)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlStringValue(SqlBuffer value, Byte type, Int32 length, Encoding encoding, Boolean isPlp, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlValue(SqlBuffer value, SqlMetaDataPriv md, Int32 length, TdsParserStateObject stateObj, SqlCommandColumnEncryptionSetting columnEncryptionOverride, String columnName, SqlCommand command)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:39f77c8f-5e50-4254-a235-6514a65f659a
+Error Number:-2146893008,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSni(TaskCompletionSource`1 completion)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlStringValue(SqlBuffer value, Byte type, Int32 length, Encoding encoding, Boolean isPlp, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlValue(SqlBuffer value, SqlMetaDataPriv md, Int32 length, TdsParserStateObject stateObj, SqlCommandColumnEncryptionSetting columnEncryptionOverride, String columnName, SqlCommand command)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:39f77c8f-5e50-4254-a235-6514a65f659a
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:00:11.603 +01:00 [ERR] An unhandled exception occurred in the Event Polling background process loop.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSni(TaskCompletionSource`1 completion)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlStringValue(SqlBuffer value, Byte type, Int32 length, Encoding encoding, Boolean isPlp, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlValue(SqlBuffer value, SqlMetaDataPriv md, Int32 length, TdsParserStateObject stateObj, SqlCommandColumnEncryptionSetting columnEncryptionOverride, String columnName, SqlCommand command)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ValuationManagementSolu.Infrastructure.Repository.GenericRepository`1.GetAllAsync() in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Repository\GenericRepository.cs:line 14
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 49
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 31
+ClientConnectionId:39f77c8f-5e50-4254-a235-6514a65f659a
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:00:34.980 +01:00 [ERR] Failed executing DbCommand (541ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedAt], [e].[DispatchedAt], [e].[ErrorLog], [e].[EventType], [e].[FacilityReference], [e].[IsDispatched], [e].[Payload], [e].[RetryCount]
+FROM [EventOutbox] AS [e]
+2026-07-24 14:00:34.997 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ValuationManagementSolu.Infrastructure.Context.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:9703efcb-cffb-42ac-9144-37932905b2f2
+Error Number:-2146893008,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:9703efcb-cffb-42ac-9144-37932905b2f2
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:00:35.195 +01:00 [ERR] An unhandled exception occurred in the Event Polling background process loop.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ValuationManagementSolu.Infrastructure.Repository.GenericRepository`1.GetAllAsync() in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Repository\GenericRepository.cs:line 14
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 49
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 31
+ClientConnectionId:9703efcb-cffb-42ac-9144-37932905b2f2
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:01:23.516 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ValuationManagementSolu.Infrastructure.Context.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:2452e54f-e794-41db-b22f-c0c5de15f18c
+Error Number:-2146893008,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:2452e54f-e794-41db-b22f-c0c5de15f18c
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:01:23.697 +01:00 [ERR] An unhandled exception occurred in the Event Polling background process loop.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ValuationManagementSolu.Infrastructure.Repository.GenericRepository`1.GetAllAsync() in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Repository\GenericRepository.cs:line 14
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 49
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 31
+ClientConnectionId:2452e54f-e794-41db-b22f-c0c5de15f18c
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:01:36.337 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ValuationManagementSolu.Infrastructure.Context.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSni(TaskCompletionSource`1 completion)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlStringValue(SqlBuffer value, Byte type, Int32 length, Encoding encoding, Boolean isPlp, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlValue(SqlBuffer value, SqlMetaDataPriv md, Int32 length, TdsParserStateObject stateObj, SqlCommandColumnEncryptionSetting columnEncryptionOverride, String columnName, SqlCommand command)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.ContinueAsyncCall[T](Task task, SqlDataReaderBaseAsyncCallContext`1 context)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:d2cac2a1-334b-40d0-b6d0-3d549175e0b9
+Error Number:-2146893008,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSni(TaskCompletionSource`1 completion)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlStringValue(SqlBuffer value, Byte type, Int32 length, Encoding encoding, Boolean isPlp, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlValue(SqlBuffer value, SqlMetaDataPriv md, Int32 length, TdsParserStateObject stateObj, SqlCommandColumnEncryptionSetting columnEncryptionOverride, String columnName, SqlCommand command)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.ContinueAsyncCall[T](Task task, SqlDataReaderBaseAsyncCallContext`1 context)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:d2cac2a1-334b-40d0-b6d0-3d549175e0b9
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:01:36.499 +01:00 [ERR] An unhandled exception occurred in the Event Polling background process loop.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSni(TaskCompletionSource`1 completion)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlStringValue(SqlBuffer value, Byte type, Int32 length, Encoding encoding, Boolean isPlp, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlValue(SqlBuffer value, SqlMetaDataPriv md, Int32 length, TdsParserStateObject stateObj, SqlCommandColumnEncryptionSetting columnEncryptionOverride, String columnName, SqlCommand command)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.ContinueAsyncCall[T](Task task, SqlDataReaderBaseAsyncCallContext`1 context)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ValuationManagementSolu.Infrastructure.Repository.GenericRepository`1.GetAllAsync() in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Repository\GenericRepository.cs:line 14
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 49
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 31
+ClientConnectionId:d2cac2a1-334b-40d0-b6d0-3d549175e0b9
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:05:17.550 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ValuationManagementSolu.Infrastructure.Context.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSni(TaskCompletionSource`1 completion)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlStringValue(SqlBuffer value, Byte type, Int32 length, Encoding encoding, Boolean isPlp, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlValue(SqlBuffer value, SqlMetaDataPriv md, Int32 length, TdsParserStateObject stateObj, SqlCommandColumnEncryptionSetting columnEncryptionOverride, String columnName, SqlCommand command)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:ebeb1a6e-6ab2-4888-9820-27d6d4a5cdf3
+Error Number:-2146893008,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSni(TaskCompletionSource`1 completion)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlStringValue(SqlBuffer value, Byte type, Int32 length, Encoding encoding, Boolean isPlp, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlValue(SqlBuffer value, SqlMetaDataPriv md, Int32 length, TdsParserStateObject stateObj, SqlCommandColumnEncryptionSetting columnEncryptionOverride, String columnName, SqlCommand command)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:ebeb1a6e-6ab2-4888-9820-27d6d4a5cdf3
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:05:17.726 +01:00 [ERR] An unhandled exception occurred in the Event Polling background process loop.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSni(TaskCompletionSource`1 completion)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlStringValue(SqlBuffer value, Byte type, Int32 length, Encoding encoding, Boolean isPlp, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.TdsParser.TryReadSqlValue(SqlBuffer value, SqlMetaDataPriv md, Int32 length, TdsParserStateObject stateObj, SqlCommandColumnEncryptionSetting columnEncryptionOverride, String columnName, SqlCommand command)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadColumn(Int32 i, Boolean setTimeout, Boolean allowPartiallyReadColumn, Boolean forStreaming)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ValuationManagementSolu.Infrastructure.Repository.GenericRepository`1.GetAllAsync() in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Repository\GenericRepository.cs:line 14
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 49
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 31
+ClientConnectionId:ebeb1a6e-6ab2-4888-9820-27d6d4a5cdf3
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:09:04.429 +01:00 [ERR] Failed executing DbCommand (30,064ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreatedAt], [e].[DispatchedAt], [e].[ErrorLog], [e].[EventType], [e].[FacilityReference], [e].[IsDispatched], [e].[Payload], [e].[RetryCount]
+FROM [EventOutbox] AS [e]
+2026-07-24 14:09:04.444 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ValuationManagementSolu.Infrastructure.Context.ApplicationDbContext'.
+System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. Consider enabling transient error resiliency by adding 'EnableRetryOnFailure' to the 'UseSqlServer' call.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.)
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+ClientConnectionId:44071f19-f2f8-4f72-a877-433f5d8cae9d
+Error Number:-2,State:0,Class:11
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. Consider enabling transient error resiliency by adding 'EnableRetryOnFailure' to the 'UseSqlServer' call.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.)
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+ClientConnectionId:44071f19-f2f8-4f72-a877-433f5d8cae9d
+Error Number:-2,State:0,Class:11
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2026-07-24 14:09:04.622 +01:00 [ERR] An unhandled exception occurred in the Event Polling background process loop.
+System.InvalidOperationException: An exception has been raised that is likely due to a transient failure. Consider enabling transient error resiliency by adding 'EnableRetryOnFailure' to the 'UseSqlServer' call.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.)
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+ClientConnectionId:44071f19-f2f8-4f72-a877-433f5d8cae9d
+Error Number:-2,State:0,Class:11
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ValuationManagementSolu.Infrastructure.Repository.GenericRepository`1.GetAllAsync() in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Repository\GenericRepository.cs:line 14
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 49
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 31
+2026-07-24 14:38:54.351 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-24 14:38:54.567 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-24 14:38:54.994 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-24 14:38:55.001 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-24 14:38:55.139 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-24 14:38:55.144 +01:00 [INF] Hosting environment: Development
+2026-07-24 14:38:55.149 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-24 14:39:09.585 +01:00 [INF] HTTP GET /api/ValuationReport/dashboard responded 200 in 2108.1084 ms
+2026-07-24 14:39:44.685 +01:00 [INF] HTTP GET /api/CmDashboard/global-metrics responded 200 in 3894.2910 ms
+2026-07-24 14:40:37.131 +01:00 [INF] HTTP GET /api/Facilities/getFacilityDetails/20260720092913473917 responded 200 in 4810.2920 ms
+2026-07-24 14:42:18.766 +01:00 [INF] HTTP GET /api/ValuationReport/download responded 404 in 19328.1738 ms
+2026-07-24 14:44:20.903 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ValuationManagementSolu.Infrastructure.Context.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+ClientConnectionId:bd284193-1e11-4d53-8c41-d6b75c98c0c9
+Error Number:-2146893008,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+ClientConnectionId:bd284193-1e11-4d53-8c41-d6b75c98c0c9
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:44:21.035 +01:00 [ERR] An unhandled exception occurred in the Event Polling background process loop.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ValuationManagementSolu.Infrastructure.Repository.GenericRepository`1.GetAllAsync() in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Repository\GenericRepository.cs:line 14
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 49
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 31
+ClientConnectionId:bd284193-1e11-4d53-8c41-d6b75c98c0c9
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:51:04.608 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-24 14:51:04.767 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-24 14:51:05.074 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-24 14:51:05.079 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-24 14:51:05.226 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-24 14:51:05.230 +01:00 [INF] Hosting environment: Development
+2026-07-24 14:51:05.232 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-24 14:52:13.779 +01:00 [INF] HTTP GET /api/ValuationReport/dashboard responded 200 in 1551.7455 ms
+2026-07-24 14:53:40.394 +01:00 [INF] HTTP GET /api/Document/view-file responded 404 in 39773.8710 ms
+2026-07-24 14:55:22.016 +01:00 [INF] HTTP GET /api/CmDashboard/global-metrics responded 200 in 3525.9898 ms
+2026-07-24 14:55:50.632 +01:00 [INF] HTTP GET /api/Facilities/getFacilityDetails/20260720092913473917 responded 200 in 9138.9200 ms
+2026-07-24 14:58:52.004 +01:00 [INF] HTTP GET /api/Document/view-file responded 404 in 134781.4687 ms
+2026-07-24 14:59:14.729 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'ValuationManagementSolu.Infrastructure.Context.ApplicationDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+ClientConnectionId:9332fa87-c312-4d81-832c-9ad6799096e2
+Error Number:-2146893008,State:0,Class:20
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+ClientConnectionId:9332fa87-c312-4d81-832c-9ad6799096e2
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 14:59:14.812 +01:00 [ERR] An unhandled exception occurred in the Event Polling background process loop.
+Microsoft.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: SSL Provider, error: 0 - The specified data could not be decrypted.
+)
+ ---> System.ComponentModel.Win32Exception (0x80090330): The specified data could not be decrypted.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadAsyncCallbackCaptureException(TaskCompletionSource`1 source)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ValuationManagementSolu.Infrastructure.Repository.GenericRepository`1.GetAllAsync() in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\Repository\GenericRepository.cs:line 14
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.DispatchPendingEventsAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 49
+   at ValuationManagementSolu.Infrastructure.BackgroundServices.NotificationEventDispatcher.ExecuteAsync(CancellationToken stoppingToken) in C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.Infrastructure\BackgroundServices\NotificationEventDispatcher.cs:line 31
+ClientConnectionId:9332fa87-c312-4d81-832c-9ad6799096e2
+Error Number:-2146893008,State:0,Class:20
+2026-07-24 15:01:39.794 +01:00 [INF] HTTP GET /api/Facilities/getFacilityDetails/20260721032259254477 responded 200 in 2926.6208 ms
+2026-07-24 15:05:46.418 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-07-24 15:05:46.587 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-07-24 15:05:46.961 +01:00 [INF] Now listening on: https://localhost:7104
+2026-07-24 15:05:46.967 +01:00 [INF] Now listening on: http://localhost:5051
+2026-07-24 15:05:47.143 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-24 15:05:47.147 +01:00 [INF] Hosting environment: Development
+2026-07-24 15:05:47.151 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-07-24 15:06:21.316 +01:00 [INF] HTTP GET /api/CmDashboard/global-metrics responded 200 in 2891.1154 ms
+2026-07-24 15:06:43.647 +01:00 [INF] HTTP GET /api/ValuationReport/download responded 200 in 237.6616 ms
+2026-07-24 15:09:00.445 +01:00 [INF] HTTP GET /api/ValuationReport/download responded 200 in 85877.3160 ms
+2026-07-24 15:09:23.361 +01:00 [INF] HTTP GET /api/ValuationReport/details/20260701135545101897 responded 200 in 99.2434 ms
+2026-07-24 15:09:59.367 +01:00 [INF] HTTP GET /api/CmsDashboard/supervisor-metrics responded 200 in 3397.0697 ms
+2026-07-24 15:10:24.834 +01:00 [INF] HTTP GET /api/Facilities/getFacilityDetails/20260630102624120179 responded 200 in 1507.7476 ms
+2026-07-24 15:12:02.916 +01:00 [INF] HTTP GET /api/Document/view-file responded 200 in 48517.2096 ms
+2026-07-24 15:13:00.331 +01:00 [INF] HTTP GET /api/Document/view-file responded 200 in 16518.2034 ms

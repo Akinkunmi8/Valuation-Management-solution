@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.StaticFiles;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -52,6 +53,47 @@ public class FileStorageService : IFileStorageService
         // 6. Return a unified web-friendly relative path to store in the Database
         // Example output: "/uploads/title-docs/abc-123-filename.pdf"
         return $"/uploads/{folderName}/{uniqueFileName}";
+    }
+
+    public async Task<(byte[] FileBytes, string ContentType, string FileName)?> GetFileAsync(string relativePath)
+    {
+        if (string.IsNullOrWhiteSpace(relativePath))
+            return null;
+
+        string wwwRootPath = _environment.WebRootPath;
+        if (string.IsNullOrEmpty(wwwRootPath))
+        {
+            wwwRootPath = Path.Combine(_environment.ContentRootPath, "wwwroot");
+        }
+
+        // Sanitize path formatting
+        string cleanRelativePath = relativePath.TrimStart('/', '\\');
+        string fullPhysicalPath = Path.Combine(wwwRootPath, cleanRelativePath);
+
+        // Security Guard: Path Traversal Prevention
+        var fullRootPath = Path.GetFullPath(wwwRootPath);
+        var resolvedPhysicalPath = Path.GetFullPath(fullPhysicalPath);
+        if (!resolvedPhysicalPath.StartsWith(fullRootPath, StringComparison.OrdinalIgnoreCase))
+        {
+            return null; // Attempted directory traversal outside wwwroot
+        }
+
+        if (!File.Exists(resolvedPhysicalPath))
+        {
+            return null;
+        }
+
+        // Resolve Content-Type (.pdf, .docx, .png, etc.)
+        var provider = new FileExtensionContentTypeProvider();
+        if (!provider.TryGetContentType(resolvedPhysicalPath, out var contentType))
+        {
+            contentType = "application/octet-stream";
+        }
+
+        byte[] fileBytes = await File.ReadAllBytesAsync(resolvedPhysicalPath);
+        string fileName = Path.GetFileName(resolvedPhysicalPath);
+
+        return (fileBytes, contentType, fileName);
     }
 
     public Task DeleteFileAsync(string relativePath)
