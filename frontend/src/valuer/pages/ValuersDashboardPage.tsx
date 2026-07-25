@@ -3,14 +3,16 @@ import { useNavigate } from 'react-router'
 
 import MetricCard from '@/features/dashboard/components/MetricCard'
 // import { ROUTES } from '../../../shared/constants/routes'
-import { useMemo, useState } from 'react'
+import {
+  //  useMemo,
+   useState } from 'react'
 import { useGetValuerDashboardMetricsQuery } from '../api/valuerDashboardApi'
 
 import { AppLoader, MetricCardSkeleton } from '@/shared/ui/loader'
 import DataTable from '@/shared/ui/table/DataTable'
 import { valuerColumns } from '../constants/valuerColumns'
 import { useCurrentValuer } from '../hooks/useCurrentValuer'
-import { mergeUniqueByKey } from '@/shared/utils/mergeUniqueByKeys'
+// import { mergeUniqueByKey } from '@/shared/utils/mergeUniqueByKeys'
 
 
 
@@ -51,7 +53,6 @@ const ValuersDashboardPage = () => {
 
 
   type Workflow =
-    | 'all'
     | 'assignedFacilities'
     | 'ongoingReports'
     | 'awaitingCompletedReports'
@@ -59,88 +60,73 @@ const ValuersDashboardPage = () => {
     | 'returnedReports'
     | 'beyondTat'
 
-  const [selectedWorkflow, setSelectedWorkflow] =
-    useState<Workflow>('all')
+const [selectedWorkflow, setSelectedWorkflow] =
+  useState<Workflow>('assignedFacilities')
 
 
-  const allFacilities = useMemo(() => {
+  // const allFacilities = useMemo(() => {
 
-    if (!data) return []
+  //   if (!data) return []
 
-    return mergeUniqueByKey(
+  //   return mergeUniqueByKey(
 
-      [
-        ...data.assignedFacilities,
-        ...data.ongoingReports,
-        ...data.awaitingCompletedReports,
-        ...data.approvedCompletedReports,
-        ...data.returnedReports,
-        ...data.beyondTat,
-      ],
+  //     [
+  //       ...data.assignedFacilities,
+  //       ...data.ongoingReports,
+  //       ...data.awaitingCompletedReports,
+  //       ...data.approvedCompletedReports,
+  //       ...data.returnedReports,
+  //       ...data.beyondTat,
+  //     ],
 
-      item => item.facilityReference,
-    )
+  //     item => item.facilityReference,
+  //   )
 
-  }, [data])
+  // }, [data])
 
-
-  const totalJobs = allFacilities.length;
 
   const workflowCards = [
-    {
-      title: 'All',
-      key: 'all',
-      count: totalJobs,
-      accent: 'primary',
-    },
-
+ 
     {
       title: 'Assigned',
       key: 'assignedFacilities',
       count: metrics?.assignedFacilityCount ?? 0,
-      accent: 'primary',
+      theme: 'awaiting',
     },
-
     {
       title: 'Ongoing',
       key: 'ongoingReports',
       count: metrics?.ongoingReportCount ?? 0,
-      accent: 'warning',
+      theme: 'pending',
     },
-
     {
       title: 'Reviewing',
       key: 'awaitingCompletedReports',
       count: metrics?.awaitingCompletedReportCount ?? 0,
-      accent: 'info',
+      theme: 'info',
     },
-
     {
       title: 'Completed',
       key: 'approvedCompletedReports',
       count: metrics?.approvedCompletedReportCount ?? 0,
-      accent: 'success',
+      theme: 'completed',
     },
-
     {
       title: 'Returned',
       key: 'returnedReports',
       count: metrics?.returnedReportCount ?? 0,
-      accent: 'danger',
+      theme: 'rejected',
     },
-
     {
       title: 'Beyond TAT',
       key: 'beyondTat',
       count: metrics?.beyondTatCount ?? 0,
-      accent: 'warning',
+      theme: 'overdue',
     },
   ] as const
 
-  const tableData =
-    selectedWorkflow === 'all'
-      ? allFacilities
-      : data?.[selectedWorkflow] ?? []
+const tableData =
+  data?.[selectedWorkflow] ?? []
 
   if (!valuerId) {
     return <AppLoader />
@@ -177,11 +163,9 @@ const ValuersDashboardPage = () => {
                 key={card.key}
                 title={card.title}
                 value={card.count}
-                // theme={card.theme}
+                theme={card.theme}
                 active={selectedWorkflow === card.key}
-                onClick={() =>
-                  setSelectedWorkflow(card.key)
-                }
+                onClick={() => setSelectedWorkflow(card.key)}
               />
             )
         )}

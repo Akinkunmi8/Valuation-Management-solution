@@ -69,7 +69,7 @@ const CmDashboardPage = () => {
       title: 'Pending Review',
       key: 'pendingReview',
       count: metrics?.pendingReviewCount ?? 0,
-      description: 'Facilities awaiting review',
+      description: 'Facilities awaiting your decision',
       theme: 'pending',
       icon: <FiSearch size={18} />,
     },
@@ -85,7 +85,7 @@ const CmDashboardPage = () => {
       title: 'Pending Report',
       key: 'pendingReportReview',
       count: metrics?.pendingReportReviewCount ?? 0,
-      description: 'Valuation report awaiting review',
+      description: 'Reports awaiting your review',
       theme: 'warning',
       icon: <FiFileText size={18} />,
     },
@@ -93,7 +93,7 @@ const CmDashboardPage = () => {
       title: 'Approved',
       key: 'approved',
       count: metrics?.approvedCount ?? 0,
-      description: 'Facilities approved',
+      description: 'Approved facilities and reports',
       theme: 'approved',
       icon: <FiCheck size={18} />,
     },
@@ -101,7 +101,7 @@ const CmDashboardPage = () => {
       title: 'Rejected',
       key: 'rejected',
       count: metrics?.rejectedCount ?? 0,
-      description: 'Facilities rejected',
+      description: 'Rejected items requiring attention',
       theme: 'rejected',
       icon: <FiXCircle size={18} />,
     },
@@ -109,7 +109,7 @@ const CmDashboardPage = () => {
       title: 'Completed',
       key: 'completed',
       count: metrics?.completedCount ?? 0,
-      description: 'Valuation process completed',
+      description: 'Completed valuation workflows',
       theme: 'completed',
       icon: <FiCheckCircle size={18} />,
     },
@@ -117,7 +117,7 @@ const CmDashboardPage = () => {
       title: 'Beyond TAT',
       key: 'beyondTat',
       count: metrics?.beyondTatCount ?? 0,
-      description: 'Facilities beyond turnaround time',
+      description: 'Workflows exceeding turnaround time',
       theme: 'overdue',
       icon: <FiAlertCircle size={18} />,
     },
@@ -160,9 +160,10 @@ const CmDashboardPage = () => {
         {workflowCards.map((card) =>
           isLoading ? <MetricCardSkeleton key={card.key} /> :
             <MetricCard
+              key={card.key}
               title={card.title}
               value={card.count}
-              // description={card.description}
+              description={card.description}
               theme={card.theme}
               icon={card.icon}
               active={selectedWorkflow === card.key}
