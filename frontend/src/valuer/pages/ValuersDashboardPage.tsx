@@ -1,11 +1,20 @@
-import { FiSearch } from 'react-icons/fi'
+import {
+  FiSearch,
+  FiClipboard,
+  FiActivity,
+  FiEye,
+  FiCheckCircle,
+  FiRotateCcw,
+  FiAlertTriangle,
+} from 'react-icons/fi'
 import { useNavigate } from 'react-router'
 
 import MetricCard from '@/features/dashboard/components/MetricCard'
 // import { ROUTES } from '../../../shared/constants/routes'
 import {
   //  useMemo,
-   useState } from 'react'
+  useState
+} from 'react'
 import { useGetValuerDashboardMetricsQuery } from '../api/valuerDashboardApi'
 
 import { AppLoader, MetricCardSkeleton } from '@/shared/ui/loader'
@@ -60,8 +69,8 @@ const ValuersDashboardPage = () => {
     | 'returnedReports'
     | 'beyondTat'
 
-const [selectedWorkflow, setSelectedWorkflow] =
-  useState<Workflow>('assignedFacilities')
+  const [selectedWorkflow, setSelectedWorkflow] =
+    useState<Workflow>('assignedFacilities')
 
 
   // const allFacilities = useMemo(() => {
@@ -86,47 +95,52 @@ const [selectedWorkflow, setSelectedWorkflow] =
 
 
   const workflowCards = [
- 
     {
       title: 'Assigned',
       key: 'assignedFacilities',
       count: metrics?.assignedFacilityCount ?? 0,
       theme: 'awaiting',
+      icon: <FiClipboard size={17} />,
     },
     {
       title: 'Ongoing',
       key: 'ongoingReports',
       count: metrics?.ongoingReportCount ?? 0,
       theme: 'pending',
+      icon: <FiActivity size={17} />,
     },
     {
       title: 'Reviewing',
       key: 'awaitingCompletedReports',
       count: metrics?.awaitingCompletedReportCount ?? 0,
       theme: 'info',
+      icon: <FiEye size={17} />,
     },
     {
       title: 'Completed',
       key: 'approvedCompletedReports',
       count: metrics?.approvedCompletedReportCount ?? 0,
       theme: 'completed',
+      icon: <FiCheckCircle size={17} />,
     },
     {
       title: 'Returned',
       key: 'returnedReports',
       count: metrics?.returnedReportCount ?? 0,
       theme: 'rejected',
+      icon: <FiRotateCcw size={17} />,
     },
     {
       title: 'Beyond TAT',
       key: 'beyondTat',
       count: metrics?.beyondTatCount ?? 0,
       theme: 'overdue',
+      icon: <FiAlertTriangle size={17} />,
     },
   ] as const
 
-const tableData =
-  data?.[selectedWorkflow] ?? []
+  const tableData =
+    data?.[selectedWorkflow] ?? []
 
   if (!valuerId) {
     return <AppLoader />
@@ -162,6 +176,7 @@ const tableData =
               <MetricCard
                 key={card.key}
                 title={card.title}
+                icon={card.icon}
                 value={card.count}
                 theme={card.theme}
                 active={selectedWorkflow === card.key}

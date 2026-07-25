@@ -115,11 +115,9 @@ export default function MetricCard({
         cursor-pointer
         hover:-translate-y-0.5
         hover:shadow-md
-
-        ${
-          active
-            ? "ring-2 ring-primary ring-offset-2 shadow-md"
-            : ""
+${active
+          ? "ring-1 ring-primary/50 shadow-md"
+          : ""
         }
       `}
     >

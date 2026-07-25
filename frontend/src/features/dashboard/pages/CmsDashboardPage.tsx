@@ -1,4 +1,11 @@
-import { FiSearch } from 'react-icons/fi'
+import {
+  FiSearch,
+  FiUserPlus,
+  FiActivity,
+  FiCheckCircle,
+  FiCreditCard,
+  FiAlertTriangle,
+} from 'react-icons/fi'
 import { useNavigate } from 'react-router'
 // 
 // import Button from '../../../shared/ui/button/Button'
@@ -48,37 +55,37 @@ const CmsDashboardPage = () => {
     {
       title: 'Awaiting Assignment',
       key: 'awaitingAssignment',
-      count:
-        metrics?.awaitingAssignmentCount ?? 0,
-      accent: 'warning',
+      count: metrics?.awaitingAssignmentCount ?? 0,
+      theme: 'awaiting',
+      icon: <FiUserPlus size={17} />,
     },
     {
       title: 'Ongoing',
       key: 'ongoingFacility',
-      count:
-        metrics?.ongoingFacilityCount ?? 0,
-      accent: 'info',
+      count: metrics?.ongoingFacilityCount ?? 0,
+      theme: 'pending',
+      icon: <FiActivity size={17} />,
     },
     {
       title: 'Completed',
       key: 'completedFacility',
-      count:
-        metrics?.completedFacilityCount ?? 0,
-      accent: 'success',
+      count: metrics?.completedFacilityCount ?? 0,
+      theme: 'completed',
+      icon: <FiCheckCircle size={17} />,
     },
     {
       title: 'Pending Valuer Payment',
       key: 'pendingValuerPayment',
-      count:
-        metrics?.pendingValuerPaymentCount ?? 0,
-      accent: 'primary',
+      count: metrics?.pendingValuerPaymentCount ?? 0,
+      theme: 'payment',
+      icon: <FiCreditCard size={17} />,
     },
     {
       title: 'Overdue',
       key: 'overdueFacility',
-      count:
-        metrics?.overdueFacilityCount ?? 0,
-      accent: 'danger',
+      count: metrics?.overdueFacilityCount ?? 0,
+      theme: 'overdue',
+      icon: <FiAlertTriangle size={17} />,
     },
   ] as const
 
@@ -111,13 +118,10 @@ const CmsDashboardPage = () => {
               key={card.key}
               title={card.title}
               value={card.count}
-              accent={card.accent}
-              onClick={() =>
-                setSelectedWorkflow(card.key)
-              }
-              active={
-                selectedWorkflow === card.key
-              }
+              theme={card.theme}
+              icon={card.icon}
+              active={selectedWorkflow === card.key}
+              onClick={() => setSelectedWorkflow(card.key)}
             />
         )}
 
