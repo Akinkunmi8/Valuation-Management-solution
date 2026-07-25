@@ -28,19 +28,13 @@ export const ROLE_MENUS: Record<
   NavigationItem[]
 > = {
 RM: [
-  {
-    label: 'Dashboard',
-    description: 'Portfolio overview',
-    href: ROUTES.rm.dashboard,
-    icon: FiGrid,
-    exact: true,
-  },
 
   {
     label: 'Facilities',
     description: 'Credit facilities',
     href: ROUTES.rm.facilities,
     icon: FiBriefcase,
+    exact: true
   },
 
   {
@@ -54,7 +48,7 @@ RM: [
     label: 'Reports',
     description: 'MIS reports',
     href: ROUTES.rm.reports,
-    icon: FiBarChart2,
+    icon: FiFileText,
   },
 ],
 

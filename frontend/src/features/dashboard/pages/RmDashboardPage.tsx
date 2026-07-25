@@ -71,7 +71,7 @@ const RmDashboardPage = () => {
       </div>
 
 
-      <div className="grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-6 fade-up">
+      <div className="grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4 fade-up">
 
         {
           isLoading ? <MetricCardSkeleton /> :
@@ -81,7 +81,7 @@ const RmDashboardPage = () => {
               description="Total credit facilities"
               // description="Active credit facilities"
               // trend="+12% this month"
-              accent="primary"
+              theme="awaiting"
               icon={<FiBriefcase size={22} />}
               onClick={() => navigate(ROUTES.rm.facilities)}
             />
@@ -96,7 +96,7 @@ const RmDashboardPage = () => {
               description="Total Valuations"
               // description="Awaiting CMU processing"
               trend="+3 new today"
-              accent="warning"
+              theme="approved"
               icon={<FiClock size={22} />}
             />
         }
@@ -110,7 +110,7 @@ const RmDashboardPage = () => {
               value={0}
               description="Everything payment"
               trend="Needs follow-up"
-              accent="info"
+              theme="payment"
               icon={<FiCreditCard size={22} />}
             />
         }
@@ -123,7 +123,7 @@ const RmDashboardPage = () => {
               value={0}
               description="Everything Report"
               trend="+5 this week"
-              accent="success"
+              theme="rejected"
               icon={<FiCheckCircle size={22} />}
             />}
 

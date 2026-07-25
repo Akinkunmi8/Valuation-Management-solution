@@ -1,116 +1,183 @@
-import type { ReactNode } from 'react'
-// import { FiArrowRight } from 'react-icons/fi'
+import type { ReactNode } from "react";
+
+type Theme =
+  | "awaiting"
+  | "payment"
+  | "approved"
+  | "rejected"
+  | "completed"
+  | "expired"
+  | "pending"
+  | "overdue"
+  | "info"
+  | "warning";
 
 type MetricCardProps = {
-  title: string
-  value: number
-  description?: string
-  trend?: string
-  icon?: ReactNode
-  accent?: 'primary' | 'warning' | 'info' | 'success' | 'danger'
-  active?: boolean
-  onClick?: () => void
-}
+  title: string;
+  value: number;
+  description?: string;
+  trend?: string;
+  icon?: ReactNode;
+  theme?: Theme;
+  active?: boolean;
+  onClick?: () => void;
+};
 
-
-const accentStyles = {
-  primary: {
-    border: 'border-primary/10',
-    bg: 'bg-primary-soft',
-    trend: 'text-primary',
+const themes = {
+  awaiting: {
+    card: "from-violet-50 via-purple-50 to-white border-violet-100",
+    icon: "bg-violet-600",
+    title: "text-violet-600",
   },
 
-  warning: {
-    border: 'border-warning/10',
-    bg: 'bg-warning-soft',
-    trend: 'text-warning',
+  payment: {
+    card: "from-emerald-50 via-teal-50 to-white border-emerald-100",
+    icon: "bg-emerald-600",
+    title: "text-emerald-600",
+  },
+
+  approved: {
+    card: "from-blue-50 via-sky-50 to-white border-blue-100",
+    icon: "bg-blue-600",
+    title: "text-blue-600",
+  },
+
+  rejected: {
+    card: "from-orange-50 via-amber-50 to-white border-orange-100",
+    icon: "bg-orange-500",
+    title: "text-orange-600",
+  },
+
+  completed: {
+    card: "from-fuchsia-50 via-purple-50 to-white border-fuchsia-100",
+    icon: "bg-fuchsia-600",
+    title: "text-fuchsia-600",
+  },
+
+  expired: {
+    card: "from-rose-50 via-red-50 to-white border-red-100",
+    icon: "bg-rose-500",
+    title: "text-rose-600",
+  },
+
+  pending: {
+    card: "from-amber-50 via-yellow-50 to-white border-amber-100",
+    icon: "bg-amber-500",
+    title: "text-amber-600",
+  },
+
+  overdue: {
+    card: "from-red-50 via-rose-50 to-white border-red-100",
+    icon: "bg-red-600",
+    title: "text-red-600",
   },
 
   info: {
-    border: 'border-info/10',
-    bg: 'bg-info-soft',
-    trend: 'text-info',
+    card: "from-cyan-50 via-sky-50 to-white border-cyan-100",
+    icon: "bg-cyan-600",
+    title: "text-cyan-600",
   },
 
-  success: {
-    border: 'border-success/10',
-    bg: 'bg-success-soft',
-    trend: 'text-success',
+  warning: {
+    card: "from-amber-50 via-yellow-50 to-white border-amber-100",
+    icon: "bg-amber-500",
+    title: "text-amber-600",
   },
-  danger: {
-    border: 'border-danger/10',
-    bg: 'bg-danger-soft',
-    trend: 'text-danger',
-  }
-}
+};
 
-const MetricCard = ({
+export default function MetricCard({
   title,
   value,
   description,
-  // trend,
+  trend,
   icon,
-  accent = 'primary',
+  theme = "awaiting",
   active = false,
   onClick,
-}: MetricCardProps) => {
-
-  const style = accentStyles[accent] ??
-    accentStyles.primary
+}: MetricCardProps) {
+  const colors = themes[theme];
 
   return (
     <button
-      onClick={onClick}
       type="button"
-      aria-label={`${title}: ${value}`}
+      onClick={onClick}
       className={`
-  group
-  text-left
-  rounded-2xl
-  border
-  px-3 py-2
-  transition-all
-  duration-200
-  cursor-pointer
+        relative
+        overflow-hidden
+        rounded-2xl
+        border
+        bg-linear-to-br
+        ${colors.card}
+        p-4
+        text-left
+        transition-all
+        duration-200
+        cursor-pointer
+        hover:-translate-y-0.5
+        hover:shadow-md
 
-  ${active
-          ? 'border-primary bg-primary-soft shadow-sm'
-          : 'border-border bg-surface hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-sm'
+        ${
+          active
+            ? "ring-2 ring-primary ring-offset-2 shadow-md"
+            : ""
         }
-`}
+      `}
     >
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-text-muted">
-            {title}
-          </p>
+      {/* Soft glow */}
+      <div className="absolute -right-8 -bottom-8 h-24 w-24 rounded-full bg-white/50 blur-2xl" />
 
-          <h3 className="mt-3 text-2xl font-bold text-text-primary">
-            {value}
-          </h3>
-        </div>
-
+      <div className="relative flex items-start gap-3">
+        {/* Icon */}
         <div
           className={`
-            rounded-lg
-            p-1.5
-             ${style.bg}
-             ${style.border} 
+            flex
+            h-9
+            w-9
+            shrink-0
+            items-center
+            justify-center
+            rounded-xl
+            text-white
+            shadow-sm
+            ${colors.icon}
           `}
         >
-
-          <span className={style.trend}>
+          <span className="text-base">
             {icon}
           </span>
         </div>
+
+        {/* Content */}
+        <div className="min-w-0">
+          <p
+            className={`
+              text-[11px]
+              font-bold
+              uppercase
+              tracking-wide
+              ${colors.title}
+            `}
+          >
+            {title}
+          </p>
+
+          <h2 className="mt-1 text-3xl font-extrabold leading-none text-slate-900">
+            {value}
+          </h2>
+
+          {trend && (
+            <p className="mt-2 text-xs font-medium text-slate-500">
+              {trend}
+            </p>
+          )}
+
+          {!trend && description && (
+            <p className="mt-2 text-xs leading-4 text-slate-500">
+              {description}
+            </p>
+          )}
+        </div>
       </div>
-
-      <p className="mt-0.5 text-sm text-text-secondary">
-        {description}
-      </p>
-
     </button>
-  )
+  );
 }
-
-export default MetricCard

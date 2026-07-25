@@ -26,14 +26,6 @@ const CmsDashboardPage = () => {
 
   const metrics = data?.metrics
 
-  const totalFacilities =
-    metrics
-      ? metrics.awaitingAssignmentCount +
-      metrics.ongoingFacilityCount +
-      metrics.completedFacilityCount +
-      metrics.pendingValuerPaymentCount +
-      metrics.overdueFacilityCount
-      : 0
 
   // TODO:
   // Confirm with backend that these
@@ -41,7 +33,7 @@ const CmsDashboardPage = () => {
 
 
   type Workflow =
-    | 'all'
+
     | 'awaitingAssignment'
     | 'ongoingFacility'
     | 'completedFacility'
@@ -49,16 +41,10 @@ const CmsDashboardPage = () => {
     | 'overdueFacility'
 
   const [selectedWorkflow, setSelectedWorkflow] =
-    useState<Workflow>('all')
+    useState<Workflow>('awaitingAssignment')
 
 
   const workflowCards = [
-    {
-      title: 'All',
-      key: 'all',
-      count: totalFacilities,
-      accent: 'primary',
-    },
     {
       title: 'Awaiting Assignment',
       key: 'awaitingAssignment',
@@ -96,16 +82,7 @@ const CmsDashboardPage = () => {
     },
   ] as const
 
-  const tableData =
-    selectedWorkflow === 'all'
-      ? [
-        ...(data?.awaitingAssignment ?? []),
-        ...(data?.ongoingFacility ?? []),
-        ...(data?.completedFacility ?? []),
-        ...(data?.pendingValuerPayment ?? []),
-        ...(data?.overdueFacility ?? []),
-      ]
-      : data?.[selectedWorkflow] ?? []
+  const tableData = data?.[selectedWorkflow] ?? [];
 
   return (
     <div className="space-y-6">

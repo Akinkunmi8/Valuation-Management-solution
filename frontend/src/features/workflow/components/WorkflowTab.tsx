@@ -22,7 +22,7 @@ const WorkflowTab = ({
     facility,
 }: WorkflowTabProps) => {
 
-    const { email: username } =
+    const { email } =
         useAppSelector(
             state => state.auth,
         )
@@ -39,9 +39,10 @@ const WorkflowTab = ({
         try {
 
             const response =
-                await approveFacility(
-                    facility.facilityReference,
-                ).unwrap()
+                await approveFacility({
+                    facilityReference: facility.facilityReference,
+                    username: email!,
+                }).unwrap()
 
             notify.success(
                 NOTIFY_TITLES.APPROVAL_SUCCESS,
@@ -93,7 +94,7 @@ const WorkflowTab = ({
                     facilityReference:
                         facility.facilityReference,
 
-                    username: username!,
+                    username: email!,
 
                     comment,
 

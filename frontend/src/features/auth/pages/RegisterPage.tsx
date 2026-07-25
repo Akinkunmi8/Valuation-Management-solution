@@ -109,14 +109,13 @@ const RegisterPage = () => {
 
       <Card className="w-full bg-transparent">
         <CardHeader>
-          <CardTitle className='text-white text-6xl'>
+        
             {/* Register User */}
             <CardTitle className="text-white text-6xl">
               {selectedRole === 'VALUER'
                 ? 'Register Valuer'
                 : 'Register User'}
             </CardTitle>
-          </CardTitle>
 
           {/* <CardDescription>
             Development only.

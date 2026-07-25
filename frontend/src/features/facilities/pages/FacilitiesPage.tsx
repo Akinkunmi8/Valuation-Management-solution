@@ -1,12 +1,21 @@
-import { FiPlus, FiSearch } from 'react-icons/fi'
+import {
+  FiPlus,
+  FiSearch,
+  FiCreditCard,
+  FiCheckCircle,
+  FiXCircle,
+  // FiClock,
+  FiCheck,
+  FiAlertCircle,
+} from 'react-icons/fi'
 import { useNavigate } from 'react-router'
 
 import Button from '@/shared/ui/button/Button'
 
-import MetricCard from '../../dashboard/components/MetricCard'
+import MetricCard from '@/features/dashboard/components/MetricCard'
 import { ROUTES } from '@/shared/constants/routes'
 // import { useState } from 'react'
-import { useGetRmDashboardMetricsQuery } from '../../dashboard/api/rmDashboardApi'
+import { useGetRmDashboardMetricsQuery } from '@/features/dashboard/api/rmDashboardApi'
 import { useAppSelector } from '@/app/store/hooks'
 // import { getCreatedBy } from '../../auth/utils/createdBy'
 import { MetricCardSkeleton } from '@/shared/ui/loader'
@@ -58,43 +67,56 @@ const FacilitiesPage = () => {
   } = useMetricFilter<Workflow>('awaitingPayment')
 
 
-  const workflowCards: {
-    title: string
-    key: Workflow
-    count: number
-  }[] = [
-    {
-      title: 'Awaiting Payment',
-      key: 'awaitingPayment',
-      count: metrics?.awaitingPaymentCount ?? 0,
-    },
-    {
-      title: 'Payment Successful',
-      key: 'pendingWithSuccessfulPayment',
-      count: metrics?.pendingWithSuccessfulPaymentCount ??
-        0,
-    },
-    {
-      title: 'Approved',
-      key: 'approved',
-      count: metrics?.approvedCount ?? 0,
-    },
-    {
-      title: 'Rejected',
-      key: 'rejected',
-      count: metrics?.rejectedCount ?? 0,
-    },
-    {
-      title: 'Completed',
-      key: 'completed',
-      count: metrics?.completedCount ?? 0,
-    },
-    {
-      title: 'Expired',
-      key: 'expired',
-      count: metrics?.expiredCount ?? 0,
-    },
-  ] as const;
+ const workflowCards = [
+  {
+    title: 'Awaiting Payment',
+    key: 'awaitingPayment',
+    count: metrics?.awaitingPaymentCount ?? 0,
+    description: 'Payment required from customer',
+    theme: 'warning',
+    icon: <FiCreditCard size={20} />,
+  },
+  {
+    title: 'Payment Successful',
+    key: 'pendingWithSuccessfulPayment',
+    count: metrics?.pendingWithSuccessfulPaymentCount ?? 0,
+    description: 'Payment received, awaiting processing',
+    theme: 'payment',
+    icon: <FiCheckCircle size={20} />,
+  },
+  {
+    title: 'Approved',
+    key: 'approved',
+    count: metrics?.approvedCount ?? 0,
+    description: 'Facility approved for processing',
+    theme: 'approved',
+    icon: <FiCheck size={20} />,
+  },
+  {
+    title: 'Rejected',
+    key: 'rejected',
+    count: metrics?.rejectedCount ?? 0,
+    description: 'Facility request rejected',
+    theme: 'rejected',
+    icon: <FiXCircle size={20} />,
+  },
+  {
+    title: 'Completed',
+    key: 'completed',
+    count: metrics?.completedCount ?? 0,
+    description: 'Valuation process completed',
+    theme: 'completed',
+    icon: <FiCheckCircle size={20} />,
+  },
+  {
+    title: 'Expired',
+    key: 'expired',
+    count: metrics?.expiredCount ?? 0,
+    description: 'Valuation request has expired',
+    theme: 'expired',
+    icon: <FiAlertCircle size={20} />,
+  },
+] as const
 
   const tableData = useMemo(() => {
     return data?.[selectedWorkflow] ?? [];
@@ -183,25 +205,24 @@ const FacilitiesPage = () => {
 
       </div> */}
 
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-6 fade-up">
-        {workflowCards.map((card) =>
-          isLoading ? <MetricCardSkeleton key={card.key} /> :
-            <MetricCard
-              key={card.key}
-              title={card.title}
-              value={card.count}
-              onClick={() =>
-                setSelectedWorkflow(card.key)
-              }
-              active={
-                selectedWorkflow === card.key
-              }
-            />
-        )}
-
-
-
-      </div>
+   <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 fade-up">
+  {workflowCards.map((card) =>
+    isLoading ? (
+      <MetricCardSkeleton key={card.key} />
+    ) : (
+      <MetricCard
+        key={card.key}
+        title={card.title}
+        value={card.count}
+        // description={card.description}
+        theme={card.theme}
+        icon={card.icon}
+        active={selectedWorkflow === card.key}
+        onClick={() => setSelectedWorkflow(card.key)}
+      />
+    ),
+  )}
+</div>
 
       {/* Search */}
 

@@ -16,7 +16,7 @@ const LoginPage = lazy(() => import('@/features/auth/pages/LoginPage'))
 // const VerificationPage = lazy(() => import('../../features/auth/pages/VerificationPage'))
 
 import ProtectedRoute from '@/shared/auth/ProtectedRoute'
-import RmDashboardPage from '@/features/dashboard/pages/RmDashboardPage'
+// import RmDashboardPage from '@/features/dashboard/pages/RmDashboardPage'
 import CmDashboardPage from '@/features/dashboard/pages/CmDashboardPage'
 import CmsDashboardPage from '@/features/dashboard/pages/CmsDashboardPage'
 import ValuerDashboardPage from '@/valuer/pages/ValuersDashboardPage'
@@ -28,6 +28,7 @@ import FacilityDetailsPage from '@/features/facilities/pages/FacilityDetailsPage
 import UnauthorizedPage from '@/shared/pages/UnauthorizedPage'
 import RoleGuard from '@/shared/auth/RoleGuard'
 import { AppLoader } from '@/shared/ui/loader'
+import PaymentsPage from '@/features/payments/Page/PaymentsPage'
 
 
 
@@ -81,10 +82,10 @@ const AppRouter = () => {
                 />
               }
             >
-              <Route
+              {/* <Route
                 path={ROUTES.rm.dashboard}
                 element={<RmDashboardPage />}
-              />
+              /> */}
 
               <Route
                 path={ROUTES.rm.facilities}
@@ -99,6 +100,11 @@ const AppRouter = () => {
               <Route
                 path={ROUTES.rm.facilityDetails}
                 element={<FacilityDetailsPage />}
+              />
+
+              <Route
+                path={ROUTES.rm.payments}
+                element={<PaymentsPage />}
               />
 
             </Route>

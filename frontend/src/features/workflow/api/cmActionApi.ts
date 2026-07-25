@@ -1,5 +1,13 @@
-import type { ApiResponse, RejectFacilityRequest } from "@/features/approvals/types/cmActionTypes";
+import type {
+  ApiResponse,
+  RejectFacilityRequest,
+} from "@/features/approvals/types/cmActionTypes";
 import { baseApi } from "@/shared/api/baseApi";
+
+export interface ApproveFacilityRequest {
+  facilityReference: string;
+  username: string;
+}
 
 export const cmActionApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -9,70 +17,52 @@ export const cmActionApi = baseApi.injectEndpoints({
         success: boolean;
         message: string;
       },
-      string
+      ApproveFacilityRequest
     >({
-      query: (facilityReference) => ({
+      query: ({ facilityReference, username }) => ({
         url: `/api/CmAction/approve-facility/${facilityReference}`,
-
         method: "POST",
+        body: {
+          username,
+          facilityReference,
+        },
       }),
 
-      invalidatesTags: (
-        _result, 
-        _error, 
-        facilityReference) => [
+      invalidatesTags: (_result, _error, { facilityReference }) => [
         {
           type: "Facility",
           id: facilityReference,
         },
-
         "RmDashboard",
-
         "CmDashboard",
       ],
     }),
 
     // Reject Facility
-    rejectFacility:
-        builder.mutation<
-          ApiResponse,
-          RejectFacilityRequest
-        >({
+    rejectFacility: builder.mutation<ApiResponse, RejectFacilityRequest>({
+      query: ({ facilityReference, username, comment }) => ({
+        url: `/api/CmAction/reject-facility/${facilityReference}`,
 
-          query: ({
-            facilityReference,
-            username,
-            comment,
-          }) => ({
+        method: "POST",
 
-            url: `/api/CmAction/reject-facility/${facilityReference}`,
+        body: {
+          facilityReference,
+          username,
+          comment,
+        },
+      }),
 
-            method: 'POST',
-
-            body: {
-              facilityReference,
-              username,
-              comment,
-            },
-
-          }),
-
-          invalidatesTags: (
-            _result,
-            _error,
-            { facilityReference },
-          ) => [
-            {
-              type: 'Facility',
-              id: facilityReference,
-            },
-            'RmDashboard',
-            'CmDashboard',
-          ],
-
-        }),
-
+      invalidatesTags: (_result, _error, { facilityReference }) => [
+        {
+          type: "Facility",
+          id: facilityReference,
+        },
+        "RmDashboard",
+        "CmDashboard",
+      ],
+    }),
   }),
 });
 
-export const { useApproveFacilityMutation, useRejectFacilityMutation } = cmActionApi;
+export const { useApproveFacilityMutation, useRejectFacilityMutation } =
+  cmActionApi;

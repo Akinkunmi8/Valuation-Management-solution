@@ -60,7 +60,7 @@ export const ROUTES = {
 export const getDashboardRouteForRole = (role: AuthRole) => {
   switch (role) {
     case "RM":
-      return ROUTES.rm.dashboard;
+      return ROUTES.rm.facilities;
 
     case "CM":
       return ROUTES.cm.dashboard;

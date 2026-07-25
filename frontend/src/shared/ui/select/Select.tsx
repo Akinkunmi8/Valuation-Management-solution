@@ -20,7 +20,10 @@ export type SelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'childre
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
-    { className, disabled, error, hint, id, label, labelClassName, options, placeholder, required, ...props },
+    { className, disabled, error, hint, id, label, labelClassName, options, placeholder, required,
+      value,
+      defaultValue,
+      ...props },
     ref,
   ) => {
     const generatedId = useId()
@@ -32,7 +35,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <div className="w-full">
         {label ? (
-          <label className={`mb-1.5 block text-sm font-semibold  ${labelClassName ||'text-text-primary' }`} htmlFor={selectId}>
+          <label className={`mb-1.5 block text-sm font-semibold  ${labelClassName || 'text-text-primary'}`} htmlFor={selectId}>
             {label}
             {required ? <span className="ml-1 text-danger">*</span> : null}
           </label>
@@ -53,9 +56,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             id={selectId}
             ref={ref}
             required={required}
-            defaultValue=""
-            {...props}
-          >
+            defaultValue={value === undefined ? (defaultValue ?? '') : undefined}
+            {...props} >
             {placeholder ? (
               <option value="" disabled>
                 {placeholder}

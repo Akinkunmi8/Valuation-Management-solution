@@ -7,7 +7,8 @@ export const getDashboardRoute = (
 
   return {
 
-    RM: ROUTES.rm.dashboard,
+    // RM: ROUTES.rm.dashboard,
+    RM: ROUTES.rm.facilities,
 
     CM: ROUTES.cm.dashboard,
 
