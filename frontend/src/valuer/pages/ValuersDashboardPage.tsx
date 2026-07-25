@@ -177,7 +177,7 @@ const ValuersDashboardPage = () => {
                 key={card.key}
                 title={card.title}
                 value={card.count}
-                accent={card.accent}
+                // theme={card.theme}
                 active={selectedWorkflow === card.key}
                 onClick={() =>
                   setSelectedWorkflow(card.key)
