@@ -41,12 +41,12 @@ export const Card = forwardRef<
       <div
         ref={ref}
         className={clsx(
-          "rounded-3xl border transition-all duration-300",
+          "rounded-2xl border transition-all duration-200 ease-out",
 
           toneClasses[tone],
 
           hover &&
-            "hover:-translate-y-1 hover:shadow-lg",
+            `hover:-translate-y-0.5 hover:${toneClasses.elevated}`,
 
           className
         )}
@@ -66,7 +66,7 @@ HTMLAttributes<HTMLDivElement>
 <div
 ref={ref}
 className={clsx(
-"px-7 pt-6 pb-4",
+"px-6 pt-5 pb-3",
 className
 )}
 {...props}
@@ -93,7 +93,7 @@ CardDescription.displayName = 'CardDescription'
 
 export const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => {
-    return <div className={clsx('px-7 pb-7', className)} ref={ref} {...props} />
+    return <div className={clsx('px-6 pb-7', className)} ref={ref} {...props} />
   },
 )
 
@@ -102,7 +102,7 @@ CardContent.displayName = 'CardContent'
 export const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => {
     return (
-      <div className={clsx('flex items-center justify-end gap-3 border-border px-7 pt-5 pb-7', className)} ref={ref} {...props} />
+      <div className={clsx('flex items-center justify-end gap-3 border-border px-6 pt-5 pb-7', className)} ref={ref} {...props} />
     )
   },
 )

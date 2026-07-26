@@ -8,7 +8,7 @@ import {
 import { useMemo } from "react";
 import { useAppSelector } from "@/app/store/hooks";
 import { useLocation } from "react-router";
-import {getPageMeta} from "@/shared/utils/getPageMeta"
+import { getPageMeta } from "@/shared/utils/getPageMeta"
 
 type TopbarProps = {
   onMenuClick: () => void;
@@ -43,15 +43,15 @@ const Topbar = ({
   const location = useLocation()
 
 
-const page = getPageMeta(location.pathname);
+  const page = getPageMeta(location.pathname);
 
 
   const displayRole =
     roleLabels[roles[0]] ?? roles[0];
 
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/85 backdrop-blur-md">
-      <div className="flex h-20 items-center gap-6 px-6">
+    <header className="sticky top-0 z-20 border-b border-border bg-white/90 backdrop-blur-xl shadow-xs">
+      <div className="flex h-20 items-center gap-8 px-8">
 
         {/* Mobile Menu */}
 
@@ -64,21 +64,21 @@ const page = getPageMeta(location.pathname);
 
         {/* Greeting */}
 
-<div className="min-w-65">
+        <div className="min-w-65">
 
-    <p className="text-sm font-semibold text-indigo-600">
-        {greeting} 👋
-    </p>
+          <p className="text-sm font-semibold text-indigo-600">
+            {greeting} 👋
+          </p>
 
-    <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
-        {page.title}
-    </h1>
-{/* 
+          <h1 className="mt-1 text-2xl font-bold tracking-tight text-slate-900">
+            {page.title}
+          </h1>
+          {/* 
     <p className="mt-1 text-sm text-slate-500">
         {page.description}
     </p> */}
 
-</div>
+        </div>
 
         {/* Search */}
 
@@ -130,12 +130,9 @@ const page = getPageMeta(location.pathname);
             justify-center
             rounded-2xl
             border
-            border-slate-200
-            bg-white
-            shadow-sm
+           border-border bg-surface shadow-xs hover:shadow-sm
             transition-all
             hover:-translate-y-0.5
-            hover:shadow-md
             "
           >
             <FiBell className="h-5 w-5 text-slate-600" />
@@ -152,11 +149,11 @@ const page = getPageMeta(location.pathname);
             gap-3
             rounded-2xl
             border
-            border-slate-200
+            border-border
             bg-white
             px-3
             py-2
-            shadow-sm
+            shadow-xs
             transition-all
             hover:-translate-y-0.5
             hover:shadow-md

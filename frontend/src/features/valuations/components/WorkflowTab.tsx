@@ -35,6 +35,10 @@ export default function WorkflowTab({
     const [rejectReport, { isLoading: rejecting }] =
         useRejectReportMutation();
 
+    const isReportFinalised =
+        report.reportApprovalStatus === "Approved" ||
+        report.reportApprovalStatus === "Rejected";
+
     const handleApprove = async () => {
         try {
 
@@ -135,6 +139,7 @@ export default function WorkflowTab({
                             <Button
                                 // variant="outline"
                                 onClick={() => setOpenReject(true)}
+                                disabled={isReportFinalised}
                             >
                                 Reject Report
                             </Button>
@@ -142,8 +147,13 @@ export default function WorkflowTab({
                             <Button
                                 isLoading={approving}
                                 onClick={handleApprove}
+                                disabled={isReportFinalised}
                             >
-                                Approve Report
+                                {
+                                    isReportFinalised ?
+                                        "Report Approved" :
+                                        "Approve Report"
+                                }
                             </Button>
 
                         </div>
@@ -163,6 +173,13 @@ export default function WorkflowTab({
                 </CardContent>
 
             </Card>
+
+            {isReportFinalised && (
+                <p className="text-sm text-text-muted">
+                    This report has already been {report.reportApprovalStatus.toLowerCase()}.
+                    No further CM action is required.
+                </p>
+            )}
 
             <CommentModal
                 open={openReject}

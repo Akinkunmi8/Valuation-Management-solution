@@ -11,7 +11,7 @@ body,
 body {
   margin: 0;
   font-family: "Inter", "Open Sans", system-ui, sans-serif;
-  background: #f4f4f5;
+  background: #eef3f9;
 }
 
 
@@ -29,7 +29,8 @@ body {
 
   /* ===== Background ===== */
 
-  --color-background: #F8FAFC;
+  /* --color-background: #F1F5F9; */
+  --color-background: #EEF3F9;
 
   --color-surface: #FFFFFF;
   --color-surface-hover: #F8FAFC;
