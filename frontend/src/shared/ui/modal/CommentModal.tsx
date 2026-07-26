@@ -3,22 +3,36 @@ import { useState } from 'react'
 import Button from '@/shared/ui/button/Button'
 // import Input from '@/shared/ui/input/Input'
 
-type RejectFacilityModalProps = {
+type CommentModalProps = {
     open: boolean
     loading?: boolean
+    title?: string
+    description?: string
+    confirmText?: string
     onClose: () => void
     onSubmit: (comment: string) => Promise<void>
 }
 
-const RejectFacilityModal = ({
+
+const CommentModal = ({
     open,
     loading,
+    title,
+    description,
+    confirmText,
     onClose,
     onSubmit,
-}: RejectFacilityModalProps) => {
+}: CommentModalProps) => {
 
-    const [comment, setComment] =
-        useState('')
+    const modalTitle = title ?? "Reject Facility";
+    const modalDescription = description ??
+        "Please provide a reason for rejecting this facility.";
+    const modalButton = confirmText ?? "Reject Facility";
+
+
+    const [comment, setComment] = useState('')
+
+    const canSubmit = comment.trim().length > 0;
 
     const handleClose = () => {
         setComment('')
@@ -30,6 +44,8 @@ const RejectFacilityModal = ({
 
     const handleSubmit = async () => {
         await onSubmit(comment)
+
+        setComment("")
     }
     return (
 
@@ -38,11 +54,11 @@ const RejectFacilityModal = ({
             <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
 
                 <h2 className="text-xl font-semibold">
-                    Reject Facility
+                    {modalTitle}
                 </h2>
 
                 <p className="mt-2 text-sm text-text-muted">
-                    Please provide a reason for rejecting this facility.
+                    {modalDescription}
                 </p>
 
                 <div className="mt-6">
@@ -73,8 +89,9 @@ const RejectFacilityModal = ({
                     <Button
                         onClick={handleSubmit}
                         isLoading={loading}
+                        disabled={!canSubmit}
                     >
-                        Reject Facility
+                        {modalButton}
                     </Button>
                 </div>
             </div>
@@ -82,4 +99,4 @@ const RejectFacilityModal = ({
     )
 }
 
-export default RejectFacilityModal
+export default CommentModal;

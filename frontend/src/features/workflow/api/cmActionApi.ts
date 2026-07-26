@@ -1,48 +1,43 @@
-import type {
-  ApiResponse,
-  RejectFacilityRequest,
-} from "@/features/approvals/types/cmActionTypes";
 import { baseApi } from "@/shared/api/baseApi";
 
-export interface ApproveFacilityRequest {
-  facilityReference: string;
-  username: string;
-}
+import type {
+  ApiResponse,
+  ApproveFacilityRequest,
+  RejectFacilityRequest,
+  ApproveReportRequest,
+  RejectReportRequest,
+} from "@/features/approvals/types/cmActionTypes";
 
 export const cmActionApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // Approve Facility
-    approveFacility: builder.mutation<
-      {
-        success: boolean;
-        message: string;
-      },
-      ApproveFacilityRequest
-    >({
+    //--------------------------------------
+    // APPROVE FACILITY
+    //--------------------------------------
+
+    approveFacility: builder.mutation<ApiResponse, ApproveFacilityRequest>({
       query: ({ facilityReference, username }) => ({
         url: `/api/CmAction/approve-facility/${facilityReference}`,
         method: "POST",
-        body: {
-          username,
-          facilityReference,
+
+        params: {
+          Username: username,
         },
       }),
 
       invalidatesTags: (_result, _error, { facilityReference }) => [
-        {
-          type: "Facility",
-          id: facilityReference,
-        },
+        { type: "Facility", id: facilityReference },
         "RmDashboard",
         "CmDashboard",
       ],
     }),
 
-    // Reject Facility
+    //--------------------------------------
+    // REJECT FACILITY
+    //--------------------------------------
+
     rejectFacility: builder.mutation<ApiResponse, RejectFacilityRequest>({
       query: ({ facilityReference, username, comment }) => ({
         url: `/api/CmAction/reject-facility/${facilityReference}`,
-
         method: "POST",
 
         body: {
@@ -53,16 +48,59 @@ export const cmActionApi = baseApi.injectEndpoints({
       }),
 
       invalidatesTags: (_result, _error, { facilityReference }) => [
-        {
-          type: "Facility",
-          id: facilityReference,
-        },
+        { type: "Facility", id: facilityReference },
         "RmDashboard",
         "CmDashboard",
+      ],
+    }),
+
+    //--------------------------------------
+    // APPROVE REPORT
+    //--------------------------------------
+
+    approveReport: builder.mutation<ApiResponse, ApproveReportRequest>({
+      query: ({ facilityReference, username }) => ({
+        url: `/api/CmAction/approve-report/${facilityReference}`,
+        method: "POST",
+
+        params: {
+          Username: username,
+        },
+      }),
+
+      invalidatesTags: (_result, _error, { facilityReference }) => [
+        { type: "ValuationReport", id: facilityReference },
+        "ValuationReports",
+      ],
+    }),
+
+    //--------------------------------------
+    // REJECT REPORT
+    //--------------------------------------
+
+    rejectReport: builder.mutation<ApiResponse, RejectReportRequest>({
+      query: ({ facilityReference, username, comment }) => ({
+        url: `/api/CmAction/reject-report/${facilityReference}`,
+        method: "POST",
+
+        body: {
+          facilityReference,
+          username,
+          comment,
+        },
+      }),
+
+      invalidatesTags: (_result, _error, { facilityReference }) => [
+        { type: "ValuationReport", id: facilityReference },
+        "ValuationReports",
       ],
     }),
   }),
 });
 
-export const { useApproveFacilityMutation, useRejectFacilityMutation } =
-  cmActionApi;
+export const {
+  useApproveFacilityMutation,
+  useRejectFacilityMutation,
+  useApproveReportMutation,
+  useRejectReportMutation,
+} = cmActionApi;

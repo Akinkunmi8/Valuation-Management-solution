@@ -23,6 +23,8 @@ export const ROUTES = {
     dashboard: "/dashboard/cm",
     facilityReviews: "/dashboard/cm/facility-reviews/:facilityReference",
     reportReviews: "/dashboard/cm/report-reviews",
+    reportDetails: "/dashboard/cm/valuation-report-details/:facilityReference",
+    valuersPayment: "/dashboard/cm/valuers-payments",
   },
 
   cms: {

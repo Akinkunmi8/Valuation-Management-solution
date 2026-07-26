@@ -69,10 +69,16 @@ RM: [
   },
 
   {
-    label: 'Report Reviews',
+    label: 'Valuation Reports',
     description: 'Review reports',
     href: ROUTES.cm.reportReviews,
     icon: FiFileText,
+  },
+  {
+    label: 'Payments',
+    description: 'Valuers Payments',
+    href: ROUTES.cm.valuersPayment,
+    icon: FiCreditCard,
   },
 ],
  CMS: [

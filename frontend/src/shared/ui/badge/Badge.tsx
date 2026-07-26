@@ -1,5 +1,5 @@
 
-type StatusBadgeProps = {
+export type StatusBadgeProps = {
   label: string
 
   variant:

@@ -12,7 +12,7 @@ import { notify } from '@/shared/lib/toast'
 import { NOTIFY_TITLES } from '@/shared/constants/notifyTitles'
 import { useState } from 'react'
 import { useAppSelector } from '@/app/store/hooks'
-import RejectFacilityModal from './RejectFacilityModal'
+import CommentModal from '@/shared/ui/modal/CommentModal'
 
 type WorkflowTabProps = {
     facility: FacilityDetailsResponse
@@ -201,7 +201,7 @@ const WorkflowTab = ({
             <CardContent>
             </CardContent>
 
-            <RejectFacilityModal
+            <CommentModal
                 open={showRejectModal}
                 loading={isRejecting}
                 onClose={() =>

@@ -29,6 +29,8 @@ import UnauthorizedPage from '@/shared/pages/UnauthorizedPage'
 import RoleGuard from '@/shared/auth/RoleGuard'
 import { AppLoader } from '@/shared/ui/loader'
 import PaymentsPage from '@/features/payments/Page/PaymentsPage'
+import ValuationReportPage from '@/features/valuations/pages/ValuationReportsPage'
+import ValuationReportDetailsPage from '@/features/valuations/pages/ValuationReportDetailsPage'
 
 
 
@@ -122,16 +124,35 @@ const AppRouter = () => {
                 path={ROUTES.cm.dashboard}
                 element={<CmDashboardPage />}
               />
+
+
               <Route
-                path={ROUTES.cms.assignValuer}
+                path={ROUTES.cm.facilityReviews}
                 element={<FacilityDetailsPage />}
               />
-            </Route>
 
-            <Route
+              <Route
               path={ROUTES.cm.facilityReviews}
-              element={<FacilityDetailsPage />}
-            />
+              />
+
+
+              <Route
+              path={ROUTES.cm.reportDetails}
+              element={<ValuationReportDetailsPage/>}
+              />
+
+
+              <Route
+              path={ROUTES.cm.reportReviews}
+              element={<ValuationReportPage/>}
+              />
+
+
+              <Route
+              path={ROUTES.cm.valuersPayment}
+              />
+
+            </Route>
 
 
             {/*======= CMS =======*/}
@@ -149,61 +170,69 @@ const AppRouter = () => {
               />
             </Route>
 
-            {/* <Route
+            <Route
+              path={ROUTES.cms.assignValuer}
+              element={<FacilityDetailsPage />}
+            />
+          </Route>
+
+          {/* <Route
               path={ROUTES.bm.dashboard}
               element={<BmDashboardPage />}
             /> */}
 
-            {/*======= VALUER =======*/}
-            <Route
-              element={
-                <RoleGuard
-                  allowedRoles={['VALUER']}
-                />
-              }
-            >
-              <Route
-                path={ROUTES.valuer.dashboard}
-                element={<ValuerDashboardPage />}
+          {/*======= VALUER =======*/}
+          <Route
+            element={
+              <RoleGuard
+                allowedRoles={['VALUER']}
               />
-            </Route>
+            }
+          >
+            <Route
+              path={ROUTES.valuer.dashboard}
+              element={<ValuerDashboardPage />}
+            />
+          </Route>
 
-            {/* <Route
+          {/* <Route
               path={ROUTES.audit.dashboard}
               element={<AuditDashboardPage />}
             /> */}
 
-            {/*======= ADMIN =======*/}
+          {/*======= ADMIN =======*/}
 
-            <Route
-              element={
-                <RoleGuard
-                  allowedRoles={['ADMIN']}
-                />
-              }
-            >
-              <Route
-                path={ROUTES.admin.dashboard}
-                element={<AdminDashboardPage />}
+          <Route
+            element={
+              <RoleGuard
+                allowedRoles={['ADMIN']}
               />
-            </Route>
-
-
+            }
+          >
+            <Route
+              path={ROUTES.admin.dashboard}
+              element={<AdminDashboardPage />}
+            />
           </Route>
+
+
         </Route>
 
-        <Route
-          path="*"
-          element={
-            <Navigate
-              to={ROUTES.welcome}
-              replace
-            />
-          }
-        />
+      <Route
+        path="*"
+        element={
+          <Navigate
+            to={ROUTES.welcome}
+            replace
+          />
+        }
+      />
+
       </Routes>
 
-    </BrowserRouter>
+
+
+    </BrowserRouter >
   )
 }
 
