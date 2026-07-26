@@ -5,7 +5,8 @@ import StatusBadge from "@/shared/ui/badge/Badge";
 import { formatCurrency } from "@/shared/utils/formatCurrency";
 import { formatDate } from "@/shared/utils/formatDate";
 
-import type { ValuationReport } from "../types/valuationReportTypes";
+import type { ValuationReportDashboardRow } from "../types/valuationReportTypes";
+// coreModule
 
 import {
   getApprovalStatus,
@@ -13,11 +14,13 @@ import {
   getReportStatus,
 } from "@/features/facilities/utils/status";
 
-export const valuationReportColumns: Column<ValuationReport>[] = [
+
+export const valuationReportColumns: Column<ValuationReportDashboardRow>[] = [
   {
     key: "facilityReference",
     header: "Reference",
   },
+
 
   {
     key: "customerName",
