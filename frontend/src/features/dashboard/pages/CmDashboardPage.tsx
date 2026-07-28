@@ -1,8 +1,7 @@
 import {
   FiAlertCircle,
   FiCheck,
-  FiCheckCircle,
-  FiFileText,
+  // FiCheckCircle,
   FiSearch,
   FiUserCheck,
   FiXCircle,
@@ -82,14 +81,6 @@ const CmDashboardPage = () => {
       icon: <FiUserCheck size={18} />,
     },
     {
-      title: 'Pending Report',
-      key: 'pendingReportReview',
-      count: metrics?.pendingReportReviewCount ?? 0,
-      description: 'Reports awaiting your review',
-      theme: 'warning',
-      icon: <FiFileText size={18} />,
-    },
-    {
       title: 'Approved',
       key: 'approved',
       count: metrics?.approvedCount ?? 0,
@@ -105,14 +96,14 @@ const CmDashboardPage = () => {
       theme: 'rejected',
       icon: <FiXCircle size={18} />,
     },
-    {
-      title: 'Completed',
-      key: 'completed',
-      count: metrics?.completedCount ?? 0,
-      description: 'Completed valuation workflows',
-      theme: 'completed',
-      icon: <FiCheckCircle size={18} />,
-    },
+    // {
+    //   title: 'Completed',
+    //   key: 'completed',
+    //   count: metrics?.completedCount ?? 0,
+    //   description: 'Completed valuation workflows',
+    //   theme: 'completed',
+    //   icon: <FiCheckCircle size={18} />,
+    // },
     {
       title: 'Beyond TAT',
       key: 'beyondTat',
@@ -143,11 +134,11 @@ const CmDashboardPage = () => {
 
         <div>
           <h1 className="text-3xl font-bold text-text-primary">
-            CM Dashboard
+            Facility Reviews Queue
           </h1>
 
           <p className="mt-2 text-sm text-text-secondary">
-            Review facilities, approve requests and monitor valuation workflow.
+            Manage facilities awaiting collateral review and approval before valuer assignment.
           </p>
         </div>
 
@@ -181,7 +172,7 @@ const CmDashboardPage = () => {
 
           <input
             type="text"
-            placeholder="Search reference no, account or customer..."
+            placeholder="Search facility reference or customer..."
             className="h-11 w-full rounded-xl border border-slate-300 pl-10 pr-4 text-sm outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100"
           />
         </div>
@@ -206,7 +197,7 @@ const CmDashboardPage = () => {
 
               onRowClick={(facility) =>
                 navigate(
-                  `/dashboard/cm/facility-reviews/${facility.facilityReference}`
+                  `/dashboard/cm/facility-reviews-details/${facility.facilityReference}`
                   // `/dashboard/cm/facilities/${facility.facilityReference}`,
                 )
               }

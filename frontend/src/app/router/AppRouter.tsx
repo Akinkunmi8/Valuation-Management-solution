@@ -122,34 +122,44 @@ const AppRouter = () => {
             >
               <Route
                 path={ROUTES.cm.dashboard}
+                element={
+                  <Navigate
+                    to={ROUTES.cm.facilityReviews}
+                    replace
+                  />
+                }
+              />
+
+              <Route
+                path={ROUTES.cm.facilityReviews}
                 element={<CmDashboardPage />}
               />
 
 
               <Route
-                path={ROUTES.cm.facilityReviews}
+                path={ROUTES.cm.cmFacilityReviewsDetails}
                 element={<FacilityDetailsPage />}
               />
 
-              <Route
+              {/* <Route
               path={ROUTES.cm.facilityReviews}
+              /> */}
+
+
+              <Route
+                path={ROUTES.cm.reportDetails}
+                element={<ValuationReportDetailsPage />}
               />
 
 
               <Route
-              path={ROUTES.cm.reportDetails}
-              element={<ValuationReportDetailsPage/>}
+                path={ROUTES.cm.reportReviews}
+                element={<ValuationReportPage />}
               />
 
 
               <Route
-              path={ROUTES.cm.reportReviews}
-              element={<ValuationReportPage/>}
-              />
-
-
-              <Route
-              path={ROUTES.cm.valuersPayment}
+                path={ROUTES.cm.valuersPayment}
               />
 
             </Route>
@@ -218,15 +228,15 @@ const AppRouter = () => {
 
         </Route>
 
-      <Route
-        path="*"
-        element={
-          <Navigate
-            to={ROUTES.welcome}
-            replace
-          />
-        }
-      />
+        <Route
+          path="*"
+          element={
+            <Navigate
+              to={ROUTES.welcome}
+              replace
+            />
+          }
+        />
 
       </Routes>
 

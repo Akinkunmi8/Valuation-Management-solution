@@ -85,7 +85,7 @@ const themes = {
   },
 };
 
-export default function MetricCard({
+const MetricCard = ({
   title,
   value,
   description,
@@ -94,7 +94,7 @@ export default function MetricCard({
   theme = "awaiting",
   active = false,
   onClick,
-}: MetricCardProps) {
+}: MetricCardProps) => {
   const colors = themes[theme];
 
   return (
@@ -178,3 +178,5 @@ ${active
     </button>
   );
 }
+
+export default MetricCard

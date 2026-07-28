@@ -53,13 +53,13 @@ RM: [
 ],
 
  CM: [
-  {
-    label: 'Dashboard',
-    description: 'Review overview',
-    href: ROUTES.cm.dashboard,
-    icon: FiGrid,
-    exact: true,
-  },
+  // {
+  //   label: 'Dashboard',
+  //   description: 'Review overview',
+  //   href: ROUTES.cm.dashboard,
+  //   icon: FiGrid,
+  //   exact: true,
+  // },
 
   {
     label: 'Facility Reviews',
