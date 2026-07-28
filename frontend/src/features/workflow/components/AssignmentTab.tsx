@@ -4,13 +4,15 @@ import Button from '@/shared/ui/button/Button'
 // import Select, { type SelectOption } from '@/shared/ui/select/Select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card/Card'
 import { useGetValuerDropdownQuery } from '@/valuer/api/valuerApi'
-import { useAssignValuerMutation } from '../api/cmsActionApi'
+import { useAssignValuerMutation, useCancelFacilityMutation } from '../api/cmsActionApi'
 
 import type { FacilityDetailsResponse } from '@/features/facilities/types/facilityTypes'
 import { notify } from '@/shared/lib/toast'
 import { useAppSelector } from '@/app/store/hooks'
 import Select from '@/shared/ui/select/Select'
 import { FacilityApprovalStatus, ValuationStatus } from '@/shared/constants/workflowStatus'
+
+import CommentModal from '@/shared/ui/modal/CommentModal'
 // import StatusBadge from '@/shared/ui/badge/Badge'
 // import { getMockValuerOptions } from '@/features/facilities/services/mockValuers'
 
@@ -19,10 +21,7 @@ import { FacilityApprovalStatus, ValuationStatus } from '@/shared/constants/work
 // }
 
 type AssignmentTabProps = {
-    facility: FacilityDetailsResponse;
-    canAssign: boolean;
-    alreadyAssigned: boolean;
-    completed: boolean;
+  facility: FacilityDetailsResponse;
 }
 
 const AssignmentTab = (
@@ -54,6 +53,13 @@ const AssignmentTab = (
     },
   ] = useAssignValuerMutation();
 
+
+  const [
+    cancelFacility,
+    {
+      isLoading: isCancelling,
+    },
+  ] = useCancelFacilityMutation();
 
   // const handleAssign = async () => {
   //   if (!selectedValuer) return
@@ -98,93 +104,176 @@ const AssignmentTab = (
       setSelectedValuer(null);
 
       notify.success(
-        "Success",
-        "Valuer assigned successfully.",
+        "Assignment Successful",
+        `${selectedValuer.name} has been assigned to this facility.`,
       );
     } catch (error) {
       notify.apiError(error, "Assignment Failed");
     }
   };
 
-const canAssign =
+
+  const handleCancelFacility = async () => {
+    if (!email) {
+      notify.error(
+        "Authentication Error",
+        "Unable to identify the current user.",
+      );
+      return;
+    }
+
+    try {
+      await cancelFacility({
+        facilityReference: facility.facilityReference,
+        username: email,
+        // comment will be added once the backend supports it
+      }).unwrap();
+
+      setShowCancelModal(false);
+
+      notify.success(
+        "Facility Cancelled",
+        "The facility workflow has been cancelled successfully.",
+      );
+    } catch (error) {
+      notify.apiError(error, "Cancellation Failed");
+    }
+  };
+
+  const canAssign =
     facility.approvalStatus === FacilityApprovalStatus.Approved &&
     facility.valuationStatus === ValuationStatus.UnAssigned;
 
-const alreadyAssigned =
+  const alreadyAssigned =
     facility.valuationStatus === ValuationStatus.Assigned;
 
-const completed =
+  const completed =
     facility.valuationStatus === ValuationStatus.Completed;
 
+  const canCancel = alreadyAssigned;
+
+  const [showCancelModal, setShowCancelModal] =
+    useState(false);
+
   return (
+    <>
+      <Card>
+        <CardHeader>
+          <CardTitle>
+            Assign Valuer
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
 
-    <Card>
-      <CardHeader>
-        <CardTitle>
-          Assign Valuer
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
+          <div className="space-y-6">
 
-        <div className="space-y-6">
+            {canAssign && (
+              <>
+                <Select
+                  label="Valuer"
+                  placeholder="Select Valuer"
+                  options={valuerOptions}
+                  value={selectedValuer?.id.toString() ?? ""}
+                  onChange={(e) => {
+                    const id = Number(e.target.value);
 
-          <Select
-            label="Valuer"
-            placeholder="Select Valuer"
-            disabled={!canAssign}
-            options={valuerOptions}
-            value={selectedValuer?.id.toString() ?? ""}
-            onChange={(e) => {
-              const id = Number(e.target.value)
+                    const valuer = valuers.find(
+                      v => v.valuerId === id,
+                    );
 
-              const valuer = valuers.find(
-                (v) => v.valuerId === id,
-              )
+                    if (!valuer) return;
 
-              if (!valuer) return
+                    setSelectedValuer({
+                      id: valuer.valuerId,
+                      name: valuer.valuerName,
+                    });
+                  }}
+                />
 
-              setSelectedValuer({
-                id: valuer.valuerId,
-                name: valuer.valuerName,
-              })
-            }}
-          />
+                <Button
+                  disabled={!selectedValuer || isAssigning}
+                  isLoading={isAssigning}
+                  className="w-full"
+                  onClick={handleAssign}
+                >
+                  Assign Valuer
+                </Button>
+              </>
+            )}
 
-          <Button
-            disabled={
-              !canAssign ||
-              !selectedValuer ||
-              isAssigning
-            }
-            isLoading={isAssigning}
-            className="w-full"
-            onClick={handleAssign}
-          >
-            {
-              completed
-                ? "Workflow Completed"
-                : alreadyAssigned
-                  ? "Valuer Assigned"
-                  : "Assign Valuer"
-            }
-          </Button>
+            {alreadyAssigned && (
+              <div className="rounded-xl border border-blue-200 bg-blue-50 p-4">
+                <p className="font-semibold text-blue-700">
+                  Valuer Assigned
+                </p>
 
-          {alreadyAssigned && (
-            <div className="rounded-xl bg-blue-50 border border-blue-100 p-3 text-sm text-blue-700">
-              This facility has already been assigned to a valuer.
-            </div>
-          )}
+                <p className="mt-1 text-sm text-blue-600">
+                  This facility has already been assigned to a valuer.
+                </p>
+              </div>
+            )}
 
-          {completed && (
-            <div className="rounded-xl bg-emerald-50 border border-emerald-100 p-3 text-sm text-emerald-700">
-              This workflow has been completed.
-            </div>
-          )}
+            {completed && (
+              <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+                <p className="font-semibold text-emerald-700">
+                  Workflow Completed
+                </p>
 
-        </div>
+                <p className="mt-1 text-sm text-emerald-600">
+                  This valuation workflow has been completed successfully.
+                </p>
+              </div>
+            )}
 
-      </CardContent>
-    </Card>
+          </div>
+
+        </CardContent>
+      </Card>
+
+      {canCancel && (
+        <>
+
+          <hr className="border-border" />
+
+          <Card className="border-red-200 bg-red-50 mt-6">
+            <CardHeader>
+              <CardTitle className="text-red-700">
+                Danger Zone
+              </CardTitle>
+            </CardHeader>
+
+            <CardContent className="space-y-4">
+
+              <p className="text-sm text-red-600">
+                Cancelling a facility permanently stops the valuation workflow.
+                This action should only be used when the valuation process
+                must be terminated.
+              </p>
+
+              <Button
+                variant="danger"
+                onClick={() => setShowCancelModal(true)}
+              >
+                Cancel Facility
+              </Button>
+
+            </CardContent>
+          </Card>
+
+        </>
+      )}
+
+      <CommentModal
+        open={showCancelModal}
+        loading={isCancelling}
+        title="Cancel Facility"
+        description="Please provide a reason for cancelling this facility workflow."
+        confirmText="Cancel Facility"
+        onClose={() => setShowCancelModal(false)}
+        onSubmit={handleCancelFacility}
+      />
+
+    </>
   )
 }
 
