@@ -192,7 +192,7 @@ export default function ValuationReportPage() {
     }, [reports, selectedWorkflow]);
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 ">
             <div>
                 <h1 className="text-3xl font-bold">
                     Valuation Reports
@@ -205,7 +205,7 @@ export default function ValuationReportPage() {
                 </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-7">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-5 fade-up">
                 {workflowCards.map(card =>
                     isLoading ? (
                         <MetricCardSkeleton
