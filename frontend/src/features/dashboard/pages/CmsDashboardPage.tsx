@@ -99,11 +99,11 @@ const CmsDashboardPage = () => {
 
         <div>
           <h1 className="text-3xl font-bold text-text-primary">
-            CMS Dashboard
+            Valuer Assignments
           </h1>
 
           <p className="mt-2 text-sm text-text-secondary">
-            Assign valuers, monitor valuation progress and manage supervisor workflow.
+            Assign valuers, monitor valuation progress and manage the valuation lifecycle.
           </p>
         </div>
 
@@ -165,7 +165,7 @@ const CmsDashboardPage = () => {
 
               onRowClick={(facility) =>
                 navigate(
-                  `/dashboard/cm/facility-reviews/${facility.facilityReference}`
+                  `/dashboard/cms/assignValuer/${facility.facilityReference}`
                   // `/dashboard/cm/facilities/${facility.facilityReference}`,
                 )
               }

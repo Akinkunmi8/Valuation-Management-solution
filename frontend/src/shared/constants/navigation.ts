@@ -1,7 +1,7 @@
 import {
   FiBarChart2,
   FiBriefcase,
-  FiCheckSquare,
+  // FiCheckSquare,
   FiCreditCard,
   FiFileText,
   FiGrid,
@@ -83,7 +83,7 @@ RM: [
 ],
  CMS: [
   {
-    label: 'Dashboard',
+    label: 'Assignments',
     description: 'Operations overview',
     href: ROUTES.cms.dashboard,
     icon: FiGrid,
@@ -91,18 +91,12 @@ RM: [
   },
 
   {
-    label: 'Assignments',
-    description: 'Valuer assignment',
-    href: ROUTES.cms.assignments,
-    icon: FiUsers,
+    label: 'Payments',
+    description: 'Valuer Payments',
+    href: ROUTES.cms.valuerPayments,
+    icon: FiCreditCard,
   },
 
-  {
-    label: 'Monitoring',
-    description: 'Track valuations',
-    href: ROUTES.cms.monitoring,
-    icon: FiCheckSquare,
-  },
 ],
 BM: [
   {

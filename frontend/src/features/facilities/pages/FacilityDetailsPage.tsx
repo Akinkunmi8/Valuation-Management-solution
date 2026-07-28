@@ -22,6 +22,8 @@ import StatusBadge from '@/shared/ui/badge/Badge';
 import { getHomeRoute } from '@/shared/utils/getHomeRoute';
 import AssignmentTab from '@/features/workflow/components/AssignmentTab';
 
+import { FacilityApprovalStatus, ValuationStatus } from '@/shared/constants/workflowStatus';
+
 
 const FacilityDetailsPage = () => {
     const navigate = useNavigate()
@@ -144,6 +146,9 @@ const FacilityDetailsPage = () => {
                 return (
                     <AssignmentTab
                         facility={facility}
+                        canAssign={canAssign}
+                        alreadyAssigned={alreadyAssigned}
+                        completed={completed}
                     />
                 )
 
@@ -151,6 +156,16 @@ const FacilityDetailsPage = () => {
                 return null
         }
     }
+
+    const canAssign =
+        facility.approvalStatus === FacilityApprovalStatus.Approved &&
+        facility.valuationStatus === ValuationStatus.UnAssigned;
+
+    const alreadyAssigned =
+        facility.valuationStatus === ValuationStatus.Assigned;
+
+    const completed =
+        facility.valuationStatus === ValuationStatus.Completed;
 
     return (
         <div className="space-y-6">

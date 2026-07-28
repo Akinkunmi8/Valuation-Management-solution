@@ -14,12 +14,7 @@ export const cmsActionApi = baseApi.injectEndpoints({
         username: string;
       }
     >({
-      query: ({
-        facilityReference,
-        valuerId,
-        valuerName,
-        username,
-      }) => ({
+      query: ({ facilityReference, valuerId, valuerName, username }) => ({
         url: `/api/CmsAction/assign-valuer/${facilityReference}`,
         method: "POST",
         params: {
@@ -29,15 +24,16 @@ export const cmsActionApi = baseApi.injectEndpoints({
         },
       }),
 
-      invalidatesTags: [
+      invalidatesTags: (_result, _error, arg) => [
         "CmsDashboard",
         "ValuerDashboard",
-        "Facility",
+        {
+          type: "Facility",
+          id: arg.facilityReference,
+        },
       ],
     }),
   }),
 });
 
-export const {
-  useAssignValuerMutation,
-} = cmsActionApi;
+export const { useAssignValuerMutation } = cmsActionApi;

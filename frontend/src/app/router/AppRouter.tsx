@@ -178,12 +178,19 @@ const AppRouter = () => {
                 path={ROUTES.cms.dashboard}
                 element={<CmsDashboardPage />}
               />
+
+              <Route
+                path={ROUTES.cms.valuerPayments}
+                element={<CmsDashboardPage />}
+              />
+
+              <Route
+                path={ROUTES.cms.assignValuer}
+                element={<FacilityDetailsPage />}
+              />
             </Route>
 
-            <Route
-              path={ROUTES.cms.assignValuer}
-              element={<FacilityDetailsPage />}
-            />
+
           </Route>
 
           {/* <Route
