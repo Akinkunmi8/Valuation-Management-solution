@@ -45,6 +45,8 @@ export const ROUTES = {
     dashboard: "/dashboard/valuer",
     assignments: "/dashboard/valuer/assignments",
     reports: "/dashboard/valuer/reports",
+    reportsSubmitEdit: "/dashboard/valuer/reports-submit-edit/:facilityReference",
+    valuerFacilityDetails: "/dashboard/valuer/valuer-facilities-details/:facilityReference"
   },
 
   audit: {

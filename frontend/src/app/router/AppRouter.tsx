@@ -31,6 +31,8 @@ import { AppLoader } from '@/shared/ui/loader'
 import PaymentsPage from '@/features/payments/Page/PaymentsPage'
 import ValuationReportPage from '@/features/valuations/pages/ValuationReportsPage'
 import ValuationReportDetailsPage from '@/features/valuations/pages/ValuationReportDetailsPage'
+import SubmitValuationReportPage from '@/features/reports/pages/SubmitValuationReportPage'
+import ValuerFacilityDetailsPage from '@/valuer/pages/ValuerFacilityDetailsPage'
 
 
 
@@ -191,9 +193,7 @@ const AppRouter = () => {
             </Route>
 
 
-          </Route>
-
-          {/* <Route
+                      {/* <Route
               path={ROUTES.bm.dashboard}
               element={<BmDashboardPage />}
             /> */}
@@ -209,6 +209,14 @@ const AppRouter = () => {
             <Route
               path={ROUTES.valuer.dashboard}
               element={<ValuerDashboardPage />}
+            />
+            <Route
+              path={ROUTES.valuer.valuerFacilityDetails}
+              element={<ValuerFacilityDetailsPage/>}
+            />
+            <Route
+              path={ROUTES.valuer.reportsSubmitEdit}
+              element={<SubmitValuationReportPage />}
             />
           </Route>
 
@@ -231,6 +239,11 @@ const AppRouter = () => {
               element={<AdminDashboardPage />}
             />
           </Route>
+
+
+          </Route>
+
+
 
 
         </Route>

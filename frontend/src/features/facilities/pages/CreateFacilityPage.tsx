@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router'
 import {
     Stepper,
     StepperNavigation,
-} from '../../../shared/ui/stepper'
+} from '@/shared/ui/stepper'
 
-import { ROUTES } from '../../../shared/constants/routes'
+import { ROUTES } from '@/shared/constants/routes'
 
 import { FACILITY_STEPS } from '../constants/facilitySteps'
 

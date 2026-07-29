@@ -45,6 +45,8 @@ export const getFacilityWorkspaceTabs = (
         },
       ]
 
+      
+
     default:
       return COMMON_TABS
 

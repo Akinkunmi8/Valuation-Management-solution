@@ -1,22 +1,21 @@
 import type { StatusBadgeProps } from "@/shared/ui/badge/Badge";
+import { FacilityApprovalStatus } from "@/shared/constants/workflowStatus";
 
-export const getApprovalStatus = (
-  status: string,
-): StatusBadgeProps => {
+export const getApprovalStatus = (status: number): StatusBadgeProps => {
   switch (status) {
-    case "Approved":
-      return {
-        label: "Approved",
-        variant: "success",
-      };
-
-    case "Pending":
+    case FacilityApprovalStatus.Pending:
       return {
         label: "Pending",
         variant: "warning",
       };
 
-    case "Rejected":
+    case FacilityApprovalStatus.Approved:
+      return {
+        label: "Approved",
+        variant: "success",
+      };
+
+    case FacilityApprovalStatus.Rejected:
       return {
         label: "Rejected",
         variant: "danger",
@@ -24,15 +23,13 @@ export const getApprovalStatus = (
 
     default:
       return {
-        label: status,
+        label: "Unknown",
         variant: "neutral",
       };
   }
 };
 
-export const getReportStatus = (
-  status: string,
-) => {
+export const getReportStatus = (status: string) => {
   switch (status) {
     case "Completed":
       return {
@@ -60,9 +57,7 @@ export const getReportStatus = (
   }
 };
 
-export const getPaymentStatus = (
-  status: string,
-) => {
+export const getPaymentStatus = (status: string) => {
   switch (status) {
     case "Successful":
       return {

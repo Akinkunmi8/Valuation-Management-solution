@@ -210,7 +210,7 @@ const FacilityDetailsPage = () => {
                 text-sm
                 font-medium
                 transition
-
+                cursor-pointer
                 ${activeTab === tab.id
                                 ? 'border-b-2 border-primary text-primary'
                                 : 'text-text-secondary hover:text-text-primary'

@@ -223,8 +223,7 @@ const ValuersDashboardPage = () => {
 
               onRowClick={(facility) =>
                 navigate(
-                  `/dashboard/cm/facility-reviews/${facility.facilityReference}`
-                  // `/dashboard/cm/facilities/${facility.facilityReference}`,
+                  `/dashboard/valuer/valuer-facilities-details/${facility.facilityReference}`
                 )
               }
             />
