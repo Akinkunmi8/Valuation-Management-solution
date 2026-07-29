@@ -1,4 +1,5 @@
 import { baseApi } from "@/shared/api/baseApi";
+import type { ReportDashboardResponse } from "../types/reportDashboardTypes";
 
 export const reportApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -32,10 +33,19 @@ export const reportApi = baseApi.injectEndpoints({
 
       invalidatesTags: ["ValuerDashboard", "Facility"],
     }),
+
+    getReportDashboard: builder.query<ReportDashboardResponse, void>({
+      query: () => ({
+        url: "api/ValuationReport/dashboard",
+      }),
+
+      providesTags: ["ValuationReport"],
+    }),
   }),
 });
 
 export const {
   useSubmitValuationReportMutation,
   useEditResubmitValuationReportMutation,
+  useGetReportDashboardQuery
 } = reportApi;

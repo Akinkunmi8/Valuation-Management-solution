@@ -33,6 +33,7 @@ import ValuationReportPage from '@/features/valuations/pages/ValuationReportsPag
 import ValuationReportDetailsPage from '@/features/valuations/pages/ValuationReportDetailsPage'
 import SubmitValuationReportPage from '@/features/reports/pages/SubmitValuationReportPage'
 import ValuerFacilityDetailsPage from '@/valuer/pages/ValuerFacilityDetailsPage'
+import ReportDashboardPage from '@/features/reports/pages/ReportDashboardPage'
 
 
 
@@ -193,52 +194,58 @@ const AppRouter = () => {
             </Route>
 
 
-                      {/* <Route
+            {/* <Route
               path={ROUTES.bm.dashboard}
               element={<BmDashboardPage />}
             /> */}
 
-          {/*======= VALUER =======*/}
-          <Route
-            element={
-              <RoleGuard
-                allowedRoles={['VALUER']}
+            {/*======= VALUER =======*/}
+            <Route
+              element={
+                <RoleGuard
+                  allowedRoles={['VALUER']}
+                />
+              }
+            >
+              <Route
+                path={ROUTES.valuer.dashboard}
+                element={<ValuerDashboardPage />}
               />
-            }
-          >
-            <Route
-              path={ROUTES.valuer.dashboard}
-              element={<ValuerDashboardPage />}
-            />
-            <Route
-              path={ROUTES.valuer.valuerFacilityDetails}
-              element={<ValuerFacilityDetailsPage/>}
-            />
-            <Route
-              path={ROUTES.valuer.reportsSubmitEdit}
-              element={<SubmitValuationReportPage />}
-            />
-          </Route>
 
-          {/* <Route
+              <Route
+                path={ROUTES.valuer.reports}
+                element={<ReportDashboardPage />}
+              />
+
+              <Route
+                path={ROUTES.valuer.valuerFacilityDetails}
+                element={<ValuerFacilityDetailsPage />}
+              />
+              <Route
+                path={ROUTES.valuer.reportsSubmitEdit}
+                element={<SubmitValuationReportPage />}
+              />
+            </Route>
+
+            {/* <Route
               path={ROUTES.audit.dashboard}
               element={<AuditDashboardPage />}
             /> */}
 
-          {/*======= ADMIN =======*/}
+            {/*======= ADMIN =======*/}
 
-          <Route
-            element={
-              <RoleGuard
-                allowedRoles={['ADMIN']}
-              />
-            }
-          >
             <Route
-              path={ROUTES.admin.dashboard}
-              element={<AdminDashboardPage />}
-            />
-          </Route>
+              element={
+                <RoleGuard
+                  allowedRoles={['ADMIN']}
+                />
+              }
+            >
+              <Route
+                path={ROUTES.admin.dashboard}
+                element={<AdminDashboardPage />}
+              />
+            </Route>
 
 
           </Route>
