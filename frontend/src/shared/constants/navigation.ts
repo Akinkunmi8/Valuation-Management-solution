@@ -44,12 +44,12 @@ RM: [
     icon: FiCreditCard,
   },
 
-  {
-    label: 'Reports',
-    description: 'MIS reports',
-    href: ROUTES.rm.reports,
-    icon: FiFileText,
-  },
+  // {
+  //   label: 'Reports',
+  //   description: 'MIS reports',
+  //   href: ROUTES.rm.reports,
+  //   icon: FiFileText,
+  // },
 ],
 
  CM: [
