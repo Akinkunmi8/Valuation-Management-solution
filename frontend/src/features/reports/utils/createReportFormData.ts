@@ -8,7 +8,7 @@ const API_FIELDS = {
 
   collateralValue: "CollateralValue",
 
-  owner: "Owner",
+  collateralOwner: "collateralOwner",
 
   city: "City",
 
@@ -66,8 +66,8 @@ export const createReportFormData = (
   );
 
   formData.append(
-    API_FIELDS.owner,
-    values.owner,
+    API_FIELDS.collateralOwner,
+    values.collateralOwner ?? "",
   );
 
   formData.append(

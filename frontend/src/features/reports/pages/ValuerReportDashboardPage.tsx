@@ -1,5 +1,5 @@
 import { FiCheckCircle, FiClock, FiPlus, FiSearch } from "react-icons/fi";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 import Button from "@/shared/ui/button/Button";
@@ -26,6 +26,18 @@ const ValuerReportDashboardPage = () => {
         useGetReportDashboardQuery();
 
     const metrics = data?.metrics;
+
+    useEffect(() => {
+  if (!data) return;
+
+  console.table(
+    data.reports.map(r => ({
+      facility: r.facilityReference,
+      status: r.reportStatus,
+      reportId: r.reportId,
+    }))
+  );
+}, [data]);
 
     const {
         selectedFilter,
@@ -62,6 +74,8 @@ const ValuerReportDashboardPage = () => {
         );
     }, [data, selectedFilter]);
 
+    // console.log(data?.reports);
+
     return (
         <div className="space-y-6">
             {/* Header */}
@@ -89,7 +103,7 @@ const ValuerReportDashboardPage = () => {
 
             {/* Metrics */}
 
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-2 xl:grid-cols-2 fade-up">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 fade-up">
                 {reportCards.map((card) =>
                     isLoading ? (
                         <MetricCardSkeleton key={card.key} />

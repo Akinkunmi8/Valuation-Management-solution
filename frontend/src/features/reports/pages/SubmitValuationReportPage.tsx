@@ -150,6 +150,7 @@ const SubmitValuationReportPage = () => {
                 REPORT_STEP_FIELDS[currentStep],
             );
 
+
         if (valid) {
             setCurrentStep(step => step + 1);
         }

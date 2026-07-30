@@ -31,14 +31,19 @@ const ValuationInformationCard = () => {
             label="Valuation Date"
             type="date"
             error={errors.valuationDate?.message}
-            {...register("valuationDate")}
+            // {...register("valuationDate")}
+            {...register("valuationDate", {
+              valueAsDate: true,
+            })}
           />
 
           <Input
             label="Date Assigned"
             type="date"
             error={errors.dateAssigned?.message}
-            {...register("dateAssigned")}
+            {...register("dateAssigned", {
+              valueAsDate: true,
+            })}
           />
 
           <Input
@@ -75,7 +80,9 @@ const ValuationInformationCard = () => {
             label="Sales Date"
             type="date"
             error={errors.salesDate?.message}
-            {...register("salesDate")}
+            {...register("salesDate", {
+              valueAsDate: true,
+            })}
           />
 
           <Input

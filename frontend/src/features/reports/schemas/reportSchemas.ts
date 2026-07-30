@@ -7,7 +7,9 @@ export const reportSchema = z.object({
 
   collateralValue: z.number().nonnegative(),
 
-  owner: z.string().min(1),
+  // Need to fix this from the backend
+  // owner: z.string().min(1),
+  collateralOwner: z.string().optional(),
 
   city: z.string().min(1),
 

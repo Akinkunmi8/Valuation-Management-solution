@@ -110,6 +110,12 @@ export const getReportColumns = (navigate: NavigateFunction): Column<ReportDashb
     header: "Action",
 
     render: (row) => {
+      console.log(
+        "ACTION COLUMN:",
+        row.facilityReference,
+        row.reportStatus,
+        row.reportId,
+      );
 
       switch (row.reportStatus) {
         case "Ongoing":

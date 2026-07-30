@@ -51,9 +51,9 @@ const PropertyInformationCard = () => {
           />
 
           <Input
-            label="Owner"
+            label="Collateral Owner"
             disabled
-            {...register("owner")}
+            {...register("collateralOwner")}
           />
 
           <Input

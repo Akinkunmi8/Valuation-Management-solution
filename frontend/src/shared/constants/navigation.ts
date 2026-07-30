@@ -131,12 +131,12 @@ VALUER: [
     exact: true,
   },
 
-  {
-    label: 'Assignments',
-    description: 'Assigned jobs',
-    href: ROUTES.valuer.assignments,
-    icon: FiUsers,
-  },
+  // {
+  //   label: 'Assignments',
+  //   description: 'Assigned jobs',
+  //   href: ROUTES.valuer.assignments,
+  //   icon: FiUsers,
+  // },
 
   {
     label: 'Reports',
