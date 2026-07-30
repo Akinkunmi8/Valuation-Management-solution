@@ -7,7 +7,7 @@ import MetricCard from "@/features/dashboard/components/MetricCard";
 import { MetricCardSkeleton } from "@/shared/ui/loader";
 import DataTable from "@/shared/ui/table/DataTable";
 
-import { ROUTES } from "@/shared/constants/routes";
+// import { ROUTES } from "@/shared/constants/routes";
 
 import { useMetricFilter } from "@/shared/hooks/useMetricFilter";
 
@@ -93,9 +93,9 @@ const ValuerReportDashboardPage = () => {
 
                 <Button
                     leftIcon={<FiPlus />}
-                    onClick={() =>
-                        navigate(ROUTES.valuer.assignments)
-                    }
+                    // onClick={() =>
+                    //     navigate(ROUTES.valuer.assignments)
+                    // }
                 >
                     Create Report
                 </Button>
