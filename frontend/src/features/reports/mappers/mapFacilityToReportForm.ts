@@ -22,7 +22,7 @@ export const mapFacilityToReportForm = (
     collateralValue:
       facility.collateralValue,
 
-    owner:
+    collateralOwner:
       facility.collateraOwener ?? "",
 
     city:

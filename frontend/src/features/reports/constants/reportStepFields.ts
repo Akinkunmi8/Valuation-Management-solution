@@ -5,7 +5,7 @@ export const REPORT_STEP_FIELDS: Array<
 > = [
   [
     "customerName",
-    "owner",
+    "collateralOwner",
     "city",
     "state",
     "localGov",
