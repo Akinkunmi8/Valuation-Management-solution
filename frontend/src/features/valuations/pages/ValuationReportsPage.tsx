@@ -29,16 +29,20 @@ type Workflow =
     | "rejected"
     | "paymentPending";
 
-export default function ValuationReportPage() {
+export const ValuationReportPage = () => {
     const navigate = useNavigate();
 
     const { data, isLoading } =
         useGetValuationReportDashboardQuery();
 
+
+    // console.log("data: ", data);
+
     const reports = useMemo(
         () => data?.reports ?? [],
         [data]
     );
+
 
     const reportCounts = useMemo(() => {
         const counts = {
@@ -84,6 +88,8 @@ export default function ValuationReportPage() {
 
         return counts;
     }, [reports]);
+
+
 
     const [selectedWorkflow, setSelectedWorkflow] =
         useState<Workflow>("all");
@@ -191,6 +197,18 @@ export default function ValuationReportPage() {
         }
     }, [reports, selectedWorkflow]);
 
+    console.log(valuationReportColumns);
+    console.log("PAGE COLUMNS", valuationReportColumns);
+    console.log(
+        "PAYMENT COLUMN",
+        valuationReportColumns.find(
+            c => c.key === "paymentStatus",
+        ),
+    );
+
+    console.log("Zup")
+
+
     return (
         <div className="space-y-6 ">
             <div>
@@ -254,6 +272,10 @@ export default function ValuationReportPage() {
                     )
                 }
             />
+
+
         </div>
     );
 }
+
+export default ValuationReportPage;

@@ -12,10 +12,9 @@ import {
 } from "@/features/workflow/api/cmActionApi";
 
 import {
-    //  getApprovalStatus, 
     getReportApprovalStatus,
-    //  getReportStatus
-     } from "../utilis/status";
+    getReportStatus
+} from "../utilis/status";
 
 import type { ValuationReportDetails } from "../types/valuationReportTypes";
 import { useAppSelector } from "@/app/store/hooks";
@@ -90,10 +89,10 @@ export default function WorkflowTab({
                             </p>
 
                             <div className="mt-2">
-                                
-                                {/* <StatusBadge
+
+                                <StatusBadge
                                     {...getReportStatus(report.reportStatus)}
-                                /> */}
+                                />
                             </div>
 
                         </div>

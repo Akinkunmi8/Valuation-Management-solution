@@ -33,7 +33,7 @@ import ValuationReportPage from '@/features/valuations/pages/ValuationReportsPag
 import ValuationReportDetailsPage from '@/features/valuations/pages/ValuationReportDetailsPage'
 import SubmitValuationReportPage from '@/features/reports/pages/SubmitValuationReportPage'
 import ValuerFacilityDetailsPage from '@/valuer/pages/ValuerFacilityDetailsPage'
-import ReportDashboardPage from '@/features/reports/pages/ReportDashboardPage'
+import ValuerReportDashboardPage from '@/features/reports/pages/ValuerReportDashboardPage'
 
 
 
@@ -212,9 +212,13 @@ const AppRouter = () => {
                 element={<ValuerDashboardPage />}
               />
 
-              <Route
+              {/* <Route
                 path={ROUTES.valuer.reports}
                 element={<ReportDashboardPage />}
+              /> */}
+              <Route
+                path={ROUTES.valuer.reports}
+                element={<ValuerReportDashboardPage />}
               />
 
               <Route

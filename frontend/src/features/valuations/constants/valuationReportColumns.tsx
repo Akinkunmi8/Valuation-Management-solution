@@ -9,10 +9,12 @@ import type { ValuationReportDashboardRow } from "../types/valuationReportTypes"
 // coreModule
 
 import {
-  getApprovalStatus,
+  getReportApprovalStatus,
   getPaymentStatus,
   getReportStatus,
-} from "@/features/facilities/utils/status";
+} from "@/features/valuations/utilis/status";
+
+
 
 
 export const valuationReportColumns: Column<ValuationReportDashboardRow>[] = [
@@ -56,41 +58,62 @@ export const valuationReportColumns: Column<ValuationReportDashboardRow>[] = [
     },
   },
 
-  {
-    key: "reportApprovalStatus",
-    header: "Approval",
-    render: row => {
-      const approval =
-        getApprovalStatus(
-          row.reportApprovalStatus
-        );
-
-      return (
-        <StatusBadge
-          label={approval.label}
-          variant={approval.variant}
-        />
+{
+  key: "reportApprovalStatus",
+  header: "Approval",
+  render: row => {
+    const approval =
+      getReportApprovalStatus(
+        row.reportApprovalStatus,
       );
-    },
-  },
 
-  {
-    key: "paymentStatus",
-    header: "Payment",
-    render: row => {
-      const payment =
-        getPaymentStatus(
-          row.paymentStatus
-        );
-
-      return (
-        <StatusBadge
-          label={payment.label}
-          variant={payment.variant}
-        />
-      );
-    },
+    return (
+      <StatusBadge
+        label={approval.label}
+        variant={approval.variant}
+      />
+    );
   },
+},
+
+
+
+{
+  key: "paymentStatus",
+  header: "Payment",
+  render: row => {
+    console.log("payment from api:", row.paymentStatus);
+
+    const payment = getPaymentStatus(row.paymentStatus);
+
+    console.log("mapped payment:", payment);
+
+    return (
+      <StatusBadge
+        label={payment.label}
+        variant={payment.variant}
+      />
+    );
+  },
+},
+
+  // {
+  //   key: "paymentStatus",
+  //   header: "Payment",
+  //   render: row => {
+  //     const payment =
+  //       getPaymentStatus(
+  //         row.paymentStatus
+  //       );
+
+  //     return (
+  //       <StatusBadge
+  //         label={payment.label}
+  //         variant={payment.variant}
+  //       />
+  //     );
+  //   },
+  // },
 
   {
     key: "dateAssigned",
@@ -102,3 +125,4 @@ export const valuationReportColumns: Column<ValuationReportDashboardRow>[] = [
         : "--",
   },
 ];
+

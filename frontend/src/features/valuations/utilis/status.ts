@@ -29,7 +29,7 @@ export const getApprovalStatus = (status: number): StatusBadgeProps => {
   }
 };
 
-export const getReportStatus = (status: string) => {
+export const getReportStatus = (status: string): StatusBadgeProps => {
   switch (status) {
     case "Completed":
       return {
@@ -57,7 +57,35 @@ export const getReportStatus = (status: string) => {
   }
 };
 
-export const getPaymentStatus = (status: string) => {
+// export const getPaymentStatus = (
+//   status: string,
+// ): StatusBadgeProps => {
+//   switch (status.trim().toLowerCase()) {
+//     case "successful":
+//       return {
+//         label: "Paid",
+//         variant: "success",
+//       };
+
+//     case "unprocessed":
+//       return {
+//         label: "Pending",
+//         variant: "warning",
+//       };
+
+//     default:
+//       return {
+//         label: status,
+//         variant: "neutral",
+//       };
+//   }
+// };
+
+export const getPaymentStatus = (
+  status: string,
+): StatusBadgeProps => {
+  console.log("Payment Status =>", status);
+
   switch (status) {
     case "Successful":
       return {
@@ -79,30 +107,33 @@ export const getPaymentStatus = (status: string) => {
   }
 };
 
-export const getReportApprovalStatus = (status: string): StatusBadgeProps => {
-  switch (status) {
-    case "Pending":
-      return {
-        label: "Pending",
-        variant: "warning",
-      };
 
+export const getReportApprovalStatus = (
+  status: string,
+): StatusBadgeProps => {
+  switch (status) {
     case "Approved":
       return {
-        label: "Approved",
         variant: "success",
+        label: "Approved",
       };
 
     case "Rejected":
       return {
-        label: "Rejected",
         variant: "danger",
+        label: "Rejected",
+      };
+
+    case "Pending":
+      return {
+        variant: "warning",
+        label: "Pending",
       };
 
     default:
       return {
-        label: status,
         variant: "neutral",
+        label: status,
       };
   }
 };

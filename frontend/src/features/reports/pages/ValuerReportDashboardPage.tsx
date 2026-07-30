@@ -14,7 +14,7 @@ import { useMetricFilter } from "@/shared/hooks/useMetricFilter";
 import { useGetReportDashboardQuery } from "../api/reportApi";
 import { getReportColumns } from "../constants/reportColumns";
 
-const ReportDashboardPage = () => {
+const ValuerReportDashboardPage = () => {
     const navigate = useNavigate();
 
     const columns = useMemo(
@@ -123,7 +123,7 @@ const ReportDashboardPage = () => {
 
                     <input
                         type="text"
-                        placeholder="Search facility reference or customer..."
+                        placeholder="Search by facility reference, customer or status..."
                         className="
               h-11
               w-full
@@ -184,4 +184,4 @@ const ReportDashboardPage = () => {
     );
 };
 
-export default ReportDashboardPage;
+export default ValuerReportDashboardPage;
