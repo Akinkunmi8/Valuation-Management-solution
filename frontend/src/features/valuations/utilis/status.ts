@@ -78,3 +78,31 @@ export const getPaymentStatus = (status: string) => {
       };
   }
 };
+
+export const getReportApprovalStatus = (status: string): StatusBadgeProps => {
+  switch (status) {
+    case "Pending":
+      return {
+        label: "Pending",
+        variant: "warning",
+      };
+
+    case "Approved":
+      return {
+        label: "Approved",
+        variant: "success",
+      };
+
+    case "Rejected":
+      return {
+        label: "Rejected",
+        variant: "danger",
+      };
+
+    default:
+      return {
+        label: status,
+        variant: "neutral",
+      };
+  }
+};

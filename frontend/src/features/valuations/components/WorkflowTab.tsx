@@ -11,7 +11,11 @@ import {
     useRejectReportMutation
 } from "@/features/workflow/api/cmActionApi";
 
-import { getApprovalStatus } from "../utilis/status";
+import {
+    //  getApprovalStatus, 
+    getReportApprovalStatus,
+    //  getReportStatus
+     } from "../utilis/status";
 
 import type { ValuationReportDetails } from "../types/valuationReportTypes";
 import { useAppSelector } from "@/app/store/hooks";
@@ -86,9 +90,10 @@ export default function WorkflowTab({
                             </p>
 
                             <div className="mt-2">
-                                <StatusBadge
-                                    {...getApprovalStatus(report.reportStatus)}
-                                />
+                                
+                                {/* <StatusBadge
+                                    {...getReportStatus(report.reportStatus)}
+                                /> */}
                             </div>
 
                         </div>
@@ -101,7 +106,7 @@ export default function WorkflowTab({
 
                             <div className="mt-2">
                                 <StatusBadge
-                                    {...getApprovalStatus(report.reportApprovalStatus)}
+                                    {...getReportApprovalStatus(report.reportApprovalStatus)}
                                 />
                             </div>
 
