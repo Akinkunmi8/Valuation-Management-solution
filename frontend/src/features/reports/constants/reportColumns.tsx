@@ -74,7 +74,26 @@ export const getReportColumns = (navigate: NavigateFunction): Column<ReportDashb
   {
     key: "paymentStatus",
     header: "Payment",
+    render: (row) => (
+      <StatusBadge
+        label={
+          row.paymentStatus === "Successful"
+            ? "Paid"
+            : row.paymentStatus === "UnProcessed"
+              ? "Pending"
+              : row.paymentStatus
+        }
+        variant={
+          row.paymentStatus === "Successful"
+            ? "success"
+            : row.paymentStatus === "UnProcessed"
+              ? "warning"
+              : "neutral"
+        }
+      />
+    ),
   },
+
 
   {
     key: "dateAssigned",
