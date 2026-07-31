@@ -67,21 +67,32 @@ const Sidebar = ({
 
       <button
         aria-label="Close navigation overlay"
-        className={`fixed inset-0 z-30 bg-black/40 transition-opacity lg:hidden ${
-          isOpen
+        className={`fixed inset-0 z-30 bg-black/40 transition-opacity lg:hidden ${isOpen
             ? "opacity-100"
             : "pointer-events-none opacity-0"
-        }`}
+          }`}
         onClick={onClose}
         type="button"
       />
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r border-slate-200 bg-white shadow-xl transition-transform duration-300 lg:static lg:translate-x-0 lg:shadow-none ${
-          isOpen
-            ? "translate-x-0"
-            : "-translate-x-full"
-        }`}
+        className={`
+    fixed
+    inset-y-0
+    left-0
+    z-40
+    flex
+    w-72
+    flex-col
+    border-r
+    border-slate-200
+    bg-white
+    shadow-xl
+    transition-transform
+    duration-300
+    ${isOpen ? "translate-x-0" : "-translate-x-full"}
+    lg:translate-x-0
+  `}
       >
         {/* Logo */}
 
@@ -154,40 +165,36 @@ const Sidebar = ({
                       onClose();
                     }
                   }}
-                  className={`group relative flex items-center gap-4 rounded-2xl px-4 py-3 transition-all duration-200 ${
-                    isActive
+                  className={`group relative flex items-center gap-4 rounded-2xl px-4 py-3 transition-all duration-200 ${isActive
                       ? "border border-indigo-100 bg-linear-to-r from-indigo-50 to-teal-50 shadow-sm"
                       : "hover:bg-slate-100"
-                  }`}
+                    }`}
                 >
                   {isActive && (
                     <span className="absolute bottom-3 left-0 top-3 w-1.5 rounded-r-full bg-linear-to-b from-indigo-600 to-teal-500" />
                   )}
 
                   <div
-                    className={`flex h-10 w-10 items-center justify-center rounded-xl transition ${
-                      isActive
+                    className={`flex h-10 w-10 items-center justify-center rounded-xl transition ${isActive
                         ? "bg-white shadow"
                         : "group-hover:bg-white"
-                    }`}
+                      }`}
                   >
                     <Icon
-                      className={`h-5 w-5 ${
-                        isActive
+                      className={`h-5 w-5 ${isActive
                           ? "text-indigo-600"
                           : "text-slate-500"
-                      }`}
+                        }`}
                     />
                   </div>
 
                   <div className="min-w-0">
 
                     <p
-                      className={`truncate text-sm font-semibold ${
-                        isActive
+                      className={`truncate text-sm font-semibold ${isActive
                           ? "text-slate-900"
                           : "text-slate-700"
-                      }`}
+                        }`}
                     >
                       {item.label}
                     </p>
