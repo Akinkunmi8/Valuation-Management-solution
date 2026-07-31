@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLocation } from "react-router";
 
 import {
     Stepper,
@@ -34,8 +35,11 @@ import {
     useSubmitValuationReportMutation,
     useEditResubmitValuationReportMutation
 } from "../api/reportApi";
+import { useGetValuationReportDetailsQuery }
+    from "@/features/valuations/api/valuationReportApi";
 import { notify } from "@/shared/lib/toast";
 import { ROUTES } from "@/shared/constants/routes";
+import { mapReportDetailsToReportForm } from "../mappers/mapReportDetailsToReportForm";
 
 
 
@@ -44,7 +48,10 @@ const SubmitValuationReportPage = () => {
 
     const navigate = useNavigate();
 
-    const isResubmission = false;
+    const location = useLocation();
+
+    const isResubmission =
+        location.state?.isResubmission ?? false;
 
     const methods =
         useForm<ReportFormValues>({
@@ -66,6 +73,17 @@ const SubmitValuationReportPage = () => {
         isError
     } = useGetFacilityDetailsQuery(
         facilityReference!,
+        { skip: isResubmission }
+    );
+
+    const {
+        data: reportDetails,
+        isLoading: reportLoading,
+    } = useGetValuationReportDetailsQuery(
+        facilityReference!,
+        {
+            skip: !isResubmission,
+        },
     );
 
     const { currentValuer, isLoading: valuerLoading } =
@@ -74,7 +92,30 @@ const SubmitValuationReportPage = () => {
 
     useEffect(() => {
 
-        if (!facility || !currentValuer) {
+        if (!currentValuer) {
+            return;
+        }
+
+        if (isResubmission) {
+
+            if (!reportDetails) {
+                return;
+            }
+
+            reset({
+                ...mapReportDetailsToReportForm(
+                    reportDetails,
+                    currentValuer.valuerId,
+                ),
+
+                valuationReport:
+                    undefined as unknown as File,
+            });
+
+            return;
+        }
+
+        if (!facility) {
             return;
         }
 
@@ -84,12 +125,15 @@ const SubmitValuationReportPage = () => {
                 currentValuer,
             ),
 
-            valuationReport: undefined as unknown as File,
+            valuationReport:
+                undefined as unknown as File,
         });
 
     }, [
         facility,
+        reportDetails,
         currentValuer,
+        isResubmission,
         reset,
     ]);
 
@@ -219,7 +263,7 @@ const SubmitValuationReportPage = () => {
 
 
     if (
-        facilityLoading || valuerLoading
+        facilityLoading || valuerLoading || reportLoading
     ) {
         return <AppLoader />;
     }

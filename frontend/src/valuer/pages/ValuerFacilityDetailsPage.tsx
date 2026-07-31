@@ -20,8 +20,9 @@ import StatusBadge from '@/shared/ui/badge/Badge';
 import { getHomeRoute } from '@/shared/utils/getHomeRoute';
 import { useGetFacilityDetailsQuery } from '@/features/facilities/api/facilityApi';
 import { getApprovalStatus } from '@/features/valuations/utilis/status';
-import SubmitValuationReportPage from '@/features/reports/pages/SubmitValuationReportPage';
+
 import ValuerOverviewTab from '../constants/ValuerOverviewTab';
+import ValuersReportTab from '../components/ValuersReportTab';
 
 
 
@@ -125,7 +126,7 @@ const ValuerFacilityDetailsPage = () => {
 
             case "report":
                 return (
-                    <SubmitValuationReportPage />
+                    <ValuersReportTab/>
                 );
 
 
