@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using ValuationManagementSolu.Application.Events;
 using ValuationManagementSolu.Application.IServices;
 using ValuationManagementSolu.Application.Repository;
 using ValuationManagementSolu.Domain;
@@ -16,6 +18,21 @@ public class CmsActionService : ICmsActionService
         _unitOfWork = unitOfWork;
     }
 
+    private async Task StageOutboxEventAsync<T>(string facilityRef, T eventData) where T : class
+    {
+        var outboxEntry = new EventOutbox
+        {
+            Id = Guid.NewGuid(),
+            FacilityReference = facilityRef,
+            EventType = typeof(T).Name,
+            Payload = JsonSerializer.Serialize(eventData),
+            IsDispatched = false,
+            RetryCount = 0,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        await _unitOfWork.EventOutbox.AddAsync(outboxEntry);
+    }
     public async Task<bool> AssignFacilityAsync(string facilityRef, int valuerId, string valuerName, string Username)
     {
         var collaterals = await _unitOfWork.Collaterals.GetAllAsync();
@@ -59,7 +76,14 @@ public class CmsActionService : ICmsActionService
                 report.reportStatus = ReportStatus.Ongoing;
                 report.approvalStatus = ApprovalStatus.Pending;
             }
-
+            // 3. Stage the Outbox Event with structural email properties
+            var ev = new FacilityAssignedToValuerEvent(
+            facilityRef,
+            valuerId,
+            valuerName,
+            report.Valuer.ValuerEmail,
+            DateTime.UtcNow
+           );
             // 4. Persist and commit out cleanly via Unit of Work
             await _unitOfWork.CompleteAsync();
             await _unitOfWork.CommitTransactionAsync();

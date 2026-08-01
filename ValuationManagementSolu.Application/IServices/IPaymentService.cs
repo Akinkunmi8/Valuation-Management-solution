@@ -18,4 +18,5 @@ public interface IPaymentService
     Task<IEnumerable<ValuerReportItemDto>> GetTransactionsByStatusAsync(string status);
     Task<bool> ValidateFacilityFeePaymentStatusAsync(string FacilityRef);
     Task<bool> ValidateValuerFeePaymentStatusAsync(string FacilityRef);
+    Task<CmsApprovalResultDto> ProcessCmsEmailApprovalAsync(string facilityRef, string token, string action);
 }

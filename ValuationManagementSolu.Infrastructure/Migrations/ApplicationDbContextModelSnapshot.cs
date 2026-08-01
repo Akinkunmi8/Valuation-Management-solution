@@ -435,8 +435,17 @@ namespace ValuationManagementSolu.Infrastructure.Migrations
                     b.Property<int>("ApprovalStatus")
                         .HasColumnType("int");
 
+                    b.Property<bool>("ApproveValuerFeesPayment")
+                        .HasColumnType("bit");
+
                     b.Property<string>("BankId")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CmsPaymentApprovalToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CmsPaymentApprovalTokenExpiry")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Costcode")
                         .HasColumnType("nvarchar(max)");

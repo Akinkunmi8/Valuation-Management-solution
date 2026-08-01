@@ -46,7 +46,7 @@ public class PaymentService : IPaymentService
         var collateral = (await _unitOfWork.Collaterals.GetAllAsync()).FirstOrDefault(c => c.FacilityReference == facilityRef);
         if (collateral == null) throw new KeyNotFoundException($"Collateral not found for reference {facilityRef}.");
 
-        string cmAccount = _config["BankingConfigs:CmAccount"] ?? "1014918875";
+        string cmAccount = _config["AppSettings:CollaterAccount"] ?? "1014918875";
         string drAccount = facility.AccountNumber ?? throw new InvalidOperationException("Customer account is missing.");
         decimal amount = collateral.FeesCharged;
 
@@ -125,31 +125,78 @@ public class PaymentService : IPaymentService
     // ==========================================
     public async Task<bool> ProcessValuerFeesAsync(string facilityRef)
     {
-        var facility = (await _unitOfWork.Facilities.GetAllAsync()).FirstOrDefault(f => f.FacilityReference == facilityRef);
-        if (facility == null) throw new KeyNotFoundException($"Facility reference {facilityRef} not found.");
+        // 1. Fetch Facility Entity & Validate
+        var facility = (await _unitOfWork.Facilities.GetAllAsync())
+            .FirstOrDefault(f => f.FacilityReference == facilityRef);
+        if (facility == null)
+            throw new KeyNotFoundException($"Facility reference {facilityRef} not found.");
 
-        var collateral = (await _unitOfWork.Collaterals.GetAllAsync()).FirstOrDefault(c => c.FacilityReference == facilityRef);
-        if (collateral == null) throw new KeyNotFoundException($"Collateral not found for reference {facilityRef}.");
+        // 🔒 VALIDATION GUARD 1: CMS One-Click Email Approval Check
+        if (!facility.ApproveValuerFeesPayment)
+        {
+            throw new InvalidOperationException($"Cannot process payment. Valuer fee payout for facility reference '{facilityRef}' has not been approved by CMS.");
+        }
+
+        // 🔒 VALIDATION GUARD 2: Duplicate Payout Check
+        var existingTransactions = await _unitOfWork.Transactions.GetAllAsync();
+        bool alreadyPaid = existingTransactions.Any(t =>
+            t.FacilityReference == facilityRef &&
+            t.TransactionType == TransactionType.ValuerPayout &&
+            t.Status == PaymentStatus.Successful);
+
+        if (alreadyPaid)
+        {
+            throw new InvalidOperationException($"Valuer fee payment for facility reference '{facilityRef}' has already been successfully processed.");
+        }
+
+        // 2. Fetch Valuation Report & Validate Completion Status
+        var allReports = await _unitOfWork.ValuationReports.GetAllAsync();
+        var report = allReports.FirstOrDefault(r => r.FacilityRef == facilityRef);
+
+        // 🔒 VALIDATION GUARD 3: Report Structure & Review Status
+        if (report == null || report.approvalStatus != ApprovalStatus.Approved)
+        {
+            throw new InvalidOperationException($"Cannot process payment. The valuation report for facility '{facilityRef}' is either missing or not yet approved.");
+        }
+
+        // 3. Fetch Collateral & Assigned Valuer Metadata
+        var collateral = (await _unitOfWork.Collaterals.GetAllAsync())
+            .FirstOrDefault(c => c.FacilityReference == facilityRef);
+        if (collateral == null)
+            throw new KeyNotFoundException($"Collateral not found for reference {facilityRef}.");
 
         if (!collateral.ValuerId.HasValue)
             throw new InvalidOperationException("No valuer has been assigned to this collateral tracking profile yet.");
 
         var valuer = await _unitOfWork.Valuers.GetByIdAsync(collateral.ValuerId.Value);
-        if (valuer == null || string.IsNullOrEmpty(valuer.AccountNumber))
+        if (valuer == null || string.IsNullOrWhiteSpace(valuer.AccountNumber))
             throw new InvalidOperationException("The assigned valuer does not have a verified account profiled.");
 
+        if (collateral.FeesCharged <= 0)
+            throw new InvalidOperationException($"Invalid valuer fee amount ({collateral.FeesCharged}) configured for facility reference '{facilityRef}'.");
+
+        // 4. Financial Account & Posting Setup
         string cmAccount = _config["BankingConfigs:CmAccount"] ?? "1014918875";
         string crAccount = valuer.AccountNumber;
         decimal amount = collateral.FeesCharged;
 
         string reservedField = $"{facilityRef}/{facility.CustomerName}/{collateral.FeesCharged:F2}";
 
+        // 5. Transactional Execution Sequence
         await _unitOfWork.BeginTransactionAsync();
         try
         {
-            bool success = await ExecuteFinaclePostingAsync(facilityRef, cmAccount, crAccount, amount, reservedField, "Valuer Fees Payout", TransactionType.ValuerPayout);
+            bool success = await ExecuteFinaclePostingAsync(
+                facilityRef,
+                cmAccount,
+                crAccount,
+                amount,
+                reservedField,
+                "Valuer Fees Payout",
+                TransactionType.ValuerPayout
+            );
 
-            // Stage notification event
+            // Stage notification event for Outbox consumer
             var payoutEvent = new ValuerPaymentProcessedEvent
             (
                 facilityRef,
@@ -159,10 +206,12 @@ public class PaymentService : IPaymentService
                 amount,
                 DateTime.UtcNow
             );
+
             await StageOutboxEventAsync(facilityRef, payoutEvent);
 
             await _unitOfWork.CompleteAsync();
             await _unitOfWork.CommitTransactionAsync();
+
             return success;
         }
         catch
@@ -371,4 +420,104 @@ public class PaymentService : IPaymentService
         );
     }
     #endregion
+
+    public async Task<CmsApprovalResultDto> ProcessCmsEmailApprovalAsync(string facilityRef, string token, string action)
+    {
+        if (string.IsNullOrWhiteSpace(facilityRef) || string.IsNullOrWhiteSpace(token))
+        {
+            return new CmsApprovalResultDto
+            {
+                IsSuccess = false,
+                Title = "Invalid Request",
+                Message = "Missing required facility reference or security token."
+            };
+        }
+
+        var allFacilities = await _unitOfWork.Facilities.GetAllAsync();
+        var facility = allFacilities.FirstOrDefault(f => f.FacilityReference == facilityRef);
+
+        if (facility == null)
+        {
+            return new CmsApprovalResultDto
+            {
+                IsSuccess = false,
+                Title = "Facility Not Found",
+                Message = $"Facility reference '{facilityRef}' could not be located in the database."
+            };
+        }
+
+        // 1. Validate Token Integrity & Expiration Window
+        if (facility.CmsPaymentApprovalToken != token ||
+            !facility.CmsPaymentApprovalTokenExpiry.HasValue ||
+            facility.CmsPaymentApprovalTokenExpiry.Value < DateTime.UtcNow)
+        {
+            // Safe check: Ensure HasValue is true AND it has expired
+            if (facility.CmsPaymentApprovalTokenExpiry.HasValue &&
+                facility.CmsPaymentApprovalTokenExpiry.Value < DateTime.UtcNow)
+            {
+                // Build absolute or relative resend URL
+                string resendUrl = $"/api/CmAction/resend-approval-link?facilityRef={facilityRef}";
+
+                return new CmsApprovalResultDto
+                {
+                    IsSuccess = false,
+                    Title = "Approval Link Expired",
+                    Message = $@"This approval link expired on {facility.CmsPaymentApprovalTokenExpiry.Value:dd-MMM-yyyy HH:mm} UTC. 
+                        <br/><br/>
+                        <a href='{resendUrl}' style='display:inline-block; padding:10px 20px; background-color:#2563eb; color:white; text-decoration:none; border-radius:5px; font-weight:bold;'>Click Here to Receive a New Approval Email</a>"
+                };
+            }
+
+            // Handles cases where token mismatch occurs or token has already been invalidated/nullified after use
+            return new CmsApprovalResultDto
+            {
+                IsSuccess = false,
+                Title = "Link Expired or Already Processed",
+                Message = "This approval request link has either been used already or is no longer valid."
+            };
+        }
+
+        // 2. Execute Action (Approve / Reject)
+        if (action.Equals("approve", StringComparison.OrdinalIgnoreCase))
+        {
+            facility.ApproveValuerFeesPayment = true;
+            facility.CmsPaymentApprovalToken = null; // Invalidate single-use token
+            facility.CmsPaymentApprovalTokenExpiry = null;
+
+            _unitOfWork.Facilities.Update(facility);
+            await _unitOfWork.CompleteAsync();
+
+            return new CmsApprovalResultDto
+            {
+                IsSuccess = true,
+                Title = "Valuer Fee Approved Successfully",
+                Message = $"Valuer fee payout for facility reference <strong>{facilityRef}</strong> has been authorized by CMS. The payment queue validation is now unlocked."
+            };
+        }
+        else if (action.Equals("reject", StringComparison.OrdinalIgnoreCase))
+        {
+            facility.ApproveValuerFeesPayment = false;
+            facility.CmsPaymentApprovalToken = null; // Invalidate single-use token
+            facility.CmsPaymentApprovalTokenExpiry = null;
+
+            _unitOfWork.Facilities.Update(facility);
+            await _unitOfWork.CompleteAsync();
+
+            return new CmsApprovalResultDto
+            {
+                IsSuccess = true,
+                Title = "Valuer Fee Payment Rejected",
+                Message = $"Valuer fee payout request for facility reference <strong>{facilityRef}</strong> was rejected by CMS."
+            };
+        }
+
+        return new CmsApprovalResultDto
+        {
+            IsSuccess = false,
+            Title = "Invalid Action Command",
+            Message = "Unrecognized approval action requested."
+        };
+    }
+
+    
 }

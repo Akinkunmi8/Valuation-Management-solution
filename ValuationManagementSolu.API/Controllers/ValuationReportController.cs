@@ -157,4 +157,22 @@ public class ValuationReportController : ControllerBase
         var dashboardData = await _valuationReportDashboardService.GetReportDashboardDataAsync();
         return Ok(dashboardData);
     }
+
+    /// <summary>
+    /// Gets a completed valuation report and its Base64 file contents using the customer account number.
+    /// </summary>
+    /// <param name="accountNumber">The target account number (e.g. 1014918875)</param>
+    [HttpGet("completed-by-account/{accountNumber}")]
+    public async Task<IActionResult> GetCompletedReportByAccountNumber(string accountNumber)
+    {
+        if (string.IsNullOrWhiteSpace(accountNumber))
+            return BadRequest("Account number is required.");
+
+        var result = await _reportService.GetCompletedReportByAccountNumberAsync(accountNumber);
+
+        if (result == null)
+            return NotFound($"No completed valuation report found for account number '{accountNumber}'.");
+
+        return Ok(result);
+    }
 }

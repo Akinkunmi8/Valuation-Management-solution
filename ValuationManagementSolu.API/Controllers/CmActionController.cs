@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ValuationManagementSolu.Application.IServices;
+using ValuationManagementSolu.Infrastructure.Services;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -74,5 +76,79 @@ public class CmActionController : ControllerBase
         {
             return StatusCode(500, new { Message = ex.Message });
         }
+    }
+
+    [HttpGet("resend-approval-link")]
+    [AllowAnonymous]
+    public async Task<IActionResult> ResendApprovalLink([FromQuery] string facilityRef)
+    {
+        bool sent = await _cmService.ResendCmsApprovalEmailAsync(facilityRef);
+
+        if (!sent)
+        {
+            return Content(RenderHtmlResponse("Error", $"Facility reference '{facilityRef}' could not be located."), "text/html");
+        }
+
+        return Content(RenderHtmlResponse("New Link Dispatched",
+            $"A new payment authorization link has been generated and emailed to CMS for facility <strong>{facilityRef}</strong>."), "text/html");
+    }
+
+    private static string RenderHtmlResponse(string title, string message)
+    {
+        return $@"
+        <!DOCTYPE html>
+        <html lang='en'>
+        <head>
+            <meta charset='UTF-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <title>{title}</title>
+            <style>
+                body {{
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    background-color: #f1f5f9;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                }}
+                .card {{
+                    background: #ffffff;
+                    padding: 40px;
+                    border-radius: 12px;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+                    max-width: 480px;
+                    text-align: center;
+                }}
+                h2 {{
+                    color: #0f172a;
+                    margin-bottom: 12px;
+                    font-size: 22px;
+                }}
+                p {{
+                    color: #475569;
+                    font-size: 15px;
+                    line-height: 1.6;
+                }}
+                .badge {{
+                    display: inline-block;
+                    margin-top: 15px;
+                    padding: 8px 16px;
+                    background-color: #e2e8f0;
+                    color: #334155;
+                    border-radius: 20px;
+                    font-size: 13px;
+                    font-weight: 600;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class='card'>
+                <h2>{title}</h2>
+                <p>{message}</p>
+                <div class='badge'>Valuation Management System</div>
+            </div>
+        </body>
+        </html>";
     }
 }

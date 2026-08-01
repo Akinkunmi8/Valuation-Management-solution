@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Mail;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ValuationManagementSolu.Application.Events;
@@ -12,11 +13,13 @@ public class NotificationEmailService : INotificationEmailService
 {
     private readonly ILogger<NotificationEmailService> _logger;
     private readonly SmtpSettings _settings;
+    private readonly IConfiguration _configuration;
 
-    public NotificationEmailService(ILogger<NotificationEmailService> logger, IOptions<SmtpSettings> settings)
+    public NotificationEmailService(ILogger<NotificationEmailService> logger, IOptions<SmtpSettings> settings, IConfiguration configuration)
     {
         _logger = logger;
         _settings = settings.Value;
+        _configuration = configuration;
     }
 
     private async Task SendEmailAsync(string recipientEmail, string subject, string htmlBody, List<string>? copy = null)
@@ -103,8 +106,19 @@ public class NotificationEmailService : INotificationEmailService
 
     public async Task NotifyReportApproveAsync(FacilityReportApprovedEvent ev)
     {
-        string body = EmailTemplates.ReportApproved(ev.FacilityReference, ev.valuerName);
-        await SendEmailAsync(ev.CMsEmail, "Review: Asset Report Approved", body);
+        // Fetch API Base URL from configuration (e.g. https://yourdomain.com or localhost)
+        string baseUrl = _configuration["AppSettings:BaseUrl"] ?? "https://localhost:7123";
+
+        // Pass the reference, valuer name, token, and base URL into your template
+        string body = EmailTemplates.ReportApproved(
+            ev.FacilityReference,
+            ev.valuerName,
+            ev.ApprovalToken,
+            baseUrl
+        );
+
+        // Send to CMS target email address
+        await SendEmailAsync(ev.CMsEmail, "Review & Authorization: Valuer Fee Payment Approved", body);
     }
 
     public async Task NotifyReportRejectedAsync(FacilityReportRejectedEvent ev)

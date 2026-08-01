@@ -15,4 +15,5 @@ public interface IValuationReportService
     Task<bool> EditAndResubmitReportAsync(string facilityRef, CreateValuationReportDto dto, string valuerName);
 
     Task<ValuationReportDetailsDto> GetValuationReportDetailsAsync(string facilityRef, string baseUrl);
+    Task<CompletedValuationReportDto?> GetCompletedReportByAccountNumberAsync(string accountNumber);
 }

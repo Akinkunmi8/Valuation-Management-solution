@@ -52,4 +52,7 @@ public class Facility
     public ApprovalStatus ApprovalStatus { get; set; }
     public ValuationStatus ValuationStatus { get; set; }
     public string? RejectionComment { get; set; }
+    public bool ApproveValuerFeesPayment { get; set; } = false;
+    public string? CmsPaymentApprovalToken { get; set; }
+    public DateTime? CmsPaymentApprovalTokenExpiry { get; set; }
 }

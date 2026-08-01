@@ -3,6 +3,7 @@
 public interface ICmActionService
 {
     Task<bool> ApproveReportAsync(string facilityRef, string Username);
+    Task<bool> ResendCmsApprovalEmailAsync(string facilityRef);
     Task<bool> RejectReportAsync(string facilityRef, string Username, string comment);
     Task<bool> ApproveFacilityAsync(string facilityRef, string Username);
     Task<bool> RejectFacilityAsync(string facilityRef, string Username, string comment);

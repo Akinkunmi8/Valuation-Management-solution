@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using ValuationManagementSolu.Application.DTOs;
+using ValuationManagementSolu.Application.Events;
 using ValuationManagementSolu.Application.IServices;
 using ValuationManagementSolu.Application.Repository;
 using ValuationManagementSolu.Domain;
@@ -14,13 +17,30 @@ public class ValuationReportService : IValuationReportService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IFileStorageService _fileStorageService;
+    private readonly IConfiguration _configuration;
 
-    public ValuationReportService(IUnitOfWork unitOfWork, IFileStorageService fileStorageService)
+
+    public ValuationReportService(IUnitOfWork unitOfWork, IFileStorageService fileStorageService, IConfiguration configuration)
     {
         _unitOfWork = unitOfWork;
         _fileStorageService = fileStorageService;
+        _configuration = configuration;
     }
+    private async Task StageOutboxEventAsync<T>(string facilityRef, T eventData) where T : class
+    {
+        var outboxEntry = new EventOutbox
+        {
+            Id = Guid.NewGuid(),
+            FacilityReference = facilityRef,
+            EventType = typeof(T).Name,
+            Payload = JsonSerializer.Serialize(eventData),
+            IsDispatched = false,
+            RetryCount = 0,
+            CreatedAt = DateTime.UtcNow
+        };
 
+        await _unitOfWork.EventOutbox.AddAsync(outboxEntry);
+    }
     public async Task<bool> CreateValuationReportAsync(CreateValuationReportDto dto, string valuerName)
     {
         if (dto == null || string.IsNullOrEmpty(dto.FacilityReference))
@@ -80,7 +100,16 @@ public class ValuationReportService : IValuationReportService
                 approvalStatus = ApprovalStatus.Pending, // Report specific approval is Pending
                 PaymentStatus = PaymentStatus.UnProcessed
             };
+            var CMEmail = _configuration["AppSettings:CollaterEmail"];
+            var ev = new FacilityReportUploadedEvent(
+            reportEntity.FacilityRef,
+            reportEntity.ValuersName,
+            CMEmail,
+            generatedFilePath,
+            DateTime.UtcNow
+           );
 
+            await StageOutboxEventAsync(reportEntity.FacilityRef, ev);
             await _unitOfWork.ValuationReports.AddAsync(reportEntity);
 
             // 7. Persist changes across all tracking contexts
@@ -347,6 +376,62 @@ public class ValuationReportService : IValuationReportService
             CollateralLocation = collateral?.Location ?? string.Empty,
             OtherDetails = collateral?.OtherDetails ?? string.Empty
         };
+    }
+
+    public async Task<CompletedValuationReportDto?> GetCompletedReportByAccountNumberAsync(string accountNumber)
+    {
+        if (string.IsNullOrWhiteSpace(accountNumber)) return null;
+
+        // 1. Fetch target facility using AccountNumber
+        var allFacilities = await _unitOfWork.Facilities.GetAllAsync();
+        var facility = allFacilities.FirstOrDefault(f => f.AccountNumber == accountNumber);
+
+        if (facility == null || string.IsNullOrWhiteSpace(facility.FacilityReference))
+            return null;
+
+        // 2. Query completed valuation report associated with this FacilityRef
+        var allReports = await _unitOfWork.ValuationReports.GetAllAsync();
+        var report = allReports.FirstOrDefault(r =>
+            r.FacilityRef == facility.FacilityReference &&
+            r.reportStatus == ReportStatus.Completed);
+
+        if (report == null) return null;
+
+        // 3. Map facility & report attributes
+        var dto = new CompletedValuationReportDto
+        {
+            FacilityRef = facility.FacilityReference,
+            FacilityAmount = facility.FacilityAmount,
+            Status = report.reportStatus.ToString(),
+            OperativeAcc = facility.AccountNumber,
+            State = facility.State,
+            LocalGov = facility.LocalGov,
+            PropertyDescription = facility.PropertyDescription,
+            Landsize = facility.Landsize,
+            ValuationDate = facility.ValuationDate,
+            OpenMarketValue = facility.OpenMarketValue,
+            ForceSalesValue = facility.ForceSalesValue,
+            InsuranceValue = facility.InsuranceValue,
+            SalesLocation = facility.SalesLocation,
+            SalesDate = facility.SalesDate,
+            ValuationRePortName = report.ValuationRePortName,
+            ValuersName = report.ValuersName,
+            DateAssigned = report.DateAssigned
+        };
+
+        // 4. Retrieve stored report document and encode to Base64
+        if (!string.IsNullOrWhiteSpace(report.ValuationRePortName))
+        {
+            var fileResult = await _fileStorageService.GetFileAsync(report.ValuationRePortName);
+            if (fileResult != null)
+            {
+                var (fileBytes, contentType, _) = fileResult.Value;
+                dto.ValuationReportBase64 = Convert.ToBase64String(fileBytes);
+                dto.ContentType = contentType;
+            }
+        }
+
+        return dto;
     }
 
 }

@@ -19,6 +19,6 @@ public record ReverseValuerPaymentProcessedEvent(string FacilityReference, strin
 public record FacilityAssignedToValuerEvent(string FacilityReference, int ValuerId, string ValuerName, string ValuerEmail, DateTime Timestamp);
 public record FacilityReassignedAndWithdrawnEvent(string FacilityReference, int OldValuerId, int? NewValuerId, string ValuerEmail, string Reason, DateTime Timestamp);
 public record FacilityReportUploadedEvent(string FacilityReference, string ValuerName, string CMEmail, string ReportPath, DateTime Timestamp);
-public record FacilityReportApprovedEvent(string FacilityReference, string valuerName, string CMsEmail, DateTime Timestamp);
+public record FacilityReportApprovedEvent(string FacilityReference, string valuerName, string CMsEmail, string ApprovalToken, DateTime Timestamp);
 public record FacilityReportRejectedEvent(string FacilityReference, string RejectedBy, string ValuerEmail, string Comment, DateTime Timestamp);
 public record FacilityReportCompletedEvent(string FacilityReference, string CreatedByEmail, string valuerName, DateTime Timestamp);

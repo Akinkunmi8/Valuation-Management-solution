@@ -1,0 +1,1906 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Valuation Management API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Account/login/staff": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffLoginModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffLoginModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffLoginModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/login/valuer": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValuerLoginModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValuerLoginModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValuerLoginModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/register/staff": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterStaff"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterStaff"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterStaff"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/register/valuer": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterValuer"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterValuer"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterValuer"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/forgot-password": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgortPassword"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgortPassword"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgortPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/reset-password": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPassword"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPassword"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/change-password": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChanagePassword"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChanagePassword"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChanagePassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AdminDashboard/system-metrics": {
+      "get": {
+        "tags": [
+          "AdminDashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AuditDashboard/system-summary": {
+      "get": {
+        "tags": [
+          "AuditDashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/BmDashboard/branch-metrics": {
+      "get": {
+        "tags": [
+          "BmDashboard"
+        ],
+        "parameters": [
+          {
+            "name": "solId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CmAction/approve-facility/{facilityRef}": {
+      "post": {
+        "tags": [
+          "CmAction"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Username",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CmAction/reject-facility/{facilityRef}": {
+      "post": {
+        "tags": [
+          "CmAction"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectionRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectionRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectionRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CmAction/approve-report/{facilityRef}": {
+      "post": {
+        "tags": [
+          "CmAction"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Username",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CmAction/reject-report/{facilityRef}": {
+      "post": {
+        "tags": [
+          "CmAction"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectionRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectionRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectionRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CmDashboard/global-metrics": {
+      "get": {
+        "tags": [
+          "CmDashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CmsAction/assign-valuer/{facilityRef}": {
+      "post": {
+        "tags": [
+          "CmsAction"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "valuerId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "valuerName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Username",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CmsAction/cancel-facility/{facilityRef}": {
+      "post": {
+        "tags": [
+          "CmsAction"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Username",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CmsDashboard/supervisor-metrics": {
+      "get": {
+        "tags": [
+          "CmsDashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Document/view-file": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "parameters": [
+          {
+            "name": "filePath",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "download",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Facilities/create": {
+      "post": {
+        "tags": [
+          "Facilities"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "AccountNumber": {
+                    "type": "string"
+                  },
+                  "SolId": {
+                    "type": "string"
+                  },
+                  "FacilityPurpose": {
+                    "type": "string"
+                  },
+                  "CustomerName": {
+                    "type": "string"
+                  },
+                  "City": {
+                    "type": "string"
+                  },
+                  "Country": {
+                    "type": "string"
+                  },
+                  "FacilityAddress": {
+                    "type": "string"
+                  },
+                  "RMsNumber": {
+                    "type": "string"
+                  },
+                  "CreatedBy": {
+                    "type": "string"
+                  },
+                  "CollateraOwener": {
+                    "type": "string"
+                  },
+                  "collateralType": {
+                    "type": "string"
+                  },
+                  "StateOfCollateral": {
+                    "type": "string"
+                  },
+                  "Location": {
+                    "type": "string"
+                  },
+                  "OtherDetails": {
+                    "type": "string"
+                  },
+                  "CollateralValue": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "ValuationsFees": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "TitleDocument": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "ApprovalFile": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "IndemityLetter": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "AccountNumber": {
+                  "style": "form"
+                },
+                "SolId": {
+                  "style": "form"
+                },
+                "FacilityPurpose": {
+                  "style": "form"
+                },
+                "CustomerName": {
+                  "style": "form"
+                },
+                "City": {
+                  "style": "form"
+                },
+                "Country": {
+                  "style": "form"
+                },
+                "FacilityAddress": {
+                  "style": "form"
+                },
+                "RMsNumber": {
+                  "style": "form"
+                },
+                "CreatedBy": {
+                  "style": "form"
+                },
+                "CollateraOwener": {
+                  "style": "form"
+                },
+                "collateralType": {
+                  "style": "form"
+                },
+                "StateOfCollateral": {
+                  "style": "form"
+                },
+                "Location": {
+                  "style": "form"
+                },
+                "OtherDetails": {
+                  "style": "form"
+                },
+                "CollateralValue": {
+                  "style": "form"
+                },
+                "ValuationsFees": {
+                  "style": "form"
+                },
+                "TitleDocument": {
+                  "style": "form"
+                },
+                "ApprovalFile": {
+                  "style": "form"
+                },
+                "IndemityLetter": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Facilities/edit-resubmit/{facilityRef}": {
+      "put": {
+        "tags": [
+          "Facilities"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "AccountNumber": {
+                    "type": "string"
+                  },
+                  "SolId": {
+                    "type": "string"
+                  },
+                  "FacilityPurpose": {
+                    "type": "string"
+                  },
+                  "CustomerName": {
+                    "type": "string"
+                  },
+                  "City": {
+                    "type": "string"
+                  },
+                  "Country": {
+                    "type": "string"
+                  },
+                  "FacilityAddress": {
+                    "type": "string"
+                  },
+                  "CollateralOwner": {
+                    "type": "string"
+                  },
+                  "CollateralType": {
+                    "type": "string"
+                  },
+                  "StateOfCollateral": {
+                    "type": "string"
+                  },
+                  "Location": {
+                    "type": "string"
+                  },
+                  "OtherDetails": {
+                    "type": "string"
+                  },
+                  "CollateralValue": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "ValuationsFees": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "RMsNumber": {
+                    "type": "string"
+                  },
+                  "TitleDocument": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "ApprovalFile": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "IndemnityLetter": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "AccountNumber": {
+                  "style": "form"
+                },
+                "SolId": {
+                  "style": "form"
+                },
+                "FacilityPurpose": {
+                  "style": "form"
+                },
+                "CustomerName": {
+                  "style": "form"
+                },
+                "City": {
+                  "style": "form"
+                },
+                "Country": {
+                  "style": "form"
+                },
+                "FacilityAddress": {
+                  "style": "form"
+                },
+                "CollateralOwner": {
+                  "style": "form"
+                },
+                "CollateralType": {
+                  "style": "form"
+                },
+                "StateOfCollateral": {
+                  "style": "form"
+                },
+                "Location": {
+                  "style": "form"
+                },
+                "OtherDetails": {
+                  "style": "form"
+                },
+                "CollateralValue": {
+                  "style": "form"
+                },
+                "ValuationsFees": {
+                  "style": "form"
+                },
+                "RMsNumber": {
+                  "style": "form"
+                },
+                "TitleDocument": {
+                  "style": "form"
+                },
+                "ApprovalFile": {
+                  "style": "form"
+                },
+                "IndemnityLetter": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Facilities/remove-cancelled/{facilityRef}": {
+      "delete": {
+        "tags": [
+          "Facilities"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Facilities/getFacilityDetails/{facilityRefd}": {
+      "get": {
+        "tags": [
+          "Facilities"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facilityRefd",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/facility-fees/process/{facilityRef}": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/facility-fees/reverse/{facilityRef}": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/valuer-fees/process/{facilityRef}": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/valuer-fees/reverse/{facilityRef}": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/validate-facility-fee/{facilityRef}": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/validate-valuer-fee/{facilityRef}": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/history": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/dashboard/facility-fees": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/dashboard/valuer-fees": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payment/cms-approval": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RmDashboard/metrics": {
+      "get": {
+        "tags": [
+          "RmDashboard"
+        ],
+        "parameters": [
+          {
+            "name": "createdBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "solId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ValuationReport/submit": {
+      "post": {
+        "tags": [
+          "ValuationReport"
+        ],
+        "parameters": [
+          {
+            "name": "FacilityReference",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "maxLength": 20,
+              "minLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "name": "CustomerName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CollateralValue",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "Owner",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "City",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "State",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "LocalGov",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PropertyDescription",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Landsize",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AssetCategoryId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/AssetCategory"
+            }
+          },
+          {
+            "name": "DateAssigned",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "ValuationDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "ValuerId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "OpenMarketValue",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "ForceSalesValue",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "InsuranceValue",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "SalesLocation",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SalesDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ValuatioinReport": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "ValuatioinReport": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ValuationReport/download": {
+      "get": {
+        "tags": [
+          "ValuationReport"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ValuationReport/list-by-category": {
+      "get": {
+        "tags": [
+          "ValuationReport"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ValuationReport/reassign": {
+      "post": {
+        "tags": [
+          "ValuationReport"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newValuerId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "newValuerName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ValuationReport/edit-resubmit/{facilityRef}": {
+      "put": {
+        "tags": [
+          "ValuationReport"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "FacilityReference"
+                ],
+                "type": "object",
+                "properties": {
+                  "FacilityReference": {
+                    "maxLength": 20,
+                    "minLength": 10,
+                    "type": "string"
+                  },
+                  "CustomerName": {
+                    "type": "string"
+                  },
+                  "CollateralValue": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Owner": {
+                    "type": "string"
+                  },
+                  "City": {
+                    "type": "string"
+                  },
+                  "State": {
+                    "type": "string"
+                  },
+                  "LocalGov": {
+                    "type": "string"
+                  },
+                  "PropertyDescription": {
+                    "type": "string"
+                  },
+                  "Landsize": {
+                    "type": "string"
+                  },
+                  "AssetCategoryId": {
+                    "$ref": "#/components/schemas/AssetCategory"
+                  },
+                  "DateAssigned": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "ValuationDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "ValuerId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "OpenMarketValue": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "ForceSalesValue": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "InsuranceValue": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "SalesLocation": {
+                    "type": "string"
+                  },
+                  "SalesDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "ValuatioinReport": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "FacilityReference": {
+                  "style": "form"
+                },
+                "CustomerName": {
+                  "style": "form"
+                },
+                "CollateralValue": {
+                  "style": "form"
+                },
+                "Owner": {
+                  "style": "form"
+                },
+                "City": {
+                  "style": "form"
+                },
+                "State": {
+                  "style": "form"
+                },
+                "LocalGov": {
+                  "style": "form"
+                },
+                "PropertyDescription": {
+                  "style": "form"
+                },
+                "Landsize": {
+                  "style": "form"
+                },
+                "AssetCategoryId": {
+                  "style": "form"
+                },
+                "DateAssigned": {
+                  "style": "form"
+                },
+                "ValuationDate": {
+                  "style": "form"
+                },
+                "ValuerId": {
+                  "style": "form"
+                },
+                "OpenMarketValue": {
+                  "style": "form"
+                },
+                "ForceSalesValue": {
+                  "style": "form"
+                },
+                "InsuranceValue": {
+                  "style": "form"
+                },
+                "SalesLocation": {
+                  "style": "form"
+                },
+                "SalesDate": {
+                  "style": "form"
+                },
+                "ValuatioinReport": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ValuationReport/details/{facilityRef}": {
+      "get": {
+        "tags": [
+          "ValuationReport"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ValuationReport/dashboard": {
+      "get": {
+        "tags": [
+          "ValuationReport"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ValuationReport/completed-by-account/{accountNumber}": {
+      "get": {
+        "tags": [
+          "ValuationReport"
+        ],
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Valuer/profile": {
+      "post": {
+        "tags": [
+          "Valuer"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValuerProfilingDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValuerProfilingDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValuerProfilingDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Valuer/dropdown": {
+      "get": {
+        "tags": [
+          "Valuer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ValuerDashboard/metrics/{valuerId}": {
+      "get": {
+        "tags": [
+          "ValuerDashboard"
+        ],
+        "parameters": [
+          {
+            "name": "valuerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AssetCategory": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ChanagePassword": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "oldPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ForgortPassword": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterStaff": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterValuer": {
+        "type": "object",
+        "properties": {
+          "accountNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RejectionRequestDto": {
+        "type": "object",
+        "properties": {
+          "facilityReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResetPassword": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "resetToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StaffLoginModel": {
+        "required": [
+          "password",
+          "softToken",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "softToken": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValuerLoginModel": {
+        "required": [
+          "password",
+          "softToken"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "softToken": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValuerProfilingDto": {
+        "type": "object",
+        "properties": {
+          "valuersName": {
+            "type": "string",
+            "nullable": true
+          },
+          "valuerEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "valuerAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "telephoneNumbers": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountManager": {
+            "type": "string",
+            "nullable": true
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Enter your JWT token in this exact format: Bearer {your_token_here}",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "Account"
+    },
+    {
+      "name": "AdminDashboard"
+    },
+    {
+      "name": "AuditDashboard"
+    },
+    {
+      "name": "BmDashboard"
+    },
+    {
+      "name": "CmAction"
+    },
+    {
+      "name": "CmDashboard"
+    },
+    {
+      "name": "CmsAction"
+    },
+    {
+      "name": "CmsDashboard"
+    },
+    {
+      "name": "Document"
+    },
+    {
+      "name": "Facilities"
+    },
+    {
+      "name": "Payment"
+    },
+    {
+      "name": "RmDashboard"
+    },
+    {
+      "name": "ValuationReport"
+    },
+    {
+      "name": "Valuer"
+    },
+    {
+      "name": "ValuerDashboard"
+    }
+  ]
+}

@@ -85,23 +85,74 @@ public class CmActionService : ICmActionService
             report.reportStatus = ReportStatus.Completed;
             report.ReportReviewBy = Username;
 
+            // Generate 48-hour secure token for CMS One-Click approval
+            string approvalToken = Guid.NewGuid().ToString("N");
+
             if (facility != null)
             {
                 facility.ValuationStatus = ValuationStatus.Completed;
+                facility.CmsPaymentApprovalToken = approvalToken;
+                facility.CmsPaymentApprovalTokenExpiry = DateTime.UtcNow.AddHours(48);
             }
 
-            // 2. Stage the Outbox Event (Uses the valuer name linked to the report)
+            // Stage Outbox Event containing the Approval Token
             var ev = new FacilityReportApprovedEvent(
-
                 facilityRef,
                 report.ValuersName ?? "Assigned Valuer",
                 report.AssignedBy,
-                DateTime.Now
+                approvalToken,
+                DateTime.UtcNow
             );
+
             await StageOutboxEventAsync(facilityRef, ev);
 
             await _unitOfWork.CompleteAsync();
             await _unitOfWork.CommitTransactionAsync();
+            return true;
+        }
+        catch
+        {
+            await _unitOfWork.RollbackTransactionAsync();
+            throw;
+        }
+    }
+
+    public async Task<bool> ResendCmsApprovalEmailAsync(string facilityRef)
+    {
+        // 1. Fetch Facility Entity
+        var facilities = await _unitOfWork.Facilities.GetAllAsync();
+        var facility = facilities.FirstOrDefault(f => f.FacilityReference == facilityRef);
+        if (facility == null) return false;
+
+        // 2. Fetch Valuation Report Entity
+        var reports = await _unitOfWork.ValuationReports.GetAllAsync();
+        var report = reports.FirstOrDefault(r => r.FacilityRef == facilityRef);
+        if (report == null) return false;
+
+        await _unitOfWork.BeginTransactionAsync();
+        try
+        {
+            // 3. Generate a fresh 48-hour approval token
+            string newToken = Guid.NewGuid().ToString("N");
+            facility.CmsPaymentApprovalToken = newToken;
+            facility.CmsPaymentApprovalTokenExpiry = DateTime.UtcNow.AddHours(48);
+
+            _unitOfWork.Facilities.Update(facility);
+
+            // 4. Stage Outbox Event with the fresh Token
+            var ev = new FacilityReportApprovedEvent(
+                facilityRef,
+                report.ValuersName ?? "Assigned Valuer",
+                report.AssignedBy,
+                newToken,
+                DateTime.UtcNow
+            );
+
+            await StageOutboxEventAsync(facilityRef, ev);
+
+            await _unitOfWork.CompleteAsync();
+            await _unitOfWork.CommitTransactionAsync();
+
             return true;
         }
         catch

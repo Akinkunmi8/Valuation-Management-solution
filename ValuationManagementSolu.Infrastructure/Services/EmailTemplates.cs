@@ -68,14 +68,30 @@ public static class EmailTemplates
             <p><strong>Assigned Valuer:</strong> {valuerName}</p>
             <p>The file package has been routed directly to the Credit Management Unit queue for sign-off review.</p>");
 
-    public static string ReportApproved(string refNum, string valuerName) =>
-    BaseLayout("Valuation Report Document Approved", $@"
-        <p>Hello Team,</p>
-        <p>Great news! The submitted valuation report structure has been successfully reviewed and formally approved.</p>
+    public static string ReportApproved(string refNum, string valuerName, string approvalToken, string baseUrl)
+    {
+        // Build single-click URLs
+        string approveUrl = $"{baseUrl.TrimEnd('/')}/api/Payment/cms-approval?facilityRef={refNum}&token={approvalToken}&action=approve";
+        string rejectUrl = $"{baseUrl.TrimEnd('/')}/api/Payment/cms-approval?facilityRef={refNum}&token={approvalToken}&action=reject";
+
+        return BaseLayout("Valuation Report Document Approved", $@"
+        <p>Hello CMS Team,</p>
+        <p>Great news! The submitted valuation report structure has been successfully reviewed and formally approved by the Credit Manager.</p>
+        
         <p><strong>Facility Reference:</strong> <span class='badge badge-success'>{refNum}</span></p>
         <p><strong>Inspecting Valuer:</strong> {valuerName}</p>
-        <p>The facility asset parameters have been locked, and the credit application has now been advanced to the final sign-off processing stage.</p>");
+        
+        <p>The facility asset parameters have been locked, and the valuer fee payout now requires your approval.</p>
 
+        <!-- One-Click Email Action Buttons -->
+        <div style='text-align: center; margin: 30px 0;'>
+            <a href='{approveUrl}' style='background-color: #16a34a; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-right: 15px; display: inline-block;'>APPROVE PAYMENT</a>
+            <a href='{rejectUrl}' style='background-color: #dc2626; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>REJECT PAYMENT</a>
+        </div>
+
+        <p style='color: #64748b; font-size: 12px;'>Note: Clicking these buttons will perform immediate action without requiring portal login. This authorization link expires in 48 hours.</p>
+    ");
+    }
     public static string ReportRejected(string refNum, string reason) =>
         BaseLayout("Valuation Report Document Rejected", $@"
             <p>Hello Valuer,</p>
