@@ -7,10 +7,8 @@ import DataTable from "@/shared/ui/table/DataTable";
 
 import {
     FiClock,
-    FiFileText,
     FiCheckCircle,
     FiXCircle,
-    FiDollarSign,
     FiSearch
 } from "react-icons/fi";
 
@@ -21,13 +19,11 @@ import {
 import { valuationReportColumns } from "../constants/valuationReportColumns";
 
 type Workflow =
-    | "all"
     | "ongoing"
     | "reviewing"
     | "completed"
     | "approved"
-    | "rejected"
-    | "paymentPending";
+    | "rejected";
 
 export const ValuationReportPage = () => {
     const navigate = useNavigate();
@@ -46,13 +42,12 @@ export const ValuationReportPage = () => {
 
     const reportCounts = useMemo(() => {
         const counts = {
-            all: reports.length,
             ongoing: 0,
             reviewing: 0,
             completed: 0,
             approved: 0,
             rejected: 0,
-            paymentPending: 0,
+
         };
 
         reports.forEach(report => {
@@ -77,14 +72,7 @@ export const ValuationReportPage = () => {
             )
                 counts.rejected++;
 
-            if (
-                report.reportApprovalStatus ===
-                "Approved" &&
-                report.paymentStatus ===
-                "UnProcessed"
-            )
-                counts.paymentPending++;
-        });
+       });
 
         return counts;
     }, [reports]);
@@ -92,16 +80,9 @@ export const ValuationReportPage = () => {
 
 
     const [selectedWorkflow, setSelectedWorkflow] =
-        useState<Workflow>("all");
+        useState<Workflow>("ongoing");
 
     const workflowCards = [
-        {
-            title: "All",
-            key: "all",
-            count: reportCounts.all,
-            theme: "info",
-            icon: <FiFileText size={18} />,
-        },
 
         {
             title: "Ongoing",
@@ -143,14 +124,7 @@ export const ValuationReportPage = () => {
             icon: <FiXCircle size={18} />,
         },
 
-        {
-            title: "Payment Pending",
-            key: "paymentPending",
-            count: reportCounts.paymentPending,
-            theme: "pending",
-            icon: <FiDollarSign size={18} />,
-        },
-    ] as const;
+     ] as const;
 
     const tableData = useMemo(() => {
         switch (selectedWorkflow) {
@@ -183,17 +157,10 @@ export const ValuationReportPage = () => {
                         "Rejected"
                 );
 
-            case "paymentPending":
-                return reports.filter(
-                    x =>
-                        x.reportApprovalStatus ===
-                        "Approved" &&
-                        x.paymentStatus ===
-                        "UnProcessed"
-                );
-
             default:
-                return reports;
+                return reports.filter(
+                    x => x.reportStatus === "Ongoing"
+                );
         }
     }, [reports, selectedWorkflow]);
 
