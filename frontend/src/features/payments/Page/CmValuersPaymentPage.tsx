@@ -12,7 +12,7 @@ import MetricCard from "@/features/dashboard/components/MetricCard";
 import { MetricCardSkeleton, Skeleton } from "@/shared/ui/loader";
 import DataTable from "@/shared/ui/table/DataTable";
 import type { Column } from "@/shared/ui/table/types";
-import { ROUTES } from "@/shared/constants/routes";
+// import { ROUTES } from "@/shared/constants/routes";
 import { formatCurrency } from "@/shared/utils/formatCurrency";
 import { formatDate } from "@/shared/utils/formatDate";
 
@@ -151,22 +151,19 @@ const CmValuersPaymentPage = () => {
     }, [selectedFilter, pendingPayments, paymentData, searchQuery]);
 
     // Handle navigation to details page for processing/reversing
-    const goToReviewDetails = (
-        e: React.MouseEvent,
-        facilityReference: string,
-        actionType: "pay" | "retry" | "reverse" | "view"
-    ) => {
-        e.preventDefault();
-        e.stopPropagation();
+ const handleNavigateToPayPage = (
+  e: React.MouseEvent,
+  facilityReference: string,
+  actionType: "pay" | "retry" | "reverse"
+) => {
+  // Prevent default link behavior and stop table row click propagation
+  e.preventDefault();
+  e.stopPropagation();
 
-        navigate(
-            ROUTES.cm.cmFacilityReviewsDetails.replace(
-                ":facilityReference",
-                facilityReference
-            ),
-            { state: { actionType } }
-        );
-    };
+  navigate(`/cm/valuer-payment/${facilityReference}`, {
+    state: { actionType },
+  });
+};
 
     const columns: Column<UnifiedPaymentRow>[] = [
         {
@@ -212,7 +209,7 @@ const CmValuersPaymentPage = () => {
                         <button
                             type="button"
                             onClick={(e) =>
-                                goToReviewDetails(e, row.facilityReference, "pay")
+                                handleNavigateToPayPage(e, row.facilityReference, "pay")
                             }
                             className="rounded-lg bg-teal-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-teal-700"
                         >
@@ -224,7 +221,7 @@ const CmValuersPaymentPage = () => {
                         <button
                             type="button"
                             onClick={(e) =>
-                                goToReviewDetails(e, row.facilityReference, "retry")
+                                handleNavigateToPayPage(e, row.facilityReference, "retry")
                             }
                             className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-emerald-700"
                         >
@@ -236,7 +233,7 @@ const CmValuersPaymentPage = () => {
                         <button
                             type="button"
                             onClick={(e) =>
-                                goToReviewDetails(e, row.facilityReference, "reverse")
+                                handleNavigateToPayPage(e, row.facilityReference, "reverse")
                             }
                             className="rounded-lg bg-amber-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-amber-700"
                         >
@@ -248,14 +245,23 @@ const CmValuersPaymentPage = () => {
         },
     ];
 
-    const handleRowClick = (row: UnifiedPaymentRow) => {
-        navigate(
-            ROUTES.cm.cmFacilityReviewsDetails.replace(
-                ":facilityReference",
-                row.facilityReference
-            )
-        );
-    };
+const handleRowClick = (row: UnifiedPaymentRow) => {
+  const defaultActionMap: Record<
+    UnifiedPaymentRow["status"],
+    "pay" | "retry" | "reverse" | "view"
+  > = {
+    "Awaiting Payment": "pay",
+    Failed: "retry",
+    Successful: "reverse",
+    Reversed: "view",
+  };
+
+  const actionType = defaultActionMap[row.status];
+
+  navigate(`/dashboard/cm/pay-valuer/${row.facilityReference}`, {
+    state: { actionType },
+  });
+};
 
     const handleRefetchAll = () => {
         refetchPayments();

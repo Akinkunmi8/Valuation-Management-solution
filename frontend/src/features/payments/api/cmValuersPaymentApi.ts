@@ -23,6 +23,21 @@ export type ValuerPaymentDashboardResponse = {
   transactions: ValuerPaymentTransaction[];
 };
 
+export interface ValidateValuerFeeResponse {
+  facilityReference: string;
+  isPaid: boolean;
+  valuerName?: string;
+  valuerBank?: string;
+  accountNumber?: string;
+  valuationFee?: number;
+  totalAmount?: number;
+  propertyAddress?: string;
+}
+
+export interface PayValuerRequest {
+  facilityReference: string;
+}
+
 export const valuerPaymentApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getValuerPaymentDashboard: builder.query<
@@ -56,6 +71,17 @@ export const valuerPaymentApi = baseApi.injectEndpoints({
 
       invalidatesTags: ["Payment", "Facility", "ValuerDashboard"],
     }),
+
+    validateValuerFee: builder.query<ValidateValuerFeeResponse, string>({
+      query: (facilityReference) => ({
+        url: `/api/Payment/validate-valuer-fee/${facilityReference}`,
+        method: "GET",
+      }),
+      providesTags: (_result, _error, facilityReference) => [
+        { type: "Payment", id: facilityReference },
+        "ValuerPayments",
+      ],
+    }),
   }),
 });
 
@@ -63,4 +89,5 @@ export const {
   useGetValuerPaymentDashboardQuery,
   useProcessValuerPaymentMutation,
   useReverseValuerPaymentMutation,
+  useValidateValuerFeeQuery
 } = valuerPaymentApi;

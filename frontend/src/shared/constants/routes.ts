@@ -26,6 +26,7 @@ export const ROUTES = {
     reportReviews: "/dashboard/cm/report-reviews",
     reportDetails: "/dashboard/cm/valuation-report-details/:facilityReference",
     valuersPayment: "/dashboard/cm/valuers-payments",
+    payValuer: "/dashboard/cm/pay-valuer/:facilityReference",
   },
 
   cms: {

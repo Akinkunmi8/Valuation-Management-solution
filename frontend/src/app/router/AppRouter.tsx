@@ -34,7 +34,9 @@ import ValuationReportDetailsPage from '@/features/valuations/pages/ValuationRep
 import SubmitValuationReportPage from '@/features/reports/pages/SubmitValuationReportPage'
 import ValuerFacilityDetailsPage from '@/valuer/pages/ValuerFacilityDetailsPage'
 import ValuerReportDashboardPage from '@/features/reports/pages/ValuerReportDashboardPage'
-import CmValuersPaymentPage from '@/features/payments/Page/cmValuersPaymentPage'
+
+import PayValuerPage from '@/features/payments/Page/PayValuersPage'
+import CmValuersPaymentPage from '@/features/payments/Page/CmValuersPaymentPage'
 
 
 
@@ -165,6 +167,11 @@ const AppRouter = () => {
               <Route
                 path={ROUTES.cm.valuersPayment}
                 element={<CmValuersPaymentPage/>}
+              />
+
+              <Route
+                path={ROUTES.cm.payValuer}
+                element={<PayValuerPage/>}
               />
 
             </Route>

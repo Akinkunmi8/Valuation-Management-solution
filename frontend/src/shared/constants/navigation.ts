@@ -53,13 +53,6 @@ RM: [
 ],
 
  CM: [
-  // {
-  //   label: 'Dashboard',
-  //   description: 'Review overview',
-  //   href: ROUTES.cm.dashboard,
-  //   icon: FiGrid,
-  //   exact: true,
-  // },
 
   {
     label: 'Facility Reviews',
@@ -80,6 +73,7 @@ RM: [
     href: ROUTES.cm.valuersPayment,
     icon: FiCreditCard,
   },
+
 ],
  CMS: [
   {
