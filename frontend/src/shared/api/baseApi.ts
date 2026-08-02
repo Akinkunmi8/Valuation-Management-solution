@@ -18,8 +18,9 @@ export const baseApi = createApi({
     "CmDashboard",
     "CmsDashboard",
     "ValuerDashboard",
+    "ValuerPayments",
     "ValuationReports",
-    "ValuationReport"
+    "ValuationReport",
   ],
 
   endpoints: () => ({}),
