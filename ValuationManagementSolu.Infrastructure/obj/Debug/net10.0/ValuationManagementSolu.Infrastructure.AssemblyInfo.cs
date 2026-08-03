@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ValuationManagementSolu.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f861bffb59efd830e912fc7ebb445f2d322b1fec")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+46fd1a5919f71b53d6f7609f2f4a91d637fc3b2e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ValuationManagementSolu.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ValuationManagementSolu.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

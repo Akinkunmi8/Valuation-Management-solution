@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.api\\controllers\\cmsdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|solutionrelative:valuationmanagementsolu.api\\controllers\\cmsdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|solutionrelative:valuationmanagementsolu.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C29CB970-4C7F-9431-835A-2EE6F534F26A}|ValuationManagementSolu.Application\\ValuationManagementSolu.Application.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.application\\services\\cmsactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C29CB970-4C7F-9431-835A-2EE6F534F26A}|ValuationManagementSolu.Application\\ValuationManagementSolu.Application.csproj|solutionrelative:valuationmanagementsolu.application\\services\\cmsactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|solutionrelative:valuationmanagementsolu.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.api\\controllers\\valuationreportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|solutionrelative:valuationmanagementsolu.api\\controllers\\valuationreportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -35,14 +51,6 @@
       "RelativeMoniker": "D:0:0:{C29CB970-4C7F-9431-835A-2EE6F534F26A}|ValuationManagementSolu.Application\\ValuationManagementSolu.Application.csproj|solutionrelative:valuationmanagementsolu.application\\iservices\\icmactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C29CB970-4C7F-9431-835A-2EE6F534F26A}|ValuationManagementSolu.Application\\ValuationManagementSolu.Application.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.application\\services\\cmsdashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C29CB970-4C7F-9431-835A-2EE6F534F26A}|ValuationManagementSolu.Application\\ValuationManagementSolu.Application.csproj|solutionrelative:valuationmanagementsolu.application\\services\\cmsdashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.api\\controllers\\cmsdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|solutionrelative:valuationmanagementsolu.api\\controllers\\cmsdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C29CB970-4C7F-9431-835A-2EE6F534F26A}|ValuationManagementSolu.Application\\ValuationManagementSolu.Application.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.application\\services\\valuerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C29CB970-4C7F-9431-835A-2EE6F534F26A}|ValuationManagementSolu.Application\\ValuationManagementSolu.Application.csproj|solutionrelative:valuationmanagementsolu.application\\services\\valuerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -51,20 +59,8 @@
       "RelativeMoniker": "D:0:0:{59FF3A58-D866-37F8-E07C-4E9C1C914784}|ValuationManagementSolu.Infrastructure\\ValuationManagementSolu.Infrastructure.csproj|solutionrelative:valuationmanagementsolu.infrastructure\\backgroundservices\\notificationeventdispatcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C29CB970-4C7F-9431-835A-2EE6F534F26A}|ValuationManagementSolu.Application\\ValuationManagementSolu.Application.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.application\\services\\cmsactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C29CB970-4C7F-9431-835A-2EE6F534F26A}|ValuationManagementSolu.Application\\ValuationManagementSolu.Application.csproj|solutionrelative:valuationmanagementsolu.application\\services\\cmsactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.api\\controllers\\cmdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|solutionrelative:valuationmanagementsolu.api\\controllers\\cmdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.api\\controllers\\facilitiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|solutionrelative:valuationmanagementsolu.api\\controllers\\facilitiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FB06B553-6A59-5CD3-B714-0E72F84374AD}|ValuationManagementSolu.API\\ValuationManagementSolu.API.csproj|solutionrelative:valuationmanagementsolu.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C29CB970-4C7F-9431-835A-2EE6F534F26A}|ValuationManagementSolu.Application\\ValuationManagementSolu.Application.csproj|c:\\users\\user\\source\\repos\\valuationmanagementsolu\\valuationmanagementsolu.application\\services\\valuationreportdashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -150,43 +146,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PaymentService.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\PaymentService.cs",
-              "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\PaymentService.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\PaymentService.cs",
-              "RelativeToolTip": "ValuationManagementSolu.Application\\Services\\PaymentService.cs",
-              "ViewState": "AgIAALcBAAAAAAAAAAAqwMoBAAAyAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\appsettings.json",
+              "RelativeDocumentMoniker": "ValuationManagementSolu.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\appsettings.json",
+              "RelativeToolTip": "ValuationManagementSolu.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-03T09:28:49.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CmsDashboardController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\CmsDashboardController.cs",
+              "RelativeDocumentMoniker": "ValuationManagementSolu.API\\Controllers\\CmsDashboardController.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\CmsDashboardController.cs",
+              "RelativeToolTip": "ValuationManagementSolu.API\\Controllers\\CmsDashboardController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAmwBYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-01T13:17:22.742Z",
+              "WhenOpened": "2026-08-01T12:58:22.73Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "CmActionService.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\CmActionService.cs",
-              "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\CmActionService.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\CmActionService.cs",
-              "RelativeToolTip": "ValuationManagementSolu.Application\\Services\\CmActionService.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAowHcAAAARAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Program.cs",
+              "RelativeDocumentMoniker": "ValuationManagementSolu.API\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Program.cs",
+              "RelativeToolTip": "ValuationManagementSolu.API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGwAAABfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-01T09:41:04.16Z",
+              "WhenOpened": "2026-07-03T14:36:34.339Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "ValuationReportService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\ValuationReportService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\ValuationReportService.cs",
               "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\ValuationReportService.cs",
               "RelativeToolTip": "ValuationManagementSolu.Application\\Services\\ValuationReportService.cs",
-              "ViewState": "AgIAALEBAAAAAAAAAAAwwMcBAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAMMBAAAAAAAAAAAmwM8BAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-01T11:43:30.209Z",
               "EditorCaption": ""
@@ -194,32 +203,36 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "IValuationReportService.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\IServices\\IValuationReportService.cs",
-              "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\IServices\\IValuationReportService.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\IServices\\IValuationReportService.cs*",
-              "RelativeToolTip": "ValuationManagementSolu.Application\\IServices\\IValuationReportService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAYAAAAAAAAAA==",
+              "Title": "CmsActionService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\CmsActionService.cs",
+              "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\CmsActionService.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\CmsActionService.cs",
+              "RelativeToolTip": "ValuationManagementSolu.Application\\Services\\CmsActionService.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAUwGAAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-24T11:24:13.986Z",
+              "WhenOpened": "2026-08-01T12:44:27.629Z",
               "EditorCaption": ""
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "ValuationReportController.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\ValuationReportController.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.API\\Controllers\\ValuationReportController.cs",
               "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\ValuationReportController.cs",
               "RelativeToolTip": "ValuationManagementSolu.API\\Controllers\\ValuationReportController.cs",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAwwLgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAiwL4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-01T11:46:51.938Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "NotificationEmailService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Infrastructure\\Services\\NotificationEmailService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Infrastructure\\Services\\NotificationEmailService.cs",
@@ -231,7 +244,43 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
+              "Title": "IValuationReportService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\IServices\\IValuationReportService.cs",
+              "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\IServices\\IValuationReportService.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\IServices\\IValuationReportService.cs",
+              "RelativeToolTip": "ValuationManagementSolu.Application\\IServices\\IValuationReportService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-24T11:24:13.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CmActionService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\CmActionService.cs",
+              "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\CmActionService.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\CmActionService.cs",
+              "RelativeToolTip": "ValuationManagementSolu.Application\\Services\\CmActionService.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAowHcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-01T09:41:04.16Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\PaymentService.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\PaymentService.cs",
+              "RelativeToolTip": "ValuationManagementSolu.Application\\Services\\PaymentService.cs",
+              "ViewState": "AgIAALcBAAAAAAAAAAAqwMoBAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-01T13:17:22.742Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "PaymentController.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\PaymentController.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.API\\Controllers\\PaymentController.cs",
@@ -239,11 +288,12 @@
               "RelativeToolTip": "ValuationManagementSolu.API\\Controllers\\PaymentController.cs",
               "ViewState": "AgIAAJsAAAAAAAAAAAAwwMQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-01T11:52:40.439Z"
+              "WhenOpened": "2026-08-01T11:52:40.439Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "ICmActionService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\IServices\\ICmActionService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\IServices\\ICmActionService.cs",
@@ -255,31 +305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CmsDashboardService.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\CmsDashboardService.cs",
-              "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\CmsDashboardService.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\CmsDashboardService.cs",
-              "RelativeToolTip": "ValuationManagementSolu.Application\\Services\\CmsDashboardService.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAmwBUAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-01T12:58:22.74Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CmsDashboardController.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\CmsDashboardController.cs",
-              "RelativeDocumentMoniker": "ValuationManagementSolu.API\\Controllers\\CmsDashboardController.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\CmsDashboardController.cs",
-              "RelativeToolTip": "ValuationManagementSolu.API\\Controllers\\CmsDashboardController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAmwBYAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-01T12:58:22.73Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "NotificationEventDispatcher.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Infrastructure\\BackgroundServices\\NotificationEventDispatcher.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Infrastructure\\BackgroundServices\\NotificationEventDispatcher.cs",
@@ -292,18 +318,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "CmsActionService.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\CmsActionService.cs",
-              "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\CmsActionService.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\CmsActionService.cs",
-              "RelativeToolTip": "ValuationManagementSolu.Application\\Services\\CmsActionService.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAgwFYAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-01T12:44:27.629Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "ValuerService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\ValuerService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\ValuerService.cs",
@@ -315,18 +329,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "CmDashboardController.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\CmDashboardController.cs",
-              "RelativeDocumentMoniker": "ValuationManagementSolu.API\\Controllers\\CmDashboardController.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\CmDashboardController.cs",
-              "RelativeToolTip": "ValuationManagementSolu.API\\Controllers\\CmDashboardController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAmwBQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-24T14:05:38.425Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 14,
               "Title": "FacilitiesController.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\FacilitiesController.cs",
@@ -335,11 +337,12 @@
               "RelativeToolTip": "ValuationManagementSolu.API\\Controllers\\FacilitiesController.cs",
               "ViewState": "AgIAAEsAAAAAAAAAAAAmwFcAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-05T10:02:10.494Z"
+              "WhenOpened": "2026-07-05T10:02:10.494Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 33,
               "Title": "IFileStorageService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\IServices\\IFileStorageService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\IServices\\IFileStorageService.cs",
@@ -351,19 +354,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Program.cs",
-              "RelativeDocumentMoniker": "ValuationManagementSolu.API\\Program.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Program.cs",
-              "RelativeToolTip": "ValuationManagementSolu.API\\Program.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAUwGwAAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-03T14:36:34.339Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 16,
               "Title": "ValuationReportMetricsDto.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\DTOs\\ValuationReportMetricsDto.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\DTOs\\ValuationReportMetricsDto.cs",
@@ -375,7 +366,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 15,
               "Title": "ValuationReportDashboardService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\ValuationReportDashboardService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\ValuationReportDashboardService.cs",
@@ -387,7 +378,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 17,
               "Title": "IValuationReportDashboardService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\IServices\\IValuationReportDashboardService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\IServices\\IValuationReportDashboardService.cs",
@@ -399,7 +390,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 18,
               "Title": "ValuationReportDetailsDto.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\DTOs\\ValuationReportDetailsDto.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\DTOs\\ValuationReportDetailsDto.cs",
@@ -411,7 +402,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 19,
               "Title": "PaymentDashboardService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\PaymentDashboardService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\PaymentDashboardService.cs",
@@ -423,7 +414,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 20,
               "Title": "IPaymentDashboardService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\IServices\\IPaymentDashboardService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\IServices\\IPaymentDashboardService.cs",
@@ -435,7 +426,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 21,
               "Title": "PaymentDashboardMetricsDto.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\DTOs\\PaymentDashboardMetricsDto.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\DTOs\\PaymentDashboardMetricsDto.cs",
@@ -447,7 +438,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 22,
               "Title": "RmDashboardService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\RmDashboardService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\RmDashboardService.cs",
@@ -459,7 +450,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 23,
               "Title": "RmDashboardController.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\RmDashboardController.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.API\\Controllers\\RmDashboardController.cs",
@@ -467,11 +458,12 @@
               "RelativeToolTip": "ValuationManagementSolu.API\\Controllers\\RmDashboardController.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAmwBwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-16T08:04:52.856Z"
+              "WhenOpened": "2026-07-16T08:04:52.856Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 24,
               "Title": "FacilityService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\FacilityService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\FacilityService.cs",
@@ -479,11 +471,12 @@
               "RelativeToolTip": "ValuationManagementSolu.Application\\Services\\FacilityService.cs",
               "ViewState": "AgIAAC4BAAAAAAAAAAAgwCsBAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T08:57:42.49Z"
+              "WhenOpened": "2026-07-15T08:57:42.49Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 25,
               "Title": "CmDashboardService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\CmDashboardService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\CmDashboardService.cs",
@@ -495,7 +488,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 26,
               "Title": "AccountService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\Services\\AccountService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\Services\\AccountService.cs",
@@ -507,7 +500,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 27,
               "Title": "INotificationEmailService.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\IServices\\INotificationEmailService.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\IServices\\INotificationEmailService.cs",
@@ -519,7 +512,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 28,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.API\\Controllers\\AccountController.cs",
@@ -527,11 +520,12 @@
               "RelativeToolTip": "ValuationManagementSolu.API\\Controllers\\AccountController.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAAABkAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-05T10:02:10.476Z"
+              "WhenOpened": "2026-07-05T10:02:10.476Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 29,
               "Title": "ValuerController.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.API\\Controllers\\ValuerController.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.API\\Controllers\\ValuerController.cs",
@@ -539,11 +533,12 @@
               "RelativeToolTip": "ValuationManagementSolu.API\\Controllers\\ValuerController.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAQwBgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-05T10:02:10.527Z"
+              "WhenOpened": "2026-07-05T10:02:10.527Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 32,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Domain\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Domain\\ApplicationUser.cs",
@@ -555,7 +550,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 31,
               "Title": "IEventPublisher.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Application\\IServices\\IEventPublisher.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Application\\IServices\\IEventPublisher.cs",
@@ -567,7 +562,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 30,
               "Title": "ApprovalStatus.cs",
               "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ValuationManagementSolu\\ValuationManagementSolu.Domain\\ApprovalStatus.cs",
               "RelativeDocumentMoniker": "ValuationManagementSolu.Domain\\ApprovalStatus.cs",
@@ -576,10 +571,6 @@
               "ViewState": "AgIAACUAAAAAAAAAAAAkwA8AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-01T08:38:07.323Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

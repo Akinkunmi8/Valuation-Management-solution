@@ -37,23 +37,30 @@ public class CmsActionService : ICmsActionService
     {
         var collaterals = await _unitOfWork.Collaterals.GetAllAsync();
         var collateral = collaterals.FirstOrDefault(c => c.FacilityReference == facilityRef);
-        if (collateral == null) throw new KeyNotFoundException($"Collateral reference footprint data context not found.");
+        if (collateral == null)
+            throw new KeyNotFoundException($"Collateral reference footprint data context not found for '{facilityRef}'.");
 
         var facilities = await _unitOfWork.Facilities.GetAllAsync();
         var facility = facilities.FirstOrDefault(f => f.FacilityReference == facilityRef);
-        if (facility == null) throw new KeyNotFoundException($"Facility reference tracking trace not found.");
+        if (facility == null)
+            throw new KeyNotFoundException($"Facility reference tracking trace not found for '{facilityRef}'.");
+
+        // 1. Fetch Valuer entity to get ValuerEmail safely
+        var valuer = await _unitOfWork.Valuers.GetByIdAsync(valuerId);
+        if (valuer == null)
+            throw new KeyNotFoundException($"Valuer with ID '{valuerId}' was not found.");
 
         await _unitOfWork.BeginTransactionAsync();
         try
         {
-            // 1. Link valuer variables onto collateral records
+            // 2. Link valuer variables onto collateral records
             collateral.ValuerId = valuerId;
 
-            // 2. Update Facility Tracking Statuses
+            // 3. Update Facility Tracking Statuses
             facility.ApprovalStatus = ApprovalStatus.Approved;
-            facility.ValuationStatus = ValuationStatus.Assigned; // <-- ADDED: Now explicitly tracking that a Valuer is attached!
+            facility.ValuationStatus = ValuationStatus.Assigned;
 
-            // 3. Look up or establish a clean ValuationReport entry for tracking
+            // 4. Look up or establish ValuationReport entry
             var reports = await _unitOfWork.ValuationReports.GetAllAsync();
             var report = reports.FirstOrDefault(r => r.FacilityRef == facilityRef);
 
@@ -62,8 +69,10 @@ public class CmsActionService : ICmsActionService
                 report = new ValuationReport
                 {
                     FacilityRef = facilityRef,
+                    Valuer = valuer, // Bind navigation property
                     ValuersName = valuerName,
                     AssignedBy = Username,
+                    DateAssigned = DateTime.UtcNow,
                     reportStatus = ReportStatus.Ongoing,
                     approvalStatus = ApprovalStatus.Pending,
                     PaymentStatus = PaymentStatus.UnProcessed
@@ -72,19 +81,26 @@ public class CmsActionService : ICmsActionService
             }
             else
             {
+                report.Valuer = valuer; // Update navigation property
                 report.ValuersName = valuerName;
+                report.DateAssigned = DateTime.UtcNow;
                 report.reportStatus = ReportStatus.Ongoing;
                 report.approvalStatus = ApprovalStatus.Pending;
+                _unitOfWork.ValuationReports.Update(report);
             }
-            // 3. Stage the Outbox Event with structural email properties
+
+            // 5. Stage Outbox Event using valuer.ValuerEmail directly
             var ev = new FacilityAssignedToValuerEvent(
-            facilityRef,
-            valuerId,
-            valuerName,
-            report.Valuer.ValuerEmail,
-            DateTime.UtcNow
-           );
-            // 4. Persist and commit out cleanly via Unit of Work
+                facilityRef,
+                valuerId,
+                valuerName,
+                valuer.ValuerEmail, // Safe access directly from valuer object
+                DateTime.UtcNow
+            );
+
+            await StageOutboxEventAsync(facilityRef, ev);
+
+            // 6. Persist and commit
             await _unitOfWork.CompleteAsync();
             await _unitOfWork.CommitTransactionAsync();
             return true;
