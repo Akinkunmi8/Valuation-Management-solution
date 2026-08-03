@@ -175,4 +175,22 @@ public class ValuationReportController : ControllerBase
 
         return Ok(result);
     }
+
+    /// <summary>
+    /// Validates whether the facility payout and valuation report have been approved or rejected.
+    /// </summary>
+    /// <param name="facilityRef">The facility reference number</param>
+    [HttpGet("validate-approval/{facilityRef}")]
+    public async Task<IActionResult> ValidateApprovalStatus(string facilityRef)
+    {
+        if (string.IsNullOrWhiteSpace(facilityRef))
+            return BadRequest("Facility reference parameter is required.");
+
+        var result = await _reportService.ValidateApprovalStatusAsync(facilityRef);
+
+        if (result == null)
+            return NotFound($"Facility reference '{facilityRef}' could not be located.");
+
+        return Ok(result);
+    }
 }

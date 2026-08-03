@@ -1,0 +1,10 @@
+2026-08-03 09:04:31.658 +01:00 [INF] Institutional system roles and admin user seeded into DB successfully.
+2026-08-03 09:04:32.107 +01:00 [INF] Notification Event Dispatcher Engine initiated successfully.
+2026-08-03 09:04:32.881 +01:00 [INF] Now listening on: https://localhost:7104
+2026-08-03 09:04:32.889 +01:00 [INF] Now listening on: http://localhost:5051
+2026-08-03 09:04:33.077 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-03 09:04:33.082 +01:00 [INF] Hosting environment: Development
+2026-08-03 09:04:33.089 +01:00 [INF] Content root path: C:\Users\User\source\repos\ValuationManagementSolu\ValuationManagementSolu.API
+2026-08-03 09:05:37.261 +01:00 [INF] HTTP GET /api/CmDashboard/global-metrics responded 200 in 4500.6935 ms
+2026-08-03 09:06:19.273 +01:00 [INF] HTTP GET /api/ValuationReport/validate-approval/20260701135545101897 responded 200 in 21332.1430 ms
+2026-08-03 09:07:51.643 +01:00 [INF] HTTP GET /api/CmsDashboard/supervisor-metrics responded 200 in 23825.7781 ms

@@ -407,6 +407,27 @@
         }
       }
     },
+    "/api/CmAction/resend-approval-link": {
+      "get": {
+        "tags": [
+          "CmAction"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/CmDashboard/global-metrics": {
       "get": {
         "tags": [
@@ -1570,6 +1591,28 @@
         "parameters": [
           {
             "name": "accountNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ValuationReport/validate-approval/{facilityRef}": {
+      "get": {
+        "tags": [
+          "ValuationReport"
+        ],
+        "parameters": [
+          {
+            "name": "facilityRef",
             "in": "path",
             "required": true,
             "schema": {

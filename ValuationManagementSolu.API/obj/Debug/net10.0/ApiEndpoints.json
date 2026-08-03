@@ -232,6 +232,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "CmActionController",
+    "Method": "ResendApprovalLink",
+    "RelativePath": "api/CmAction/resend-approval-link",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "facilityRef",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ValuationManagementSolu.API.Controllers.CmDashboardController",
     "Method": "GetGlobalMetrics",
     "RelativePath": "api/CmDashboard/global-metrics",
@@ -1065,6 +1081,22 @@
         "Name": "ValuatioinReport",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ValuationManagementSolu.API.Controllers.ValuationReportController",
+    "Method": "ValidateApprovalStatus",
+    "RelativePath": "api/ValuationReport/validate-approval/{facilityRef}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "facilityRef",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

@@ -16,4 +16,5 @@ public interface IValuationReportService
 
     Task<ValuationReportDetailsDto> GetValuationReportDetailsAsync(string facilityRef, string baseUrl);
     Task<CompletedValuationReportDto?> GetCompletedReportByAccountNumberAsync(string accountNumber);
+    Task<ApprovalValidationResultDto?> ValidateApprovalStatusAsync(string facilityRef);
 }

@@ -434,4 +434,33 @@ public class ValuationReportService : IValuationReportService
         return dto;
     }
 
+    public async Task<ApprovalValidationResultDto?> ValidateApprovalStatusAsync(string facilityRef)
+    {
+        if (string.IsNullOrWhiteSpace(facilityRef)) return null;
+
+        // 1. Fetch Facility
+        var facilities = await _unitOfWork.Facilities.GetAllAsync();
+        var facility = facilities.FirstOrDefault(f => f.FacilityReference == facilityRef);
+
+        if (facility == null) return null;
+
+        // 2. Fetch Valuation Report
+        var reports = await _unitOfWork.ValuationReports.GetAllAsync();
+        var report = reports.FirstOrDefault(r => r.FacilityRef == facilityRef);
+
+        // 3. Evaluate Statuses
+        return new ApprovalValidationResultDto
+        {
+            FacilityReference = facilityRef,
+
+            // Facility CMS Facility Approval Check
+            IsFacilityApproved = facility.ApprovalStatus == ApprovalStatus.Approved,
+            IsFacilityRejected = facility.ApprovalStatus == ApprovalStatus.Rejected,
+
+            // Valuation Report Approval Checks
+            IsReportApproved = report?.approvalStatus == ApprovalStatus.Approved,
+            IsReportRejected = report?.approvalStatus == ApprovalStatus.Rejected
+        };
+    }
+
 }

@@ -29,3 +29,20 @@ public class CompletedValuationReportDto
     public string? ValuationReportBase64 { get; set; }
     public string? ContentType { get; set; }
 }
+
+public class ApprovalValidationResultDto
+{
+    public string FacilityReference { get; set; } = string.Empty;
+
+    // Facility Approval Flags
+    public bool IsFacilityApproved { get; set; }
+    public bool IsFacilityRejected { get; set; }
+
+    // Report Approval Flags
+    public bool IsReportApproved { get; set; }
+    public bool IsReportRejected { get; set; }
+
+    // Combined Evaluation Flags
+    public bool IsFullyApproved => IsFacilityApproved && IsReportApproved;
+    public bool IsAnyRejected => IsFacilityRejected || IsReportRejected;
+}
