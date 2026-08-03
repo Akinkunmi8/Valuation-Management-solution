@@ -56,6 +56,8 @@ const LoginPage = () => {
           softToken: values.softToken,
         }).unwrap()
 
+        console.log("response", response)
+
       notify.success(
         NOTIFY_TITLES.LOGIN_SUCCESS,
         "You have successfully login"

@@ -8,6 +8,16 @@ import type {
   RejectReportRequest,
 } from "@/features/approvals/types/cmActionTypes";
 
+export interface ValidateApprovalResponse {
+  facilityReference: string;
+  isFacilityApproved: boolean;
+  isFacilityRejected: boolean;
+  isReportApproved: boolean;
+  isReportRejected: boolean;
+  isFullyApproved: boolean;
+  isAnyRejected: boolean;
+}
+
 export const cmActionApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     //--------------------------------------
@@ -95,6 +105,16 @@ export const cmActionApi = baseApi.injectEndpoints({
         "ValuationReports",
       ],
     }),
+
+    validateApproval: builder.query<ValidateApprovalResponse, string>({
+      query: (facilityReference) => ({
+        url: `/api/ValuationReport/validate-approval/${facilityReference}`,
+        method: "GET",
+      }),
+      providesTags: (_result, _error, facilityReference) => [
+        { type: "ValuationReport", id: facilityReference },
+      ],
+    }),
   }),
 });
 
@@ -103,4 +123,5 @@ export const {
   useRejectFacilityMutation,
   useApproveReportMutation,
   useRejectReportMutation,
+  useValidateApprovalQuery
 } = cmActionApi;

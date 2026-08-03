@@ -84,12 +84,12 @@ RM: [
     exact: true,
   },
 
-  {
-    label: 'Payments',
-    description: 'Valuer Payments',
-    href: ROUTES.cms.valuerPayments,
-    icon: FiCreditCard,
-  },
+  // {
+  //   label: 'Payments',
+  //   description: 'Valuer Payments',
+  //   href: ROUTES.cms.valuerPayments,
+  //   icon: FiCreditCard,
+  // },
 
 ],
 BM: [

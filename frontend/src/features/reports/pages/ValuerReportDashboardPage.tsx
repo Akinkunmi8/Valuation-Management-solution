@@ -1,8 +1,10 @@
-import { FiCheckCircle, FiClock, FiPlus, FiSearch } from "react-icons/fi";
+import { FiCheckCircle, FiClock, 
+    // FiPlus, 
+    FiSearch } from "react-icons/fi";
 import { useMemo, useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import Button from "@/shared/ui/button/Button";
+// import Button from "@/shared/ui/button/Button";
 import MetricCard from "@/features/dashboard/components/MetricCard";
 import { MetricCardSkeleton } from "@/shared/ui/loader";
 import DataTable from "@/shared/ui/table/DataTable";
@@ -91,14 +93,14 @@ const ValuerReportDashboardPage = () => {
                     </p>
                 </div>
 
-                <Button
+                {/* <Button
                     leftIcon={<FiPlus />}
                     // onClick={() =>
                     //     navigate(ROUTES.valuer.assignments)
                     // }
                 >
                     Create Report
-                </Button>
+                </Button> */}
             </div>
 
             {/* Metrics */}

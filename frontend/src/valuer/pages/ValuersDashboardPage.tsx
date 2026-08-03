@@ -41,16 +41,6 @@ const ValuersDashboardPage = () => {
         skip: !valuerId,
       })
 
-  //   console.log(data?.assignedFacilities)
-  //   console.log(data?.ongoingReports)
-  //   console.log(data?.awaitingCompletedReports)
-  //   console.log(data?.approvedCompletedReports)
-  //   console.log(data?.returnedReports)
-  //   console.log(data?.beyondTat)
-
-  //   console.log(
-  //   data?.ongoingReports.map(x => x.facilityReference)
-  // )
 
   const metrics = data?.metrics
 
@@ -71,27 +61,6 @@ const ValuersDashboardPage = () => {
 
   const [selectedWorkflow, setSelectedWorkflow] =
     useState<Workflow>('assignedFacilities')
-
-
-  // const allFacilities = useMemo(() => {
-
-  //   if (!data) return []
-
-  //   return mergeUniqueByKey(
-
-  //     [
-  //       ...data.assignedFacilities,
-  //       ...data.ongoingReports,
-  //       ...data.awaitingCompletedReports,
-  //       ...data.approvedCompletedReports,
-  //       ...data.returnedReports,
-  //       ...data.beyondTat,
-  //     ],
-
-  //     item => item.facilityReference,
-  //   )
-
-  // }, [data])
 
 
   const workflowCards = [
