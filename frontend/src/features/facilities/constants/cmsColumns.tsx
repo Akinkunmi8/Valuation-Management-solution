@@ -53,13 +53,13 @@ export const cmsColumns: Column<CmsFacilityTableRow>[] = [
     },
   },
   {
-    key: 'approvalStatus',
+    key: 'reportApprovalStatus',
     header: 'Approval',
     render: row => {
 
       const approval =
         getApprovalStatus(
-          row.approvalStatus,
+          row.reportApprovalStatus,
         )
 
       return (
