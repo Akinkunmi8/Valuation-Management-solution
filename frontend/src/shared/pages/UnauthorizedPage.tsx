@@ -2,7 +2,7 @@ import { FiShield } from 'react-icons/fi'
 import { useNavigate } from 'react-router'
 
 import Button from '../ui/button/Button'
-// import { ROUTES } from '../constants/routes'
+import { ROUTES } from '../constants/routes'
 import { useAppSelector } from '@/app/store/hooks'
 import { getDashboardRoute } from '../auth/getDashboardRoute'
 
@@ -10,27 +10,20 @@ const UnauthorizedPage = () => {
 
   const navigate = useNavigate()
 
-  const role = useAppSelector(
-    state => state.auth.roles[0],
-  )
+  // const role = useAppSelector(
+  //   state => state.auth.roles[0],
+  // )
 
-//   const dashboardRoute = {
+  const roles = useAppSelector(state => state.auth.roles)
+  const primaryRole = roles[0]
 
-//     RM: ROUTES.rm.dashboard,
-
-//     CM: ROUTES.cm.dashboard,
-
-//     CMS: ROUTES.cms.dashboard,
-
-//     BM: ROUTES.bm.dashboard,
-
-//     VALUER: ROUTES.valuer.dashboard,
-
-//     AUDIT: ROUTES.audit.dashboard,
-
-//     ADMIN: ROUTES.admin.dashboard,
-
-//   }[role]
+  const handleGoBack = () => {
+    if (primaryRole) {
+      navigate(getDashboardRoute(primaryRole), { replace: true })
+    } else {
+      navigate(ROUTES.auth.login, { replace: true })
+    }
+  }
 
   return (
 
@@ -64,9 +57,10 @@ const UnauthorizedPage = () => {
 
         <Button
           className="mt-8 w-full"
-          onClick={() =>
-            navigate(getDashboardRoute(role))
-          }
+          // onClick={() =>
+          //   navigate(getDashboardRoute(role))
+          // }
+          onClick={handleGoBack}
         >
 
           Go to Dashboard

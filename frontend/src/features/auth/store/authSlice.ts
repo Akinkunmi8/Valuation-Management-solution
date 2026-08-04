@@ -8,20 +8,50 @@ import {
 
 const AUTH_KEY = "cvms.auth";
 
+// Helper function to read from localStorage synchronously on initial load
+const loadInitialAuthState = (): AuthState => {
+  try {
+    const savedAuth = localStorage.getItem(AUTH_KEY);
+    if (savedAuth) {
+      const parsed = JSON.parse(savedAuth);
+      return {
+        selectedCountry: parsed.selectedCountry ?? null,
+        token: parsed.token ?? null,
+        fullName: parsed.fullName ?? null,
+        email: parsed.email ?? null,
+        roles: Array.isArray(parsed.roles) ? parsed.roles : [],
+        isAuthenticated: Boolean(parsed.token),
+        solId: parsed.solId ?? null,
+      };
+    }
+  } catch (error) {
+    console.error("Failed to parse auth state from localStorage:", error);
+  }
 
-const initialState: AuthState = {
-  selectedCountry: null,
-  token: null,
-  fullName: null,
-  email: null,
-  roles: [],
-  isAuthenticated: false,
-  solId: null
+  return {
+    selectedCountry: null,
+    token: null,
+    fullName: null,
+    email: null,
+    roles: [],
+    isAuthenticated: false,
+    solId: null,
+  };
 };
+
+// const initialState: AuthState = {
+//   selectedCountry: null,
+//   token: null,
+//   fullName: null,
+//   email: null,
+//   roles: [],
+//   isAuthenticated: false,
+//   solId: null
+// };
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: loadInitialAuthState(),
   reducers: {
     setCountry: (state, action: PayloadAction<SupportedCountry>) => {
       state.selectedCountry = action.payload;
@@ -38,6 +68,19 @@ const authSlice = createSlice({
       state.roles = action.payload.roles;
       state.isAuthenticated = true;
       state.solId = action.payload.solId;
+
+      // Save state to localStorage
+      localStorage.setItem(
+        AUTH_KEY,
+        JSON.stringify({
+          selectedCountry: state.selectedCountry,
+          token: state.token,
+          fullName: state.fullName,
+          email: state.email,
+          roles: state.roles,
+          solId: state.solId,
+        }),
+      );
     },
 
     logout: (state) => {
