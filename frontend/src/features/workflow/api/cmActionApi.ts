@@ -38,6 +38,7 @@ export const cmActionApi = baseApi.injectEndpoints({
         { type: "Facility", id: facilityReference },
         "RmDashboard",
         "CmDashboard",
+        "CmsDashboard",
       ],
     }),
 
@@ -61,6 +62,7 @@ export const cmActionApi = baseApi.injectEndpoints({
         { type: "Facility", id: facilityReference },
         "RmDashboard",
         "CmDashboard",
+        "CmsDashboard",
       ],
     }),
 
@@ -81,6 +83,13 @@ export const cmActionApi = baseApi.injectEndpoints({
       invalidatesTags: (_result, _error, { facilityReference }) => [
         { type: "ValuationReport", id: facilityReference },
         "ValuationReports",
+        "ValuationReports",
+        "CmDashboard",
+        "CmsDashboard",
+        "Payment",
+        "ValuerPayments",
+        "ValuerDashboard",
+        { type: "Facility", id: facilityReference },
       ],
     }),
 
@@ -103,6 +112,9 @@ export const cmActionApi = baseApi.injectEndpoints({
       invalidatesTags: (_result, _error, { facilityReference }) => [
         { type: "ValuationReport", id: facilityReference },
         "ValuationReports",
+        "CmDashboard",
+        "ValuerDashboard",
+        { type: "Facility", id: facilityReference },
       ],
     }),
 
@@ -123,5 +135,5 @@ export const {
   useRejectFacilityMutation,
   useApproveReportMutation,
   useRejectReportMutation,
-  useValidateApprovalQuery
+  useValidateApprovalQuery,
 } = cmActionApi;

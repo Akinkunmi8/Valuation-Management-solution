@@ -17,32 +17,6 @@ export const valuationReportApi = baseApi.injectEndpoints({
       providesTags: ["ValuationReport"],
     }),
 
-    // getValuationReportDetails:
-    //   builder.query<
-    //     ValuationReport,
-    //     string
-    //   >({
-
-    //     query: facilityReference => ({
-    //       url:
-    //         `/api/ValuationReport/details/${facilityReference}`,
-    //     }),
-
-    //     providesTags: (
-    //       _,
-    //       __,
-    //       facilityReference,
-    //     ) => [
-
-    //       {
-    //         type: "ValuationReport",
-    //         id: facilityReference,
-    //       },
-
-    //     ],
-
-    //   }),
-
     getValuationReportDetails: builder.query<ValuationReportDetails, string>({
       query: (facilityRef) => ({
         url: `/api/ValuationReport/details/${facilityRef}`,

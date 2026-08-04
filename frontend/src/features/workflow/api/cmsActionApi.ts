@@ -2,7 +2,6 @@ import { baseApi } from "@/shared/api/baseApi";
 
 export const cmsActionApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-
     assignValuer: builder.mutation<
       {
         success: boolean;
@@ -15,12 +14,7 @@ export const cmsActionApi = baseApi.injectEndpoints({
         username: string;
       }
     >({
-      query: ({
-        facilityReference,
-        valuerId,
-        valuerName,
-        username,
-      }) => ({
+      query: ({ facilityReference, valuerId, valuerName, username }) => ({
         url: `/api/CmsAction/assign-valuer/${facilityReference}`,
         method: "POST",
         params: {
@@ -33,6 +27,8 @@ export const cmsActionApi = baseApi.injectEndpoints({
       invalidatesTags: (_result, _error, arg) => [
         "CmsDashboard",
         "ValuerDashboard",
+        "CmDashboard",
+        "RmDashboard",
         {
           type: "Facility",
           id: arg.facilityReference,
@@ -50,30 +46,32 @@ export const cmsActionApi = baseApi.injectEndpoints({
         username: string;
       }
     >({
-      query: ({
-        facilityReference,
-        username,
-      }) => ({
+      query: ({ facilityReference,
+        // reason,
+        username }) => ({
         url: `/api/CmsAction/cancel-facility/${facilityReference}`,
         method: "POST",
         params: {
           Username: username,
         },
+        // body: {reason}
       }),
 
       invalidatesTags: (_result, _error, arg) => [
         "CmsDashboard",
+        "CmDashboard",
+        "RmDashboard",
+        "ValuerDashboard",
+        "CmDashboard",
+        "RmDashboard",
         {
           type: "Facility",
           id: arg.facilityReference,
         },
       ],
     }),
-
   }),
 });
 
-export const {
-  useAssignValuerMutation,
-  useCancelFacilityMutation,
-} = cmsActionApi;
+export const { useAssignValuerMutation, useCancelFacilityMutation } =
+  cmsActionApi;

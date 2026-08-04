@@ -6,32 +6,39 @@ export const reportApi = baseApi.injectEndpoints({
     submitValuationReport: builder.mutation<void, FormData>({
       query: (formData) => ({
         url: "api/ValuationReport/submit",
-
         method: "POST",
-
         body: formData,
       }),
 
-      invalidatesTags: ["ValuerDashboard", "Facility"],
+      invalidatesTags: [
+        "ValuerDashboard",
+        "Facility",
+        "CmDashboard",
+        "ValuationReport",
+        "ValuationReports",
+      ],
     }),
 
     editResubmitValuationReport: builder.mutation<
       void,
       {
         facilityReference: string;
-
         formData: FormData;
       }
     >({
       query: ({ facilityReference, formData }) => ({
         url: `api/ValuationReport/edit-resubmit/${facilityReference}`,
-
         method: "PUT",
-
         body: formData,
       }),
 
-      invalidatesTags: ["ValuerDashboard", "Facility"],
+      invalidatesTags: [
+        "ValuerDashboard",
+        "Facility",
+        "CmDashboard",
+        "ValuationReport",
+        "ValuationReports",
+      ],
     }),
 
     getReportDashboard: builder.query<ReportDashboardResponse, void>({
@@ -47,5 +54,5 @@ export const reportApi = baseApi.injectEndpoints({
 export const {
   useSubmitValuationReportMutation,
   useEditResubmitValuationReportMutation,
-  useGetReportDashboardQuery
+  useGetReportDashboardQuery,
 } = reportApi;

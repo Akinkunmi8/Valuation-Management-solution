@@ -13,7 +13,7 @@ export const facilityApi = baseApi.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["Facility", "RmDashboard"],
+      invalidatesTags: ["Facility", "RmDashboard", "CmDashboard"],
     }),
     getFacilityDetails: builder.query<FacilityDetailsResponse, string>({
       query: (facilityReference) => ({

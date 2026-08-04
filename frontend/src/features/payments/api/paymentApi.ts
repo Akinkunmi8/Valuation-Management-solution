@@ -14,7 +14,7 @@ export const paymentApi = baseApi.injectEndpoints({
         method: "POST",
       }),
 
-      invalidatesTags: ["RmDashboard", "Facility"],
+      invalidatesTags: ["RmDashboard", "Facility", "CmDashboard"],
     }),
 
     // Validate Facility Payment

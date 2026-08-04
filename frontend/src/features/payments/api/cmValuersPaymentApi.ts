@@ -60,7 +60,13 @@ export const valuerPaymentApi = baseApi.injectEndpoints({
         method: "POST",
       }),
 
-      invalidatesTags: ["Payment", "Facility", "ValuerDashboard"],
+      invalidatesTags: [
+        "Payment",
+        "Facility",
+        "ValuerDashboard",
+        "CmsDashboard",
+        "ValuerPayments",
+      ],
     }),
 
     reverseValuerPayment: builder.mutation<void, string>({
@@ -69,7 +75,13 @@ export const valuerPaymentApi = baseApi.injectEndpoints({
         method: "POST",
       }),
 
-      invalidatesTags: ["Payment", "Facility", "ValuerDashboard"],
+      invalidatesTags: [
+        "Payment",
+        "Facility",
+        "ValuerDashboard",
+        "CmsDashboard",
+        "ValuerPayments",
+      ],
     }),
 
     validateValuerFee: builder.query<ValidateValuerFeeResponse, string>({
@@ -89,5 +101,5 @@ export const {
   useGetValuerPaymentDashboardQuery,
   useProcessValuerPaymentMutation,
   useReverseValuerPaymentMutation,
-  useValidateValuerFeeQuery
+  useValidateValuerFeeQuery,
 } = valuerPaymentApi;
