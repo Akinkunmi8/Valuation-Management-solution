@@ -18,6 +18,7 @@ export const baseApi = createApi({
     "CmDashboard",
     "CmsDashboard",
     "ValuerDashboard",
+    "AdminDashboard",
     "ValuerPayments",
     "ValuationReports",
     "ValuationReport",
