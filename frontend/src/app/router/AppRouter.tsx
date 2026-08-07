@@ -37,6 +37,7 @@ import ValuerReportDashboardPage from '@/features/reports/pages/ValuerReportDash
 
 import PayValuerPage from '@/features/payments/Page/PayValuersPage'
 import CmValuersPaymentPage from '@/features/payments/Page/CmValuersPaymentPage'
+import BmDashboardPage from '@/features/dashboard/pages/BmDashboardPage'
 
 
 
@@ -117,6 +118,21 @@ const AppRouter = () => {
 
             </Route>
 
+            {/*======= BM =======*/}
+            <Route
+              element={<RoleGuard
+                allowedRoles={["BM"]} />
+              }
+            >
+
+              <Route
+                path={ROUTES.bm.dashboard}
+                element={<BmDashboardPage />}
+              />
+
+
+            </Route>
+
             {/*======= CM =======*/}
 
             <Route
@@ -166,12 +182,12 @@ const AppRouter = () => {
 
               <Route
                 path={ROUTES.cm.valuersPayment}
-                element={<CmValuersPaymentPage/>}
+                element={<CmValuersPaymentPage />}
               />
 
               <Route
                 path={ROUTES.cm.payValuer}
-                element={<PayValuerPage/>}
+                element={<PayValuerPage />}
               />
 
             </Route>
@@ -262,9 +278,6 @@ const AppRouter = () => {
 
 
           </Route>
-
-
-
 
         </Route>
 

@@ -5,8 +5,8 @@ import {
   FiCreditCard,
   FiFileText,
   FiGrid,
-  FiSettings,
-  FiUsers,
+  // FiSettings,
+  // FiUsers,
 } from 'react-icons/fi'
 
 import type { IconType } from 'react-icons'
@@ -101,19 +101,19 @@ BM: [
     exact: true,
   },
 
-  {
-    label: 'Facilities',
-    description: 'Branch facilities',
-    href: ROUTES.bm.facilities,
-    icon: FiBriefcase,
-  },
+  // {
+  //   label: 'Facilities',
+  //   description: 'Branch facilities',
+  //   href: ROUTES.bm.facilities,
+  //   icon: FiBriefcase,
+  // },
 
-  {
-    label: 'Reports',
-    description: 'Branch reports',
-    href: ROUTES.bm.reports,
-    icon: FiBarChart2,
-  },
+  // {
+  //   label: 'Reports',
+  //   description: 'Branch reports',
+  //   href: ROUTES.bm.reports,
+  //   icon: FiBarChart2,
+  // },
 ],
 
 VALUER: [
@@ -166,25 +166,25 @@ AUDIT: [
       exact: true
     },
 
-    {
-      label: 'Users',
-      description: 'Manage users',
-      href: ROUTES.admin.users,
-      icon: FiUsers,
-    },
+    // {
+    //   label: 'Users',
+    //   description: 'Manage users',
+    //   href: ROUTES.admin.users,
+    //   icon: FiUsers,
+    // },
 
-    {
-      label: 'Settings',
-      description: 'System settings',
-      href: ROUTES.admin.settings,
-      icon: FiSettings,
-    },
+    // {
+    //   label: 'Settings',
+    //   description: 'System settings',
+    //   href: ROUTES.admin.settings,
+    //   icon: FiSettings,
+    // },
 
-    {
-      label: 'Reports',
-      description: 'Audit and reporting',
-      href: ROUTES.admin.reports,
-      icon: FiBarChart2,
-    },
+    // {
+    //   label: 'Reports',
+    //   description: 'Audit and reporting',
+    //   href: ROUTES.admin.reports,
+    //   icon: FiBarChart2,
+    // },
   ],
 }
