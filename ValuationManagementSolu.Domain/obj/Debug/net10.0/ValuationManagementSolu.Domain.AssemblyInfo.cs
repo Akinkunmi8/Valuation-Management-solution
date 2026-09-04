@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ValuationManagementSolu.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e62b2293403327787a2ec84e7959ecb3d765f87e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a6b28f3295deb7cfb317f54296554136cc8bd554")]
 [assembly: System.Reflection.AssemblyProductAttribute("ValuationManagementSolu.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ValuationManagementSolu.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
