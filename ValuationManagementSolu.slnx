@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="web.config" />
+  </Folder>
   <Project Path="ValuationManagementSolu.API/ValuationManagementSolu.API.csproj" />
   <Project Path="ValuationManagementSolu.Application/ValuationManagementSolu.Application.csproj" />
   <Project Path="ValuationManagementSolu.Domain/ValuationManagementSolu.Domain.csproj" />
