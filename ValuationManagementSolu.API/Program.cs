@@ -181,7 +181,7 @@ using (var scope = app.Services.CreateScope())
     {
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-        var context = services.GetRequiredService<Context>(); // Replace with your actual DbContext class name
+        var context = services.GetRequiredService<ApplicationDbContext>(); // Replace with your actual DbContext class name
         context.Database.Migrate();
         // Execute seeding operation asynchronously 
         await ValuationManagementSolu.Infrastructure.Context.DataSeeder.SeedRolesAndAdminAsync(roleManager, userManager);
