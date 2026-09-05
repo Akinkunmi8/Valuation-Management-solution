@@ -181,7 +181,8 @@ using (var scope = app.Services.CreateScope())
     {
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-
+        var context = services.GetRequiredService<Context>(); // Replace with your actual DbContext class name
+        context.Database.Migrate();
         // Execute seeding operation asynchronously 
         await ValuationManagementSolu.Infrastructure.Context.DataSeeder.SeedRolesAndAdminAsync(roleManager, userManager);
 
@@ -190,6 +191,8 @@ using (var scope = app.Services.CreateScope())
     catch (Exception ex)
     {
         Log.Error(ex, "An error occurred while seeding the application database roles.");
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while migrating the database");
     }
 }
 
